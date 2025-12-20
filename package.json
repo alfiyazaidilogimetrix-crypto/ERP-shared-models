@@ -1,0 +1,26 @@
+{
+  "name": "erp-shared-models",
+  "main": "src/index.ts",
+  "scripts": {
+    "db:migrate:dev": "bunx --bun prisma migrate dev && bunx --bun prisma generate",
+    "db:migrate:dev:name": "bunx --bun prisma migrate dev --name init && bunx --bun prisma generate",
+    "db:generate": "bunx --bun prisma generate",
+    "db:push": "bunx --bun prisma db push && bunx --bun prisma generate",
+    "db:reset": "bunx --bun prisma migrate reset && bunx --bun prisma generate",
+    "db:seed": "bunx --bun prisma db seed && bunx --bun prisma generate",
+    "db:studio": "bunx --bun prisma studio",
+    "db:build": "bunx --bun prisma generate && bunx --bun prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.0.1",
+    "@prisma/client": "^7.0.1",
+    "@supabase/storage-js": "^2.7.3",
+    "dotenv": "^17.2.3",
+    "prisma": "^7.0.1",
+    "resend": "^4.5.1",
+    "zod": "^3.25.28"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

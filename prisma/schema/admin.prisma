@@ -1,0 +1,10 @@
+model admin {
+    id            String   @id @default(cuid())
+    name          String
+    email         String   @unique
+    emailVerified Boolean  @default(false)
+    password      String
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    provider      Provider @default(credentials)
+}

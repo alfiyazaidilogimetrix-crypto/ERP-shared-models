@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@schema/*": ["./src/schema/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@config/*": ["./src/config/*"],
+      "@prisma/*": ["./prisma/*"]
+    }
+  }
+}
