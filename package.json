@@ -9,7 +9,8 @@
     "db:reset": "bunx --bun prisma migrate reset && bunx --bun prisma generate",
     "db:seed": "bunx --bun prisma db seed && bunx --bun prisma generate",
     "db:studio": "bunx --bun prisma studio",
-    "db:build": "bunx --bun prisma generate && bunx --bun prisma migrate deploy"
+    "db:build": "bunx --bun prisma generate && bunx --bun prisma migrate deploy",
+    "postinstall": "bun run db:generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.0.1",
