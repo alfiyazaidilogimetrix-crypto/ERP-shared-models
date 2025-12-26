@@ -1,0 +1,38 @@
+enum VendorStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+}
+
+enum VendorType {
+    DIRECT
+    INVENTORY
+}
+
+enum SupplyStatus {
+    PENDING
+    APPROVED
+    IN_TRANSIT
+    DELIVERED
+    REJECTED
+}
+
+model Vendor {
+    id             Int     @id @default(autoincrement())
+    vendor_name    String
+    category       String?
+    contact_number String?
+    email_address  String?
+    address        String?
+
+    gst_number String?
+    pan_number String?
+
+    payment_terms String?
+    status        VendorStatus @default(ACTIVE)
+
+    supplies VendorSupplyManagement[]
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}

@@ -1,0 +1,9 @@
+model Permission {
+    id      Int      @id @default(autoincrement())
+    action  String[]
+    modules Module[] @relation("PermissionModules")
+    roles   Role[]   @relation("RolePermissions")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

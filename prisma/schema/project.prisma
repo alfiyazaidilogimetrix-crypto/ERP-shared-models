@@ -1,0 +1,86 @@
+enum ProjectType {
+    HAM
+    EPC
+    BOT
+    OTHER
+}
+
+enum ProjectStatus {
+    PLANNED
+    IN_PROGRESS
+    ON_HOLD
+    COMPLETED
+    CANCELLED
+}
+
+model Project {
+    id           Int         @id @default(autoincrement())
+    project_type ProjectType
+    project_name String
+    project_code String
+    location     String
+    start_date   DateTime?
+    end_date     DateTime?
+
+    budget String?
+    status ProjectStatus @default(PLANNED)
+
+    client          String?
+    project_manager String?
+    description     String?
+    progress        Int? // 0–100 %
+
+    /**
+     * Relations based on project_type
+     */
+    ham_details HAMSpecificDetails?
+    epc_details EPCSpecificDetails?
+    bot_details BOTSpecificDetails?
+
+    /**
+     * For OTHER project type
+     */
+    other_details Json?
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    directSupplyConfigurations DirectSupplyConfiguration[]
+}
+
+model HAMSpecificDetails {
+    id         Int @id @default(autoincrement())
+    project_id Int @unique
+
+    annuity_amount             String?
+    annuity_period             Int? // in years
+    construction_period        Int? // in months
+    maintenance_responsibility String?
+    progress                   Int? // 0–100 %
+
+    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+}
+
+model EPCSpecificDetails {
+    id         Int @id @default(autoincrement())
+    project_id Int @unique
+
+    engineering_scope     String?
+    procurement_budget    String?
+    construction_timeline String?
+    performance_guarantee String?
+    progress              Int? // 0–100 %
+
+    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+}
+
+model BOTSpecificDetails {
+    id                              Int     @id @default(autoincrement())
+    project_id                      Int     @unique
+    concession_period               Int? // in years
+    estimated_operating_cost        String? // per year
+    toll_revenue_collection_enabled Boolean @default(false)
+    transfer_condition              String?
+
+    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+}

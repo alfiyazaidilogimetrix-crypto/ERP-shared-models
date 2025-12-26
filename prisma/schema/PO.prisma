@@ -1,0 +1,66 @@
+enum POStatus {
+    DRAFT
+    ISSUED
+    PARTIALLY_DELIVERED
+    DELIVERED
+    CANCELLED
+    CLOSED
+}
+
+enum TransportMode {
+    ROAD
+    RAIL
+    SEA
+    AIR
+    SELF_PICKUP
+}
+
+model PO {
+    id Int @id @default(autoincrement())
+
+    pr_id      Int
+    project_id String
+    vendor_id  String
+
+    po_code                String    @unique
+    po_date                DateTime  @default(now())
+    expected_delivery_date DateTime?
+
+    transport_mode TransportMode?
+
+    total_amount String
+
+    po_status POStatus @default(DRAFT)
+
+    payment_terms  String?
+    delivery_terms String?
+
+    shipping_address String?
+    billing_address  String?
+
+    remarks String?
+
+    order_items POOrderItem[]
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([pr_id])
+    @@index([project_id])
+    @@index([vendor_id])
+}
+
+model POOrderItem {
+    id Int @id @default(autoincrement())
+
+    po_id       Int
+    material_id String
+
+    quantity String
+    rate     String
+    amount   String
+
+    po PO @relation(fields: [po_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}

@@ -1,0 +1,34 @@
+enum LabourStatus {
+    ACTIVE
+    INACTIVE
+    LEFT
+    BLACKLISTED
+}
+
+enum LabourType {
+    DIRECT
+    CONTRACT
+}
+
+model Labour {
+    id Int @id @default(autoincrement())
+
+    labour_name String
+    labour_code String @unique
+
+    labour_type LabourType
+    skill       String
+
+    phone_number  String?
+    aadhar_number String? @unique
+    address       String?
+
+    joining_date DateTime?
+    status       LabourStatus @default(ACTIVE)
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([labour_type])
+    @@index([status])
+}

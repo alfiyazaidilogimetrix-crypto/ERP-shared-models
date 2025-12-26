@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.0.1",
   "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
   "activeProvider": "postgresql",
-  "inlineSchema": "model admin {\n  id            String   @id @default(cuid())\n  name          String\n  email         String   @unique\n  emailVerified Boolean  @default(false)\n  password      String\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n  provider      Provider @default(credentials)\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider   = \"prisma-client\"\n  output     = \"../../src/generated/client\"\n  engineType = \"client\"\n  runtime    = \"bun\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Provider {\n  credentials\n  google\n}\n\nmodel user {\n  id            String   @id @default(cuid())\n  name          String\n  email         String   @unique\n  emailVerified Boolean  @default(false)\n  password      String\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n  provider      Provider @default(credentials)\n}\n",
+  "inlineSchema": "model DPR {\n  id Int @id @default(autoincrement())\n\n  date       DateTime\n  project_id String\n\n  weather_condition String?\n\n  skilled_workers   Int?\n  unskilled_workers Int?\n\n  contractor_name String?\n\n  safety_incidents String?\n  remarks          String?\n\n  submitted_by String // user_id\n\n  work_activities       DPRWorkActivity[]\n  material_consumptions DPRMaterialConsumption[]\n  machinery_usages      DPRMachineryUsage[]\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([project_id])\n  @@index([date])\n}\n\nmodel DPRWorkActivity {\n  id Int @id @default(autoincrement())\n\n  dpr_id               Int\n  activity_description String\n  chainage             String?\n\n  planned_qty String?\n  actual_qty  String?\n  progress    Int? // percentage (0–100)\n\n  dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nmodel DPRMaterialConsumption {\n  id Int @id @default(autoincrement())\n\n  dpr_id      Int\n  material_id String\n\n  quantity String\n  chainage String?\n\n  dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nmodel DPRMachineryUsage {\n  id Int @id @default(autoincrement())\n\n  dpr_id         Int\n  equipment_name String\n\n  working_hours String?\n  idle_hours    String?\n\n  dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nenum ReceiptStatus {\n  RECEIVED\n  ACCEPTED\n  REJECTED\n}\n\nmodel GRN {\n  id Int @id @default(autoincrement())\n\n  po_id             Int\n  gate_entry_number String?\n  vehicle_number    String?\n  driver_name       String?\n  driver_contact    String?\n\n  transport_mode TransportMode?\n\n  received_date DateTime\n  received_time DateTime?\n\n  store_location String?\n\n  quality_check_completed Boolean @default(false)\n  grn_remarks             String?\n\n  material_receipts GRNMaterialReceipt[]\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([po_id])\n}\n\nmodel GRNMaterialReceipt {\n  id Int @id @default(autoincrement())\n\n  grn_id      Int\n  material_id String\n\n  ordered String\n\n  status   ReceiptStatus\n  chainage String?\n  quality  String? // Good / Damaged / Failed Test etc.\n  remarks  String?\n\n  grn GRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nenum POStatus {\n  DRAFT\n  ISSUED\n  PARTIALLY_DELIVERED\n  DELIVERED\n  CANCELLED\n  CLOSED\n}\n\nenum TransportMode {\n  ROAD\n  RAIL\n  SEA\n  AIR\n  SELF_PICKUP\n}\n\nmodel PO {\n  id Int @id @default(autoincrement())\n\n  pr_id      Int\n  project_id String\n  vendor_id  String\n\n  po_code                String    @unique\n  po_date                DateTime  @default(now())\n  expected_delivery_date DateTime?\n\n  transport_mode TransportMode?\n\n  total_amount String\n\n  po_status POStatus @default(DRAFT)\n\n  payment_terms  String?\n  delivery_terms String?\n\n  shipping_address String?\n  billing_address  String?\n\n  remarks String?\n\n  order_items POOrderItem[]\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([pr_id])\n  @@index([project_id])\n  @@index([vendor_id])\n}\n\nmodel POOrderItem {\n  id Int @id @default(autoincrement())\n\n  po_id       Int\n  material_id String\n\n  quantity String\n  rate     String\n  amount   String\n\n  po PO @relation(fields: [po_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nenum PRStatus {\n  DRAFT\n  SUBMITTED\n  APPROVED\n  REJECTED\n  CLOSED\n}\n\nenum UrgencyLevel {\n  LOW\n  MEDIUM\n  HIGH\n  CRITICAL\n}\n\nmodel PR {\n  id         Int    @id @default(autoincrement())\n  project_id String\n  pr_code    String @unique\n\n  urgency_level UrgencyLevel\n  status        PRStatus     @default(DRAFT)\n\n  remarks String?\n\n  user_id     String // Created by\n  approved_by String? // Approver (User ID)\n\n  material_items PRMaterialItem[]\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([project_id])\n  @@index([user_id])\n}\n\nmodel PRMaterialItem {\n  id    Int @id @default(autoincrement())\n  pr_id Int\n\n  material_id   String\n  quantity      String\n  required_date DateTime\n\n  pr PR @relation(fields: [pr_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n}\n\nmodel Category {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String?\n  createdAt   DateTime   @default(now())\n  updatedAt   DateTime   @updatedAt\n  materials   Material[]\n\n  @@map(\"categories\")\n}\n\nenum DieselTransactionType {\n  DIESEL_RECEIPT\n  DIESEL_ISSUE\n}\n\nmodel DieselTransaction {\n  id Int @id @default(autoincrement())\n\n  transaction_type DieselTransactionType\n\n  date       DateTime\n  project_id String\n\n  /**\n   * -------- Diesel Receipt Fields --------\n   */\n  vendor_id      String?\n  invoice_number String?\n  quantity       String? // in litres\n  rate_per_litre String?\n  total_amount   String?\n\n  /**\n   * -------- Diesel Issue Fields --------\n   */\n  equipment_name       String?\n  vehicle_number       String?\n  purpose              String?\n  issue_rate_per_litre String?\n  remarks              String?\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([project_id])\n  @@index([transaction_type])\n}\n\nmodel File {\n  id           Int      @id @default(autoincrement())\n  filename     String\n  originalName String\n  mimeType     String\n  size         Int\n  filePath     String\n  fileContent  Bytes\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  users User[]\n}\n\nenum LabourStatus {\n  ACTIVE\n  INACTIVE\n  LEFT\n  BLACKLISTED\n}\n\nenum LabourType {\n  DIRECT\n  CONTRACT\n}\n\nmodel Labour {\n  id Int @id @default(autoincrement())\n\n  labour_name String\n  labour_code String @unique\n\n  labour_type LabourType\n  skill       String\n\n  phone_number  String?\n  aadhar_number String? @unique\n  address       String?\n\n  joining_date DateTime?\n  status       LabourStatus @default(ACTIVE)\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  @@index([labour_type])\n  @@index([status])\n}\n\nmodel Material {\n  id                         Int                      @id @default(autoincrement())\n  name                       String\n  material_code              String?                  @unique\n  categoryId                 Int?\n  unitId                     Int?\n  status                     String                   @default(\"active\")\n  minimum_threshold_quantity Int?\n  unit_of_measure            String?\n  specifications             String?\n  createdAt                  DateTime                 @default(now())\n  updatedAt                  DateTime                 @updatedAt\n  category                   Category?                @relation(fields: [categoryId], references: [id])\n  unit                       Unit?                    @relation(fields: [unitId], references: [id])\n  vendorSupplyManagements    VendorSupplyManagement[]\n\n  @@map(\"materials\")\n}\n\nmodel Module {\n  id          Int          @id @default(autoincrement())\n  Name        String\n  description String?\n  permissions Permission[] @relation(\"PermissionModules\")\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Permission {\n  id      Int      @id @default(autoincrement())\n  action  String[]\n  modules Module[] @relation(\"PermissionModules\")\n  roles   Role[]   @relation(\"RolePermissions\")\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum ProjectType {\n  HAM\n  EPC\n  BOT\n  OTHER\n}\n\nenum ProjectStatus {\n  PLANNED\n  IN_PROGRESS\n  ON_HOLD\n  COMPLETED\n  CANCELLED\n}\n\nmodel Project {\n  id           Int         @id @default(autoincrement())\n  project_type ProjectType\n  project_name String\n  project_code String\n  location     String\n  start_date   DateTime?\n  end_date     DateTime?\n\n  budget String?\n  status ProjectStatus @default(PLANNED)\n\n  client          String?\n  project_manager String?\n  description     String?\n  progress        Int? // 0–100 %\n\n  /**\n   * Relations based on project_type\n   */\n  ham_details HAMSpecificDetails?\n  epc_details EPCSpecificDetails?\n  bot_details BOTSpecificDetails?\n\n  /**\n   * For OTHER project type\n   */\n  other_details Json?\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n\n  directSupplyConfigurations DirectSupplyConfiguration[]\n}\n\nmodel HAMSpecificDetails {\n  id         Int @id @default(autoincrement())\n  project_id Int @unique\n\n  annuity_amount             String?\n  annuity_period             Int? // in years\n  construction_period        Int? // in months\n  maintenance_responsibility String?\n  progress                   Int? // 0–100 %\n\n  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)\n}\n\nmodel EPCSpecificDetails {\n  id         Int @id @default(autoincrement())\n  project_id Int @unique\n\n  engineering_scope     String?\n  procurement_budget    String?\n  construction_timeline String?\n  performance_guarantee String?\n  progress              Int? // 0–100 %\n\n  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)\n}\n\nmodel BOTSpecificDetails {\n  id                              Int     @id @default(autoincrement())\n  project_id                      Int     @unique\n  concession_period               Int? // in years\n  estimated_operating_cost        String? // per year\n  toll_revenue_collection_enabled Boolean @default(false)\n  transfer_condition              String?\n\n  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)\n}\n\nmodel Role {\n  id          Int     @id @default(autoincrement())\n  name        String  @unique\n  description String?\n  users       User[]\n\n  permissions Permission[] @relation(\"RolePermissions\")\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider   = \"prisma-client\"\n  output     = \"../../src/generated/client\"\n  engineType = \"client\"\n  runtime    = \"bun\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Provider {\n  credentials\n  google\n}\n\nmodel Unit {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String?\n  createdAt   DateTime   @default(now())\n  updatedAt   DateTime   @updatedAt\n  materials   Material[]\n\n  @@map(\"units\")\n}\n\nmodel User {\n  id                Int      @id @default(autoincrement())\n  name              String\n  email             String   @unique\n  emailVerified     Boolean  @default(false)\n  password          String\n  fileId            Int?\n  profileImage      File?    @relation(fields: [fileId], references: [id])\n  original_password String?\n  mobileNumber      String?\n  roleId            Int?\n  role              Role?    @relation(fields: [roleId], references: [id])\n  createdAt         DateTime @default(now())\n  updatedAt         DateTime @updatedAt\n  provider          Provider @default(credentials)\n}\n\nenum VendorStatus {\n  ACTIVE\n  INACTIVE\n  SUSPENDED\n}\n\nenum VendorType {\n  DIRECT\n  INVENTORY\n}\n\nenum SupplyStatus {\n  PENDING\n  APPROVED\n  IN_TRANSIT\n  DELIVERED\n  REJECTED\n}\n\nmodel Vendor {\n  id             Int     @id @default(autoincrement())\n  vendor_name    String\n  category       String?\n  contact_number String?\n  email_address  String?\n  address        String?\n\n  gst_number String?\n  pan_number String?\n\n  payment_terms String?\n  status        VendorStatus @default(ACTIVE)\n\n  supplies VendorSupplyManagement[]\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n}\n\nmodel VendorSupplyManagement {\n  id Int @id @default(autoincrement())\n\n  vendor_type VendorType\n\n  vendor_id               Int\n  material_id             Int\n  quantity                String\n  unit                    String\n  amount                  String\n  payment_terms           String?\n  status                  SupplyStatus                  @default(PENDING)\n  direct_supply_config    DirectSupplyConfiguration?\n  inventory_supply_config InventorySupplyConfiguration?\n  vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)\n  material                Material                      @relation(fields: [material_id], references: [id], onDelete: Cascade)\n\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n}\n\nmodel DirectSupplyConfiguration {\n  id                Int     @id @default(autoincrement())\n  supply_id         Int     @unique\n  project_id        Int\n  chainage_location String?\n  delivery_location String?\n  fob_destination   String?\n\n  supply  VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)\n  project Project                @relation(fields: [project_id], references: [id], onDelete: Cascade)\n}\n\nmodel InventorySupplyConfiguration {\n  id                     Int       @id @default(autoincrement())\n  supply_id              Int       @unique\n  warehouse_location     String?\n  expected_delivery_date DateTime?\n  batch_number           String?\n  quality_check_status   String? // Accepted / Rejected / Pending\n\n  supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"admin\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"provider\",\"kind\":\"enum\",\"type\":\"Provider\"}],\"dbName\":null},\"user\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"provider\",\"kind\":\"enum\",\"type\":\"Provider\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"DPR\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"weather_condition\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"skilled_workers\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"unskilled_workers\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contractor_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"safety_incidents\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submitted_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"work_activities\",\"kind\":\"object\",\"type\":\"DPRWorkActivity\",\"relationName\":\"DPRToDPRWorkActivity\"},{\"name\":\"material_consumptions\",\"kind\":\"object\",\"type\":\"DPRMaterialConsumption\",\"relationName\":\"DPRToDPRMaterialConsumption\"},{\"name\":\"machinery_usages\",\"kind\":\"object\",\"type\":\"DPRMachineryUsage\",\"relationName\":\"DPRToDPRMachineryUsage\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"DPRWorkActivity\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"dpr_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"activity_description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"chainage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"planned_qty\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"actual_qty\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"progress\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"dpr\",\"kind\":\"object\",\"type\":\"DPR\",\"relationName\":\"DPRToDPRWorkActivity\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"DPRMaterialConsumption\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"dpr_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"material_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"chainage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dpr\",\"kind\":\"object\",\"type\":\"DPR\",\"relationName\":\"DPRToDPRMaterialConsumption\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"DPRMachineryUsage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"dpr_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"equipment_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"working_hours\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idle_hours\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dpr\",\"kind\":\"object\",\"type\":\"DPR\",\"relationName\":\"DPRToDPRMachineryUsage\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"GRN\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"po_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"gate_entry_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vehicle_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"driver_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"driver_contact\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"transport_mode\",\"kind\":\"enum\",\"type\":\"TransportMode\"},{\"name\":\"received_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"received_time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"store_location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quality_check_completed\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"grn_remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"material_receipts\",\"kind\":\"object\",\"type\":\"GRNMaterialReceipt\",\"relationName\":\"GRNToGRNMaterialReceipt\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"GRNMaterialReceipt\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"grn_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"material_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ordered\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ReceiptStatus\"},{\"name\":\"chainage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quality\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grn\",\"kind\":\"object\",\"type\":\"GRN\",\"relationName\":\"GRNToGRNMaterialReceipt\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"PO\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"pr_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vendor_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"po_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"po_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"expected_delivery_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"transport_mode\",\"kind\":\"enum\",\"type\":\"TransportMode\"},{\"name\":\"total_amount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"po_status\",\"kind\":\"enum\",\"type\":\"POStatus\"},{\"name\":\"payment_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"delivery_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shipping_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billing_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order_items\",\"kind\":\"object\",\"type\":\"POOrderItem\",\"relationName\":\"POToPOOrderItem\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"POOrderItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"po_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"material_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rate\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"po\",\"kind\":\"object\",\"type\":\"PO\",\"relationName\":\"POToPOOrderItem\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"PR\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pr_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"urgency_level\",\"kind\":\"enum\",\"type\":\"UrgencyLevel\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PRStatus\"},{\"name\":\"remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"approved_by\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"material_items\",\"kind\":\"object\",\"type\":\"PRMaterialItem\",\"relationName\":\"PRToPRMaterialItem\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"PRMaterialItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"pr_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"material_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"required_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pr\",\"kind\":\"object\",\"type\":\"PR\",\"relationName\":\"PRToPRMaterialItem\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"materials\",\"kind\":\"object\",\"type\":\"Material\",\"relationName\":\"CategoryToMaterial\"}],\"dbName\":\"categories\"},\"DieselTransaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transaction_type\",\"kind\":\"enum\",\"type\":\"DieselTransactionType\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vendor_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invoice_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rate_per_litre\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"total_amount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"equipment_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vehicle_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"purpose\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"issue_rate_per_litre\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"remarks\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"File\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"filename\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"originalName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"mimeType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"size\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"filePath\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fileContent\",\"kind\":\"scalar\",\"type\":\"Bytes\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"FileToUser\"}],\"dbName\":null},\"Labour\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"labour_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"labour_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"labour_type\",\"kind\":\"enum\",\"type\":\"LabourType\"},{\"name\":\"skill\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"aadhar_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"joining_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"LabourStatus\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Material\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"material_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"unitId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"minimum_threshold_quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"unit_of_measure\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"specifications\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToMaterial\"},{\"name\":\"unit\",\"kind\":\"object\",\"type\":\"Unit\",\"relationName\":\"MaterialToUnit\"},{\"name\":\"vendorSupplyManagements\",\"kind\":\"object\",\"type\":\"VendorSupplyManagement\",\"relationName\":\"MaterialToVendorSupplyManagement\"}],\"dbName\":\"materials\"},\"Module\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"Name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"permissions\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"PermissionModules\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Permission\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"action\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"modules\",\"kind\":\"object\",\"type\":\"Module\",\"relationName\":\"PermissionModules\"},{\"name\":\"roles\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RolePermissions\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Project\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_type\",\"kind\":\"enum\",\"type\":\"ProjectType\"},{\"name\":\"project_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"project_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"start_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"end_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"budget\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ProjectStatus\"},{\"name\":\"client\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"project_manager\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"progress\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ham_details\",\"kind\":\"object\",\"type\":\"HAMSpecificDetails\",\"relationName\":\"HAMSpecificDetailsToProject\"},{\"name\":\"epc_details\",\"kind\":\"object\",\"type\":\"EPCSpecificDetails\",\"relationName\":\"EPCSpecificDetailsToProject\"},{\"name\":\"bot_details\",\"kind\":\"object\",\"type\":\"BOTSpecificDetails\",\"relationName\":\"BOTSpecificDetailsToProject\"},{\"name\":\"other_details\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"directSupplyConfigurations\",\"kind\":\"object\",\"type\":\"DirectSupplyConfiguration\",\"relationName\":\"DirectSupplyConfigurationToProject\"}],\"dbName\":null},\"HAMSpecificDetails\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"annuity_amount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"annuity_period\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"construction_period\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"maintenance_responsibility\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"progress\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"HAMSpecificDetailsToProject\"}],\"dbName\":null},\"EPCSpecificDetails\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"engineering_scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"procurement_budget\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"construction_timeline\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"performance_guarantee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"progress\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"EPCSpecificDetailsToProject\"}],\"dbName\":null},\"BOTSpecificDetails\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"concession_period\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"estimated_operating_cost\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"toll_revenue_collection_enabled\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"transfer_condition\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"BOTSpecificDetailsToProject\"}],\"dbName\":null},\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RoleToUser\"},{\"name\":\"permissions\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"RolePermissions\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Unit\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"materials\",\"kind\":\"object\",\"type\":\"Material\",\"relationName\":\"MaterialToUnit\"}],\"dbName\":\"units\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fileId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"profileImage\",\"kind\":\"object\",\"type\":\"File\",\"relationName\":\"FileToUser\"},{\"name\":\"original_password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"mobileNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"provider\",\"kind\":\"enum\",\"type\":\"Provider\"}],\"dbName\":null},\"Vendor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"vendor_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gst_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pan_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"VendorStatus\"},{\"name\":\"supplies\",\"kind\":\"object\",\"type\":\"VendorSupplyManagement\",\"relationName\":\"VendorToVendorSupplyManagement\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"VendorSupplyManagement\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"vendor_type\",\"kind\":\"enum\",\"type\":\"VendorType\"},{\"name\":\"vendor_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"material_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"unit\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"SupplyStatus\"},{\"name\":\"direct_supply_config\",\"kind\":\"object\",\"type\":\"DirectSupplyConfiguration\",\"relationName\":\"DirectSupplyConfigurationToVendorSupplyManagement\"},{\"name\":\"inventory_supply_config\",\"kind\":\"object\",\"type\":\"InventorySupplyConfiguration\",\"relationName\":\"InventorySupplyConfigurationToVendorSupplyManagement\"},{\"name\":\"vendor\",\"kind\":\"object\",\"type\":\"Vendor\",\"relationName\":\"VendorToVendorSupplyManagement\"},{\"name\":\"material\",\"kind\":\"object\",\"type\":\"Material\",\"relationName\":\"MaterialToVendorSupplyManagement\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"DirectSupplyConfiguration\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"supply_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"project_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"chainage_location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"delivery_location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fob_destination\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"supply\",\"kind\":\"object\",\"type\":\"VendorSupplyManagement\",\"relationName\":\"DirectSupplyConfigurationToVendorSupplyManagement\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"DirectSupplyConfigurationToProject\"}],\"dbName\":null},\"InventorySupplyConfiguration\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"supply_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"warehouse_location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expected_delivery_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"batch_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quality_check_status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"supply\",\"kind\":\"object\",\"type\":\"VendorSupplyManagement\",\"relationName\":\"InventorySupplyConfigurationToVendorSupplyManagement\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Admins
-   * const admins = await prisma.admin.findMany()
+   * // Fetch zero or more DPRS
+   * const dPRS = await prisma.dPR.findMany()
    * ```
    * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Admins
- * const admins = await prisma.admin.findMany()
+ * // Fetch zero or more DPRS
+ * const dPRS = await prisma.dPR.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -175,24 +175,284 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.admin`: Exposes CRUD operations for the **admin** model.
+   * `prisma.dPR`: Exposes CRUD operations for the **DPR** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Admins
-    * const admins = await prisma.admin.findMany()
+    * // Fetch zero or more DPRS
+    * const dPRS = await prisma.dPR.findMany()
     * ```
     */
-  get admin(): Prisma.adminDelegate<ExtArgs, { omit: OmitOpts }>;
+  get dPR(): Prisma.DPRDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.user`: Exposes CRUD operations for the **user** model.
+   * `prisma.dPRWorkActivity`: Exposes CRUD operations for the **DPRWorkActivity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DPRWorkActivities
+    * const dPRWorkActivities = await prisma.dPRWorkActivity.findMany()
+    * ```
+    */
+  get dPRWorkActivity(): Prisma.DPRWorkActivityDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.dPRMaterialConsumption`: Exposes CRUD operations for the **DPRMaterialConsumption** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DPRMaterialConsumptions
+    * const dPRMaterialConsumptions = await prisma.dPRMaterialConsumption.findMany()
+    * ```
+    */
+  get dPRMaterialConsumption(): Prisma.DPRMaterialConsumptionDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.dPRMachineryUsage`: Exposes CRUD operations for the **DPRMachineryUsage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DPRMachineryUsages
+    * const dPRMachineryUsages = await prisma.dPRMachineryUsage.findMany()
+    * ```
+    */
+  get dPRMachineryUsage(): Prisma.DPRMachineryUsageDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.gRN`: Exposes CRUD operations for the **GRN** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GRNS
+    * const gRNS = await prisma.gRN.findMany()
+    * ```
+    */
+  get gRN(): Prisma.GRNDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.gRNMaterialReceipt`: Exposes CRUD operations for the **GRNMaterialReceipt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GRNMaterialReceipts
+    * const gRNMaterialReceipts = await prisma.gRNMaterialReceipt.findMany()
+    * ```
+    */
+  get gRNMaterialReceipt(): Prisma.GRNMaterialReceiptDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.pO`: Exposes CRUD operations for the **PO** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more POS
+    * const pOS = await prisma.pO.findMany()
+    * ```
+    */
+  get pO(): Prisma.PODelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.pOOrderItem`: Exposes CRUD operations for the **POOrderItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more POOrderItems
+    * const pOOrderItems = await prisma.pOOrderItem.findMany()
+    * ```
+    */
+  get pOOrderItem(): Prisma.POOrderItemDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.pR`: Exposes CRUD operations for the **PR** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PRS
+    * const pRS = await prisma.pR.findMany()
+    * ```
+    */
+  get pR(): Prisma.PRDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.pRMaterialItem`: Exposes CRUD operations for the **PRMaterialItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PRMaterialItems
+    * const pRMaterialItems = await prisma.pRMaterialItem.findMany()
+    * ```
+    */
+  get pRMaterialItem(): Prisma.PRMaterialItemDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.dieselTransaction`: Exposes CRUD operations for the **DieselTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DieselTransactions
+    * const dieselTransactions = await prisma.dieselTransaction.findMany()
+    * ```
+    */
+  get dieselTransaction(): Prisma.DieselTransactionDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.file`: Exposes CRUD operations for the **File** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Files
+    * const files = await prisma.file.findMany()
+    * ```
+    */
+  get file(): Prisma.FileDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.labour`: Exposes CRUD operations for the **Labour** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Labour
+    * const labour = await prisma.labour.findMany()
+    * ```
+    */
+  get labour(): Prisma.LabourDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.material`: Exposes CRUD operations for the **Material** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Materials
+    * const materials = await prisma.material.findMany()
+    * ```
+    */
+  get material(): Prisma.MaterialDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.module`: Exposes CRUD operations for the **Module** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Modules
+    * const modules = await prisma.module.findMany()
+    * ```
+    */
+  get module(): Prisma.ModuleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.permission`: Exposes CRUD operations for the **Permission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Permissions
+    * const permissions = await prisma.permission.findMany()
+    * ```
+    */
+  get permission(): Prisma.PermissionDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.project`: Exposes CRUD operations for the **Project** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Projects
+    * const projects = await prisma.project.findMany()
+    * ```
+    */
+  get project(): Prisma.ProjectDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.hAMSpecificDetails`: Exposes CRUD operations for the **HAMSpecificDetails** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HAMSpecificDetails
+    * const hAMSpecificDetails = await prisma.hAMSpecificDetails.findMany()
+    * ```
+    */
+  get hAMSpecificDetails(): Prisma.HAMSpecificDetailsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.ePCSpecificDetails`: Exposes CRUD operations for the **EPCSpecificDetails** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EPCSpecificDetails
+    * const ePCSpecificDetails = await prisma.ePCSpecificDetails.findMany()
+    * ```
+    */
+  get ePCSpecificDetails(): Prisma.EPCSpecificDetailsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.bOTSpecificDetails`: Exposes CRUD operations for the **BOTSpecificDetails** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BOTSpecificDetails
+    * const bOTSpecificDetails = await prisma.bOTSpecificDetails.findMany()
+    * ```
+    */
+  get bOTSpecificDetails(): Prisma.BOTSpecificDetailsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.role`: Exposes CRUD operations for the **Role** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Roles
+    * const roles = await prisma.role.findMany()
+    * ```
+    */
+  get role(): Prisma.RoleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.unit`: Exposes CRUD operations for the **Unit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Units
+    * const units = await prisma.unit.findMany()
+    * ```
+    */
+  get unit(): Prisma.UnitDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Users
     * const users = await prisma.user.findMany()
     * ```
     */
-  get user(): Prisma.userDelegate<ExtArgs, { omit: OmitOpts }>;
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.vendor`: Exposes CRUD operations for the **Vendor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Vendors
+    * const vendors = await prisma.vendor.findMany()
+    * ```
+    */
+  get vendor(): Prisma.VendorDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.vendorSupplyManagement`: Exposes CRUD operations for the **VendorSupplyManagement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VendorSupplyManagements
+    * const vendorSupplyManagements = await prisma.vendorSupplyManagement.findMany()
+    * ```
+    */
+  get vendorSupplyManagement(): Prisma.VendorSupplyManagementDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.directSupplyConfiguration`: Exposes CRUD operations for the **DirectSupplyConfiguration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DirectSupplyConfigurations
+    * const directSupplyConfigurations = await prisma.directSupplyConfiguration.findMany()
+    * ```
+    */
+  get directSupplyConfiguration(): Prisma.DirectSupplyConfigurationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.inventorySupplyConfiguration`: Exposes CRUD operations for the **InventorySupplyConfiguration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InventorySupplyConfigurations
+    * const inventorySupplyConfigurations = await prisma.inventorySupplyConfiguration.findMany()
+    * ```
+    */
+  get inventorySupplyConfiguration(): Prisma.InventorySupplyConfigurationDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

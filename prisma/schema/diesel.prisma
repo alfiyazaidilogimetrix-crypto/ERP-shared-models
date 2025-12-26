@@ -1,0 +1,37 @@
+enum DieselTransactionType {
+    DIESEL_RECEIPT
+    DIESEL_ISSUE
+}
+
+model DieselTransaction {
+    id Int @id @default(autoincrement())
+
+    transaction_type DieselTransactionType
+
+    date       DateTime
+    project_id String
+
+    /**
+     * -------- Diesel Receipt Fields --------
+     */
+    vendor_id      String?
+    invoice_number String?
+    quantity       String? // in litres
+    rate_per_litre String?
+    total_amount   String?
+
+    /**
+     * -------- Diesel Issue Fields --------
+     */
+    equipment_name       String?
+    vehicle_number       String?
+    purpose              String?
+    issue_rate_per_litre String?
+    remarks              String?
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([project_id])
+    @@index([transaction_type])
+}

@@ -1,0 +1,50 @@
+enum ReceiptStatus {
+    RECEIVED
+    ACCEPTED
+    REJECTED
+}
+
+model GRN {
+    id Int @id @default(autoincrement())
+
+    po_id             Int
+    gate_entry_number String?
+    vehicle_number    String?
+    driver_name       String?
+    driver_contact    String?
+
+    transport_mode TransportMode?
+
+    received_date DateTime
+    received_time DateTime?
+
+    store_location String?
+
+    quality_check_completed Boolean @default(false)
+    grn_remarks             String?
+
+    material_receipts GRNMaterialReceipt[]
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([po_id])
+}
+
+model GRNMaterialReceipt {
+    id Int @id @default(autoincrement())
+
+    grn_id      Int
+    material_id String
+
+    ordered String
+
+    status   ReceiptStatus
+    chainage String?
+    quality  String? // Good / Damaged / Failed Test etc.
+    remarks  String?
+
+    grn GRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}

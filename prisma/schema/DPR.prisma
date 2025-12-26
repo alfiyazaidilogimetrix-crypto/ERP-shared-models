@@ -1,0 +1,72 @@
+model DPR {
+    id Int @id @default(autoincrement())
+
+    date       DateTime
+    project_id String
+
+    weather_condition String?
+
+    skilled_workers   Int?
+    unskilled_workers Int?
+
+    contractor_name String?
+
+    safety_incidents String?
+    remarks          String?
+
+    submitted_by String // user_id
+
+    work_activities       DPRWorkActivity[]
+    material_consumptions DPRMaterialConsumption[]
+    machinery_usages      DPRMachineryUsage[]
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([project_id])
+    @@index([date])
+}
+
+model DPRWorkActivity {
+    id Int @id @default(autoincrement())
+
+    dpr_id               Int
+    activity_description String
+    chainage             String?
+
+    planned_qty String?
+    actual_qty  String?
+    progress    Int? // percentage (0–100)
+
+    dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}
+
+model DPRMaterialConsumption {
+    id Int @id @default(autoincrement())
+
+    dpr_id      Int
+    material_id String
+
+    quantity String
+    chainage String?
+
+    dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}
+
+model DPRMachineryUsage {
+    id Int @id @default(autoincrement())
+
+    dpr_id         Int
+    equipment_name String
+
+    working_hours String?
+    idle_hours    String?
+
+    dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}

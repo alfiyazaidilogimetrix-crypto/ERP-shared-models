@@ -1,0 +1,49 @@
+enum PRStatus {
+    DRAFT
+    SUBMITTED
+    APPROVED
+    REJECTED
+    CLOSED
+}
+
+enum UrgencyLevel {
+    LOW
+    MEDIUM
+    HIGH
+    CRITICAL
+}
+
+model PR {
+    id         Int    @id @default(autoincrement())
+    project_id String
+    pr_code    String @unique
+
+    urgency_level UrgencyLevel
+    status        PRStatus     @default(DRAFT)
+
+    remarks String?
+
+    user_id     String // Created by
+    approved_by String? // Approver (User ID)
+
+    material_items PRMaterialItem[]
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([project_id])
+    @@index([user_id])
+}
+
+model PRMaterialItem {
+    id    Int @id @default(autoincrement())
+    pr_id Int
+
+    material_id   String
+    quantity      String
+    required_date DateTime
+
+    pr PR @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+}

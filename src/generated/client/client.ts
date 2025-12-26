@@ -29,8 +29,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Admins
- * const admins = await prisma.admin.findMany()
+ * // Fetch zero or more DPRS
+ * const dPRS = await prisma.dPR.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -40,12 +40,142 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model admin
+ * Model DPR
  * 
  */
-export type admin = Prisma.adminModel
+export type DPR = Prisma.DPRModel
 /**
- * Model user
+ * Model DPRWorkActivity
  * 
  */
-export type user = Prisma.userModel
+export type DPRWorkActivity = Prisma.DPRWorkActivityModel
+/**
+ * Model DPRMaterialConsumption
+ * 
+ */
+export type DPRMaterialConsumption = Prisma.DPRMaterialConsumptionModel
+/**
+ * Model DPRMachineryUsage
+ * 
+ */
+export type DPRMachineryUsage = Prisma.DPRMachineryUsageModel
+/**
+ * Model GRN
+ * 
+ */
+export type GRN = Prisma.GRNModel
+/**
+ * Model GRNMaterialReceipt
+ * 
+ */
+export type GRNMaterialReceipt = Prisma.GRNMaterialReceiptModel
+/**
+ * Model PO
+ * 
+ */
+export type PO = Prisma.POModel
+/**
+ * Model POOrderItem
+ * 
+ */
+export type POOrderItem = Prisma.POOrderItemModel
+/**
+ * Model PR
+ * 
+ */
+export type PR = Prisma.PRModel
+/**
+ * Model PRMaterialItem
+ * 
+ */
+export type PRMaterialItem = Prisma.PRMaterialItemModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model DieselTransaction
+ * 
+ */
+export type DieselTransaction = Prisma.DieselTransactionModel
+/**
+ * Model File
+ * 
+ */
+export type File = Prisma.FileModel
+/**
+ * Model Labour
+ * 
+ */
+export type Labour = Prisma.LabourModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel
+/**
+ * Model Module
+ * 
+ */
+export type Module = Prisma.ModuleModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model HAMSpecificDetails
+ * 
+ */
+export type HAMSpecificDetails = Prisma.HAMSpecificDetailsModel
+/**
+ * Model EPCSpecificDetails
+ * 
+ */
+export type EPCSpecificDetails = Prisma.EPCSpecificDetailsModel
+/**
+ * Model BOTSpecificDetails
+ * 
+ */
+export type BOTSpecificDetails = Prisma.BOTSpecificDetailsModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model Unit
+ * 
+ */
+export type Unit = Prisma.UnitModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model Vendor
+ * 
+ */
+export type Vendor = Prisma.VendorModel
+/**
+ * Model VendorSupplyManagement
+ * 
+ */
+export type VendorSupplyManagement = Prisma.VendorSupplyManagementModel
+/**
+ * Model DirectSupplyConfiguration
+ * 
+ */
+export type DirectSupplyConfiguration = Prisma.DirectSupplyConfigurationModel
+/**
+ * Model InventorySupplyConfiguration
+ * 
+ */
+export type InventorySupplyConfiguration = Prisma.InventorySupplyConfigurationModel

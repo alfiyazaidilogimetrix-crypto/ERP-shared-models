@@ -9,9 +9,137 @@
 * 🟢 You can import this file directly.
 */
 
+export const ReceiptStatus = {
+  RECEIVED: 'RECEIVED',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ReceiptStatus = (typeof ReceiptStatus)[keyof typeof ReceiptStatus]
+
+
+export const POStatus = {
+  DRAFT: 'DRAFT',
+  ISSUED: 'ISSUED',
+  PARTIALLY_DELIVERED: 'PARTIALLY_DELIVERED',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type POStatus = (typeof POStatus)[keyof typeof POStatus]
+
+
+export const TransportMode = {
+  ROAD: 'ROAD',
+  RAIL: 'RAIL',
+  SEA: 'SEA',
+  AIR: 'AIR',
+  SELF_PICKUP: 'SELF_PICKUP'
+} as const
+
+export type TransportMode = (typeof TransportMode)[keyof typeof TransportMode]
+
+
+export const PRStatus = {
+  DRAFT: 'DRAFT',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type PRStatus = (typeof PRStatus)[keyof typeof PRStatus]
+
+
+export const UrgencyLevel = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type UrgencyLevel = (typeof UrgencyLevel)[keyof typeof UrgencyLevel]
+
+
+export const DieselTransactionType = {
+  DIESEL_RECEIPT: 'DIESEL_RECEIPT',
+  DIESEL_ISSUE: 'DIESEL_ISSUE'
+} as const
+
+export type DieselTransactionType = (typeof DieselTransactionType)[keyof typeof DieselTransactionType]
+
+
+export const LabourStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  LEFT: 'LEFT',
+  BLACKLISTED: 'BLACKLISTED'
+} as const
+
+export type LabourStatus = (typeof LabourStatus)[keyof typeof LabourStatus]
+
+
+export const LabourType = {
+  DIRECT: 'DIRECT',
+  CONTRACT: 'CONTRACT'
+} as const
+
+export type LabourType = (typeof LabourType)[keyof typeof LabourType]
+
+
+export const ProjectType = {
+  HAM: 'HAM',
+  EPC: 'EPC',
+  BOT: 'BOT',
+  OTHER: 'OTHER'
+} as const
+
+export type ProjectType = (typeof ProjectType)[keyof typeof ProjectType]
+
+
+export const ProjectStatus = {
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ON_HOLD: 'ON_HOLD',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
 export const Provider = {
   credentials: 'credentials',
   google: 'google'
 } as const
 
 export type Provider = (typeof Provider)[keyof typeof Provider]
+
+
+export const VendorStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type VendorStatus = (typeof VendorStatus)[keyof typeof VendorStatus]
+
+
+export const VendorType = {
+  DIRECT: 'DIRECT',
+  INVENTORY: 'INVENTORY'
+} as const
+
+export type VendorType = (typeof VendorType)[keyof typeof VendorType]
+
+
+export const SupplyStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  IN_TRANSIT: 'IN_TRANSIT',
+  DELIVERED: 'DELIVERED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type SupplyStatus = (typeof SupplyStatus)[keyof typeof SupplyStatus]

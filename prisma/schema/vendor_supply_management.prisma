@@ -1,0 +1,43 @@
+model VendorSupplyManagement {
+    id Int @id @default(autoincrement())
+
+    vendor_type VendorType
+
+    vendor_id               Int
+    material_id             Int
+    quantity                String
+    unit                    String
+    amount                  String
+    payment_terms           String?
+    status                  SupplyStatus                  @default(PENDING)
+    direct_supply_config    DirectSupplyConfiguration?
+    inventory_supply_config InventorySupplyConfiguration?
+    vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+    material                Material                      @relation(fields: [material_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
+model DirectSupplyConfiguration {
+    id                Int     @id @default(autoincrement())
+    supply_id         Int     @unique
+    project_id        Int
+    chainage_location String?
+    delivery_location String?
+    fob_destination   String?
+
+    supply  VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
+    project Project                @relation(fields: [project_id], references: [id], onDelete: Cascade)
+}
+
+model InventorySupplyConfiguration {
+    id                     Int       @id @default(autoincrement())
+    supply_id              Int       @unique
+    warehouse_location     String?
+    expected_delivery_date DateTime?
+    batch_number           String?
+    quality_check_status   String? // Accepted / Rejected / Pending
+
+    supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
+}

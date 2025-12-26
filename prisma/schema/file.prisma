@@ -1,0 +1,13 @@
+model File {
+    id           Int      @id @default(autoincrement())
+    filename     String
+    originalName String
+    mimeType     String
+    size         Int
+    filePath     String
+    fileContent  Bytes
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    users User[]
+}

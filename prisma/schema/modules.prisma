@@ -1,0 +1,9 @@
+model Module {
+    id          Int          @id @default(autoincrement())
+    Name        String
+    description String?
+    permissions Permission[] @relation("PermissionModules")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
