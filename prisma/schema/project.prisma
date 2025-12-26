@@ -48,6 +48,8 @@ model Project {
     directSupplyConfigurations DirectSupplyConfiguration[]
 
     contractorProjects ContractorProject[]
+
+    chainageConsumptionLedgers Chainage_consumption_ledger[]
 }
 
 model HAMSpecificDetails {

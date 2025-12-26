@@ -62,6 +62,7 @@ export const ModelName = {
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
   Category: 'Category',
+  Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
   File: 'File',
   Labour: 'Labour',
@@ -73,6 +74,9 @@ export const ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
+  Sub_Contractor: 'Sub_Contractor',
+  ContractorVendor: 'ContractorVendor',
+  ContractorProject: 'ContractorProject',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',
@@ -263,6 +267,22 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
+export const Chainage_consumption_ledgerScalarFieldEnum = {
+  id: 'id',
+  chainage: 'chainage',
+  materials: 'materials',
+  labours: 'labours',
+  equipment: 'equipment',
+  sub_contractor: 'sub_contractor',
+  total_cost: 'total_cost',
+  projectId: 'projectId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type Chainage_consumption_ledgerScalarFieldEnum = (typeof Chainage_consumption_ledgerScalarFieldEnum)[keyof typeof Chainage_consumption_ledgerScalarFieldEnum]
+
+
 export const DieselTransactionScalarFieldEnum = {
   id: 'id',
   transaction_type: 'transaction_type',
@@ -425,6 +445,40 @@ export const RoleScalarFieldEnum = {
 } as const
 
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const Sub_ContractorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  scope_of_work: 'scope_of_work',
+  contract_value: 'contract_value',
+  chainage_start_km: 'chainage_start_km',
+  chainage_end_km: 'chainage_end_km',
+  contract_start_date: 'contract_start_date',
+  contract_end_date: 'contract_end_date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type Sub_ContractorScalarFieldEnum = (typeof Sub_ContractorScalarFieldEnum)[keyof typeof Sub_ContractorScalarFieldEnum]
+
+
+export const ContractorVendorScalarFieldEnum = {
+  id: 'id',
+  contractorId: 'contractorId',
+  vendorId: 'vendorId'
+} as const
+
+export type ContractorVendorScalarFieldEnum = (typeof ContractorVendorScalarFieldEnum)[keyof typeof ContractorVendorScalarFieldEnum]
+
+
+export const ContractorProjectScalarFieldEnum = {
+  id: 'id',
+  contractorId: 'contractorId',
+  projectId: 'projectId'
+} as const
+
+export type ContractorProjectScalarFieldEnum = (typeof ContractorProjectScalarFieldEnum)[keyof typeof ContractorProjectScalarFieldEnum]
 
 
 export const UnitScalarFieldEnum = {

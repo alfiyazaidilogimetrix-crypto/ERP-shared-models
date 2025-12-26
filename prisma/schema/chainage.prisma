@@ -1,0 +1,13 @@
+model Chainage_consumption_ledger {
+    id             Int      @id @default(autoincrement())
+    chainage       String
+    materials      Float
+    labours        Float
+    equipment      Float
+    sub_contractor Float
+    total_cost     Float
+    projectId      Int
+    project        Project  @relation(fields: [projectId], references: [id])
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+}

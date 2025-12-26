@@ -73,6 +73,11 @@ export type PRMaterialItem = Prisma.PRMaterialItemModel
  */
 export type Category = Prisma.CategoryModel
 /**
+ * Model Chainage_consumption_ledger
+ * 
+ */
+export type Chainage_consumption_ledger = Prisma.Chainage_consumption_ledgerModel
+/**
  * Model DieselTransaction
  * 
  */
@@ -127,6 +132,21 @@ export type BOTSpecificDetails = Prisma.BOTSpecificDetailsModel
  * 
  */
 export type Role = Prisma.RoleModel
+/**
+ * Model Sub_Contractor
+ * 
+ */
+export type Sub_Contractor = Prisma.Sub_ContractorModel
+/**
+ * Model ContractorVendor
+ * 
+ */
+export type ContractorVendor = Prisma.ContractorVendorModel
+/**
+ * Model ContractorProject
+ * 
+ */
+export type ContractorProject = Prisma.ContractorProjectModel
 /**
  * Model Unit
  * 
