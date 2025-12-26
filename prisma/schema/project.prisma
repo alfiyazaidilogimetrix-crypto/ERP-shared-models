@@ -46,6 +46,8 @@ model Project {
     updated_at DateTime @updatedAt
 
     directSupplyConfigurations DirectSupplyConfiguration[]
+
+    contractorProjects ContractorProject[]
 }
 
 model HAMSpecificDetails {

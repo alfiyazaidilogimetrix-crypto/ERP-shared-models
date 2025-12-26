@@ -1,0 +1,41 @@
+model Sub_Contractor {
+  id                  Int       @id @default(autoincrement())
+  name                String
+  scope_of_work       String?
+  contract_value      String?
+  chainage_start_km   String?
+  chainage_end_km     String?
+  contract_start_date DateTime?
+  contract_end_date   DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  vendors  ContractorVendor[] // relation
+  projects ContractorProject[] // relation
+
+  @@map("sub_contractors")
+}
+
+model ContractorVendor {
+  id           Int @id @default(autoincrement())
+  contractorId Int
+  vendorId     Int
+
+  contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
+  vendor     Vendor         @relation(fields: [vendorId], references: [id])
+
+  @@unique([contractorId, vendorId]) // prevent duplicates
+  @@map("contractor_vendors")
+}
+
+model ContractorProject {
+  id           Int @id @default(autoincrement())
+  contractorId Int
+  projectId    Int
+
+  contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
+  project    Project        @relation(fields: [projectId], references: [id])
+
+  @@unique([contractorId, projectId])
+  @@map("contractor_projects")
+}

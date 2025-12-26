@@ -35,4 +35,6 @@ model Vendor {
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+
+    contractorVendors ContractorVendor[]
 }
