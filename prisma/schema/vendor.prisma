@@ -37,4 +37,6 @@ model Vendor {
     updated_at DateTime @updatedAt
 
     contractorVendors ContractorVendor[]
+
+    pos PO[]
 }

@@ -15,7 +15,7 @@ enum UrgencyLevel {
 
 model PR {
     id         Int    @id @default(autoincrement())
-    project_id String
+    project_id Int
     pr_code    String @unique
 
     urgency_level UrgencyLevel
@@ -27,9 +27,10 @@ model PR {
     approved_by String? // Approver (User ID)
 
     material_items PRMaterialItem[]
-
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    project        Project          @relation(fields: [project_id], references: [id])
+    created_at     DateTime         @default(now())
+    updated_at     DateTime         @updatedAt
+    pos            PO[]
 
     @@index([project_id])
     @@index([user_id])
@@ -39,11 +40,12 @@ model PRMaterialItem {
     id    Int @id @default(autoincrement())
     pr_id Int
 
-    material_id   String
+    material_id   Int
     quantity      String
     required_date DateTime
 
-    pr PR @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+    pr       PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+    material Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 }

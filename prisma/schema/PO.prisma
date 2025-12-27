@@ -19,8 +19,8 @@ model PO {
     id Int @id @default(autoincrement())
 
     pr_id      Int
-    project_id String
-    vendor_id  String
+    project_id Int
+    vendor_id  Int
 
     po_code                String    @unique
     po_date                DateTime  @default(now())
@@ -41,9 +41,12 @@ model PO {
     remarks String?
 
     order_items POOrderItem[]
-
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    pr          PR            @relation(fields: [pr_id], references: [id])
+    project     Project       @relation(fields: [project_id], references: [id])
+    vendor      Vendor        @relation(fields: [vendor_id], references: [id])
+    created_at  DateTime      @default(now())
+    updated_at  DateTime      @updatedAt
+    grns        GRN[]
 
     @@index([pr_id])
     @@index([project_id])
@@ -54,13 +57,14 @@ model POOrderItem {
     id Int @id @default(autoincrement())
 
     po_id       Int
-    material_id String
+    material_id Int
 
     quantity String
     rate     String
     amount   String
 
-    po PO @relation(fields: [po_id], references: [id], onDelete: Cascade)
+    po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
+    material Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 }

@@ -50,6 +50,10 @@ model Project {
     contractorProjects ContractorProject[]
 
     chainageConsumptionLedgers Chainage_consumption_ledger[]
+
+    prs PR[]
+
+    pos PO[]
 }
 
 model HAMSpecificDetails {

@@ -13,6 +13,9 @@ model Material {
     category                   Category?                @relation(fields: [categoryId], references: [id])
     unit                       Unit?                    @relation(fields: [unitId], references: [id])
     vendorSupplyManagements    VendorSupplyManagement[]
+    prmaterialItems            PRMaterialItem[]
+    poorderItems               POOrderItem[]
+    grnmaterialReceipts        GRNMaterialReceipt[]
 
     @@map("materials")
 }

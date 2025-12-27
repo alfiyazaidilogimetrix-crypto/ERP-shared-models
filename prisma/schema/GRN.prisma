@@ -24,6 +24,7 @@ model GRN {
     grn_remarks             String?
 
     material_receipts GRNMaterialReceipt[]
+    purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
@@ -35,7 +36,7 @@ model GRNMaterialReceipt {
     id Int @id @default(autoincrement())
 
     grn_id      Int
-    material_id String
+    material_id Int
 
     ordered String
 
@@ -44,7 +45,8 @@ model GRNMaterialReceipt {
     quality  String? // Good / Damaged / Failed Test etc.
     remarks  String?
 
-    grn GRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    grn      GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    material Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 }
