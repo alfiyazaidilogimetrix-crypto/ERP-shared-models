@@ -3260,7 +3260,6 @@ export const VendorScalarFieldEnum = {
   address: 'address',
   gst_number: 'gst_number',
   pan_number: 'pan_number',
-  payment_terms: 'payment_terms',
   status: 'status',
   created_at: 'created_at',
   updated_at: 'updated_at'
