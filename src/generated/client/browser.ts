@@ -88,6 +88,61 @@ export type DieselTransaction = Prisma.DieselTransactionModel
  */
 export type File = Prisma.FileModel
 /**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model Seller
+ * 
+ */
+export type Seller = Prisma.SellerModel
+/**
+ * Model Buyer
+ * 
+ */
+export type Buyer = Prisma.BuyerModel
+/**
+ * Model Consignee
+ * 
+ */
+export type Consignee = Prisma.ConsigneeModel
+/**
+ * Model OrderReference
+ * 
+ */
+export type OrderReference = Prisma.OrderReferenceModel
+/**
+ * Model InvoiceItem
+ * 
+ */
+export type InvoiceItem = Prisma.InvoiceItemModel
+/**
+ * Model TaxDetail
+ * 
+ */
+export type TaxDetail = Prisma.TaxDetailModel
+/**
+ * Model InvoiceAmountSummary
+ * 
+ */
+export type InvoiceAmountSummary = Prisma.InvoiceAmountSummaryModel
+/**
+ * Model TransportDetail
+ * 
+ */
+export type TransportDetail = Prisma.TransportDetailModel
+/**
+ * Model EInvoiceDetail
+ * 
+ */
+export type EInvoiceDetail = Prisma.EInvoiceDetailModel
+/**
+ * Model InvoiceAudit
+ * 
+ */
+export type InvoiceAudit = Prisma.InvoiceAuditModel
+/**
  * Model Labour
  * 
  */
