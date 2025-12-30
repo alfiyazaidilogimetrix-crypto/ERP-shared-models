@@ -9,12 +9,12 @@ model DieselTransaction {
     transaction_type DieselTransactionType
 
     date       DateTime
-    project_id String
+    project_id Int
 
     /**
      * -------- Diesel Receipt Fields --------
      */
-    vendor_id      String?
+    vendor_id      Int?
     invoice_number String?
     quantity       String? // in litres
     rate_per_litre String?
@@ -31,6 +31,8 @@ model DieselTransaction {
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+    vendor     Vendor?  @relation(fields: [vendor_id], references: [id])
+    project    Project  @relation(fields: [project_id], references: [id])
 
     @@index([project_id])
     @@index([transaction_type])

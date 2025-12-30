@@ -46,14 +46,12 @@ model Project {
     updated_at DateTime @updatedAt
 
     directSupplyConfigurations DirectSupplyConfiguration[]
-
-    contractorProjects ContractorProject[]
-
+    contractorProjects         ContractorProject[]
     chainageConsumptionLedgers Chainage_consumption_ledger[]
-
-    prs PR[]
-
-    pos PO[]
+    prs                        PR[]
+    pos                        PO[]
+    dieselTransactions         DieselTransaction[]
+    dprs                       DPR[]
 }
 
 model HAMSpecificDetails {

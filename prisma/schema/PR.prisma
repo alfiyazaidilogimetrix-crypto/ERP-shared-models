@@ -23,14 +23,17 @@ model PR {
 
     remarks String?
 
-    user_id     String // Created by
-    approved_by String? // Approver (User ID)
+    user_id     Int? // Created by
+    approved_by Int? // Approver (User ID)
+
+    user User? @relation("CreatedBy", fields: [user_id], references: [id])
 
     material_items PRMaterialItem[]
     project        Project          @relation(fields: [project_id], references: [id])
     created_at     DateTime         @default(now())
     updated_at     DateTime         @updatedAt
     pos            PO[]
+    approvedUser   User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
 
     @@index([project_id])
     @@index([user_id])

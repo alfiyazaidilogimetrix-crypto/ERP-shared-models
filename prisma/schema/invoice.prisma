@@ -1,0 +1,223 @@
+model Invoice {
+    id Int @id @default(autoincrement())
+
+    invoiceNumber String
+    invoiceDate   DateTime
+
+    invoiceType   String // TAX_INVOICE, ORIGINAL_FOR_BUYER
+    placeOfSupply String
+    reverseCharge Boolean @default(false)
+    currency      String  @default("INR")
+
+    sellerId    Int
+    buyerId     Int
+    consigneeId Int?
+
+    orderReferenceId  Int? @unique
+    taxDetailId       Int? @unique
+    amountSummaryId   Int?
+    transportDetailId Int? @unique
+    eInvoiceDetailId  Int?
+    auditDetailId     Int?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    seller    Seller     @relation(fields: [sellerId], references: [id])
+    buyer     Buyer      @relation(fields: [buyerId], references: [id])
+    consignee Consignee? @relation(fields: [consigneeId], references: [id])
+
+    orderReference  OrderReference?       @relation(fields: [orderReferenceId], references: [id])
+    taxDetail       TaxDetail?            @relation(fields: [taxDetailId], references: [id])
+    amountSummary   InvoiceAmountSummary? @relation(fields: [invoiceAmountSummaryId], references: [id])
+    transportDetail TransportDetail?      @relation(fields: [transportDetailId], references: [id])
+    eInvoiceDetail  EInvoiceDetail?
+    auditDetail     InvoiceAudit?         @relation(fields: [invoiceAuditId], references: [id])
+
+    items                  InvoiceItem[]
+    invoiceAmountSummaryId Int?          @unique
+    invoiceAuditId         Int?          @unique
+
+    @@unique([invoiceNumber])
+}
+
+model Seller {
+    id Int @id @default(autoincrement())
+
+    name      String
+    unitName  String?
+    address   String
+    city      String
+    state     String
+    stateCode String
+    pincode   String?
+
+    gstin String
+    cin   String?
+    pan   String?
+
+    email   String?
+    phone   String?
+    website String?
+
+    invoices Invoice[]
+}
+
+model Buyer {
+    id Int @id @default(autoincrement())
+
+    name      String
+    address   String
+    city      String
+    state     String
+    stateCode String
+    pincode   String?
+
+    gstin String?
+    phone String?
+
+    invoices Invoice[]
+}
+
+model Consignee {
+    id Int @id @default(autoincrement())
+
+    name      String
+    address   String
+    city      String
+    state     String
+    stateCode String
+    pincode   String?
+
+    gstin String?
+    phone String?
+
+    invoices Invoice[]
+}
+
+model OrderReference {
+    id Int @id @default(autoincrement())
+
+    purchaseOrderNo   String?
+    purchaseOrderDate DateTime?
+
+    salesOrderNo    String?
+    deliveryOrderNo String?
+
+    challanNo   String?
+    challanDate DateTime?
+
+    contractNo String?
+
+    invoice Invoice?
+}
+
+model InvoiceItem {
+    id Int @id @default(autoincrement())
+
+    invoiceId   Int
+    description String
+    category    String // Cement, Sand, Material
+    hsnCode     String
+
+    grade              String?
+    identificationMark String?
+
+    quantity      Decimal
+    unitOfMeasure String // MT, TON, BAG
+    ratePerUnit   Decimal
+
+    basicAmount Decimal
+
+    freightRatePerUnit   Decimal?
+    unloadingRatePerUnit Decimal?
+
+    taxableValue Decimal
+
+    invoice Invoice @relation(fields: [invoiceId], references: [id])
+}
+
+model TaxDetail {
+    id Int @id @default(autoincrement())
+
+    cgstRate   Decimal?
+    cgstAmount Decimal?
+
+    sgstRate   Decimal?
+    sgstAmount Decimal?
+
+    igstRate   Decimal?
+    igstAmount Decimal?
+
+    totalTax Decimal
+
+    invoice Invoice?
+}
+
+model InvoiceAmountSummary {
+    id Int @id @default(autoincrement())
+
+    goodsValue   Decimal
+    taxableValue Decimal
+
+    freightAmount   Decimal?
+    unloadingAmount Decimal?
+
+    roundOff Decimal?
+
+    totalTaxAmount    Decimal
+    totalInvoiceValue Decimal
+
+    amountInWords String
+
+    invoice Invoice?
+}
+
+model TransportDetail {
+    id Int @id @default(autoincrement())
+
+    transporterName  String
+    transporterGstin String?
+
+    vehicleNumber String?
+    wagonNumber   String?
+
+    transportMode String // ROAD / RAIL
+    lrRrNo        String?
+    lrRrDate      DateTime?
+
+    dispatchFrom String?
+    destination  String?
+    distanceKm   Int?
+
+    invoice Invoice?
+}
+
+model EInvoiceDetail {
+    id Int @id @default(autoincrement())
+
+    irnNumber String?
+    qrCode    String?
+
+    ewayBillNo       String?
+    ewayBillDate     DateTime?
+    ewayBillValidity DateTime?
+
+    gstRuleReference String?
+
+    invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+    invoiceId Int?     @unique
+}
+
+model InvoiceAudit {
+    id Int @id @default(autoincrement())
+
+    preparedBy   String?
+    checkedBy    String?
+    authorizedBy String?
+
+    declaration     String?
+    termsConditions String?
+
+    invoice Invoice?
+}

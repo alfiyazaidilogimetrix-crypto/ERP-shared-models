@@ -33,7 +33,7 @@ model Vendor {
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 
-    contractorVendors ContractorVendor[]
-
-    pos PO[]
+    contractorVendors  ContractorVendor[]
+    pos                PO[]
+    dieselTransactions DieselTransaction[]
 }

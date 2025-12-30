@@ -2,7 +2,7 @@ model DPR {
     id Int @id @default(autoincrement())
 
     date       DateTime
-    project_id String
+    project_id Int
 
     weather_condition String?
 
@@ -14,11 +14,15 @@ model DPR {
     safety_incidents String?
     remarks          String?
 
-    submitted_by String // user_id
+    submitted_by Int
 
     work_activities       DPRWorkActivity[]
     material_consumptions DPRMaterialConsumption[]
     machinery_usages      DPRMachineryUsage[]
+
+    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+    user User @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
@@ -47,7 +51,7 @@ model DPRMaterialConsumption {
     id Int @id @default(autoincrement())
 
     dpr_id      Int
-    material_id String
+    material_id Int
 
     quantity String
     chainage String?

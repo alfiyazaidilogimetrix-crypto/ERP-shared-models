@@ -13,4 +13,8 @@ model User {
     createdAt         DateTime @default(now())
     updatedAt         DateTime @updatedAt
     provider          Provider @default(credentials)
+    dprs              DPR[]
+    prs_created_by    PR[]     @relation("CreatedBy")
+
+    prs_approved_by PR[] @relation("ApprovedBy")
 }
