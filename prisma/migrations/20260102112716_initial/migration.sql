@@ -44,14 +44,14 @@ CREATE TYPE "SupplyStatus" AS ENUM ('PENDING', 'APPROVED', 'IN_TRANSIT', 'DELIVE
 CREATE TABLE "DPR" (
     "id" SERIAL NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "project_id" TEXT NOT NULL,
+    "project_id" INTEGER NOT NULL,
     "weather_condition" TEXT,
     "skilled_workers" INTEGER,
     "unskilled_workers" INTEGER,
     "contractor_name" TEXT,
     "safety_incidents" TEXT,
     "remarks" TEXT,
-    "submitted_by" TEXT NOT NULL,
+    "submitted_by" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -76,7 +76,7 @@ CREATE TABLE "DPRWorkActivity" (
 CREATE TABLE "DPRMaterialConsumption" (
     "id" SERIAL NOT NULL,
     "dpr_id" INTEGER NOT NULL,
-    "material_id" TEXT NOT NULL,
+    "material_id" INTEGER NOT NULL,
     "quantity" TEXT NOT NULL,
     "chainage" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -120,7 +120,7 @@ CREATE TABLE "GRN" (
 CREATE TABLE "GRNMaterialReceipt" (
     "id" SERIAL NOT NULL,
     "grn_id" INTEGER NOT NULL,
-    "material_id" TEXT NOT NULL,
+    "material_id" INTEGER NOT NULL,
     "ordered" TEXT NOT NULL,
     "status" "ReceiptStatus" NOT NULL,
     "chainage" TEXT,
@@ -135,8 +135,8 @@ CREATE TABLE "GRNMaterialReceipt" (
 CREATE TABLE "PO" (
     "id" SERIAL NOT NULL,
     "pr_id" INTEGER NOT NULL,
-    "project_id" TEXT NOT NULL,
-    "vendor_id" TEXT NOT NULL,
+    "project_id" INTEGER NOT NULL,
+    "vendor_id" INTEGER NOT NULL,
     "po_code" TEXT NOT NULL,
     "po_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "expected_delivery_date" TIMESTAMP(3),
@@ -158,7 +158,7 @@ CREATE TABLE "PO" (
 CREATE TABLE "POOrderItem" (
     "id" SERIAL NOT NULL,
     "po_id" INTEGER NOT NULL,
-    "material_id" TEXT NOT NULL,
+    "material_id" INTEGER NOT NULL,
     "quantity" TEXT NOT NULL,
     "rate" TEXT NOT NULL,
     "amount" TEXT NOT NULL,
@@ -170,13 +170,13 @@ CREATE TABLE "POOrderItem" (
 -- CreateTable
 CREATE TABLE "PR" (
     "id" SERIAL NOT NULL,
-    "project_id" TEXT NOT NULL,
+    "project_id" INTEGER NOT NULL,
     "pr_code" TEXT NOT NULL,
     "urgency_level" "UrgencyLevel" NOT NULL,
     "status" "PRStatus" NOT NULL DEFAULT 'DRAFT',
     "remarks" TEXT,
-    "user_id" TEXT NOT NULL,
-    "approved_by" TEXT,
+    "user_id" INTEGER,
+    "approved_by" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -187,7 +187,7 @@ CREATE TABLE "PR" (
 CREATE TABLE "PRMaterialItem" (
     "id" SERIAL NOT NULL,
     "pr_id" INTEGER NOT NULL,
-    "material_id" TEXT NOT NULL,
+    "material_id" INTEGER NOT NULL,
     "quantity" TEXT NOT NULL,
     "required_date" TIMESTAMP(3) NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -227,8 +227,8 @@ CREATE TABLE "DieselTransaction" (
     "id" SERIAL NOT NULL,
     "transaction_type" "DieselTransactionType" NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "project_id" TEXT NOT NULL,
-    "vendor_id" TEXT,
+    "project_id" INTEGER NOT NULL,
+    "vendor_id" INTEGER,
     "invoice_number" TEXT,
     "quantity" TEXT,
     "rate_per_litre" TEXT,
@@ -257,6 +257,188 @@ CREATE TABLE "File" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "File_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Invoice" (
+    "id" SERIAL NOT NULL,
+    "invoiceNumber" TEXT NOT NULL,
+    "invoiceDate" TIMESTAMP(3) NOT NULL,
+    "invoiceType" TEXT NOT NULL,
+    "placeOfSupply" TEXT NOT NULL,
+    "reverseCharge" BOOLEAN NOT NULL DEFAULT false,
+    "currency" TEXT NOT NULL DEFAULT 'INR',
+    "sellerId" INTEGER NOT NULL,
+    "buyerId" INTEGER NOT NULL,
+    "consigneeId" INTEGER,
+    "orderReferenceId" INTEGER,
+    "taxDetailId" INTEGER,
+    "amountSummaryId" INTEGER,
+    "transportDetailId" INTEGER,
+    "eInvoiceDetailId" INTEGER,
+    "auditDetailId" INTEGER,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "invoiceAmountSummaryId" INTEGER,
+    "invoiceAuditId" INTEGER,
+
+    CONSTRAINT "Invoice_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Seller" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "unitName" TEXT,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "stateCode" TEXT NOT NULL,
+    "pincode" TEXT,
+    "gstin" TEXT NOT NULL,
+    "cin" TEXT,
+    "pan" TEXT,
+    "email" TEXT,
+    "phone" TEXT,
+    "website" TEXT,
+
+    CONSTRAINT "Seller_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Buyer" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "stateCode" TEXT NOT NULL,
+    "pincode" TEXT,
+    "gstin" TEXT,
+    "phone" TEXT,
+
+    CONSTRAINT "Buyer_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Consignee" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "stateCode" TEXT NOT NULL,
+    "pincode" TEXT,
+    "gstin" TEXT,
+    "phone" TEXT,
+
+    CONSTRAINT "Consignee_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "OrderReference" (
+    "id" SERIAL NOT NULL,
+    "purchaseOrderNo" TEXT,
+    "purchaseOrderDate" TIMESTAMP(3),
+    "salesOrderNo" TEXT,
+    "deliveryOrderNo" TEXT,
+    "challanNo" TEXT,
+    "challanDate" TIMESTAMP(3),
+    "contractNo" TEXT,
+
+    CONSTRAINT "OrderReference_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "InvoiceItem" (
+    "id" SERIAL NOT NULL,
+    "invoiceId" INTEGER NOT NULL,
+    "description" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "hsnCode" TEXT NOT NULL,
+    "grade" TEXT,
+    "identificationMark" TEXT,
+    "quantity" DECIMAL(65,30) NOT NULL,
+    "unitOfMeasure" TEXT NOT NULL,
+    "ratePerUnit" DECIMAL(65,30) NOT NULL,
+    "basicAmount" DECIMAL(65,30) NOT NULL,
+    "freightRatePerUnit" DECIMAL(65,30),
+    "unloadingRatePerUnit" DECIMAL(65,30),
+    "taxableValue" DECIMAL(65,30) NOT NULL,
+
+    CONSTRAINT "InvoiceItem_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "TaxDetail" (
+    "id" SERIAL NOT NULL,
+    "cgstRate" DECIMAL(65,30),
+    "cgstAmount" DECIMAL(65,30),
+    "sgstRate" DECIMAL(65,30),
+    "sgstAmount" DECIMAL(65,30),
+    "igstRate" DECIMAL(65,30),
+    "igstAmount" DECIMAL(65,30),
+    "totalTax" DECIMAL(65,30) NOT NULL,
+
+    CONSTRAINT "TaxDetail_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "InvoiceAmountSummary" (
+    "id" SERIAL NOT NULL,
+    "goodsValue" DECIMAL(65,30) NOT NULL,
+    "taxableValue" DECIMAL(65,30) NOT NULL,
+    "freightAmount" DECIMAL(65,30),
+    "unloadingAmount" DECIMAL(65,30),
+    "roundOff" DECIMAL(65,30),
+    "totalTaxAmount" DECIMAL(65,30) NOT NULL,
+    "totalInvoiceValue" DECIMAL(65,30) NOT NULL,
+    "amountInWords" TEXT NOT NULL,
+
+    CONSTRAINT "InvoiceAmountSummary_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "TransportDetail" (
+    "id" SERIAL NOT NULL,
+    "transporterName" TEXT NOT NULL,
+    "transporterGstin" TEXT,
+    "vehicleNumber" TEXT,
+    "wagonNumber" TEXT,
+    "transportMode" TEXT NOT NULL,
+    "lrRrNo" TEXT,
+    "lrRrDate" TIMESTAMP(3),
+    "dispatchFrom" TEXT,
+    "destination" TEXT,
+    "distanceKm" INTEGER,
+
+    CONSTRAINT "TransportDetail_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "EInvoiceDetail" (
+    "id" SERIAL NOT NULL,
+    "irnNumber" TEXT,
+    "qrCode" TEXT,
+    "ewayBillNo" TEXT,
+    "ewayBillDate" TIMESTAMP(3),
+    "ewayBillValidity" TIMESTAMP(3),
+    "gstRuleReference" TEXT,
+    "invoiceId" INTEGER,
+
+    CONSTRAINT "EInvoiceDetail_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "InvoiceAudit" (
+    "id" SERIAL NOT NULL,
+    "preparedBy" TEXT,
+    "checkedBy" TEXT,
+    "authorizedBy" TEXT,
+    "declaration" TEXT,
+    "termsConditions" TEXT,
+
+    CONSTRAINT "InvoiceAudit_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -459,7 +641,6 @@ CREATE TABLE "Vendor" (
     "address" TEXT,
     "gst_number" TEXT,
     "pan_number" TEXT,
-    "payment_terms" TEXT,
     "status" "VendorStatus" NOT NULL DEFAULT 'ACTIVE',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -561,6 +742,27 @@ CREATE INDEX "DieselTransaction_project_id_idx" ON "DieselTransaction"("project_
 CREATE INDEX "DieselTransaction_transaction_type_idx" ON "DieselTransaction"("transaction_type");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Invoice_orderReferenceId_key" ON "Invoice"("orderReferenceId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Invoice_taxDetailId_key" ON "Invoice"("taxDetailId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Invoice_transportDetailId_key" ON "Invoice"("transportDetailId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Invoice_invoiceAmountSummaryId_key" ON "Invoice"("invoiceAmountSummaryId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Invoice_invoiceAuditId_key" ON "Invoice"("invoiceAuditId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Invoice_invoiceNumber_key" ON "Invoice"("invoiceNumber");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "EInvoiceDetail_invoiceId_key" ON "EInvoiceDetail"("invoiceId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Labour_labour_code_key" ON "Labour"("labour_code");
 
 -- CreateIndex
@@ -609,6 +811,12 @@ CREATE INDEX "_PermissionModules_B_index" ON "_PermissionModules"("B");
 CREATE INDEX "_RolePermissions_B_index" ON "_RolePermissions"("B");
 
 -- AddForeignKey
+ALTER TABLE "DPR" ADD CONSTRAINT "DPR_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPR" ADD CONSTRAINT "DPR_submitted_by_fkey" FOREIGN KEY ("submitted_by") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "DPRWorkActivity" ADD CONSTRAINT "DPRWorkActivity_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -618,16 +826,82 @@ ALTER TABLE "DPRMaterialConsumption" ADD CONSTRAINT "DPRMaterialConsumption_dpr_
 ALTER TABLE "DPRMachineryUsage" ADD CONSTRAINT "DPRMachineryUsage_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "GRN" ADD CONSTRAINT "GRN_po_id_fkey" FOREIGN KEY ("po_id") REFERENCES "PO"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "GRNMaterialReceipt" ADD CONSTRAINT "GRNMaterialReceipt_grn_id_fkey" FOREIGN KEY ("grn_id") REFERENCES "GRN"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GRNMaterialReceipt" ADD CONSTRAINT "GRNMaterialReceipt_material_id_fkey" FOREIGN KEY ("material_id") REFERENCES "materials"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PO" ADD CONSTRAINT "PO_pr_id_fkey" FOREIGN KEY ("pr_id") REFERENCES "PR"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PO" ADD CONSTRAINT "PO_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PO" ADD CONSTRAINT "PO_vendor_id_fkey" FOREIGN KEY ("vendor_id") REFERENCES "Vendor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "POOrderItem" ADD CONSTRAINT "POOrderItem_po_id_fkey" FOREIGN KEY ("po_id") REFERENCES "PO"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "POOrderItem" ADD CONSTRAINT "POOrderItem_material_id_fkey" FOREIGN KEY ("material_id") REFERENCES "materials"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PR" ADD CONSTRAINT "PR_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PR" ADD CONSTRAINT "PR_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PR" ADD CONSTRAINT "PR_approved_by_fkey" FOREIGN KEY ("approved_by") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "PRMaterialItem" ADD CONSTRAINT "PRMaterialItem_pr_id_fkey" FOREIGN KEY ("pr_id") REFERENCES "PR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "PRMaterialItem" ADD CONSTRAINT "PRMaterialItem_material_id_fkey" FOREIGN KEY ("material_id") REFERENCES "materials"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Chainage_consumption_ledger" ADD CONSTRAINT "Chainage_consumption_ledger_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DieselTransaction" ADD CONSTRAINT "DieselTransaction_vendor_id_fkey" FOREIGN KEY ("vendor_id") REFERENCES "Vendor"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DieselTransaction" ADD CONSTRAINT "DieselTransaction_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_sellerId_fkey" FOREIGN KEY ("sellerId") REFERENCES "Seller"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_buyerId_fkey" FOREIGN KEY ("buyerId") REFERENCES "Buyer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_consigneeId_fkey" FOREIGN KEY ("consigneeId") REFERENCES "Consignee"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_orderReferenceId_fkey" FOREIGN KEY ("orderReferenceId") REFERENCES "OrderReference"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_taxDetailId_fkey" FOREIGN KEY ("taxDetailId") REFERENCES "TaxDetail"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_invoiceAmountSummaryId_fkey" FOREIGN KEY ("invoiceAmountSummaryId") REFERENCES "InvoiceAmountSummary"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_transportDetailId_fkey" FOREIGN KEY ("transportDetailId") REFERENCES "TransportDetail"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_invoiceAuditId_fkey" FOREIGN KEY ("invoiceAuditId") REFERENCES "InvoiceAudit"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "InvoiceItem" ADD CONSTRAINT "InvoiceItem_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "Invoice"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "EInvoiceDetail" ADD CONSTRAINT "EInvoiceDetail_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "Invoice"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "materials" ADD CONSTRAINT "materials_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
