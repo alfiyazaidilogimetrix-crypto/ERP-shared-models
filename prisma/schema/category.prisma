@@ -6,6 +6,7 @@ model Category {
     updatedAt   DateTime   @updatedAt
     materials   Material[]
     stocks      Stock[]
+    vendors     Vendor[]
 
     @@map("categories")
 }
