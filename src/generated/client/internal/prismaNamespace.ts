@@ -418,6 +418,7 @@ export const ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
+  Stock: 'Stock',
   Sub_Contractor: 'Sub_Contractor',
   ContractorVendor: 'ContractorVendor',
   ContractorProject: 'ContractorProject',
@@ -442,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "dPR" | "dPRWorkActivity" | "dPRMaterialConsumption" | "dPRMachineryUsage" | "gRN" | "gRNMaterialReceipt" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "sub_Contractor" | "contractorVendor" | "contractorProject" | "unit" | "user" | "vendor" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+    modelProps: "dPR" | "dPRWorkActivity" | "dPRMaterialConsumption" | "dPRMachineryUsage" | "gRN" | "gRNMaterialReceipt" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "sub_Contractor" | "contractorVendor" | "contractorProject" | "unit" | "user" | "vendor" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2962,6 +2963,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Stock: {
+      payload: Prisma.$StockPayload<ExtArgs>
+      fields: Prisma.StockFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StockFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StockFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        findFirst: {
+          args: Prisma.StockFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StockFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        findMany: {
+          args: Prisma.StockFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>[]
+        }
+        create: {
+          args: Prisma.StockCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        createMany: {
+          args: Prisma.StockCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StockCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>[]
+        }
+        delete: {
+          args: Prisma.StockDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        update: {
+          args: Prisma.StockUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        deleteMany: {
+          args: Prisma.StockDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StockUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StockUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>[]
+        }
+        upsert: {
+          args: Prisma.StockUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockPayload>
+        }
+        aggregate: {
+          args: Prisma.StockAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStock>
+        }
+        groupBy: {
+          args: Prisma.StockGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StockGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StockCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StockCountAggregateOutputType> | number
+        }
+      }
+    }
     Sub_Contractor: {
       payload: Prisma.$Sub_ContractorPayload<ExtArgs>
       fields: Prisma.Sub_ContractorFieldRefs
@@ -4094,8 +4169,6 @@ export const MaterialScalarFieldEnum = {
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   unit_of_measure: 'unit_of_measure',
-  current_stock: 'current_stock',
-  opening_stock: 'opening_stock',
   specifications: 'specifications',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -4194,6 +4267,25 @@ export const RoleScalarFieldEnum = {
 } as const
 
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const StockScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  material_code: 'material_code',
+  categoryId: 'categoryId',
+  unitId: 'unitId',
+  status: 'status',
+  minimum_threshold_quantity: 'minimum_threshold_quantity',
+  unit_of_measure: 'unit_of_measure',
+  current_stock: 'current_stock',
+  quantity: 'quantity',
+  specifications: 'specifications',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
 
 
 export const Sub_ContractorScalarFieldEnum = {
@@ -4777,6 +4869,7 @@ export type GlobalOmitConfig = {
   ePCSpecificDetails?: Prisma.EPCSpecificDetailsOmit
   bOTSpecificDetails?: Prisma.BOTSpecificDetailsOmit
   role?: Prisma.RoleOmit
+  stock?: Prisma.StockOmit
   sub_Contractor?: Prisma.Sub_ContractorOmit
   contractorVendor?: Prisma.ContractorVendorOmit
   contractorProject?: Prisma.ContractorProjectOmit

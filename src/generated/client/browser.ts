@@ -188,6 +188,11 @@ export type BOTSpecificDetails = Prisma.BOTSpecificDetailsModel
  */
 export type Role = Prisma.RoleModel
 /**
+ * Model Stock
+ * 
+ */
+export type Stock = Prisma.StockModel
+/**
  * Model Sub_Contractor
  * 
  */

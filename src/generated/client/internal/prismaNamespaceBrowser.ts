@@ -85,6 +85,7 @@ export const ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
+  Stock: 'Stock',
   Sub_Contractor: 'Sub_Contractor',
   ContractorVendor: 'ContractorVendor',
   ContractorProject: 'ContractorProject',
@@ -539,8 +540,6 @@ export const MaterialScalarFieldEnum = {
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   unit_of_measure: 'unit_of_measure',
-  current_stock: 'current_stock',
-  opening_stock: 'opening_stock',
   specifications: 'specifications',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -639,6 +638,25 @@ export const RoleScalarFieldEnum = {
 } as const
 
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const StockScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  material_code: 'material_code',
+  categoryId: 'categoryId',
+  unitId: 'unitId',
+  status: 'status',
+  minimum_threshold_quantity: 'minimum_threshold_quantity',
+  unit_of_measure: 'unit_of_measure',
+  current_stock: 'current_stock',
+  quantity: 'quantity',
+  specifications: 'specifications',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
 
 
 export const Sub_ContractorScalarFieldEnum = {
