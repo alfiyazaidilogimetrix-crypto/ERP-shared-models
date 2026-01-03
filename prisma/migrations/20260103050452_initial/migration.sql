@@ -125,7 +125,6 @@ CREATE TABLE "GRNMaterialReceipt" (
     "status" "ReceiptStatus" NOT NULL,
     "chainage" TEXT,
     "quality" TEXT,
-    "remarks" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "GRNMaterialReceipt_pkey" PRIMARY KEY ("id")
@@ -469,6 +468,8 @@ CREATE TABLE "materials" (
     "status" TEXT NOT NULL DEFAULT 'active',
     "minimum_threshold_quantity" INTEGER,
     "unit_of_measure" TEXT,
+    "current_stock" INTEGER,
+    "opening_stock" INTEGER NOT NULL,
     "specifications" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

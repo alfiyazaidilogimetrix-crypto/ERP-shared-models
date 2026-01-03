@@ -7,6 +7,8 @@ model Material {
     status                     String                   @default("active")
     minimum_threshold_quantity Int?
     unit_of_measure            String?
+    current_stock              Int?
+    opening_stock              Int
     specifications             String?
     createdAt                  DateTime                 @default(now())
     updatedAt                  DateTime                 @updatedAt

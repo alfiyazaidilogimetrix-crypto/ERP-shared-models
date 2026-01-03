@@ -3751,7 +3751,6 @@ export const GRNMaterialReceiptScalarFieldEnum = {
   status: 'status',
   chainage: 'chainage',
   quality: 'quality',
-  remarks: 'remarks',
   created_at: 'created_at'
 } as const
 
@@ -4095,6 +4094,8 @@ export const MaterialScalarFieldEnum = {
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   unit_of_measure: 'unit_of_measure',
+  current_stock: 'current_stock',
+  opening_stock: 'opening_stock',
   specifications: 'specifications',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -43,10 +43,8 @@ model GRNMaterialReceipt {
     status   ReceiptStatus
     chainage String?
     quality  String? // Good / Damaged / Failed Test etc.
-    remarks  String?
-
-    grn      GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-    material Material @relation(fields: [material_id], references: [id])
+    grn      GRN           @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    material Material      @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 }
