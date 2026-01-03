@@ -1,15 +1,17 @@
 model Stock {
-    id                         Int      @id @default(autoincrement())
+    id                         Int       @id @default(autoincrement())
     name                       String
-    material_code              String?  @unique
+    material_code              String?   @unique
     categoryId                 Int?
     unitId                     Int?
-    status                     String   @default("in_stock")
+    status                     String    @default("in_stock")
     minimum_threshold_quantity Int?
     unit_of_measure            String?
     current_stock              Int?
     quantity                   Int?
     specifications             String?
-    createdAt                  DateTime @default(now())
-    updatedAt                  DateTime @updatedAt
+    createdAt                  DateTime  @default(now())
+    updatedAt                  DateTime  @updatedAt
+    category                   Category? @relation(fields: [categoryId], references: [id])
+    unit                       Unit?     @relation(fields: [unitId], references: [id])
 }
