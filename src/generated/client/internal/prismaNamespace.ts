@@ -3806,6 +3806,7 @@ export const GRNScalarFieldEnum = {
   driver_name: 'driver_name',
   driver_contact: 'driver_contact',
   transport_mode: 'transport_mode',
+  status: 'status',
   received_date: 'received_date',
   received_time: 'received_time',
   store_location: 'store_location',
@@ -3823,9 +3824,11 @@ export const GRNMaterialReceiptScalarFieldEnum = {
   grn_id: 'grn_id',
   material_id: 'material_id',
   ordered: 'ordered',
-  status: 'status',
   chainage: 'chainage',
   quality: 'quality',
+  accepted: 'accepted',
+  Rejected: 'Rejected',
+  received: 'received',
   created_at: 'created_at'
 } as const
 
@@ -4513,13 +4516,6 @@ export type ListEnumTransportModeFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'ReceiptStatus'
  */
 export type EnumReceiptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReceiptStatus'>
@@ -4530,6 +4526,13 @@ export type EnumReceiptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'ReceiptStatus[]'
  */
 export type ListEnumReceiptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReceiptStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

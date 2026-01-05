@@ -177,6 +177,7 @@ export const GRNScalarFieldEnum = {
   driver_name: 'driver_name',
   driver_contact: 'driver_contact',
   transport_mode: 'transport_mode',
+  status: 'status',
   received_date: 'received_date',
   received_time: 'received_time',
   store_location: 'store_location',
@@ -194,9 +195,11 @@ export const GRNMaterialReceiptScalarFieldEnum = {
   grn_id: 'grn_id',
   material_id: 'material_id',
   ordered: 'ordered',
-  status: 'status',
   chainage: 'chainage',
   quality: 'quality',
+  accepted: 'accepted',
+  Rejected: 'Rejected',
+  received: 'received',
   created_at: 'created_at'
 } as const
 

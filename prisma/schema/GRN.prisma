@@ -2,6 +2,8 @@ enum ReceiptStatus {
     RECEIVED
     ACCEPTED
     REJECTED
+    PARTIALLY_ACCEPTED
+    PENDING
 }
 
 model GRN {
@@ -14,9 +16,9 @@ model GRN {
     driver_contact    String?
 
     transport_mode TransportMode?
-
-    received_date DateTime
-    received_time String?
+    status         ReceiptStatus
+    received_date  DateTime
+    received_time  String?
 
     store_location String?
 
@@ -37,14 +39,14 @@ model GRNMaterialReceipt {
 
     grn_id      Int
     material_id Int
-
-    ordered String
-
-    status   ReceiptStatus
-    chainage String?
-    quality  String? // Good / Damaged / Failed Test etc.
-    grn      GRN           @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-    material Material      @relation(fields: [material_id], references: [id])
+    ordered     Int
+    chainage    String?
+    quality     String? // Good / Damaged / Failed Test etc.
+    accepted    Int
+    Rejected    Int
+    received    Int
+    grn         GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    material    Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 }
