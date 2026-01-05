@@ -11,7 +11,7 @@ export const grnBaseSchema = z.object({
   driver_contact: z.string().nullable().optional(),
   transport_mode: transportModeSchema.nullable().optional(),
   received_date: z.date(),
-  received_time: z.date().nullable().optional(),
+  received_time: z.string().optional(), // Changed to optional string
   store_location: z.string().nullable().optional(),
   quality_check_completed: z.boolean().default(false),
   grn_remarks: z.string().nullable().optional(),
@@ -107,34 +107,24 @@ export const grnDateTimeBaseSchema = z.object({
   received_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
     message: 'Invalid date format',
   }),
-  received_time: z
-    .string()
-    .optional()
-    .nullable()
-    .refine(
-      (val) => {
-        if (!val) return true; // Allow null/empty
-        return /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(val); // HH:MM format
-      },
-      {
-        message: 'Time must be in HH:MM format',
-      },
-    ),
+  received_time: z.string().optional(), // Optional string (not nullable)
 });
 
 export const grnDateTimeSchema = grnDateTimeBaseSchema.transform((data) => {
   let receivedDate = new Date(data.received_date);
 
-  if (data.received_time) {
+  if (data.received_time && data.received_time.trim() !== '') {
     const [hours, minutes] = data.received_time.split(':').map(Number);
-    receivedDate.setHours(hours, minutes, 0, 0);
+    if (!isNaN(hours) && !isNaN(minutes)) {
+      receivedDate.setHours(hours, minutes, 0, 0);
+    }
   } else {
     receivedDate.setHours(0, 0, 0, 0);
   }
 
   return {
     received_date: receivedDate,
-    received_time: data.received_time ? new Date(receivedDate) : null,
+    received_time: data.received_time?.trim() || undefined, // Return as undefined if empty
   };
 });
 

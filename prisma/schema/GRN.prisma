@@ -16,7 +16,7 @@ model GRN {
     transport_mode TransportMode?
 
     received_date DateTime
-    received_time DateTime?
+    received_time String?
 
     store_location String?
 
