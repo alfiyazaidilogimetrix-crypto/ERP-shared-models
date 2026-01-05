@@ -43,7 +43,7 @@ model GRNMaterialReceipt {
     chainage    String?
     quality     String? // Good / Damaged / Failed Test etc.
     accepted    Int
-    Rejected    Int
+    rejected    Int
     received    Int
     grn         GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
     material    Material @relation(fields: [material_id], references: [id])

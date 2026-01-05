@@ -198,7 +198,7 @@ export const GRNMaterialReceiptScalarFieldEnum = {
   chainage: 'chainage',
   quality: 'quality',
   accepted: 'accepted',
-  Rejected: 'Rejected',
+  rejected: 'rejected',
   received: 'received',
   created_at: 'created_at'
 } as const
