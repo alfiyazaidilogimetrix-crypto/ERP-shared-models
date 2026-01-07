@@ -283,12 +283,7 @@ export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typ
 
 export const Chainage_consumption_ledgerScalarFieldEnum = {
   id: 'id',
-  chainage: 'chainage',
-  materials: 'materials',
-  labours: 'labours',
-  equipment: 'equipment',
-  sub_contractor: 'sub_contractor',
-  total_cost: 'total_cost',
+  chainage_data: 'chainage_data',
   projectId: 'projectId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -789,6 +784,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: 'JsonNull'
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullableJsonNullValueInput = {

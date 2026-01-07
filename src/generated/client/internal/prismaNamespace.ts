@@ -3912,12 +3912,7 @@ export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typ
 
 export const Chainage_consumption_ledgerScalarFieldEnum = {
   id: 'id',
-  chainage: 'chainage',
-  materials: 'materials',
-  labours: 'labours',
-  equipment: 'equipment',
-  sub_contractor: 'sub_contractor',
-  total_cost: 'total_cost',
+  chainage_data: 'chainage_data',
   projectId: 'projectId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -4420,6 +4415,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullableJsonNullValueInput = {
   DbNull: DbNull,
   JsonNull: JsonNull
@@ -4579,16 +4581,16 @@ export type ListEnumPRStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
- * Reference to a field of type 'Float'
+ * Reference to a field of type 'Json'
  */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
 /**
- * Reference to a field of type 'Float[]'
+ * Reference to a field of type 'QueryMode'
  */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -4691,20 +4693,6 @@ export type ListEnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
  * Reference to a field of type 'Provider'
  */
 export type EnumProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Provider'>
@@ -4757,6 +4745,20 @@ export type EnumSupplyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'SupplyStatus[]'
  */
 export type ListEnumSupplyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SupplyStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
