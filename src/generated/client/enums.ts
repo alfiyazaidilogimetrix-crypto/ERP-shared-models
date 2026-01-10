@@ -90,6 +90,16 @@ export const LabourType = {
 export type LabourType = (typeof LabourType)[keyof typeof LabourType]
 
 
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  HALF_DAY: 'HALF_DAY',
+  ON_LEAVE: 'ON_LEAVE'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
 export const ProjectType = {
   HAM: 'HAM',
   EPC: 'EPC',

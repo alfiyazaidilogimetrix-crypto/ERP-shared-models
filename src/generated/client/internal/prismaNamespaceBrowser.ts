@@ -77,6 +77,7 @@ export const ModelName = {
   EInvoiceDetail: 'EInvoiceDetail',
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
+  LabourAttendance: 'LabourAttendance',
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
@@ -527,6 +528,27 @@ export const LabourScalarFieldEnum = {
 } as const
 
 export type LabourScalarFieldEnum = (typeof LabourScalarFieldEnum)[keyof typeof LabourScalarFieldEnum]
+
+
+export const LabourAttendanceScalarFieldEnum = {
+  id: 'id',
+  labour_id: 'labour_id',
+  project_id: 'project_id',
+  date: 'date',
+  check_in_time: 'check_in_time',
+  check_out_time: 'check_out_time',
+  total_working_hours: 'total_working_hours',
+  field_working_hours: 'field_working_hours',
+  overtime_hours: 'overtime_hours',
+  status: 'status',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
+  remarks: 'remarks',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type LabourAttendanceScalarFieldEnum = (typeof LabourAttendanceScalarFieldEnum)[keyof typeof LabourAttendanceScalarFieldEnum]
 
 
 export const MaterialScalarFieldEnum = {

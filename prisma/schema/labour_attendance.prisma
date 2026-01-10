@@ -1,0 +1,38 @@
+enum AttendanceStatus {
+    PRESENT
+    ABSENT
+    HALF_DAY
+    ON_LEAVE
+}
+
+model LabourAttendance {
+    id String @id @default(uuid())
+
+    labour_id  Int
+    project_id Int
+
+    date           DateTime  @db.Date
+    check_in_time  DateTime?
+    check_out_time DateTime?
+
+    total_working_hours Float?
+    field_working_hours Float? // actual hours worked on site
+    overtime_hours      Float?
+
+    status AttendanceStatus
+
+    chainage_from String?
+    chainage_to   String?
+
+    remarks String?
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    // Relations (optional but recommended)
+    labour  Labour  @relation(fields: [labour_id], references: [id])
+    project Project @relation(fields: [project_id], references: [id])
+
+    @@index([labour_id, date])
+    @@index([project_id])
+}

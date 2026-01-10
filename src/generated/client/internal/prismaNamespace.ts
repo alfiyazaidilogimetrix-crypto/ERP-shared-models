@@ -410,6 +410,7 @@ export const ModelName = {
   EInvoiceDetail: 'EInvoiceDetail',
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
+  LabourAttendance: 'LabourAttendance',
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
@@ -443,7 +444,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "dPR" | "dPRWorkActivity" | "dPRMaterialConsumption" | "dPRMachineryUsage" | "gRN" | "gRNMaterialReceipt" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "sub_Contractor" | "contractorVendor" | "contractorProject" | "unit" | "user" | "vendor" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+    modelProps: "dPR" | "dPRWorkActivity" | "dPRMaterialConsumption" | "dPRMachineryUsage" | "gRN" | "gRNMaterialReceipt" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "sub_Contractor" | "contractorVendor" | "contractorProject" | "unit" | "user" | "vendor" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2371,6 +2372,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LabourAttendance: {
+      payload: Prisma.$LabourAttendancePayload<ExtArgs>
+      fields: Prisma.LabourAttendanceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LabourAttendanceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LabourAttendanceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        findFirst: {
+          args: Prisma.LabourAttendanceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LabourAttendanceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        findMany: {
+          args: Prisma.LabourAttendanceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>[]
+        }
+        create: {
+          args: Prisma.LabourAttendanceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        createMany: {
+          args: Prisma.LabourAttendanceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LabourAttendanceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>[]
+        }
+        delete: {
+          args: Prisma.LabourAttendanceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        update: {
+          args: Prisma.LabourAttendanceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        deleteMany: {
+          args: Prisma.LabourAttendanceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LabourAttendanceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LabourAttendanceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>[]
+        }
+        upsert: {
+          args: Prisma.LabourAttendanceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabourAttendancePayload>
+        }
+        aggregate: {
+          args: Prisma.LabourAttendanceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLabourAttendance>
+        }
+        groupBy: {
+          args: Prisma.LabourAttendanceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabourAttendanceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LabourAttendanceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabourAttendanceCountAggregateOutputType> | number
+        }
+      }
+    }
     Material: {
       payload: Prisma.$MaterialPayload<ExtArgs>
       fields: Prisma.MaterialFieldRefs
@@ -4158,6 +4233,27 @@ export const LabourScalarFieldEnum = {
 export type LabourScalarFieldEnum = (typeof LabourScalarFieldEnum)[keyof typeof LabourScalarFieldEnum]
 
 
+export const LabourAttendanceScalarFieldEnum = {
+  id: 'id',
+  labour_id: 'labour_id',
+  project_id: 'project_id',
+  date: 'date',
+  check_in_time: 'check_in_time',
+  check_out_time: 'check_out_time',
+  total_working_hours: 'total_working_hours',
+  field_working_hours: 'field_working_hours',
+  overtime_hours: 'overtime_hours',
+  status: 'status',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
+  remarks: 'remarks',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type LabourAttendanceScalarFieldEnum = (typeof LabourAttendanceScalarFieldEnum)[keyof typeof LabourAttendanceScalarFieldEnum]
+
+
 export const MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -4665,6 +4761,34 @@ export type ListEnumLabourStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceStatus'
+ */
+export type EnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceStatus[]'
+ */
+export type ListEnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'ProjectType'
  */
 export type EnumProjectTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectType'>
@@ -4745,20 +4869,6 @@ export type EnumSupplyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'SupplyStatus[]'
  */
 export type ListEnumSupplyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SupplyStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -4866,6 +4976,7 @@ export type GlobalOmitConfig = {
   eInvoiceDetail?: Prisma.EInvoiceDetailOmit
   invoiceAudit?: Prisma.InvoiceAuditOmit
   labour?: Prisma.LabourOmit
+  labourAttendance?: Prisma.LabourAttendanceOmit
   material?: Prisma.MaterialOmit
   module?: Prisma.ModuleOmit
   permission?: Prisma.PermissionOmit

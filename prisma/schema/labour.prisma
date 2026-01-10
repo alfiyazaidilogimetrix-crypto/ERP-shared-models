@@ -26,8 +26,9 @@ model Labour {
     joining_date DateTime?
     status       LabourStatus @default(ACTIVE)
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    created_at        DateTime           @default(now())
+    updated_at        DateTime           @updatedAt
+    labourAttendances LabourAttendance[]
 
     @@index([labour_type])
     @@index([status])

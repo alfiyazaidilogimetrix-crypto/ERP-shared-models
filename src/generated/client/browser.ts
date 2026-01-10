@@ -148,6 +148,11 @@ export type InvoiceAudit = Prisma.InvoiceAuditModel
  */
 export type Labour = Prisma.LabourModel
 /**
+ * Model LabourAttendance
+ * 
+ */
+export type LabourAttendance = Prisma.LabourAttendanceModel
+/**
  * Model Material
  * 
  */
