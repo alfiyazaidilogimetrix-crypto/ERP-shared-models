@@ -4,7 +4,7 @@ model VendorSupplyManagement {
     vendor_type VendorType
 
     vendor_id               Int
-    material_id             Int
+    stock_id                Int?
     quantity                String
     unit                    String
     amount                  String
@@ -13,10 +13,12 @@ model VendorSupplyManagement {
     direct_supply_config    DirectSupplyConfiguration?
     inventory_supply_config InventorySupplyConfiguration?
     vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-    material                Material                      @relation(fields: [material_id], references: [id], onDelete: Cascade)
+    stock_material          Stock?                        @relation(fields: [stock_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    created_at DateTime  @default(now())
+    updated_at DateTime  @updatedAt
+    material   Material? @relation(fields: [materialId], references: [id])
+    materialId Int?
 }
 
 model DirectSupplyConfiguration {

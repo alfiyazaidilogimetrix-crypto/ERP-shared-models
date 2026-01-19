@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "GRN" ALTER COLUMN "received_time" SET DATA TYPE TEXT;

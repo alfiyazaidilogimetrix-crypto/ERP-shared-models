@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "ReceiptStatus" AS ENUM ('RECEIVED', 'ACCEPTED', 'REJECTED');
+CREATE TYPE "ReceiptStatus" AS ENUM ('RECEIVED', 'ACCEPTED', 'REJECTED', 'PARTIALLY_ACCEPTED', 'PENDING');
 
 -- CreateEnum
 CREATE TYPE "POStatus" AS ENUM ('DRAFT', 'ISSUED', 'PARTIALLY_DELIVERED', 'DELIVERED', 'CANCELLED', 'CLOSED');
@@ -21,6 +21,9 @@ CREATE TYPE "LabourStatus" AS ENUM ('ACTIVE', 'INACTIVE', 'LEFT', 'BLACKLISTED')
 
 -- CreateEnum
 CREATE TYPE "LabourType" AS ENUM ('DIRECT', 'CONTRACT');
+
+-- CreateEnum
+CREATE TYPE "AttendanceStatus" AS ENUM ('PRESENT', 'ABSENT', 'HALF_DAY', 'ON_LEAVE');
 
 -- CreateEnum
 CREATE TYPE "ProjectType" AS ENUM ('HAM', 'EPC', 'BOT', 'OTHER');
@@ -105,8 +108,9 @@ CREATE TABLE "GRN" (
     "driver_name" TEXT,
     "driver_contact" TEXT,
     "transport_mode" "TransportMode",
+    "status" "ReceiptStatus" NOT NULL,
     "received_date" TIMESTAMP(3) NOT NULL,
-    "received_time" TIMESTAMP(3),
+    "received_time" TEXT,
     "store_location" TEXT,
     "quality_check_completed" BOOLEAN NOT NULL DEFAULT false,
     "grn_remarks" TEXT,
@@ -121,10 +125,12 @@ CREATE TABLE "GRNMaterialReceipt" (
     "id" SERIAL NOT NULL,
     "grn_id" INTEGER NOT NULL,
     "material_id" INTEGER NOT NULL,
-    "ordered" TEXT NOT NULL,
-    "status" "ReceiptStatus" NOT NULL,
+    "ordered" INTEGER NOT NULL,
     "chainage" TEXT,
     "quality" TEXT,
+    "accepted" INTEGER NOT NULL,
+    "rejected" INTEGER NOT NULL,
+    "received" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "GRNMaterialReceipt_pkey" PRIMARY KEY ("id")
@@ -208,12 +214,7 @@ CREATE TABLE "categories" (
 -- CreateTable
 CREATE TABLE "Chainage_consumption_ledger" (
     "id" SERIAL NOT NULL,
-    "chainage" TEXT NOT NULL,
-    "materials" DOUBLE PRECISION NOT NULL,
-    "labours" DOUBLE PRECISION NOT NULL,
-    "equipment" DOUBLE PRECISION NOT NULL,
-    "sub_contractor" DOUBLE PRECISION NOT NULL,
-    "total_cost" DOUBLE PRECISION NOT NULL,
+    "chainage_data" JSONB NOT NULL,
     "projectId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -459,6 +460,27 @@ CREATE TABLE "Labour" (
 );
 
 -- CreateTable
+CREATE TABLE "LabourAttendance" (
+    "id" TEXT NOT NULL,
+    "labour_id" INTEGER NOT NULL,
+    "project_id" INTEGER NOT NULL,
+    "date" DATE NOT NULL,
+    "check_in_time" TIMESTAMP(3),
+    "check_out_time" TIMESTAMP(3),
+    "total_working_hours" DOUBLE PRECISION,
+    "field_working_hours" DOUBLE PRECISION,
+    "overtime_hours" DOUBLE PRECISION,
+    "status" "AttendanceStatus" NOT NULL,
+    "chainage_from" TEXT,
+    "chainage_to" TEXT,
+    "remarks" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "LabourAttendance_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "materials" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -468,8 +490,6 @@ CREATE TABLE "materials" (
     "status" TEXT NOT NULL DEFAULT 'active',
     "minimum_threshold_quantity" INTEGER,
     "unit_of_measure" TEXT,
-    "current_stock" INTEGER,
-    "opening_stock" INTEGER NOT NULL,
     "specifications" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -570,6 +590,25 @@ CREATE TABLE "Role" (
 );
 
 -- CreateTable
+CREATE TABLE "Stock" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "material_code" TEXT,
+    "categoryId" INTEGER,
+    "unitId" INTEGER,
+    "status" TEXT NOT NULL DEFAULT 'in_stock',
+    "minimum_threshold_quantity" INTEGER,
+    "unit_of_measure" TEXT,
+    "current_stock" INTEGER,
+    "quantity" INTEGER,
+    "specifications" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Stock_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "sub_contractors" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -636,7 +675,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Vendor" (
     "id" SERIAL NOT NULL,
     "vendor_name" TEXT NOT NULL,
-    "category" TEXT,
+    "category_id" INTEGER NOT NULL,
     "contact_number" TEXT,
     "email_address" TEXT,
     "address" TEXT,
@@ -654,7 +693,7 @@ CREATE TABLE "VendorSupplyManagement" (
     "id" SERIAL NOT NULL,
     "vendor_type" "VendorType" NOT NULL,
     "vendor_id" INTEGER NOT NULL,
-    "material_id" INTEGER NOT NULL,
+    "stock_id" INTEGER,
     "quantity" TEXT NOT NULL,
     "unit" TEXT NOT NULL,
     "amount" TEXT NOT NULL,
@@ -662,6 +701,7 @@ CREATE TABLE "VendorSupplyManagement" (
     "status" "SupplyStatus" NOT NULL DEFAULT 'PENDING',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
+    "materialId" INTEGER,
 
     CONSTRAINT "VendorSupplyManagement_pkey" PRIMARY KEY ("id")
 );
@@ -776,6 +816,12 @@ CREATE INDEX "Labour_labour_type_idx" ON "Labour"("labour_type");
 CREATE INDEX "Labour_status_idx" ON "Labour"("status");
 
 -- CreateIndex
+CREATE INDEX "LabourAttendance_labour_id_date_idx" ON "LabourAttendance"("labour_id", "date");
+
+-- CreateIndex
+CREATE INDEX "LabourAttendance_project_id_idx" ON "LabourAttendance"("project_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "materials_material_code_key" ON "materials"("material_code");
 
 -- CreateIndex
@@ -789,6 +835,9 @@ CREATE UNIQUE INDEX "BOTSpecificDetails_project_id_key" ON "BOTSpecificDetails"(
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Stock_material_code_key" ON "Stock"("material_code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "contractor_vendors_contractorId_vendorId_key" ON "contractor_vendors"("contractorId", "vendorId");
@@ -905,6 +954,12 @@ ALTER TABLE "InvoiceItem" ADD CONSTRAINT "InvoiceItem_invoiceId_fkey" FOREIGN KE
 ALTER TABLE "EInvoiceDetail" ADD CONSTRAINT "EInvoiceDetail_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "Invoice"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "LabourAttendance" ADD CONSTRAINT "LabourAttendance_labour_id_fkey" FOREIGN KEY ("labour_id") REFERENCES "Labour"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "LabourAttendance" ADD CONSTRAINT "LabourAttendance_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "materials" ADD CONSTRAINT "materials_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -918,6 +973,12 @@ ALTER TABLE "EPCSpecificDetails" ADD CONSTRAINT "EPCSpecificDetails_project_id_f
 
 -- AddForeignKey
 ALTER TABLE "BOTSpecificDetails" ADD CONSTRAINT "BOTSpecificDetails_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Stock" ADD CONSTRAINT "Stock_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Stock" ADD CONSTRAINT "Stock_unitId_fkey" FOREIGN KEY ("unitId") REFERENCES "units"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "contractor_vendors" ADD CONSTRAINT "contractor_vendors_contractorId_fkey" FOREIGN KEY ("contractorId") REFERENCES "sub_contractors"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -938,10 +999,16 @@ ALTER TABLE "User" ADD CONSTRAINT "User_fileId_fkey" FOREIGN KEY ("fileId") REFE
 ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Vendor" ADD CONSTRAINT "Vendor_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_vendor_id_fkey" FOREIGN KEY ("vendor_id") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_material_id_fkey" FOREIGN KEY ("material_id") REFERENCES "materials"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_stock_id_fkey" FOREIGN KEY ("stock_id") REFERENCES "Stock"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "materials"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DirectSupplyConfiguration" ADD CONSTRAINT "DirectSupplyConfiguration_supply_id_fkey" FOREIGN KEY ("supply_id") REFERENCES "VendorSupplyManagement"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -4466,14 +4466,15 @@ export const VendorSupplyManagementScalarFieldEnum = {
   id: 'id',
   vendor_type: 'vendor_type',
   vendor_id: 'vendor_id',
-  material_id: 'material_id',
+  stock_id: 'stock_id',
   quantity: 'quantity',
   unit: 'unit',
   amount: 'amount',
   payment_terms: 'payment_terms',
   status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  materialId: 'materialId'
 } as const
 
 export type VendorSupplyManagementScalarFieldEnum = (typeof VendorSupplyManagementScalarFieldEnum)[keyof typeof VendorSupplyManagementScalarFieldEnum]
