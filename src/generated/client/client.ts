@@ -45,20 +45,30 @@ export { Prisma }
  */
 export type DPR = Prisma.DPRModel
 /**
- * Model DPRWorkActivity
- * 
- */
-export type DPRWorkActivity = Prisma.DPRWorkActivityModel
-/**
  * Model DPRMaterialConsumption
  * 
  */
 export type DPRMaterialConsumption = Prisma.DPRMaterialConsumptionModel
 /**
+ * Model DPRLabourConsumption
+ * 
+ */
+export type DPRLabourConsumption = Prisma.DPRLabourConsumptionModel
+/**
+ * Model DPRLabour
+ * 
+ */
+export type DPRLabour = Prisma.DPRLabourModel
+/**
  * Model DPRMachineryUsage
  * 
  */
 export type DPRMachineryUsage = Prisma.DPRMachineryUsageModel
+/**
+ * Model DPRFile
+ * 
+ */
+export type DPRFile = Prisma.DPRFileModel
 /**
  * Model GRN
  * 
@@ -69,6 +79,11 @@ export type GRN = Prisma.GRNModel
  * 
  */
 export type GRNMaterialReceipt = Prisma.GRNMaterialReceiptModel
+/**
+ * Model GRNFile
+ * 
+ */
+export type GRNFile = Prisma.GRNFileModel
 /**
  * Model PO
  * 

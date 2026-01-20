@@ -48,13 +48,14 @@ CREATE TABLE "DPR" (
     "id" SERIAL NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "project_id" INTEGER NOT NULL,
-    "weather_condition" TEXT,
-    "skilled_workers" INTEGER,
-    "unskilled_workers" INTEGER,
-    "contractor_name" TEXT,
+    "weather_conditions" TEXT NOT NULL,
     "safety_incidents" TEXT,
     "remarks" TEXT,
     "submitted_by" INTEGER NOT NULL,
+    "material_cost" DOUBLE PRECISION NOT NULL,
+    "labour_cost" DOUBLE PRECISION NOT NULL,
+    "machinery_cost" DOUBLE PRECISION NOT NULL,
+    "total_cost" DOUBLE PRECISION NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -62,41 +63,68 @@ CREATE TABLE "DPR" (
 );
 
 -- CreateTable
-CREATE TABLE "DPRWorkActivity" (
-    "id" SERIAL NOT NULL,
-    "dpr_id" INTEGER NOT NULL,
-    "activity_description" TEXT NOT NULL,
-    "chainage" TEXT,
-    "planned_qty" TEXT,
-    "actual_qty" TEXT,
-    "progress" INTEGER,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "DPRWorkActivity_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "DPRMaterialConsumption" (
     "id" SERIAL NOT NULL,
     "dpr_id" INTEGER NOT NULL,
-    "material_id" INTEGER NOT NULL,
-    "quantity" TEXT NOT NULL,
-    "chainage" TEXT,
+    "stock_id" INTEGER NOT NULL,
+    "quantity" DOUBLE PRECISION NOT NULL,
+    "unit" TEXT NOT NULL,
+    "rate" DOUBLE PRECISION NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "chainage_from" TEXT,
+    "chainage_to" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "DPRMaterialConsumption_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
+CREATE TABLE "DPRLabourConsumption" (
+    "id" SERIAL NOT NULL,
+    "dpr_id" INTEGER NOT NULL,
+    "skill" TEXT NOT NULL,
+    "hours" DOUBLE PRECISION NOT NULL,
+    "charges" DOUBLE PRECISION NOT NULL,
+    "chainage_from" TEXT,
+    "chainage_to" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DPRLabourConsumption_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DPRLabour" (
+    "id" SERIAL NOT NULL,
+    "dpr_labour_consumption_id" INTEGER NOT NULL,
+    "labour_id" INTEGER NOT NULL,
+
+    CONSTRAINT "DPRLabour_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "DPRMachineryUsage" (
     "id" SERIAL NOT NULL,
     "dpr_id" INTEGER NOT NULL,
-    "equipment_name" TEXT NOT NULL,
-    "working_hours" TEXT,
-    "idle_hours" TEXT,
+    "machine_code" TEXT,
+    "machine_name" TEXT NOT NULL,
+    "chainage_from" TEXT,
+    "chainage_to" TEXT,
+    "working_hours" DOUBLE PRECISION NOT NULL,
+    "fuel_type" TEXT,
+    "fuel_consumed" TEXT,
+    "fuel_amount" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "DPRMachineryUsage_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DPRFile" (
+    "id" SERIAL NOT NULL,
+    "dpr_id" INTEGER NOT NULL,
+    "file_id" INTEGER NOT NULL,
+
+    CONSTRAINT "DPRFile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -134,6 +162,15 @@ CREATE TABLE "GRNMaterialReceipt" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "GRNMaterialReceipt_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "GRNFile" (
+    "id" SERIAL NOT NULL,
+    "grn_id" INTEGER NOT NULL,
+    "file_id" INTEGER NOT NULL,
+
+    CONSTRAINT "GRNFile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -753,7 +790,16 @@ CREATE INDEX "DPR_project_id_idx" ON "DPR"("project_id");
 CREATE INDEX "DPR_date_idx" ON "DPR"("date");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "DPRLabour_dpr_labour_consumption_id_labour_id_key" ON "DPRLabour"("dpr_labour_consumption_id", "labour_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DPRFile_dpr_id_file_id_key" ON "DPRFile"("dpr_id", "file_id");
+
+-- CreateIndex
 CREATE INDEX "GRN_po_id_idx" ON "GRN"("po_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "GRNFile_grn_id_file_id_key" ON "GRNFile"("grn_id", "file_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "PO_po_code_key" ON "PO"("po_code");
@@ -867,13 +913,28 @@ ALTER TABLE "DPR" ADD CONSTRAINT "DPR_project_id_fkey" FOREIGN KEY ("project_id"
 ALTER TABLE "DPR" ADD CONSTRAINT "DPR_submitted_by_fkey" FOREIGN KEY ("submitted_by") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "DPRWorkActivity" ADD CONSTRAINT "DPRWorkActivity_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "DPRMaterialConsumption" ADD CONSTRAINT "DPRMaterialConsumption_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "DPRMaterialConsumption" ADD CONSTRAINT "DPRMaterialConsumption_stock_id_fkey" FOREIGN KEY ("stock_id") REFERENCES "Stock"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPRLabourConsumption" ADD CONSTRAINT "DPRLabourConsumption_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPRLabour" ADD CONSTRAINT "DPRLabour_dpr_labour_consumption_id_fkey" FOREIGN KEY ("dpr_labour_consumption_id") REFERENCES "DPRLabourConsumption"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPRLabour" ADD CONSTRAINT "DPRLabour_labour_id_fkey" FOREIGN KEY ("labour_id") REFERENCES "Labour"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "DPRMachineryUsage" ADD CONSTRAINT "DPRMachineryUsage_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPRFile" ADD CONSTRAINT "DPRFile_dpr_id_fkey" FOREIGN KEY ("dpr_id") REFERENCES "DPR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DPRFile" ADD CONSTRAINT "DPRFile_file_id_fkey" FOREIGN KEY ("file_id") REFERENCES "File"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "GRN" ADD CONSTRAINT "GRN_po_id_fkey" FOREIGN KEY ("po_id") REFERENCES "PO"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -883,6 +944,12 @@ ALTER TABLE "GRNMaterialReceipt" ADD CONSTRAINT "GRNMaterialReceipt_grn_id_fkey"
 
 -- AddForeignKey
 ALTER TABLE "GRNMaterialReceipt" ADD CONSTRAINT "GRNMaterialReceipt_material_id_fkey" FOREIGN KEY ("material_id") REFERENCES "materials"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GRNFile" ADD CONSTRAINT "GRNFile_grn_id_fkey" FOREIGN KEY ("grn_id") REFERENCES "GRN"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GRNFile" ADD CONSTRAINT "GRNFile_file_id_fkey" FOREIGN KEY ("file_id") REFERENCES "File"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "PO" ADD CONSTRAINT "PO_pr_id_fkey" FOREIGN KEY ("pr_id") REFERENCES "PR"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

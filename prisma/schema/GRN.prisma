@@ -28,8 +28,9 @@ model GRN {
     material_receipts GRNMaterialReceipt[]
     purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    created_at DateTime  @default(now())
+    updated_at DateTime  @updatedAt
+    grnfiles   GRNFile[]
 
     @@index([po_id])
 }
@@ -49,4 +50,16 @@ model GRNMaterialReceipt {
     material    Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
+}
+
+model GRNFile {
+    id Int @id @default(autoincrement())
+
+    grn_id  Int
+    file_id Int
+
+    grn  GRN  @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+    @@unique([grn_id, file_id])
 }

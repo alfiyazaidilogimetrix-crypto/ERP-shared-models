@@ -9,11 +9,14 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/DPR.js'
-export type * from './models/DPRWorkActivity.js'
 export type * from './models/DPRMaterialConsumption.js'
+export type * from './models/DPRLabourConsumption.js'
+export type * from './models/DPRLabour.js'
 export type * from './models/DPRMachineryUsage.js'
+export type * from './models/DPRFile.js'
 export type * from './models/GRN.js'
 export type * from './models/GRNMaterialReceipt.js'
+export type * from './models/GRNFile.js'
 export type * from './models/PO.js'
 export type * from './models/POOrderItem.js'
 export type * from './models/PR.js'

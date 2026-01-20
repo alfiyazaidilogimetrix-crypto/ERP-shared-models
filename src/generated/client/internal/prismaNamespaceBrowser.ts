@@ -52,11 +52,14 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   DPR: 'DPR',
-  DPRWorkActivity: 'DPRWorkActivity',
   DPRMaterialConsumption: 'DPRMaterialConsumption',
+  DPRLabourConsumption: 'DPRLabourConsumption',
+  DPRLabour: 'DPRLabour',
   DPRMachineryUsage: 'DPRMachineryUsage',
+  DPRFile: 'DPRFile',
   GRN: 'GRN',
   GRNMaterialReceipt: 'GRNMaterialReceipt',
+  GRNFile: 'GRNFile',
   PO: 'PO',
   POOrderItem: 'POOrderItem',
   PR: 'PR',
@@ -118,13 +121,14 @@ export const DPRScalarFieldEnum = {
   id: 'id',
   date: 'date',
   project_id: 'project_id',
-  weather_condition: 'weather_condition',
-  skilled_workers: 'skilled_workers',
-  unskilled_workers: 'unskilled_workers',
-  contractor_name: 'contractor_name',
+  weather_conditions: 'weather_conditions',
   safety_incidents: 'safety_incidents',
   remarks: 'remarks',
   submitted_by: 'submitted_by',
+  material_cost: 'material_cost',
+  labour_cost: 'labour_cost',
+  machinery_cost: 'machinery_cost',
+  total_cost: 'total_cost',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -132,42 +136,69 @@ export const DPRScalarFieldEnum = {
 export type DPRScalarFieldEnum = (typeof DPRScalarFieldEnum)[keyof typeof DPRScalarFieldEnum]
 
 
-export const DPRWorkActivityScalarFieldEnum = {
-  id: 'id',
-  dpr_id: 'dpr_id',
-  activity_description: 'activity_description',
-  chainage: 'chainage',
-  planned_qty: 'planned_qty',
-  actual_qty: 'actual_qty',
-  progress: 'progress',
-  created_at: 'created_at'
-} as const
-
-export type DPRWorkActivityScalarFieldEnum = (typeof DPRWorkActivityScalarFieldEnum)[keyof typeof DPRWorkActivityScalarFieldEnum]
-
-
 export const DPRMaterialConsumptionScalarFieldEnum = {
   id: 'id',
   dpr_id: 'dpr_id',
-  material_id: 'material_id',
+  stock_id: 'stock_id',
   quantity: 'quantity',
-  chainage: 'chainage',
+  unit: 'unit',
+  rate: 'rate',
+  amount: 'amount',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
   created_at: 'created_at'
 } as const
 
 export type DPRMaterialConsumptionScalarFieldEnum = (typeof DPRMaterialConsumptionScalarFieldEnum)[keyof typeof DPRMaterialConsumptionScalarFieldEnum]
 
 
+export const DPRLabourConsumptionScalarFieldEnum = {
+  id: 'id',
+  dpr_id: 'dpr_id',
+  skill: 'skill',
+  hours: 'hours',
+  charges: 'charges',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
+  created_at: 'created_at'
+} as const
+
+export type DPRLabourConsumptionScalarFieldEnum = (typeof DPRLabourConsumptionScalarFieldEnum)[keyof typeof DPRLabourConsumptionScalarFieldEnum]
+
+
+export const DPRLabourScalarFieldEnum = {
+  id: 'id',
+  dpr_labour_consumption_id: 'dpr_labour_consumption_id',
+  labour_id: 'labour_id'
+} as const
+
+export type DPRLabourScalarFieldEnum = (typeof DPRLabourScalarFieldEnum)[keyof typeof DPRLabourScalarFieldEnum]
+
+
 export const DPRMachineryUsageScalarFieldEnum = {
   id: 'id',
   dpr_id: 'dpr_id',
-  equipment_name: 'equipment_name',
+  machine_code: 'machine_code',
+  machine_name: 'machine_name',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
   working_hours: 'working_hours',
-  idle_hours: 'idle_hours',
+  fuel_type: 'fuel_type',
+  fuel_consumed: 'fuel_consumed',
+  fuel_amount: 'fuel_amount',
   created_at: 'created_at'
 } as const
 
 export type DPRMachineryUsageScalarFieldEnum = (typeof DPRMachineryUsageScalarFieldEnum)[keyof typeof DPRMachineryUsageScalarFieldEnum]
+
+
+export const DPRFileScalarFieldEnum = {
+  id: 'id',
+  dpr_id: 'dpr_id',
+  file_id: 'file_id'
+} as const
+
+export type DPRFileScalarFieldEnum = (typeof DPRFileScalarFieldEnum)[keyof typeof DPRFileScalarFieldEnum]
 
 
 export const GRNScalarFieldEnum = {
@@ -205,6 +236,15 @@ export const GRNMaterialReceiptScalarFieldEnum = {
 } as const
 
 export type GRNMaterialReceiptScalarFieldEnum = (typeof GRNMaterialReceiptScalarFieldEnum)[keyof typeof GRNMaterialReceiptScalarFieldEnum]
+
+
+export const GRNFileScalarFieldEnum = {
+  id: 'id',
+  grn_id: 'grn_id',
+  file_id: 'file_id'
+} as const
+
+export type GRNFileScalarFieldEnum = (typeof GRNFileScalarFieldEnum)[keyof typeof GRNFileScalarFieldEnum]
 
 
 export const POScalarFieldEnum = {

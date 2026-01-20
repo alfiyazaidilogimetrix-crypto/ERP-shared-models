@@ -1,76 +1,115 @@
 model DPR {
     id Int @id @default(autoincrement())
 
-    date       DateTime
-    project_id Int
+    date DateTime
 
-    weather_condition String?
-
-    skilled_workers   Int?
-    unskilled_workers Int?
-
-    contractor_name String?
+    project_id         Int
+    weather_conditions String
 
     safety_incidents String?
     remarks          String?
 
-    submitted_by Int
+    submitted_by   Int
+    material_cost  Float
+    labour_cost    Float
+    machinery_cost Float
+    total_cost     Float
 
-    work_activities       DPRWorkActivity[]
-    material_consumptions DPRMaterialConsumption[]
-    machinery_usages      DPRMachineryUsage[]
-
+    // Relations
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+    user    User    @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
 
-    user User @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+    materials DPRMaterialConsumption[]
+    labours   DPRLabourConsumption[]
+    machinery DPRMachineryUsage[]
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    created_at DateTime  @default(now())
+    updated_at DateTime  @updatedAt
+    dprfiles   DPRFile[]
 
     @@index([project_id])
     @@index([date])
 }
 
-model DPRWorkActivity {
+model DPRMaterialConsumption {
     id Int @id @default(autoincrement())
 
-    dpr_id               Int
-    activity_description String
-    chainage             String?
+    dpr_id   Int
+    stock_id Int
 
-    planned_qty String?
-    actual_qty  String?
-    progress    Int? // percentage (0–100)
+    quantity Float
+    unit     String
+    rate     Float
+    amount   Float
 
-    dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+    chainage_from String?
+    chainage_to   String?
+
+    dpr        DPR      @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+    stock      Stock    @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    created_at DateTime @default(now())
+}
+
+model DPRLabourConsumption {
+    id Int @id @default(autoincrement())
+
+    dpr_id Int
+
+    skill   String
+    hours   Float
+    charges Float
+
+    chainage_from String?
+    chainage_to   String?
+
+    dpr     DPR         @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+    labours DPRLabour[]
 
     created_at DateTime @default(now())
 }
 
-model DPRMaterialConsumption {
+model DPRLabour {
     id Int @id @default(autoincrement())
 
-    dpr_id      Int
-    material_id Int
+    dpr_labour_consumption_id Int
+    labour_id                 Int
 
-    quantity String
-    chainage String?
+    labourConsumption DPRLabourConsumption @relation(fields: [dpr_labour_consumption_id], references: [id], onDelete: Cascade)
 
-    dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+    labour Labour @relation(fields: [labour_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime @default(now())
+    @@unique([dpr_labour_consumption_id, labour_id])
 }
 
 model DPRMachineryUsage {
     id Int @id @default(autoincrement())
 
-    dpr_id         Int
-    equipment_name String
+    dpr_id Int
 
-    working_hours String?
-    idle_hours    String?
+    machine_code String?
+    machine_name String
+
+    chainage_from String?
+    chainage_to   String?
+
+    working_hours Float
+
+    fuel_type     String?
+    fuel_consumed String?
+    fuel_amount   String?
 
     dpr DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
     created_at DateTime @default(now())
+}
+
+model DPRFile {
+    id      Int @id @default(autoincrement())
+    dpr_id  Int
+    file_id Int
+
+    dpr  DPR  @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+    file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+    @@unique([dpr_id, file_id])
 }

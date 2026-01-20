@@ -9,5 +9,8 @@ model File {
     createdAt    DateTime @default(now())
     updatedAt    DateTime @updatedAt
 
-    users User[]
+    users    User[]
+    dprfiles DPRFile[]
+
+    grnfiles GRNFile[]
 }

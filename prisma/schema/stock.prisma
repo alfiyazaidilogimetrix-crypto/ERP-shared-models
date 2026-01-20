@@ -16,4 +16,6 @@ model Stock {
     unit                       Unit?     @relation(fields: [unitId], references: [id])
 
     vendorSupplyManagements VendorSupplyManagement[]
+
+    dprmaterialConsumptions DPRMaterialConsumption[]
 }
