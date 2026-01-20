@@ -93,7 +93,7 @@ export const dprSchema = z.object({
 
 export type DPR = z.infer<typeof dprSchema>;
 
-// // Create DPR Schema (for creating new DPR with file_ids and labour_ids)
+// // Create DPR Schema (for creating new DPR with optional file_ids and labour_ids)
 // export const createDprSchema = z.object({
 //   date: z.date().or(z.string().pipe(z.coerce.date())),
 //   project_id: z.number().int().positive(),
@@ -105,17 +105,38 @@ export type DPR = z.infer<typeof dprSchema>;
 //   labour_cost: z.number().nonnegative(),
 //   machinery_cost: z.number().nonnegative(),
 //   total_cost: z.number().nonnegative(),
-//   materials: z.array(dprMaterialConsumptionSchema.omit({ dpr_id: true })),
+//   materials: z.array(dprMaterialConsumptionSchema.omit({ dpr_id: true })).optional().default([]),
 //   labour_consumptions: z.array(
 //     dprLabourConsumptionSchema.omit({ dpr_id: true }).extend({
 //       labour_ids: z.array(z.number().int().positive()).optional().default([]),
-//     }),
-//   ),
-//   machinery: z.array(dprMachineryUsageSchema.omit({ dpr_id: true })),
+//     })
+//   ).optional().default([]),
+//   machinery: z.array(dprMachineryUsageSchema.omit({ dpr_id: true })).optional().default([]),
 //   file_ids: z.array(z.number().int().positive()).optional().default([]),
 // });
 
 // export type CreateDPRInput = z.infer<typeof createDprSchema>;
+
+// // Alternative Create DPR Schema with flat labour_ids (if you want labour_ids at root level)
+// export const createDprSchemaWithFlatLabourIds = z.object({
+//   date: z.date().or(z.string().pipe(z.coerce.date())),
+//   project_id: z.number().int().positive(),
+//   weather_conditions: z.string(),
+//   safety_incidents: z.string().nullable().optional(),
+//   remarks: z.string().nullable().optional(),
+//   submitted_by: z.number().int().positive(),
+//   material_cost: z.number().nonnegative(),
+//   labour_cost: z.number().nonnegative(),
+//   machinery_cost: z.number().nonnegative(),
+//   total_cost: z.number().nonnegative(),
+//   materials: z.array(dprMaterialConsumptionSchema.omit({ dpr_id: true })).optional().default([]),
+//   labour_consumptions: z.array(dprLabourConsumptionSchema.omit({ dpr_id: true })).optional().default([]),
+//   machinery: z.array(dprMachineryUsageSchema.omit({ dpr_id: true })).optional().default([]),
+//   file_ids: z.array(z.number().int().positive()).optional().default([]),
+//   labour_ids: z.array(z.number().int().positive()).optional().default([]),
+// });
+
+// export type CreateDPRInputWithFlatLabourIds = z.infer<typeof createDprSchemaWithFlatLabourIds>;
 
 // // Update DPR Schema
 // export const updateDprSchema = z.object({
@@ -130,81 +151,80 @@ export type DPR = z.infer<typeof dprSchema>;
 //   machinery_cost: z.number().nonnegative().optional(),
 //   total_cost: z.number().nonnegative().optional(),
 //   materials: z.array(dprMaterialConsumptionSchema).optional(),
-//   labour_consumptions: z
-//     .array(
-//       dprLabourConsumptionSchema.extend({
-//         labour_ids: z.array(z.number().int().positive()).optional(),
-//       }),
-//     )
-//     .optional(),
+//   labour_consumptions: z.array(
+//     dprLabourConsumptionSchema.extend({
+//       labour_ids: z.array(z.number().int().positive()).optional(),
+//     })
+//   ).optional(),
 //   machinery: z.array(dprMachineryUsageSchema).optional(),
 //   file_ids: z.array(z.number().int().positive()).optional(),
 // });
 
 // export type UpdateDPRInput = z.infer<typeof updateDprSchema>;
 
+// // Alternative Update DPR Schema with flat labour_ids
+// export const updateDprSchemaWithFlatLabourIds = z.object({
+//   date: z.date().or(z.string().pipe(z.coerce.date())).optional(),
+//   project_id: z.number().int().positive().optional(),
+//   weather_conditions: z.string().optional(),
+//   safety_incidents: z.string().nullable().optional(),
+//   remarks: z.string().nullable().optional(),
+//   submitted_by: z.number().int().positive().optional(),
+//   material_cost: z.number().nonnegative().optional(),
+//   labour_cost: z.number().nonnegative().optional(),
+//   machinery_cost: z.number().nonnegative().optional(),
+//   total_cost: z.number().nonnegative().optional(),
+//   materials: z.array(dprMaterialConsumptionSchema).optional(),
+//   labour_consumptions: z.array(dprLabourConsumptionSchema).optional(),
+//   machinery: z.array(dprMachineryUsageSchema).optional(),
+//   file_ids: z.array(z.number().int().positive()).optional(),
+//   labour_ids: z.array(z.number().int().positive()).optional(),
+// });
+
+// export type UpdateDPRInputWithFlatLabourIds = z.infer<typeof updateDprSchemaWithFlatLabourIds>;
+
 // // DPR with relations Schema (for responses)
 // export const dprWithRelationsSchema = dprSchema.extend({
-//   materials: z.array(
-//     dprMaterialConsumptionSchema.extend({
-//       stock: z
-//         .object({
-//           id: z.number().int().positive(),
-//           material_name: z.string(),
-//           // Add other stock fields as needed
-//         })
-//         .optional(),
-//     }),
-//   ),
-//   labours: z.array(
-//     dprLabourConsumptionSchema.extend({
-//       labours: z
-//         .array(
-//           dprLabourSchema.extend({
-//             labour: z
-//               .object({
-//                 id: z.number().int().positive(),
-//                 name: z.string(),
-//                 skill: z.string(),
-//                 contact: z.string().nullable(),
-//                 // Add other labour fields as needed
-//               })
-//               .optional(),
-//           }),
-//         )
-//         .optional(),
-//     }),
-//   ),
-//   machinery: z.array(dprMachineryUsageSchema),
-//   dprfiles: z.array(
-//     dprFileSchema.extend({
-//       file: z
-//         .object({
-//           id: z.number().int().positive(),
-//           filename: z.string(),
-//           url: z.string(),
-//           mimetype: z.string(),
-//           size: z.number().int(),
-//           created_at: z.date(),
-//         })
-//         .optional(),
-//     }),
-//   ),
-//   project: z
-//     .object({
+//   materials: z.array(dprMaterialConsumptionSchema.extend({
+//     stock: z.object({
 //       id: z.number().int().positive(),
-//       project_name: z.string(),
-//       // Add other project fields as needed
-//     })
-//     .optional(),
-//   user: z
-//     .object({
+//       material_name: z.string(),
+//       // Add other stock fields as needed
+//     }).optional(),
+//   })).optional(),
+//   labours: z.array(dprLabourConsumptionSchema.extend({
+//     labours: z.array(dprLabourSchema.extend({
+//       labour: z.object({
+//         id: z.number().int().positive(),
+//         name: z.string(),
+//         skill: z.string(),
+//         contact: z.string().nullable(),
+//         // Add other labour fields as needed
+//       }).optional(),
+//     })).optional(),
+//   })).optional(),
+//   machinery: z.array(dprMachineryUsageSchema).optional(),
+//   dprfiles: z.array(dprFileSchema.extend({
+//     file: z.object({
 //       id: z.number().int().positive(),
-//       name: z.string(),
-//       email: z.string(),
-//       // Add other user fields as needed
-//     })
-//     .optional(),
+//       filename: z.string(),
+//       url: z.string(),
+//       mimetype: z.string(),
+//       size: z.number().int(),
+//       created_at: z.date(),
+//     }).optional(),
+//   })).optional(),
+//   project: z.object({
+//     id: z.number().int().positive(),
+//     project_name: z.string(),
+//     // Add other project fields as needed
+//   }).optional(),
+//   user: z.object({
+//     id: z.number().int().positive(),
+//     name: z.string(),
+//     email: z.string(),
+//     // Add other user fields as needed
+//   }).optional(),
 // });
 
 // export type DPRWithRelations = z.infer<typeof dprWithRelationsSchema>;
@@ -216,16 +236,12 @@ export type DPR = z.infer<typeof dprSchema>;
 //   project_id: z.number().int().positive(),
 //   weather_conditions: z.string(),
 //   total_cost: z.number().nonnegative(),
-//   project: z
-//     .object({
-//       project_name: z.string(),
-//     })
-//     .optional(),
-//   user: z
-//     .object({
-//       name: z.string(),
-//     })
-//     .optional(),
+//   project: z.object({
+//     project_name: z.string(),
+//   }).optional(),
+//   user: z.object({
+//     name: z.string(),
+//   }).optional(),
 //   created_at: z.date(),
 // });
 
