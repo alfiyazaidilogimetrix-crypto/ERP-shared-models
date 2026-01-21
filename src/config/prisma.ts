@@ -17,7 +17,7 @@ const adapter = new PrismaPg({
   ssl: sslCertPath
     ? {
         ca: fs.readFileSync(sslCertPath, 'utf-8'),
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
       }
     : undefined,
 });
