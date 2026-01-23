@@ -32,7 +32,7 @@ model Vendor {
     bankDetails      VendorBankDetails?
     financialDetails VendorFinancialDetails?
     otherDetails     VendorOtherDetails?
-    documents        VendorDocuments?
+    documents        VendorDocuments[]
 
     supplies           VendorSupplyManagement[]
     pos                PO[]
@@ -109,7 +109,7 @@ model VendorOtherDetails {
 
 model VendorDocuments {
     id            Int     @id @default(autoincrement())
-    vendorId      Int     @unique
+    vendorId      Int
     file_id       Int?
     document_type String?
 
