@@ -680,7 +680,6 @@ export const ProjectScalarFieldEnum = {
   project_type: 'project_type',
   project_name: 'project_name',
   project_code: 'project_code',
-  location: 'location',
   start_date: 'start_date',
   end_date: 'end_date',
   budget: 'budget',
