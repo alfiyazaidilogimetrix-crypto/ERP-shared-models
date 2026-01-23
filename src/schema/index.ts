@@ -1,5 +1,4 @@
 import * as user from './user';
-import * as admin from './admin';
 import * as mail from './mail';
 import * as otp from './otp';
 import * as file from './file';
@@ -25,7 +24,6 @@ import * as location from './location';
 import * as inventory_manager from './inventory_manager';
 
 export * from './user';
-export * from './admin';
 export * from './mail';
 export * from './otp';
 export * from './file';
@@ -52,7 +50,6 @@ export * from './inventory_manager';
 
 export const allModels = {
   ...user,
-  ...admin,
   ...mail,
   ...otp,
   ...file,
