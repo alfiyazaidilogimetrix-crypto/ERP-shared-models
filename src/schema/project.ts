@@ -6,7 +6,6 @@ export const projectSchema = z.object({
   project_type: projectTypeSchema,
   project_name: z.string().min(1),
   project_code: z.string().min(1),
-  location: z.string(),
   start_date: z.date().nullable().optional(),
   end_date: z.date().nullable().optional(),
   budget: z.string().nullable().optional(),

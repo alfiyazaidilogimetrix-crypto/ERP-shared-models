@@ -1,7 +1,9 @@
 model InventoryManager {
-    id     Int  @id @default(autoincrement())
-    userId Int  @unique
-    user   User @relation(fields: [userId], references: [id])
+    id          Int      @id @default(autoincrement())
+    userId      Int      @unique
+    user        User     @relation(fields: [userId], references: [id])
+    location_id Int
+    location    Location @relation(fields: [location_id], references: [id])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

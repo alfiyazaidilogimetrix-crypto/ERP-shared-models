@@ -384,6 +384,7 @@ export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof File
 export const InventoryManagerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  location_id: 'location_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

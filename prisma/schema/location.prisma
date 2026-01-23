@@ -14,5 +14,6 @@ model Location {
 
     stocks Stock[]
 
-    projects Project[]
+    projects          Project[]
+    inventoryManagers InventoryManager[]
 }
