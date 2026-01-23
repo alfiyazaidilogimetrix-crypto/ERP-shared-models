@@ -5,37 +5,116 @@ enum VendorStatus {
 }
 
 enum VendorType {
-    DIRECT
-    INVENTORY
-}
-
-enum SupplyStatus {
-    PENDING
-    APPROVED
-    IN_TRANSIT
-    DELIVERED
-    REJECTED
+    WORK_VENDOR
+    MATERIAL_SUPPLIER
 }
 
 model Vendor {
-    id             Int          @id @default(autoincrement())
-    vendor_name    String
-    category_id    Int
-    contact_number String?
-    email_address  String?
-    address        String?
-    gst_number     String?
-    pan_number     String?
-    status         VendorStatus @default(ACTIVE)
+    id Int @id @default(autoincrement())
 
-    supplies VendorSupplyManagement[]
+    // Vendor Details
+    vendor_name        String
+    proprietor_name    String?
+    contact_person     String?
+    contact_number     String
+    email_address      String?
+    address            String
+    registered_address String?
 
+    vendor_type VendorType?
+    status      VendorStatus @default(ACTIVE)
+
+    category_id Int
+
+    // Relations
     category Category @relation(fields: [category_id], references: [id])
+
+    bankDetails      VendorBankDetails?
+    financialDetails VendorFinancialDetails?
+    otherDetails     VendorOtherDetails?
+    documents        VendorDocuments?
+
+    supplies           VendorSupplyManagement[]
+    pos                PO[]
+    dieselTransactions DieselTransaction[]
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+}
 
-    contractorVendors  ContractorVendor[]
-    pos                PO[]
-    dieselTransactions DieselTransaction[]
+model VendorBankDetails {
+    id       Int @id @default(autoincrement())
+    vendorId Int @unique
+
+    bank_name           String
+    branch_name         String?
+    bank_address        String?
+    bank_contact_number String?
+
+    account_number String
+    micr_code      String?
+    rtgs_code      String?
+    neft_code      String
+
+    vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VendorFinancialDetails {
+    id       Int @id @default(autoincrement())
+    vendorId Int @unique
+
+    registration_number String?
+    pan_number          String
+    esi_number          String?
+    pf_number           String?
+    gst_number          String?
+    gst_state           String?
+
+    annual_turnover       String?
+    audited_balance_years String?
+    yearly_work_capacity  String?
+
+    vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VendorOtherDetails {
+    id       Int @id @default(autoincrement())
+    vendorId Int @unique
+
+    organization_type   String?
+    total_team_size     String?
+    plant_and_machinery String?
+    organization_chart  String?
+
+    interested_other_work String?
+    association_status    String?
+    geographical_presence String?
+    major_clients         String?
+
+    sop_qap_signoff     String?
+    sop_quality_manual  String?
+    relative_experience String?
+
+    vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VendorDocuments {
+    id            Int     @id @default(autoincrement())
+    vendorId      Int     @unique
+    file_id       Int?
+    document_type String?
+
+    vendor    Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+    file      File?    @relation(fields: [file_id], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

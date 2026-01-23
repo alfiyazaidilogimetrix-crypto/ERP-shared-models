@@ -10,23 +10,23 @@ model Sub_Contractor {
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 
-  vendors  ContractorVendor[] // relation
+  // vendors  ContractorVendor[] // relation
   projects ContractorProject[] // relation
 
   @@map("sub_contractors")
 }
 
-model ContractorVendor {
-  id           Int @id @default(autoincrement())
-  contractorId Int
-  vendorId     Int
+// model ContractorVendor {
+//   id           Int @id @default(autoincrement())
+//   contractorId Int
+//   vendorId     Int
 
-  contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
-  vendor     Vendor         @relation(fields: [vendorId], references: [id])
+//   contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
+//   vendor     Vendor         @relation(fields: [vendorId], references: [id])
 
-  @@unique([contractorId, vendorId]) // prevent duplicates
-  @@map("contractor_vendors")
-}
+//   @@unique([contractorId, vendorId]) // prevent duplicates
+//   @@map("contractor_vendors")
+// }
 
 model ContractorProject {
   id           Int @id @default(autoincrement())

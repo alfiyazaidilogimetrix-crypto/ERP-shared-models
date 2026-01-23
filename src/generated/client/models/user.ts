@@ -285,6 +285,9 @@ export type UserWhereInput = {
   dprs?: Prisma.DPRListRelationFilter
   prs_created_by?: Prisma.PRListRelationFilter
   prs_approved_by?: Prisma.PRListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
+  inventoryManagers?: Prisma.InventoryManagerListRelationFilter
+  prs?: Prisma.PRListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -305,6 +308,9 @@ export type UserOrderByWithRelationInput = {
   dprs?: Prisma.DPROrderByRelationAggregateInput
   prs_created_by?: Prisma.PROrderByRelationAggregateInput
   prs_approved_by?: Prisma.PROrderByRelationAggregateInput
+  projects?: Prisma.ProjectOrderByRelationAggregateInput
+  inventoryManagers?: Prisma.InventoryManagerOrderByRelationAggregateInput
+  prs?: Prisma.PROrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -328,6 +334,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   dprs?: Prisma.DPRListRelationFilter
   prs_created_by?: Prisma.PRListRelationFilter
   prs_approved_by?: Prisma.PRListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
+  inventoryManagers?: Prisma.InventoryManagerListRelationFilter
+  prs?: Prisma.PRListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -383,6 +392,9 @@ export type UserCreateInput = {
   dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -401,6 +413,9 @@ export type UserUncheckedCreateInput = {
   dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUpdateInput = {
@@ -418,6 +433,9 @@ export type UserUpdateInput = {
   dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -436,6 +454,9 @@ export type UserUncheckedUpdateInput = {
   dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -577,6 +598,12 @@ export type UserCreateNestedOneWithoutPrs_created_byInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutPrsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrsInput, Prisma.UserUncheckedCreateWithoutPrsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserCreateNestedOneWithoutPrs_approved_byInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPrs_approved_byInput, Prisma.UserUncheckedCreateWithoutPrs_approved_byInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrs_approved_byInput
@@ -591,6 +618,16 @@ export type UserUpdateOneWithoutPrs_created_byNestedInput = {
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrs_created_byInput, Prisma.UserUpdateWithoutPrs_created_byInput>, Prisma.UserUncheckedUpdateWithoutPrs_created_byInput>
+}
+
+export type UserUpdateOneWithoutPrsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrsInput, Prisma.UserUncheckedCreateWithoutPrsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrsInput
+  upsert?: Prisma.UserUpsertWithoutPrsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrsInput, Prisma.UserUpdateWithoutPrsInput>, Prisma.UserUncheckedUpdateWithoutPrsInput>
 }
 
 export type UserUpdateOneWithoutPrs_approved_byNestedInput = {
@@ -643,6 +680,36 @@ export type UserUncheckedUpdateManyWithoutProfileImageNestedInput = {
   update?: Prisma.UserUpdateWithWhereUniqueWithoutProfileImageInput | Prisma.UserUpdateWithWhereUniqueWithoutProfileImageInput[]
   updateMany?: Prisma.UserUpdateManyWithWhereWithoutProfileImageInput | Prisma.UserUpdateManyWithWhereWithoutProfileImageInput[]
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedOneWithoutInventoryManagersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInventoryManagersInput, Prisma.UserUncheckedCreateWithoutInventoryManagersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInventoryManagersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInventoryManagersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInventoryManagersInput, Prisma.UserUncheckedCreateWithoutInventoryManagersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInventoryManagersInput
+  upsert?: Prisma.UserUpsertWithoutInventoryManagersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInventoryManagersInput, Prisma.UserUpdateWithoutInventoryManagersInput>, Prisma.UserUncheckedUpdateWithoutInventoryManagersInput>
+}
+
+export type UserCreateNestedOneWithoutProjectsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectsInput
+  upsert?: Prisma.UserUpsertWithoutProjectsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectsInput, Prisma.UserUpdateWithoutProjectsInput>, Prisma.UserUncheckedUpdateWithoutProjectsInput>
 }
 
 export type UserCreateNestedManyWithoutRoleInput = {
@@ -705,6 +772,9 @@ export type UserCreateWithoutDprsInput = {
   role?: Prisma.RoleCreateNestedOneWithoutUsersInput
   prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateWithoutDprsInput = {
@@ -722,6 +792,9 @@ export type UserUncheckedCreateWithoutDprsInput = {
   provider?: $Enums.Provider
   prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserCreateOrConnectWithoutDprsInput = {
@@ -754,6 +827,9 @@ export type UserUpdateWithoutDprsInput = {
   role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
   prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDprsInput = {
@@ -771,6 +847,9 @@ export type UserUncheckedUpdateWithoutDprsInput = {
   provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserCreateWithoutPrs_created_byInput = {
@@ -787,6 +866,9 @@ export type UserCreateWithoutPrs_created_byInput = {
   role?: Prisma.RoleCreateNestedOneWithoutUsersInput
   dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateWithoutPrs_created_byInput = {
@@ -804,11 +886,58 @@ export type UserUncheckedCreateWithoutPrs_created_byInput = {
   provider?: $Enums.Provider
   dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserCreateOrConnectWithoutPrs_created_byInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutPrs_created_byInput, Prisma.UserUncheckedCreateWithoutPrs_created_byInput>
+}
+
+export type UserCreateWithoutPrsInput = {
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  original_password?: string | null
+  mobileNumber?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  profileImage?: Prisma.FileCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPrsInput = {
+  id?: number
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  fileId?: number | null
+  original_password?: string | null
+  mobileNumber?: string | null
+  roleId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPrsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrsInput, Prisma.UserUncheckedCreateWithoutPrsInput>
 }
 
 export type UserCreateWithoutPrs_approved_byInput = {
@@ -825,6 +954,9 @@ export type UserCreateWithoutPrs_approved_byInput = {
   role?: Prisma.RoleCreateNestedOneWithoutUsersInput
   dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateWithoutPrs_approved_byInput = {
@@ -842,6 +974,9 @@ export type UserUncheckedCreateWithoutPrs_approved_byInput = {
   provider?: $Enums.Provider
   dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserCreateOrConnectWithoutPrs_approved_byInput = {
@@ -874,6 +1009,9 @@ export type UserUpdateWithoutPrs_created_byInput = {
   role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
   dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPrs_created_byInput = {
@@ -891,6 +1029,59 @@ export type UserUncheckedUpdateWithoutPrs_created_byInput = {
   provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
+}
+
+export type UserUpsertWithoutPrsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPrsInput, Prisma.UserUncheckedUpdateWithoutPrsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrsInput, Prisma.UserUncheckedCreateWithoutPrsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPrsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPrsInput, Prisma.UserUncheckedUpdateWithoutPrsInput>
+}
+
+export type UserUpdateWithoutPrsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  profileImage?: Prisma.FileUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPrsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fileId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutPrs_approved_byInput = {
@@ -918,6 +1109,9 @@ export type UserUpdateWithoutPrs_approved_byInput = {
   role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
   dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPrs_approved_byInput = {
@@ -935,6 +1129,9 @@ export type UserUncheckedUpdateWithoutPrs_approved_byInput = {
   provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
   dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserCreateWithoutProfileImageInput = {
@@ -951,6 +1148,9 @@ export type UserCreateWithoutProfileImageInput = {
   dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateWithoutProfileImageInput = {
@@ -968,6 +1168,9 @@ export type UserUncheckedCreateWithoutProfileImageInput = {
   dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserCreateOrConnectWithoutProfileImageInput = {
@@ -1014,6 +1217,194 @@ export type UserScalarWhereInput = {
   provider?: Prisma.EnumProviderFilter<"User"> | $Enums.Provider
 }
 
+export type UserCreateWithoutInventoryManagersInput = {
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  original_password?: string | null
+  mobileNumber?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  profileImage?: Prisma.FileCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
+}
+
+export type UserUncheckedCreateWithoutInventoryManagersInput = {
+  id?: number
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  fileId?: number | null
+  original_password?: string | null
+  mobileNumber?: string | null
+  roleId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
+}
+
+export type UserCreateOrConnectWithoutInventoryManagersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInventoryManagersInput, Prisma.UserUncheckedCreateWithoutInventoryManagersInput>
+}
+
+export type UserUpsertWithoutInventoryManagersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInventoryManagersInput, Prisma.UserUncheckedUpdateWithoutInventoryManagersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInventoryManagersInput, Prisma.UserUncheckedCreateWithoutInventoryManagersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInventoryManagersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInventoryManagersInput, Prisma.UserUncheckedUpdateWithoutInventoryManagersInput>
+}
+
+export type UserUpdateWithoutInventoryManagersInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  profileImage?: Prisma.FileUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInventoryManagersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fileId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
+}
+
+export type UserCreateWithoutProjectsInput = {
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  original_password?: string | null
+  mobileNumber?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  profileImage?: Prisma.FileCreateNestedOneWithoutUsersInput
+  role?: Prisma.RoleCreateNestedOneWithoutUsersInput
+  dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
+}
+
+export type UserUncheckedCreateWithoutProjectsInput = {
+  id?: number
+  name: string
+  email: string
+  emailVerified?: boolean
+  password: string
+  fileId?: number | null
+  original_password?: string | null
+  mobileNumber?: string | null
+  roleId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: $Enums.Provider
+  dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
+  prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
+  prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
+}
+
+export type UserCreateOrConnectWithoutProjectsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+}
+
+export type UserUpsertWithoutProjectsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProjectsInput, Prisma.UserUncheckedUpdateWithoutProjectsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProjectsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProjectsInput, Prisma.UserUncheckedUpdateWithoutProjectsInput>
+}
+
+export type UserUpdateWithoutProjectsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  profileImage?: Prisma.FileUpdateOneWithoutUsersNestedInput
+  role?: Prisma.RoleUpdateOneWithoutUsersNestedInput
+  dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fileId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  original_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.EnumProviderFieldUpdateOperationsInput | $Enums.Provider
+  dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
+  prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
+  prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
+}
+
 export type UserCreateWithoutRoleInput = {
   name: string
   email: string
@@ -1028,6 +1419,9 @@ export type UserCreateWithoutRoleInput = {
   dprs?: Prisma.DPRCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserUncheckedCreateWithoutRoleInput = {
@@ -1045,6 +1439,9 @@ export type UserUncheckedCreateWithoutRoleInput = {
   dprs?: Prisma.DPRUncheckedCreateNestedManyWithoutUserInput
   prs_created_by?: Prisma.PRUncheckedCreateNestedManyWithoutUserInput
   prs_approved_by?: Prisma.PRUncheckedCreateNestedManyWithoutApprovedUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProject_managerInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedCreateNestedManyWithoutUserInput
+  prs?: Prisma.PRUncheckedCreateNestedManyWithoutApproval_userInput
 }
 
 export type UserCreateOrConnectWithoutRoleInput = {
@@ -1101,6 +1498,9 @@ export type UserUpdateWithoutProfileImageInput = {
   dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileImageInput = {
@@ -1118,6 +1518,9 @@ export type UserUncheckedUpdateWithoutProfileImageInput = {
   dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutProfileImageInput = {
@@ -1162,6 +1565,9 @@ export type UserUpdateWithoutRoleInput = {
   dprs?: Prisma.DPRUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleInput = {
@@ -1179,6 +1585,9 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   dprs?: Prisma.DPRUncheckedUpdateManyWithoutUserNestedInput
   prs_created_by?: Prisma.PRUncheckedUpdateManyWithoutUserNestedInput
   prs_approved_by?: Prisma.PRUncheckedUpdateManyWithoutApprovedUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutProject_managerNestedInput
+  inventoryManagers?: Prisma.InventoryManagerUncheckedUpdateManyWithoutUserNestedInput
+  prs?: Prisma.PRUncheckedUpdateManyWithoutApproval_userNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -1204,12 +1613,18 @@ export type UserCountOutputType = {
   dprs: number
   prs_created_by: number
   prs_approved_by: number
+  projects: number
+  inventoryManagers: number
+  prs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dprs?: boolean | UserCountOutputTypeCountDprsArgs
   prs_created_by?: boolean | UserCountOutputTypeCountPrs_created_byArgs
   prs_approved_by?: boolean | UserCountOutputTypeCountPrs_approved_byArgs
+  projects?: boolean | UserCountOutputTypeCountProjectsArgs
+  inventoryManagers?: boolean | UserCountOutputTypeCountInventoryManagersArgs
+  prs?: boolean | UserCountOutputTypeCountPrsArgs
 }
 
 /**
@@ -1243,6 +1658,27 @@ export type UserCountOutputTypeCountPrs_approved_byArgs<ExtArgs extends runtime.
   where?: Prisma.PRWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInventoryManagersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InventoryManagerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPrsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PRWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1262,6 +1698,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   dprs?: boolean | Prisma.User$dprsArgs<ExtArgs>
   prs_created_by?: boolean | Prisma.User$prs_created_byArgs<ExtArgs>
   prs_approved_by?: boolean | Prisma.User$prs_approved_byArgs<ExtArgs>
+  projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
+  inventoryManagers?: boolean | Prisma.User$inventoryManagersArgs<ExtArgs>
+  prs?: boolean | Prisma.User$prsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1321,6 +1760,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   dprs?: boolean | Prisma.User$dprsArgs<ExtArgs>
   prs_created_by?: boolean | Prisma.User$prs_created_byArgs<ExtArgs>
   prs_approved_by?: boolean | Prisma.User$prs_approved_byArgs<ExtArgs>
+  projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
+  inventoryManagers?: boolean | Prisma.User$inventoryManagersArgs<ExtArgs>
+  prs?: boolean | Prisma.User$prsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1340,6 +1782,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     dprs: Prisma.$DPRPayload<ExtArgs>[]
     prs_created_by: Prisma.$PRPayload<ExtArgs>[]
     prs_approved_by: Prisma.$PRPayload<ExtArgs>[]
+    projects: Prisma.$ProjectPayload<ExtArgs>[]
+    inventoryManagers: Prisma.$InventoryManagerPayload<ExtArgs>[]
+    prs: Prisma.$PRPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1753,6 +2198,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   dprs<T extends Prisma.User$dprsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$dprsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DPRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prs_created_by<T extends Prisma.User$prs_created_byArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prs_created_byArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prs_approved_by<T extends Prisma.User$prs_approved_byArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prs_approved_byArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inventoryManagers<T extends Prisma.User$inventoryManagersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$inventoryManagersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryManagerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  prs<T extends Prisma.User$prsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2279,6 +2727,78 @@ export type User$prs_created_byArgs<ExtArgs extends runtime.Types.Extensions.Int
  * User.prs_approved_by
  */
 export type User$prs_approved_byArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PR
+   */
+  select?: Prisma.PRSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PR
+   */
+  omit?: Prisma.PROmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PRInclude<ExtArgs> | null
+  where?: Prisma.PRWhereInput
+  orderBy?: Prisma.PROrderByWithRelationInput | Prisma.PROrderByWithRelationInput[]
+  cursor?: Prisma.PRWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PRScalarFieldEnum | Prisma.PRScalarFieldEnum[]
+}
+
+/**
+ * User.projects
+ */
+export type User$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
+  orderBy?: Prisma.ProjectOrderByWithRelationInput | Prisma.ProjectOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[]
+}
+
+/**
+ * User.inventoryManagers
+ */
+export type User$inventoryManagersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InventoryManager
+   */
+  select?: Prisma.InventoryManagerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InventoryManager
+   */
+  omit?: Prisma.InventoryManagerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InventoryManagerInclude<ExtArgs> | null
+  where?: Prisma.InventoryManagerWhereInput
+  orderBy?: Prisma.InventoryManagerOrderByWithRelationInput | Prisma.InventoryManagerOrderByWithRelationInput[]
+  cursor?: Prisma.InventoryManagerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InventoryManagerScalarFieldEnum | Prisma.InventoryManagerScalarFieldEnum[]
+}
+
+/**
+ * User.prs
+ */
+export type User$prsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PR
    */

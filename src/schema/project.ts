@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { projectTypeSchema, projectStatusSchema } from "./enums";
+import { z } from 'zod';
+import { projectTypeSchema, projectStatusSchema } from './enums';
 
 export const projectSchema = z.object({
   id: z.number().int().positive().optional(),
@@ -10,10 +10,11 @@ export const projectSchema = z.object({
   start_date: z.date().nullable().optional(),
   end_date: z.date().nullable().optional(),
   budget: z.string().nullable().optional(),
-  status: projectStatusSchema.default("PLANNED"),
+  status: projectStatusSchema.default('PLANNED'),
   client: z.string().nullable().optional(),
-  project_manager: z.string().nullable().optional(),
   description: z.string().nullable().optional(),
+  manager_id: z.number().int().positive().nullable().optional(),
+  location_id: z.number().int().positive().nullable().optional(),
   progress: z.number().int().min(0).max(100).nullable().optional(),
   other_details: z.any().nullable().optional(),
   created_at: z.date().optional(),

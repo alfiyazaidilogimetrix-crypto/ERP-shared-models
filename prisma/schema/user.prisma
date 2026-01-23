@@ -17,4 +17,10 @@ model User {
     prs_created_by    PR[]     @relation("CreatedBy")
 
     prs_approved_by PR[] @relation("ApprovedBy")
+
+    projects Project[]
+
+    inventoryManagers InventoryManager[]
+
+    prs PR[] @relation("approvalUser")
 }

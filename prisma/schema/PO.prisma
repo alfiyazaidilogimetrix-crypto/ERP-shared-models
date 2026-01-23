@@ -40,13 +40,14 @@ model PO {
 
     remarks String?
 
-    order_items POOrderItem[]
-    pr          PR            @relation(fields: [pr_id], references: [id])
-    project     Project       @relation(fields: [project_id], references: [id])
-    vendor      Vendor        @relation(fields: [vendor_id], references: [id])
-    created_at  DateTime      @default(now())
-    updated_at  DateTime      @updatedAt
-    grns        GRN[]
+    order_items             POOrderItem[]
+    pr                      PR                       @relation(fields: [pr_id], references: [id])
+    project                 Project                  @relation(fields: [project_id], references: [id])
+    vendor                  Vendor                   @relation(fields: [vendor_id], references: [id])
+    created_at              DateTime                 @default(now())
+    updated_at              DateTime                 @updatedAt
+    grns                    GRN[]
+    vendorSupplyManagements VendorSupplyManagement[]
 
     @@index([pr_id])
     @@index([project_id])

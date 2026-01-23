@@ -1,9 +1,12 @@
 enum PRStatus {
-    DRAFT
-    SUBMITTED
-    APPROVED
+    DRAFT // PR created but not submitted
+    SUBMITTED // PR submitted by requester
+    INVENTORY_CHECK // Inventory manager checking availability
+    PARTIAL_AVAILABLE // Some items available, some not
+    PROCUREMENT_REQUIRED // At least one item not available → procurement needed
+    APPROVED // Approved for issue / purchase
     REJECTED
-    CLOSED
+    CLOSED // Fully issued (after stock / purchase)
 }
 
 enum UrgencyLevel {
@@ -13,27 +16,34 @@ enum UrgencyLevel {
     CRITICAL
 }
 
-model PR {
-    id         Int    @id @default(autoincrement())
-    project_id Int
-    pr_code    String @unique
+enum PRType {
+    INVENTORY // Material issued directly from stock
+    PROCUREMENT // Material not available → purchase required
+    NONE // Default value
+}
 
+model PR {
+    id            Int          @id @default(autoincrement())
+    project_id    Int
+    pr_code       String       @unique
+    pr_type       PRType       @default(NONE)
     urgency_level UrgencyLevel
     status        PRStatus     @default(DRAFT)
 
     remarks String?
 
-    user_id     Int? // Created by
-    approved_by Int? // Approver (User ID)
-
-    user User? @relation("CreatedBy", fields: [user_id], references: [id])
+    user_id       Int? // Created by
+    approved_by   Int? // Approver (User ID)
+    send_to       Int?
+    user          User? @relation("CreatedBy", fields: [user_id], references: [id])
+    approval_user User? @relation("approvalUser", fields: [send_to], references: [id])
+    approvedUser  User? @relation("ApprovedBy", fields: [approved_by], references: [id])
 
     material_items PRMaterialItem[]
     project        Project          @relation(fields: [project_id], references: [id])
     created_at     DateTime         @default(now())
     updated_at     DateTime         @updatedAt
     pos            PO[]
-    approvedUser   User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
 
     @@index([project_id])
     @@index([user_id])
@@ -43,9 +53,12 @@ model PRMaterialItem {
     id    Int @id @default(autoincrement())
     pr_id Int
 
-    material_id   Int
-    quantity      String
-    required_date DateTime
+    material_id      Int
+    quantity         String
+    required_date    DateTime
+    is_approved      Boolean  @default(false)
+    approved_qty     String?
+    approval_remarks String?
 
     pr       PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
     material Material @relation(fields: [material_id], references: [id])

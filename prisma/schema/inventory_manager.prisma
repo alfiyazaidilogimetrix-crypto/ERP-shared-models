@@ -1,0 +1,21 @@
+model InventoryManager {
+    id     Int  @id @default(autoincrement())
+    userId Int  @unique
+    user   User @relation(fields: [userId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    stock_material InventoryStockEntry[]
+}
+
+model InventoryStockEntry {
+    id          Int @id @default(autoincrement())
+    inventoryId Int
+    stockId     Int
+
+    inventory InventoryManager @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+    stock     Stock            @relation(fields: [stockId], references: [id], onDelete: Cascade)
+
+    @@unique([inventoryId, stockId])
+}

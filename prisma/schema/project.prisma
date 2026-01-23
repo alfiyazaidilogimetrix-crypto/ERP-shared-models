@@ -25,10 +25,13 @@ model Project {
     budget String?
     status ProjectStatus @default(PLANNED)
 
-    client          String?
-    project_manager String?
-    description     String?
-    progress        Int? // 0–100 %
+    client           String?
+    description      String?
+    progress         Int? // 0–100 %
+    manager_id       Int?
+    project_manager  User?     @relation(fields: [manager_id], references: [id])
+    location_id      Int?
+    project_location Location? @relation(fields: [location_id], references: [id])
 
     /**
      * Relations based on project_type

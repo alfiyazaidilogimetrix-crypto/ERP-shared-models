@@ -13,4 +13,6 @@ model File {
     dprfiles DPRFile[]
 
     grnfiles GRNFile[]
+
+    vendorDocuments VendorDocuments[]
 }

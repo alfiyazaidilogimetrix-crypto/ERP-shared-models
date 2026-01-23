@@ -103,6 +103,16 @@ export type DieselTransaction = Prisma.DieselTransactionModel
  */
 export type File = Prisma.FileModel
 /**
+ * Model InventoryManager
+ * 
+ */
+export type InventoryManager = Prisma.InventoryManagerModel
+/**
+ * Model InventoryStockEntry
+ * 
+ */
+export type InventoryStockEntry = Prisma.InventoryStockEntryModel
+/**
  * Model Invoice
  * 
  */
@@ -168,6 +178,11 @@ export type Labour = Prisma.LabourModel
  */
 export type LabourAttendance = Prisma.LabourAttendanceModel
 /**
+ * Model Location
+ * 
+ */
+export type Location = Prisma.LocationModel
+/**
  * Model Material
  * 
  */
@@ -218,11 +233,6 @@ export type Stock = Prisma.StockModel
  */
 export type Sub_Contractor = Prisma.Sub_ContractorModel
 /**
- * Model ContractorVendor
- * 
- */
-export type ContractorVendor = Prisma.ContractorVendorModel
-/**
  * Model ContractorProject
  * 
  */
@@ -242,6 +252,26 @@ export type User = Prisma.UserModel
  * 
  */
 export type Vendor = Prisma.VendorModel
+/**
+ * Model VendorBankDetails
+ * 
+ */
+export type VendorBankDetails = Prisma.VendorBankDetailsModel
+/**
+ * Model VendorFinancialDetails
+ * 
+ */
+export type VendorFinancialDetails = Prisma.VendorFinancialDetailsModel
+/**
+ * Model VendorOtherDetails
+ * 
+ */
+export type VendorOtherDetails = Prisma.VendorOtherDetailsModel
+/**
+ * Model VendorDocuments
+ * 
+ */
+export type VendorDocuments = Prisma.VendorDocumentsModel
 /**
  * Model VendorSupplyManagement
  * 

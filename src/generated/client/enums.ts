@@ -46,6 +46,9 @@ export type TransportMode = (typeof TransportMode)[keyof typeof TransportMode]
 export const PRStatus = {
   DRAFT: 'DRAFT',
   SUBMITTED: 'SUBMITTED',
+  INVENTORY_CHECK: 'INVENTORY_CHECK',
+  PARTIAL_AVAILABLE: 'PARTIAL_AVAILABLE',
+  PROCUREMENT_REQUIRED: 'PROCUREMENT_REQUIRED',
   APPROVED: 'APPROVED',
   REJECTED: 'REJECTED',
   CLOSED: 'CLOSED'
@@ -62,6 +65,15 @@ export const UrgencyLevel = {
 } as const
 
 export type UrgencyLevel = (typeof UrgencyLevel)[keyof typeof UrgencyLevel]
+
+
+export const PRType = {
+  INVENTORY: 'INVENTORY',
+  PROCUREMENT: 'PROCUREMENT',
+  NONE: 'NONE'
+} as const
+
+export type PRType = (typeof PRType)[keyof typeof PRType]
 
 
 export const DieselTransactionType = {
@@ -129,6 +141,18 @@ export const Provider = {
 export type Provider = (typeof Provider)[keyof typeof Provider]
 
 
+export const StockStatus = {
+  IN_STOCK: 'IN_STOCK',
+  LOW_STOCK: 'LOW_STOCK',
+  OUT_OF_STOCK: 'OUT_OF_STOCK',
+  RESERVED: 'RESERVED',
+  DAMAGED: 'DAMAGED',
+  DISPOSED: 'DISPOSED'
+} as const
+
+export type StockStatus = (typeof StockStatus)[keyof typeof StockStatus]
+
+
 export const VendorStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
@@ -139,8 +163,8 @@ export type VendorStatus = (typeof VendorStatus)[keyof typeof VendorStatus]
 
 
 export const VendorType = {
-  DIRECT: 'DIRECT',
-  INVENTORY: 'INVENTORY'
+  WORK_VENDOR: 'WORK_VENDOR',
+  MATERIAL_SUPPLIER: 'MATERIAL_SUPPLIER'
 } as const
 
 export type VendorType = (typeof VendorType)[keyof typeof VendorType]
@@ -150,8 +174,17 @@ export const SupplyStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
   IN_TRANSIT: 'IN_TRANSIT',
-  DELIVERED: 'DELIVERED',
+  PARTIALLY_RECEIVED: 'PARTIALLY_RECEIVED',
+  RECEIVED: 'RECEIVED',
   REJECTED: 'REJECTED'
 } as const
 
 export type SupplyStatus = (typeof SupplyStatus)[keyof typeof SupplyStatus]
+
+
+export const SupplyType = {
+  TO_INVENTORY: 'TO_INVENTORY',
+  DIRECT_TO_SITE: 'DIRECT_TO_SITE'
+} as const
+
+export type SupplyType = (typeof SupplyType)[keyof typeof SupplyType]

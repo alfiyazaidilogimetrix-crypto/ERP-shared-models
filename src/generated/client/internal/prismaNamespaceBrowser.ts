@@ -68,6 +68,8 @@ export const ModelName = {
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
   File: 'File',
+  InventoryManager: 'InventoryManager',
+  InventoryStockEntry: 'InventoryStockEntry',
   Invoice: 'Invoice',
   Seller: 'Seller',
   Buyer: 'Buyer',
@@ -81,6 +83,7 @@ export const ModelName = {
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
+  Location: 'Location',
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
@@ -91,11 +94,14 @@ export const ModelName = {
   Role: 'Role',
   Stock: 'Stock',
   Sub_Contractor: 'Sub_Contractor',
-  ContractorVendor: 'ContractorVendor',
   ContractorProject: 'ContractorProject',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',
+  VendorBankDetails: 'VendorBankDetails',
+  VendorFinancialDetails: 'VendorFinancialDetails',
+  VendorOtherDetails: 'VendorOtherDetails',
+  VendorDocuments: 'VendorDocuments',
   VendorSupplyManagement: 'VendorSupplyManagement',
   DirectSupplyConfiguration: 'DirectSupplyConfiguration',
   InventorySupplyConfiguration: 'InventorySupplyConfiguration'
@@ -287,11 +293,13 @@ export const PRScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
   pr_code: 'pr_code',
+  pr_type: 'pr_type',
   urgency_level: 'urgency_level',
   status: 'status',
   remarks: 'remarks',
   user_id: 'user_id',
   approved_by: 'approved_by',
+  send_to: 'send_to',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -305,6 +313,9 @@ export const PRMaterialItemScalarFieldEnum = {
   material_id: 'material_id',
   quantity: 'quantity',
   required_date: 'required_date',
+  is_approved: 'is_approved',
+  approved_qty: 'approved_qty',
+  approval_remarks: 'approval_remarks',
   created_at: 'created_at'
 } as const
 
@@ -368,6 +379,25 @@ export const FileScalarFieldEnum = {
 } as const
 
 export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
+
+
+export const InventoryManagerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryManagerScalarFieldEnum = (typeof InventoryManagerScalarFieldEnum)[keyof typeof InventoryManagerScalarFieldEnum]
+
+
+export const InventoryStockEntryScalarFieldEnum = {
+  id: 'id',
+  inventoryId: 'inventoryId',
+  stockId: 'stockId'
+} as const
+
+export type InventoryStockEntryScalarFieldEnum = (typeof InventoryStockEntryScalarFieldEnum)[keyof typeof InventoryStockEntryScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -591,6 +621,22 @@ export const LabourAttendanceScalarFieldEnum = {
 export type LabourAttendanceScalarFieldEnum = (typeof LabourAttendanceScalarFieldEnum)[keyof typeof LabourAttendanceScalarFieldEnum]
 
 
+export const LocationScalarFieldEnum = {
+  id: 'id',
+  country: 'country',
+  state: 'state',
+  district: 'district',
+  tehsil: 'tehsil',
+  village: 'village',
+  address: 'address',
+  pincode: 'pincode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
+
+
 export const MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -640,9 +686,10 @@ export const ProjectScalarFieldEnum = {
   budget: 'budget',
   status: 'status',
   client: 'client',
-  project_manager: 'project_manager',
   description: 'description',
   progress: 'progress',
+  manager_id: 'manager_id',
+  location_id: 'location_id',
   other_details: 'other_details',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -706,6 +753,7 @@ export const StockScalarFieldEnum = {
   material_code: 'material_code',
   categoryId: 'categoryId',
   unitId: 'unitId',
+  locationId: 'locationId',
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   unit_of_measure: 'unit_of_measure',
@@ -733,15 +781,6 @@ export const Sub_ContractorScalarFieldEnum = {
 } as const
 
 export type Sub_ContractorScalarFieldEnum = (typeof Sub_ContractorScalarFieldEnum)[keyof typeof Sub_ContractorScalarFieldEnum]
-
-
-export const ContractorVendorScalarFieldEnum = {
-  id: 'id',
-  contractorId: 'contractorId',
-  vendorId: 'vendorId'
-} as const
-
-export type ContractorVendorScalarFieldEnum = (typeof ContractorVendorScalarFieldEnum)[keyof typeof ContractorVendorScalarFieldEnum]
 
 
 export const ContractorProjectScalarFieldEnum = {
@@ -785,13 +824,15 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const VendorScalarFieldEnum = {
   id: 'id',
   vendor_name: 'vendor_name',
-  category_id: 'category_id',
+  proprietor_name: 'proprietor_name',
+  contact_person: 'contact_person',
   contact_number: 'contact_number',
   email_address: 'email_address',
   address: 'address',
-  gst_number: 'gst_number',
-  pan_number: 'pan_number',
+  registered_address: 'registered_address',
+  vendor_type: 'vendor_type',
   status: 'status',
+  category_id: 'category_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -799,19 +840,86 @@ export const VendorScalarFieldEnum = {
 export type VendorScalarFieldEnum = (typeof VendorScalarFieldEnum)[keyof typeof VendorScalarFieldEnum]
 
 
+export const VendorBankDetailsScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  bank_name: 'bank_name',
+  branch_name: 'branch_name',
+  bank_address: 'bank_address',
+  bank_contact_number: 'bank_contact_number',
+  account_number: 'account_number',
+  micr_code: 'micr_code',
+  rtgs_code: 'rtgs_code',
+  neft_code: 'neft_code',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorBankDetailsScalarFieldEnum = (typeof VendorBankDetailsScalarFieldEnum)[keyof typeof VendorBankDetailsScalarFieldEnum]
+
+
+export const VendorFinancialDetailsScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  registration_number: 'registration_number',
+  pan_number: 'pan_number',
+  esi_number: 'esi_number',
+  pf_number: 'pf_number',
+  gst_number: 'gst_number',
+  gst_state: 'gst_state',
+  annual_turnover: 'annual_turnover',
+  audited_balance_years: 'audited_balance_years',
+  yearly_work_capacity: 'yearly_work_capacity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorFinancialDetailsScalarFieldEnum = (typeof VendorFinancialDetailsScalarFieldEnum)[keyof typeof VendorFinancialDetailsScalarFieldEnum]
+
+
+export const VendorOtherDetailsScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  organization_type: 'organization_type',
+  total_team_size: 'total_team_size',
+  plant_and_machinery: 'plant_and_machinery',
+  organization_chart: 'organization_chart',
+  interested_other_work: 'interested_other_work',
+  association_status: 'association_status',
+  geographical_presence: 'geographical_presence',
+  major_clients: 'major_clients',
+  sop_qap_signoff: 'sop_qap_signoff',
+  sop_quality_manual: 'sop_quality_manual',
+  relative_experience: 'relative_experience',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorOtherDetailsScalarFieldEnum = (typeof VendorOtherDetailsScalarFieldEnum)[keyof typeof VendorOtherDetailsScalarFieldEnum]
+
+
+export const VendorDocumentsScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  file_id: 'file_id',
+  document_type: 'document_type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorDocumentsScalarFieldEnum = (typeof VendorDocumentsScalarFieldEnum)[keyof typeof VendorDocumentsScalarFieldEnum]
+
+
 export const VendorSupplyManagementScalarFieldEnum = {
   id: 'id',
-  vendor_type: 'vendor_type',
   vendor_id: 'vendor_id',
-  stock_id: 'stock_id',
-  quantity: 'quantity',
-  unit: 'unit',
+  supply_type: 'supply_type',
+  po_id: 'po_id',
   amount: 'amount',
   payment_terms: 'payment_terms',
   status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at',
-  materialId: 'materialId'
+  updated_at: 'updated_at'
 } as const
 
 export type VendorSupplyManagementScalarFieldEnum = (typeof VendorSupplyManagementScalarFieldEnum)[keyof typeof VendorSupplyManagementScalarFieldEnum]

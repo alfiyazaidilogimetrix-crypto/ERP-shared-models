@@ -1,0 +1,18 @@
+model Location {
+    id Int @id @default(autoincrement())
+
+    country  String
+    state    String
+    district String
+    tehsil   String?
+    village  String?
+    address  String // exact address (street, landmark, etc)
+    pincode  String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    stocks Stock[]
+
+    projects Project[]
+}

@@ -1,24 +1,33 @@
+enum SupplyStatus {
+    PENDING // PO created, supply not started
+    APPROVED // Approved for dispatch
+    IN_TRANSIT // Vendor dispatched material
+    PARTIALLY_RECEIVED
+    RECEIVED // Fully received
+    REJECTED
+}
+
+enum SupplyType {
+    TO_INVENTORY
+    DIRECT_TO_SITE
+}
+
 model VendorSupplyManagement {
     id Int @id @default(autoincrement())
 
-    vendor_type VendorType
-
     vendor_id               Int
-    stock_id                Int?
-    quantity                String
-    unit                    String
+    supply_type             SupplyType
+    po_id                   Int?
     amount                  String
     payment_terms           String?
     status                  SupplyStatus                  @default(PENDING)
     direct_supply_config    DirectSupplyConfiguration?
     inventory_supply_config InventorySupplyConfiguration?
     vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-    stock_material          Stock?                        @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    po                      PO?                           @relation(fields: [po_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime  @default(now())
-    updated_at DateTime  @updatedAt
-    material   Material? @relation(fields: [materialId], references: [id])
-    materialId Int?
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 }
 
 model DirectSupplyConfiguration {

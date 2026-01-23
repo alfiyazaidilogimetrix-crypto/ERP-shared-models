@@ -8,10 +8,13 @@ CREATE TYPE "POStatus" AS ENUM ('DRAFT', 'ISSUED', 'PARTIALLY_DELIVERED', 'DELIV
 CREATE TYPE "TransportMode" AS ENUM ('ROAD', 'RAIL', 'SEA', 'AIR', 'SELF_PICKUP');
 
 -- CreateEnum
-CREATE TYPE "PRStatus" AS ENUM ('DRAFT', 'SUBMITTED', 'APPROVED', 'REJECTED', 'CLOSED');
+CREATE TYPE "PRStatus" AS ENUM ('DRAFT', 'SUBMITTED', 'INVENTORY_CHECK', 'PARTIAL_AVAILABLE', 'PROCUREMENT_REQUIRED', 'APPROVED', 'REJECTED', 'CLOSED');
 
 -- CreateEnum
 CREATE TYPE "UrgencyLevel" AS ENUM ('LOW', 'MEDIUM', 'HIGH', 'CRITICAL');
+
+-- CreateEnum
+CREATE TYPE "PRType" AS ENUM ('INVENTORY', 'PROCUREMENT', 'NONE');
 
 -- CreateEnum
 CREATE TYPE "DieselTransactionType" AS ENUM ('DIESEL_RECEIPT', 'DIESEL_ISSUE');
@@ -35,13 +38,19 @@ CREATE TYPE "ProjectStatus" AS ENUM ('PLANNED', 'IN_PROGRESS', 'ON_HOLD', 'COMPL
 CREATE TYPE "Provider" AS ENUM ('credentials', 'google');
 
 -- CreateEnum
+CREATE TYPE "StockStatus" AS ENUM ('IN_STOCK', 'LOW_STOCK', 'OUT_OF_STOCK', 'RESERVED', 'DAMAGED', 'DISPOSED');
+
+-- CreateEnum
 CREATE TYPE "VendorStatus" AS ENUM ('ACTIVE', 'INACTIVE', 'SUSPENDED');
 
 -- CreateEnum
-CREATE TYPE "VendorType" AS ENUM ('DIRECT', 'INVENTORY');
+CREATE TYPE "VendorType" AS ENUM ('WORK_VENDOR', 'MATERIAL_SUPPLIER');
 
 -- CreateEnum
-CREATE TYPE "SupplyStatus" AS ENUM ('PENDING', 'APPROVED', 'IN_TRANSIT', 'DELIVERED', 'REJECTED');
+CREATE TYPE "SupplyStatus" AS ENUM ('PENDING', 'APPROVED', 'IN_TRANSIT', 'PARTIALLY_RECEIVED', 'RECEIVED', 'REJECTED');
+
+-- CreateEnum
+CREATE TYPE "SupplyType" AS ENUM ('TO_INVENTORY', 'DIRECT_TO_SITE');
 
 -- CreateTable
 CREATE TABLE "DPR" (
@@ -214,11 +223,13 @@ CREATE TABLE "PR" (
     "id" SERIAL NOT NULL,
     "project_id" INTEGER NOT NULL,
     "pr_code" TEXT NOT NULL,
+    "pr_type" "PRType" NOT NULL DEFAULT 'NONE',
     "urgency_level" "UrgencyLevel" NOT NULL,
     "status" "PRStatus" NOT NULL DEFAULT 'DRAFT',
     "remarks" TEXT,
     "user_id" INTEGER,
     "approved_by" INTEGER,
+    "send_to" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -232,6 +243,9 @@ CREATE TABLE "PRMaterialItem" (
     "material_id" INTEGER NOT NULL,
     "quantity" TEXT NOT NULL,
     "required_date" TIMESTAMP(3) NOT NULL,
+    "is_approved" BOOLEAN NOT NULL DEFAULT false,
+    "approved_qty" TEXT,
+    "approval_remarks" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "PRMaterialItem_pkey" PRIMARY KEY ("id")
@@ -294,6 +308,25 @@ CREATE TABLE "File" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "File_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "InventoryManager" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "InventoryManager_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "InventoryStockEntry" (
+    "id" SERIAL NOT NULL,
+    "inventoryId" INTEGER NOT NULL,
+    "stockId" INTEGER NOT NULL,
+
+    CONSTRAINT "InventoryStockEntry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -518,6 +551,22 @@ CREATE TABLE "LabourAttendance" (
 );
 
 -- CreateTable
+CREATE TABLE "Location" (
+    "id" SERIAL NOT NULL,
+    "country" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "district" TEXT NOT NULL,
+    "tehsil" TEXT,
+    "village" TEXT,
+    "address" TEXT NOT NULL,
+    "pincode" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Location_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "materials" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -567,9 +616,10 @@ CREATE TABLE "Project" (
     "budget" TEXT,
     "status" "ProjectStatus" NOT NULL DEFAULT 'PLANNED',
     "client" TEXT,
-    "project_manager" TEXT,
     "description" TEXT,
     "progress" INTEGER,
+    "manager_id" INTEGER,
+    "location_id" INTEGER,
     "other_details" JSONB,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -633,7 +683,8 @@ CREATE TABLE "Stock" (
     "material_code" TEXT,
     "categoryId" INTEGER,
     "unitId" INTEGER,
-    "status" TEXT NOT NULL DEFAULT 'in_stock',
+    "locationId" INTEGER,
+    "status" "StockStatus" NOT NULL DEFAULT 'IN_STOCK',
     "minimum_threshold_quantity" INTEGER,
     "unit_of_measure" TEXT,
     "current_stock" INTEGER,
@@ -659,15 +710,6 @@ CREATE TABLE "sub_contractors" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "sub_contractors_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "contractor_vendors" (
-    "id" SERIAL NOT NULL,
-    "contractorId" INTEGER NOT NULL,
-    "vendorId" INTEGER NOT NULL,
-
-    CONSTRAINT "contractor_vendors_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -712,13 +754,15 @@ CREATE TABLE "User" (
 CREATE TABLE "Vendor" (
     "id" SERIAL NOT NULL,
     "vendor_name" TEXT NOT NULL,
-    "category_id" INTEGER NOT NULL,
-    "contact_number" TEXT,
+    "proprietor_name" TEXT,
+    "contact_person" TEXT,
+    "contact_number" TEXT NOT NULL,
     "email_address" TEXT,
-    "address" TEXT,
-    "gst_number" TEXT,
-    "pan_number" TEXT,
+    "address" TEXT NOT NULL,
+    "registered_address" TEXT,
+    "vendor_type" "VendorType",
     "status" "VendorStatus" NOT NULL DEFAULT 'ACTIVE',
+    "category_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -726,19 +770,86 @@ CREATE TABLE "Vendor" (
 );
 
 -- CreateTable
+CREATE TABLE "VendorBankDetails" (
+    "id" SERIAL NOT NULL,
+    "vendorId" INTEGER NOT NULL,
+    "bank_name" TEXT NOT NULL,
+    "branch_name" TEXT,
+    "bank_address" TEXT,
+    "bank_contact_number" TEXT,
+    "account_number" TEXT NOT NULL,
+    "micr_code" TEXT,
+    "rtgs_code" TEXT,
+    "neft_code" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "VendorBankDetails_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "VendorFinancialDetails" (
+    "id" SERIAL NOT NULL,
+    "vendorId" INTEGER NOT NULL,
+    "registration_number" TEXT,
+    "pan_number" TEXT NOT NULL,
+    "esi_number" TEXT,
+    "pf_number" TEXT,
+    "gst_number" TEXT,
+    "gst_state" TEXT,
+    "annual_turnover" TEXT,
+    "audited_balance_years" TEXT,
+    "yearly_work_capacity" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "VendorFinancialDetails_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "VendorOtherDetails" (
+    "id" SERIAL NOT NULL,
+    "vendorId" INTEGER NOT NULL,
+    "organization_type" TEXT,
+    "total_team_size" TEXT,
+    "plant_and_machinery" TEXT,
+    "organization_chart" TEXT,
+    "interested_other_work" TEXT,
+    "association_status" TEXT,
+    "geographical_presence" TEXT,
+    "major_clients" TEXT,
+    "sop_qap_signoff" TEXT,
+    "sop_quality_manual" TEXT,
+    "relative_experience" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "VendorOtherDetails_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "VendorDocuments" (
+    "id" SERIAL NOT NULL,
+    "vendorId" INTEGER NOT NULL,
+    "file_id" INTEGER,
+    "document_type" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "VendorDocuments_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VendorSupplyManagement" (
     "id" SERIAL NOT NULL,
-    "vendor_type" "VendorType" NOT NULL,
     "vendor_id" INTEGER NOT NULL,
-    "stock_id" INTEGER,
-    "quantity" TEXT NOT NULL,
-    "unit" TEXT NOT NULL,
+    "supply_type" "SupplyType" NOT NULL,
+    "po_id" INTEGER,
     "amount" TEXT NOT NULL,
     "payment_terms" TEXT,
     "status" "SupplyStatus" NOT NULL DEFAULT 'PENDING',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
-    "materialId" INTEGER,
 
     CONSTRAINT "VendorSupplyManagement_pkey" PRIMARY KEY ("id")
 );
@@ -829,6 +940,12 @@ CREATE INDEX "DieselTransaction_project_id_idx" ON "DieselTransaction"("project_
 CREATE INDEX "DieselTransaction_transaction_type_idx" ON "DieselTransaction"("transaction_type");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "InventoryManager_userId_key" ON "InventoryManager"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "InventoryStockEntry_inventoryId_stockId_key" ON "InventoryStockEntry"("inventoryId", "stockId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Invoice_orderReferenceId_key" ON "Invoice"("orderReferenceId");
 
 -- CreateIndex
@@ -886,13 +1003,22 @@ CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
 CREATE UNIQUE INDEX "Stock_material_code_key" ON "Stock"("material_code");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "contractor_vendors_contractorId_vendorId_key" ON "contractor_vendors"("contractorId", "vendorId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "contractor_projects_contractorId_projectId_key" ON "contractor_projects"("contractorId", "projectId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VendorBankDetails_vendorId_key" ON "VendorBankDetails"("vendorId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VendorFinancialDetails_vendorId_key" ON "VendorFinancialDetails"("vendorId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VendorOtherDetails_vendorId_key" ON "VendorOtherDetails"("vendorId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VendorDocuments_vendorId_key" ON "VendorDocuments"("vendorId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "DirectSupplyConfiguration_supply_id_key" ON "DirectSupplyConfiguration"("supply_id");
@@ -970,10 +1096,13 @@ ALTER TABLE "POOrderItem" ADD CONSTRAINT "POOrderItem_material_id_fkey" FOREIGN 
 ALTER TABLE "PR" ADD CONSTRAINT "PR_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PR" ADD CONSTRAINT "PR_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PR" ADD CONSTRAINT "PR_send_to_fkey" FOREIGN KEY ("send_to") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "PR" ADD CONSTRAINT "PR_approved_by_fkey" FOREIGN KEY ("approved_by") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PR" ADD CONSTRAINT "PR_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "PRMaterialItem" ADD CONSTRAINT "PRMaterialItem_pr_id_fkey" FOREIGN KEY ("pr_id") REFERENCES "PR"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -989,6 +1118,15 @@ ALTER TABLE "DieselTransaction" ADD CONSTRAINT "DieselTransaction_vendor_id_fkey
 
 -- AddForeignKey
 ALTER TABLE "DieselTransaction" ADD CONSTRAINT "DieselTransaction_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "InventoryManager" ADD CONSTRAINT "InventoryManager_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "InventoryStockEntry" ADD CONSTRAINT "InventoryStockEntry_inventoryId_fkey" FOREIGN KEY ("inventoryId") REFERENCES "InventoryManager"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "InventoryStockEntry" ADD CONSTRAINT "InventoryStockEntry_stockId_fkey" FOREIGN KEY ("stockId") REFERENCES "Stock"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_sellerId_fkey" FOREIGN KEY ("sellerId") REFERENCES "Seller"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1033,6 +1171,12 @@ ALTER TABLE "materials" ADD CONSTRAINT "materials_categoryId_fkey" FOREIGN KEY (
 ALTER TABLE "materials" ADD CONSTRAINT "materials_unitId_fkey" FOREIGN KEY ("unitId") REFERENCES "units"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Project" ADD CONSTRAINT "Project_manager_id_fkey" FOREIGN KEY ("manager_id") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Project" ADD CONSTRAINT "Project_location_id_fkey" FOREIGN KEY ("location_id") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "HAMSpecificDetails" ADD CONSTRAINT "HAMSpecificDetails_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -1048,10 +1192,7 @@ ALTER TABLE "Stock" ADD CONSTRAINT "Stock_categoryId_fkey" FOREIGN KEY ("categor
 ALTER TABLE "Stock" ADD CONSTRAINT "Stock_unitId_fkey" FOREIGN KEY ("unitId") REFERENCES "units"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "contractor_vendors" ADD CONSTRAINT "contractor_vendors_contractorId_fkey" FOREIGN KEY ("contractorId") REFERENCES "sub_contractors"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "contractor_vendors" ADD CONSTRAINT "contractor_vendors_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Stock" ADD CONSTRAINT "Stock_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "contractor_projects" ADD CONSTRAINT "contractor_projects_contractorId_fkey" FOREIGN KEY ("contractorId") REFERENCES "sub_contractors"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1069,13 +1210,25 @@ ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFE
 ALTER TABLE "Vendor" ADD CONSTRAINT "Vendor_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "VendorBankDetails" ADD CONSTRAINT "VendorBankDetails_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VendorFinancialDetails" ADD CONSTRAINT "VendorFinancialDetails_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VendorOtherDetails" ADD CONSTRAINT "VendorOtherDetails_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VendorDocuments" ADD CONSTRAINT "VendorDocuments_vendorId_fkey" FOREIGN KEY ("vendorId") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VendorDocuments" ADD CONSTRAINT "VendorDocuments_file_id_fkey" FOREIGN KEY ("file_id") REFERENCES "File"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_vendor_id_fkey" FOREIGN KEY ("vendor_id") REFERENCES "Vendor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_stock_id_fkey" FOREIGN KEY ("stock_id") REFERENCES "Stock"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "materials"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "VendorSupplyManagement" ADD CONSTRAINT "VendorSupplyManagement_po_id_fkey" FOREIGN KEY ("po_id") REFERENCES "PO"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DirectSupplyConfiguration" ADD CONSTRAINT "DirectSupplyConfiguration_supply_id_fkey" FOREIGN KEY ("supply_id") REFERENCES "VendorSupplyManagement"("id") ON DELETE CASCADE ON UPDATE CASCADE;

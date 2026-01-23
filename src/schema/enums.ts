@@ -21,14 +21,6 @@ export const transportModeSchema = z.enum([
   'SELF_PICKUP',
 ]);
 
-export const prStatusSchema = z.enum([
-  'DRAFT',
-  'SUBMITTED',
-  'APPROVED',
-  'REJECTED',
-  'CLOSED',
-]);
-
 export const urgencyLevelSchema = z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']);
 
 export const projectTypeSchema = z.enum(['HAM', 'EPC', 'BOT', 'OTHER']);
@@ -55,17 +47,6 @@ export const labourStatusSchema = z.enum([
 
 export const labourTypeSchema = z.enum(['DIRECT', 'CONTRACT']);
 
-export const vendorStatusSchema = z.enum(['ACTIVE', 'INACTIVE', 'SUSPENDED']);
-
-export const vendorTypeSchema = z.enum(['DIRECT', 'INVENTORY']);
-
-export const supplyStatusSchema = z.enum([
-  'PENDING',
-  'APPROVED',
-  'IN_TRANSIT',
-  'DELIVERED',
-  'REJECTED',
-]);
 // In enums.ts
 export const attendanceStatusSchema = z.enum([
   'PRESENT',
@@ -73,4 +54,44 @@ export const attendanceStatusSchema = z.enum([
   'HALF_DAY',
   'ON_LEAVE',
 ]);
+export const prStatusSchema = z.enum([
+  'DRAFT',
+  'SUBMITTED',
+  'INVENTORY_CHECK',
+  'PARTIAL_AVAILABLE',
+  'PROCUREMENT_REQUIRED',
+  'APPROVED',
+  'REJECTED',
+  'CLOSED',
+]);
+
+export const prTypeSchema = z.enum(['INVENTORY', 'PROCUREMENT', 'NONE']);
+
+export const stockStatusSchema = z.enum([
+  'in_stock',
+  'low_stock',
+  'out_of_stock',
+  'reserved',
+  'damaged',
+  'disposed',
+]);
+
+// Enum schemas
+export const vendorStatusSchema = z.enum(['ACTIVE', 'INACTIVE', 'SUSPENDED']);
+export const vendorTypeSchema = z.enum(['WORK_VENDOR', 'MATERIAL_SUPPLIER']);
+
+// Enum schemas
+export const supplyStatusSchema = z.enum([
+  'PENDING', // PO created, supply not started
+  'APPROVED', // Approved for dispatch
+  'IN_TRANSIT', // Vendor dispatched material
+  'PARTIALLY_RECEIVED',
+  'RECEIVED', // Fully received
+  'REJECTED',
+]);
+
+export const supplyTypeSchema = z.enum(['TO_INVENTORY', 'DIRECT_TO_SITE']);
+export type PRStatus = z.infer<typeof prStatusSchema>;
+export type UrgencyLevel = z.infer<typeof urgencyLevelSchema>;
+export type PRType = z.infer<typeof prTypeSchema>;
 export type AttendanceStatus = z.infer<typeof attendanceStatusSchema>;
