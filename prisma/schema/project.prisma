@@ -48,7 +48,7 @@ model Project {
     updated_at DateTime @updatedAt
 
     directSupplyConfigurations DirectSupplyConfiguration[]
-    contractorProjects         ContractorProject[]
+    sub_contractors            ContractorProject[]
     chainageConsumptionLedgers Chainage_consumption_ledger[]
     prs                        PR[]
     pos                        PO[]
