@@ -93,8 +93,8 @@ export const ModelName = {
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
   Stock: 'Stock',
-  Sub_Contractor: 'Sub_Contractor',
   ContractorProject: 'ContractorProject',
+  ContractorFiles: 'ContractorFiles',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',
@@ -767,29 +767,28 @@ export const StockScalarFieldEnum = {
 export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
 
 
-export const Sub_ContractorScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  scope_of_work: 'scope_of_work',
-  contract_value: 'contract_value',
-  chainage_start_km: 'chainage_start_km',
-  chainage_end_km: 'chainage_end_km',
-  contract_start_date: 'contract_start_date',
-  contract_end_date: 'contract_end_date',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type Sub_ContractorScalarFieldEnum = (typeof Sub_ContractorScalarFieldEnum)[keyof typeof Sub_ContractorScalarFieldEnum]
-
-
 export const ContractorProjectScalarFieldEnum = {
   id: 'id',
   contractorId: 'contractorId',
-  projectId: 'projectId'
+  projectId: 'projectId',
+  partnership_percentage: 'partnership_percentage',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  overall_budget: 'overall_budget'
 } as const
 
 export type ContractorProjectScalarFieldEnum = (typeof ContractorProjectScalarFieldEnum)[keyof typeof ContractorProjectScalarFieldEnum]
+
+
+export const ContractorFilesScalarFieldEnum = {
+  id: 'id',
+  contactProjectId: 'contactProjectId',
+  file_id: 'file_id',
+  report_type: 'report_type',
+  description: 'description'
+} as const
+
+export type ContractorFilesScalarFieldEnum = (typeof ContractorFilesScalarFieldEnum)[keyof typeof ContractorFilesScalarFieldEnum]
 
 
 export const UnitScalarFieldEnum = {

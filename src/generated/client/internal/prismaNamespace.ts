@@ -426,8 +426,8 @@ export const ModelName = {
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
   Stock: 'Stock',
-  Sub_Contractor: 'Sub_Contractor',
   ContractorProject: 'ContractorProject',
+  ContractorFiles: 'ContractorFiles',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',
@@ -453,7 +453,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "sub_Contractor" | "contractorProject" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3565,80 +3565,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Sub_Contractor: {
-      payload: Prisma.$Sub_ContractorPayload<ExtArgs>
-      fields: Prisma.Sub_ContractorFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.Sub_ContractorFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.Sub_ContractorFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        findFirst: {
-          args: Prisma.Sub_ContractorFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.Sub_ContractorFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        findMany: {
-          args: Prisma.Sub_ContractorFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>[]
-        }
-        create: {
-          args: Prisma.Sub_ContractorCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        createMany: {
-          args: Prisma.Sub_ContractorCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.Sub_ContractorCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>[]
-        }
-        delete: {
-          args: Prisma.Sub_ContractorDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        update: {
-          args: Prisma.Sub_ContractorUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        deleteMany: {
-          args: Prisma.Sub_ContractorDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.Sub_ContractorUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.Sub_ContractorUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>[]
-        }
-        upsert: {
-          args: Prisma.Sub_ContractorUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$Sub_ContractorPayload>
-        }
-        aggregate: {
-          args: Prisma.Sub_ContractorAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSub_Contractor>
-        }
-        groupBy: {
-          args: Prisma.Sub_ContractorGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Sub_ContractorGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.Sub_ContractorCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Sub_ContractorCountAggregateOutputType> | number
-        }
-      }
-    }
     ContractorProject: {
       payload: Prisma.$ContractorProjectPayload<ExtArgs>
       fields: Prisma.ContractorProjectFieldRefs
@@ -3710,6 +3636,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ContractorProjectCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ContractorProjectCountAggregateOutputType> | number
+        }
+      }
+    }
+    ContractorFiles: {
+      payload: Prisma.$ContractorFilesPayload<ExtArgs>
+      fields: Prisma.ContractorFilesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContractorFilesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContractorFilesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        findFirst: {
+          args: Prisma.ContractorFilesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContractorFilesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        findMany: {
+          args: Prisma.ContractorFilesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>[]
+        }
+        create: {
+          args: Prisma.ContractorFilesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        createMany: {
+          args: Prisma.ContractorFilesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContractorFilesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>[]
+        }
+        delete: {
+          args: Prisma.ContractorFilesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        update: {
+          args: Prisma.ContractorFilesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContractorFilesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContractorFilesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContractorFilesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContractorFilesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContractorFilesPayload>
+        }
+        aggregate: {
+          args: Prisma.ContractorFilesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContractorFiles>
+        }
+        groupBy: {
+          args: Prisma.ContractorFilesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContractorFilesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContractorFilesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContractorFilesCountAggregateOutputType> | number
         }
       }
     }
@@ -5136,29 +5136,28 @@ export const StockScalarFieldEnum = {
 export type StockScalarFieldEnum = (typeof StockScalarFieldEnum)[keyof typeof StockScalarFieldEnum]
 
 
-export const Sub_ContractorScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  scope_of_work: 'scope_of_work',
-  contract_value: 'contract_value',
-  chainage_start_km: 'chainage_start_km',
-  chainage_end_km: 'chainage_end_km',
-  contract_start_date: 'contract_start_date',
-  contract_end_date: 'contract_end_date',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type Sub_ContractorScalarFieldEnum = (typeof Sub_ContractorScalarFieldEnum)[keyof typeof Sub_ContractorScalarFieldEnum]
-
-
 export const ContractorProjectScalarFieldEnum = {
   id: 'id',
   contractorId: 'contractorId',
-  projectId: 'projectId'
+  projectId: 'projectId',
+  partnership_percentage: 'partnership_percentage',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  overall_budget: 'overall_budget'
 } as const
 
 export type ContractorProjectScalarFieldEnum = (typeof ContractorProjectScalarFieldEnum)[keyof typeof ContractorProjectScalarFieldEnum]
+
+
+export const ContractorFilesScalarFieldEnum = {
+  id: 'id',
+  contactProjectId: 'contactProjectId',
+  file_id: 'file_id',
+  report_type: 'report_type',
+  description: 'description'
+} as const
+
+export type ContractorFilesScalarFieldEnum = (typeof ContractorFilesScalarFieldEnum)[keyof typeof ContractorFilesScalarFieldEnum]
 
 
 export const UnitScalarFieldEnum = {
@@ -5865,8 +5864,8 @@ export type GlobalOmitConfig = {
   bOTSpecificDetails?: Prisma.BOTSpecificDetailsOmit
   role?: Prisma.RoleOmit
   stock?: Prisma.StockOmit
-  sub_Contractor?: Prisma.Sub_ContractorOmit
   contractorProject?: Prisma.ContractorProjectOmit
+  contractorFiles?: Prisma.ContractorFilesOmit
   unit?: Prisma.UnitOmit
   user?: Prisma.UserOmit
   vendor?: Prisma.VendorOmit

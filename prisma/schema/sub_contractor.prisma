@@ -1,41 +1,26 @@
-model Sub_Contractor {
-  id                  Int       @id @default(autoincrement())
-  name                String
-  scope_of_work       String?
-  contract_value      String?
-  chainage_start_km   String?
-  chainage_end_km     String?
-  contract_start_date DateTime?
-  contract_end_date   DateTime?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-
-  // vendors  ContractorVendor[] // relation
-  projects ContractorProject[] // relation
-
-  @@map("sub_contractors")
-}
-
-// model ContractorVendor {
-//   id           Int @id @default(autoincrement())
-//   contractorId Int
-//   vendorId     Int
-
-//   contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
-//   vendor     Vendor         @relation(fields: [vendorId], references: [id])
-
-//   @@unique([contractorId, vendorId]) // prevent duplicates
-//   @@map("contractor_vendors")
-// }
-
 model ContractorProject {
-  id           Int @id @default(autoincrement())
-  contractorId Int
-  projectId    Int
+  id                     Int       @id @default(autoincrement())
+  contractorId           Int
+  projectId              Int
+  partnership_percentage String?
+  start_date             DateTime?
+  end_date               DateTime?
+  overall_budget         String?
 
-  contractor Sub_Contractor @relation(fields: [contractorId], references: [id])
-  project    Project        @relation(fields: [projectId], references: [id])
+  contractor Vendor            @relation(fields: [contractorId], references: [id])
+  project    Project           @relation(fields: [projectId], references: [id])
+  reports    ContractorFiles[]
 
   @@unique([contractorId, projectId])
   @@map("contractor_projects")
+}
+
+model ContractorFiles {
+  id                Int               @id @default(autoincrement())
+  contactProjectId  Int
+  file_id           Int
+  report_type       String
+  description       String?
+  contractorProject ContractorProject @relation(fields: [contactProjectId], references: [id])
+  file              File              @relation(fields: [file_id], references: [id])
 }

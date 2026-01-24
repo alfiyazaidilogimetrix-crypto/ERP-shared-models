@@ -250,15 +250,15 @@ export type Role = Prisma.RoleModel
  */
 export type Stock = Prisma.StockModel
 /**
- * Model Sub_Contractor
- * 
- */
-export type Sub_Contractor = Prisma.Sub_ContractorModel
-/**
  * Model ContractorProject
  * 
  */
 export type ContractorProject = Prisma.ContractorProjectModel
+/**
+ * Model ContractorFiles
+ * 
+ */
+export type ContractorFiles = Prisma.ContractorFilesModel
 /**
  * Model Unit
  * 
