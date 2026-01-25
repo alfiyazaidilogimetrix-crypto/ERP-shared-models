@@ -5,7 +5,6 @@ model Category {
     createdAt   DateTime   @default(now())
     updatedAt   DateTime   @updatedAt
     materials   Material[]
-    stocks      Stock[]
     vendors     Vendor[]
 
     @@map("categories")

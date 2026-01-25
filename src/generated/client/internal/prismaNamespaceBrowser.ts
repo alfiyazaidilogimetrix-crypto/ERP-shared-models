@@ -749,14 +749,10 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 
 export const StockScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  material_code: 'material_code',
-  categoryId: 'categoryId',
-  unitId: 'unitId',
+  material_id: 'material_id',
   locationId: 'locationId',
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
-  unit_of_measure: 'unit_of_measure',
   current_stock: 'current_stock',
   quantity: 'quantity',
   specifications: 'specifications',

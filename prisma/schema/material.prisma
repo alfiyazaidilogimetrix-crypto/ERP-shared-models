@@ -15,6 +15,7 @@ model Material {
     prmaterialItems            PRMaterialItem[]
     poorderItems               POOrderItem[]
     grnmaterialReceipts        GRNMaterialReceipt[]
+    stocks                     Stock[]
 
     @@map("materials")
 }

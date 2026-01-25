@@ -5,7 +5,6 @@ model Unit {
     createdAt   DateTime   @default(now())
     updatedAt   DateTime   @updatedAt
     materials   Material[]
-    stocks      Stock[]
 
     @@map("units")
 }

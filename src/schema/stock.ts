@@ -3,11 +3,7 @@ import { stockStatusSchema } from './enums';
 // Base schemas
 export const stockSchema = z.object({
   id: z.number().int().positive().optional(),
-  name: z.string().min(1).max(200),
-  material_code: z.string().max(100).nullable().optional(),
-
-  categoryId: z.number().int().positive().nullable().optional(),
-  unitId: z.number().int().positive().nullable().optional(),
+  material_id: z.number().int().positive().nullable().optional(),
   locationId: z.number().int().positive().nullable().optional(),
 
   status: z.enum(stockStatusSchema.options).default('in_stock'),
@@ -17,7 +13,6 @@ export const stockSchema = z.object({
     .nonnegative()
     .nullable()
     .optional(),
-  unit_of_measure: z.string().max(50).nullable().optional(),
   current_stock: z.number().int().nonnegative().default(0),
   quantity: z.number().int().nonnegative().nullable().optional(),
   specifications: z.string().max(1000).nullable().optional(),

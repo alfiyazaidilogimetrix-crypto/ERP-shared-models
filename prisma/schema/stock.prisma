@@ -8,17 +8,12 @@ enum StockStatus {
 }
 
 model Stock {
-    id            Int     @id @default(autoincrement())
-    name          String
-    material_code String? @unique
-
-    categoryId Int?
-    unitId     Int?
-    locationId Int?
+    id          Int  @id @default(autoincrement())
+    material_id Int
+    locationId  Int?
 
     status                     StockStatus @default(IN_STOCK)
     minimum_threshold_quantity Int?
-    unit_of_measure            String?
     current_stock              Int?
     quantity                   Int?
     specifications             String?
@@ -26,10 +21,8 @@ model Stock {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    category Category? @relation(fields: [categoryId], references: [id])
-    unit     Unit?     @relation(fields: [unitId], references: [id])
-
     location                Location?                @relation(fields: [locationId], references: [id])
+    material                Material?                @relation(fields: [material_id], references: [id])
     dprmaterialConsumptions DPRMaterialConsumption[]
     inventoryStockEntries   InventoryStockEntry[]
 }
