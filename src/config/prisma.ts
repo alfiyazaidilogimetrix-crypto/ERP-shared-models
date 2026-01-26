@@ -3,7 +3,6 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// 1. Construct the Connection String manually
 const pgUser = process.env.PG_USER;
 const pgPass = process.env.PG_PASS;
 const pgHost = process.env.PG_HOST;
@@ -11,74 +10,61 @@ const pgPort = process.env.PG_PORT || '5432';
 const pgDb = process.env.PG_DB;
 
 if (!pgUser || !pgHost || !pgDb) {
-  throw new Error(
-    'Missing database environment variables (PG_USER, PG_HOST, PG_DB).',
-  );
+  throw new Error('Missing database environment variables.');
 }
 
-const connectionString = `postgresql://${pgUser}:${pgPass}@${pgHost}:${pgPort}/${pgDb}`;
+// 1. Limit connection_limit to a small number (e.g., 5)
+// This ensures you never exceed the DB limit, even if you have 100 users.
+const connectionString = `postgresql://${pgUser}:${pgPass}@${pgHost}:${pgPort}/${pgDb}?connection_limit=5`;
 
-// 2. Setup SSL
+// 2. SSL Setup
 const sslCertPath = process.env.CERTIFICATES_PATH;
-
 let sslConfig: any = {
-  rejectUnauthorized: false,
+  rejectUnauthorized: false, // Essential for DigitalOcean managed DBs usually
 };
 
 if (sslCertPath) {
   const resolvedPath = path.resolve(sslCertPath);
   if (fs.existsSync(resolvedPath)) {
     try {
-      sslConfig.ca = fs.readFileSync(resolvedPath, 'utf8');
-      console.log('✅ SSL Certificate loaded from CERTIFICATES_PATH');
+      sslConfig.ca = fs.readFileSync(resolvedPath, 'utf-8');
+      console.log('✅ SSL Certificate loaded.');
     } catch (err) {
       console.warn('⚠️ Failed to read SSL certificate:', err);
     }
-  } else {
-    console.warn(
-      '⚠️ SSL Certificate path specified but file not found:',
-      resolvedPath,
-    );
   }
 }
 
-// 3. Initialize Adapter
 const adapter = new PrismaPg({
   connectionString: connectionString,
   ssl: sslConfig,
 });
 
-// 4. Create the Prisma Client
+// 3. Singleton Pattern
 const prismaClientSingleton = () => {
-  return new PrismaClient({ adapter });
+  return new PrismaClient({
+    adapter,
+    log: ['warn', 'error'],
+  });
 };
 
-// 5. Prevent Multiple Instances
-// @ts-ignore
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
-
-// Global variable declaration to store the instance
-// @ts-ignore
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton;
-};
-
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
-
-// In development, hot reloading might try to recreate the client.
-// We attach it to globalThis to persist it across reloads.
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
-
-// 6. Test Connection
-async function testConnection() {
-  try {
-    await prisma.$connect();
-    console.log('✅ Prisma connection has been established successfully.');
-  } catch (error) {
-    console.error('❌ Unable to connect to the database:', error);
-    throw error;
-  }
+declare global {
+  var prisma: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
+const prisma = global.prisma ?? prismaClientSingleton();
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
+
+// 4. Aggressive Cleanup (Prevents "Remaining slots reserved" error on restart)
+process.on('beforeExit', async () => {
+  await prisma.$disconnect();
+});
+
+// Also disconnect on SIGINT (Ctrl+C)
+process.on('SIGINT', async () => {
+  await prisma.$disconnect();
+  process.exit(0);
+});
+
 export default prisma;
-export { testConnection };
