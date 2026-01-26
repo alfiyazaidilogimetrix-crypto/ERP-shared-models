@@ -21,3 +21,20 @@ model InventoryStockEntry {
 
     @@unique([inventoryId, stockId])
 }
+
+model InventoryHistory {
+    id Int @id @default(autoincrement())
+
+    manager_id   Int
+    location_id  Int
+    project_id   Int
+    total_amount Float?
+    items_data   Json
+
+    manager  User     @relation(fields: [manager_id], references: [id])
+    location Location @relation(fields: [location_id], references: [id])
+    project  Project  @relation(fields: [project_id], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

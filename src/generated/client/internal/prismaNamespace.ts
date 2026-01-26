@@ -403,6 +403,7 @@ export const ModelName = {
   File: 'File',
   InventoryManager: 'InventoryManager',
   InventoryStockEntry: 'InventoryStockEntry',
+  InventoryHistory: 'InventoryHistory',
   Invoice: 'Invoice',
   Seller: 'Seller',
   Buyer: 'Buyer',
@@ -453,7 +454,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "inventoryHistory" | "invoice" | "seller" | "buyer" | "consignee" | "orderReference" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "eInvoiceDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1860,6 +1861,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.InventoryStockEntryCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.InventoryStockEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    InventoryHistory: {
+      payload: Prisma.$InventoryHistoryPayload<ExtArgs>
+      fields: Prisma.InventoryHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InventoryHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InventoryHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.InventoryHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InventoryHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.InventoryHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.InventoryHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.InventoryHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InventoryHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.InventoryHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        update: {
+          args: Prisma.InventoryHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.InventoryHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InventoryHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InventoryHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.InventoryHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InventoryHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.InventoryHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInventoryHistory>
+        }
+        groupBy: {
+          args: Prisma.InventoryHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventoryHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InventoryHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InventoryHistoryCountAggregateOutputType> | number
         }
       }
     }
@@ -4770,6 +4845,20 @@ export const InventoryStockEntryScalarFieldEnum = {
 export type InventoryStockEntryScalarFieldEnum = (typeof InventoryStockEntryScalarFieldEnum)[keyof typeof InventoryStockEntryScalarFieldEnum]
 
 
+export const InventoryHistoryScalarFieldEnum = {
+  id: 'id',
+  manager_id: 'manager_id',
+  location_id: 'location_id',
+  project_id: 'project_id',
+  total_amount: 'total_amount',
+  items_data: 'items_data',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryHistoryScalarFieldEnum = (typeof InventoryHistoryScalarFieldEnum)[keyof typeof InventoryHistoryScalarFieldEnum]
+
+
 export const InvoiceScalarFieldEnum = {
   id: 'id',
   invoiceNumber: 'invoiceNumber',
@@ -5837,6 +5926,7 @@ export type GlobalOmitConfig = {
   file?: Prisma.FileOmit
   inventoryManager?: Prisma.InventoryManagerOmit
   inventoryStockEntry?: Prisma.InventoryStockEntryOmit
+  inventoryHistory?: Prisma.InventoryHistoryOmit
   invoice?: Prisma.InvoiceOmit
   seller?: Prisma.SellerOmit
   buyer?: Prisma.BuyerOmit

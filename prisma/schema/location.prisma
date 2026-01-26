@@ -16,4 +16,6 @@ model Location {
 
     projects          Project[]
     inventoryManagers InventoryManager[]
+
+    inventoryHistories InventoryHistory[]
 }

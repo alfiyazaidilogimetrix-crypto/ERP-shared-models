@@ -70,6 +70,7 @@ export const ModelName = {
   File: 'File',
   InventoryManager: 'InventoryManager',
   InventoryStockEntry: 'InventoryStockEntry',
+  InventoryHistory: 'InventoryHistory',
   Invoice: 'Invoice',
   Seller: 'Seller',
   Buyer: 'Buyer',
@@ -399,6 +400,20 @@ export const InventoryStockEntryScalarFieldEnum = {
 } as const
 
 export type InventoryStockEntryScalarFieldEnum = (typeof InventoryStockEntryScalarFieldEnum)[keyof typeof InventoryStockEntryScalarFieldEnum]
+
+
+export const InventoryHistoryScalarFieldEnum = {
+  id: 'id',
+  manager_id: 'manager_id',
+  location_id: 'location_id',
+  project_id: 'project_id',
+  total_amount: 'total_amount',
+  items_data: 'items_data',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryHistoryScalarFieldEnum = (typeof InventoryHistoryScalarFieldEnum)[keyof typeof InventoryHistoryScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {

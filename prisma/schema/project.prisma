@@ -56,6 +56,8 @@ model Project {
     dprs                       DPR[]
 
     labourAttendances LabourAttendance[]
+
+    inventoryHistories InventoryHistory[]
 }
 
 model HAMSpecificDetails {

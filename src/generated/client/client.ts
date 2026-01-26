@@ -135,6 +135,11 @@ export type InventoryManager = Prisma.InventoryManagerModel
  */
 export type InventoryStockEntry = Prisma.InventoryStockEntryModel
 /**
+ * Model InventoryHistory
+ * 
+ */
+export type InventoryHistory = Prisma.InventoryHistoryModel
+/**
  * Model Invoice
  * 
  */
