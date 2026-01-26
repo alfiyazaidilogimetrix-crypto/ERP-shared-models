@@ -3,8 +3,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// 1. Construct the Connection String manually (Mimicking Sequelize's logic)
-// Prisma requires a connection string, whereas Sequelize takes an object.
+// 1. Construct the Connection String manually
 const pgUser = process.env.PG_USER;
 const pgPass = process.env.PG_PASS;
 const pgHost = process.env.PG_HOST;
@@ -19,8 +18,7 @@ if (!pgUser || !pgHost || !pgDb) {
 
 const connectionString = `postgresql://${pgUser}:${pgPass}@${pgHost}:${pgPort}/${pgDb}`;
 
-// 2. Setup SSL (Exactly like your Sequelize code)
-// Using 'CERTIFICATES_PATH' to match your working Sequelize config
+// 2. Setup SSL
 const sslCertPath = process.env.CERTIFICATES_PATH;
 
 let sslConfig: any = {
@@ -44,16 +42,34 @@ if (sslCertPath) {
   }
 }
 
-// 3. Initialize Adapter with the dynamic string
+// 3. Initialize Adapter
 const adapter = new PrismaPg({
   connectionString: connectionString,
   ssl: sslConfig,
 });
 
-// 4. Initialize Client
-const prisma = new PrismaClient({ adapter });
+// 4. Create the Prisma Client
+const prismaClientSingleton = () => {
+  return new PrismaClient({ adapter });
+};
 
-// 5. Test Connection (Mimicking your Sequelize testConnection)
+// 5. Prevent Multiple Instances
+// @ts-ignore
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+
+// Global variable declaration to store the instance
+// @ts-ignore
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClientSingleton;
+};
+
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+// In development, hot reloading might try to recreate the client.
+// We attach it to globalThis to persist it across reloads.
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+// 6. Test Connection
 async function testConnection() {
   try {
     await prisma.$connect();
