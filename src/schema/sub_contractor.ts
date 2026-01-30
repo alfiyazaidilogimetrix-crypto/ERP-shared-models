@@ -16,7 +16,7 @@ export type ContractorProject = z.infer<typeof contractorProjectSchema>;
 // ContractorFiles Schema
 export const contractorFilesSchema = z.object({
   id: z.number().int().positive().optional(),
-  contactProjectId: z.number().int().positive(),
+  contractorProjectId: z.number().int().positive(),
   file_id: z.number().int().positive(),
   report_type: z.string().min(1),
   description: z.string().nullable().optional(),
