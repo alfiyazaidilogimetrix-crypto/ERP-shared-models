@@ -1,176 +1,99 @@
 model Invoice {
     id Int @id @default(autoincrement())
 
-    invoiceNumber String
+    invoiceNumber String   @unique
     invoiceDate   DateTime
 
-    invoiceType   String // TAX_INVOICE, ORIGINAL_FOR_BUYER
-    placeOfSupply String
-    reverseCharge Boolean @default(false)
-    currency      String  @default("INR")
-
-    sellerId    Int
-    buyerId     Int
-    consigneeId Int?
-
-    orderReferenceId  Int? @unique
-    taxDetailId       Int? @unique
+    invoiceType       String // TAX_INVOICE
+    reverseCharge     Boolean @default(false)
+    currency          String  @default("INR")
+    // 🔗 CORE LINK
+    po_id             Int
+    sellerId          Int
+    consigneeId       Int?
+    taxDetailId       Int?
     amountSummaryId   Int?
-    transportDetailId Int? @unique
-    eInvoiceDetailId  Int?
+    transportDetailId Int?
     auditDetailId     Int?
+    location_id       Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    seller    Seller     @relation(fields: [sellerId], references: [id])
-    buyer     Buyer      @relation(fields: [buyerId], references: [id])
-    consignee Consignee? @relation(fields: [consigneeId], references: [id])
+    // 🔗 RELATIONS
+    po            PO       @relation(fields: [po_id], references: [id])
+    seller        Vendor   @relation("seller", fields: [sellerId], references: [id])
+    buyer         String?
+    consignee     Vendor?  @relation("consignee", fields: [consigneeId], references: [id])
+    placeOfSupply Location @relation(fields: [location_id], references: [id])
 
-    orderReference  OrderReference?       @relation(fields: [orderReferenceId], references: [id])
-    taxDetail       TaxDetail?            @relation(fields: [taxDetailId], references: [id])
-    amountSummary   InvoiceAmountSummary? @relation(fields: [invoiceAmountSummaryId], references: [id])
-    transportDetail TransportDetail?      @relation(fields: [transportDetailId], references: [id])
-    eInvoiceDetail  EInvoiceDetail?
-    auditDetail     InvoiceAudit?         @relation(fields: [invoiceAuditId], references: [id])
+    taxDetail       TaxDetail?
+    amountSummary   InvoiceAmountSummary?
+    transportDetail TransportDetail?
+    auditDetail     InvoiceAudit?
 
     items                  InvoiceItem[]
-    invoiceAmountSummaryId Int?          @unique
-    invoiceAuditId         Int?          @unique
-
-    @@unique([invoiceNumber])
-}
-
-model Seller {
-    id Int @id @default(autoincrement())
-
-    name      String
-    unitName  String?
-    address   String
-    city      String
-    state     String
-    stateCode String
-    pincode   String?
-
-    gstin String
-    cin   String?
-    pan   String?
-
-    email   String?
-    phone   String?
-    website String?
-
-    invoices Invoice[]
-}
-
-model Buyer {
-    id Int @id @default(autoincrement())
-
-    name      String
-    address   String
-    city      String
-    state     String
-    stateCode String
-    pincode   String?
-
-    gstin String?
-    phone String?
-
-    invoices Invoice[]
-}
-
-model Consignee {
-    id Int @id @default(autoincrement())
-
-    name      String
-    address   String
-    city      String
-    state     String
-    stateCode String
-    pincode   String?
-
-    gstin String?
-    phone String?
-
-    invoices Invoice[]
-}
-
-model OrderReference {
-    id Int @id @default(autoincrement())
-
-    purchaseOrderNo   String?
-    purchaseOrderDate DateTime?
-
-    salesOrderNo    String?
-    deliveryOrderNo String?
-
-    challanNo   String?
-    challanDate DateTime?
-
-    contractNo String?
-
-    invoice Invoice?
+    invoiceAmountSummaryId Int?
+    invoiceAuditId         Int?
+    user                   User?         @relation(fields: [userId], references: [id])
+    userId                 Int?
 }
 
 model InvoiceItem {
     id Int @id @default(autoincrement())
 
-    invoiceId   Int
-    description String
-    category    String // Cement, Sand, Material
-    hsnCode     String
+    invoiceId               Int
+    grn_id                  Int
+    grn_material_receipt_id Int
 
-    grade              String?
-    identificationMark String?
+    basicAmount          Float?
+    taxableValue         Float?
+    freightRatePerUnit   Float?
+    unloadingRatePerUnit Float?
 
-    quantity      Decimal
-    unitOfMeasure String // MT, TON, BAG
-    ratePerUnit   Decimal
+    invoice Invoice            @relation(fields: [invoiceId], references: [id])
+    grn     GRN                @relation(fields: [grn_id], references: [id])
+    grnItem GRNMaterialReceipt @relation(fields: [grn_material_receipt_id], references: [id])
 
-    basicAmount Decimal
-
-    freightRatePerUnit   Decimal?
-    unloadingRatePerUnit Decimal?
-
-    taxableValue Decimal
-
-    invoice Invoice @relation(fields: [invoiceId], references: [id])
+    @@index([grn_id])
 }
 
 model TaxDetail {
     id Int @id @default(autoincrement())
 
-    cgstRate   Decimal?
-    cgstAmount Decimal?
+    cgstRate   Float?
+    cgstAmount Float?
 
-    sgstRate   Decimal?
-    sgstAmount Decimal?
+    sgstRate   Float?
+    sgstAmount Float?
 
-    igstRate   Decimal?
-    igstAmount Decimal?
+    igstRate   Float?
+    igstAmount Float?
 
-    totalTax Decimal
+    totalTax Float?
 
-    invoice Invoice?
+    invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+    invoiceId Int?     @unique
 }
 
 model InvoiceAmountSummary {
     id Int @id @default(autoincrement())
 
-    goodsValue   Decimal
-    taxableValue Decimal
+    goodsValue   Float?
+    taxableValue Float?
 
-    freightAmount   Decimal?
-    unloadingAmount Decimal?
+    freightAmount   Float?
+    unloadingAmount Float?
 
-    roundOff Decimal?
+    roundOff Float?
 
-    totalTaxAmount    Decimal
-    totalInvoiceValue Decimal
+    totalTaxAmount    Float?
+    totalInvoiceValue Float?
 
     amountInWords String
 
-    invoice Invoice?
+    invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+    invoiceId Int?     @unique
 }
 
 model TransportDetail {
@@ -190,21 +113,6 @@ model TransportDetail {
     destination  String?
     distanceKm   Int?
 
-    invoice Invoice?
-}
-
-model EInvoiceDetail {
-    id Int @id @default(autoincrement())
-
-    irnNumber String?
-    qrCode    String?
-
-    ewayBillNo       String?
-    ewayBillDate     DateTime?
-    ewayBillValidity DateTime?
-
-    gstRuleReference String?
-
     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
     invoiceId Int?     @unique
 }
@@ -219,5 +127,6 @@ model InvoiceAudit {
     declaration     String?
     termsConditions String?
 
-    invoice Invoice?
+    invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+    invoiceId Int?     @unique
 }

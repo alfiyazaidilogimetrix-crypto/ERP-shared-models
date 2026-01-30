@@ -145,26 +145,6 @@ export type InventoryHistory = Prisma.InventoryHistoryModel
  */
 export type Invoice = Prisma.InvoiceModel
 /**
- * Model Seller
- * 
- */
-export type Seller = Prisma.SellerModel
-/**
- * Model Buyer
- * 
- */
-export type Buyer = Prisma.BuyerModel
-/**
- * Model Consignee
- * 
- */
-export type Consignee = Prisma.ConsigneeModel
-/**
- * Model OrderReference
- * 
- */
-export type OrderReference = Prisma.OrderReferenceModel
-/**
  * Model InvoiceItem
  * 
  */
@@ -184,11 +164,6 @@ export type InvoiceAmountSummary = Prisma.InvoiceAmountSummaryModel
  * 
  */
 export type TransportDetail = Prisma.TransportDetailModel
-/**
- * Model EInvoiceDetail
- * 
- */
-export type EInvoiceDetail = Prisma.EInvoiceDetailModel
 /**
  * Model InvoiceAudit
  * 

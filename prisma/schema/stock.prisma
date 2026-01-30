@@ -21,8 +21,7 @@ model Stock {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    location                Location?                @relation(fields: [locationId], references: [id])
-    material                Material?                @relation(fields: [material_id], references: [id])
-    dprmaterialConsumptions DPRMaterialConsumption[]
-    inventoryStockEntries   InventoryStockEntry[]
+    location              Location?             @relation(fields: [locationId], references: [id])
+    material              Material?             @relation(fields: [material_id], references: [id])
+    inventoryStockEntries InventoryStockEntry[]
 }

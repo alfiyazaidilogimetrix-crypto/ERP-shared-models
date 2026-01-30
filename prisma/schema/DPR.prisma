@@ -34,11 +34,10 @@ model DPR {
 model DPRMaterialConsumption {
     id Int @id @default(autoincrement())
 
-    dpr_id   Int
-    stock_id Int
+    dpr_id      Int
+    material_id Int
 
     quantity Float
-    unit     String
     rate     Float
     amount   Float
 
@@ -46,7 +45,7 @@ model DPRMaterialConsumption {
     chainage_to   String?
 
     dpr        DPR      @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
-    stock      Stock    @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    material   Material @relation(fields: [material_id], references: [id], onDelete: Cascade)
     created_at DateTime @default(now())
 }
 

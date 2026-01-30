@@ -4,9 +4,8 @@ import { z } from 'zod';
 export const dprMaterialConsumptionSchema = z.object({
   id: z.number().int().positive().optional(),
   dpr_id: z.number().int().positive().optional(),
-  stock_id: z.number().int().positive(),
+  material_id: z.number().int().positive(),
   quantity: z.number().nonnegative(),
-  unit: z.string(),
   rate: z.number().nonnegative(),
   amount: z.number().nonnegative(),
   chainage_from: z.string().nullable().optional(),

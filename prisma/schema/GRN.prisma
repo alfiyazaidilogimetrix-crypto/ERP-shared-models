@@ -28,9 +28,10 @@ model GRN {
     material_receipts GRNMaterialReceipt[]
     purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime  @default(now())
-    updated_at DateTime  @updatedAt
-    grnfiles   GRNFile[]
+    created_at   DateTime      @default(now())
+    updated_at   DateTime      @updatedAt
+    grnfiles     GRNFile[]
+    invoiceItems InvoiceItem[]
 
     @@index([po_id])
 }
@@ -50,6 +51,8 @@ model GRNMaterialReceipt {
     material    Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
+
+    invoiceItems InvoiceItem[]
 }
 
 model GRNFile {

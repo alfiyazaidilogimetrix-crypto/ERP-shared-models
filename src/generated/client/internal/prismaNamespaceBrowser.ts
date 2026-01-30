@@ -72,15 +72,10 @@ export const ModelName = {
   InventoryStockEntry: 'InventoryStockEntry',
   InventoryHistory: 'InventoryHistory',
   Invoice: 'Invoice',
-  Seller: 'Seller',
-  Buyer: 'Buyer',
-  Consignee: 'Consignee',
-  OrderReference: 'OrderReference',
   InvoiceItem: 'InvoiceItem',
   TaxDetail: 'TaxDetail',
   InvoiceAmountSummary: 'InvoiceAmountSummary',
   TransportDetail: 'TransportDetail',
-  EInvoiceDetail: 'EInvoiceDetail',
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
@@ -146,9 +141,8 @@ export type DPRScalarFieldEnum = (typeof DPRScalarFieldEnum)[keyof typeof DPRSca
 export const DPRMaterialConsumptionScalarFieldEnum = {
   id: 'id',
   dpr_id: 'dpr_id',
-  stock_id: 'stock_id',
+  material_id: 'material_id',
   quantity: 'quantity',
-  unit: 'unit',
   rate: 'rate',
   amount: 'amount',
   chainage_from: 'chainage_from',
@@ -421,106 +415,36 @@ export const InvoiceScalarFieldEnum = {
   invoiceNumber: 'invoiceNumber',
   invoiceDate: 'invoiceDate',
   invoiceType: 'invoiceType',
-  placeOfSupply: 'placeOfSupply',
   reverseCharge: 'reverseCharge',
   currency: 'currency',
+  po_id: 'po_id',
   sellerId: 'sellerId',
-  buyerId: 'buyerId',
   consigneeId: 'consigneeId',
-  orderReferenceId: 'orderReferenceId',
   taxDetailId: 'taxDetailId',
   amountSummaryId: 'amountSummaryId',
   transportDetailId: 'transportDetailId',
-  eInvoiceDetailId: 'eInvoiceDetailId',
   auditDetailId: 'auditDetailId',
+  location_id: 'location_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  buyer: 'buyer',
   invoiceAmountSummaryId: 'invoiceAmountSummaryId',
-  invoiceAuditId: 'invoiceAuditId'
+  invoiceAuditId: 'invoiceAuditId',
+  userId: 'userId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
-export const SellerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  unitName: 'unitName',
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  stateCode: 'stateCode',
-  pincode: 'pincode',
-  gstin: 'gstin',
-  cin: 'cin',
-  pan: 'pan',
-  email: 'email',
-  phone: 'phone',
-  website: 'website'
-} as const
-
-export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum]
-
-
-export const BuyerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  stateCode: 'stateCode',
-  pincode: 'pincode',
-  gstin: 'gstin',
-  phone: 'phone'
-} as const
-
-export type BuyerScalarFieldEnum = (typeof BuyerScalarFieldEnum)[keyof typeof BuyerScalarFieldEnum]
-
-
-export const ConsigneeScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  stateCode: 'stateCode',
-  pincode: 'pincode',
-  gstin: 'gstin',
-  phone: 'phone'
-} as const
-
-export type ConsigneeScalarFieldEnum = (typeof ConsigneeScalarFieldEnum)[keyof typeof ConsigneeScalarFieldEnum]
-
-
-export const OrderReferenceScalarFieldEnum = {
-  id: 'id',
-  purchaseOrderNo: 'purchaseOrderNo',
-  purchaseOrderDate: 'purchaseOrderDate',
-  salesOrderNo: 'salesOrderNo',
-  deliveryOrderNo: 'deliveryOrderNo',
-  challanNo: 'challanNo',
-  challanDate: 'challanDate',
-  contractNo: 'contractNo'
-} as const
-
-export type OrderReferenceScalarFieldEnum = (typeof OrderReferenceScalarFieldEnum)[keyof typeof OrderReferenceScalarFieldEnum]
-
-
 export const InvoiceItemScalarFieldEnum = {
   id: 'id',
   invoiceId: 'invoiceId',
-  description: 'description',
-  category: 'category',
-  hsnCode: 'hsnCode',
-  grade: 'grade',
-  identificationMark: 'identificationMark',
-  quantity: 'quantity',
-  unitOfMeasure: 'unitOfMeasure',
-  ratePerUnit: 'ratePerUnit',
+  grn_id: 'grn_id',
+  grn_material_receipt_id: 'grn_material_receipt_id',
   basicAmount: 'basicAmount',
+  taxableValue: 'taxableValue',
   freightRatePerUnit: 'freightRatePerUnit',
-  unloadingRatePerUnit: 'unloadingRatePerUnit',
-  taxableValue: 'taxableValue'
+  unloadingRatePerUnit: 'unloadingRatePerUnit'
 } as const
 
 export type InvoiceItemScalarFieldEnum = (typeof InvoiceItemScalarFieldEnum)[keyof typeof InvoiceItemScalarFieldEnum]
@@ -534,7 +458,8 @@ export const TaxDetailScalarFieldEnum = {
   sgstAmount: 'sgstAmount',
   igstRate: 'igstRate',
   igstAmount: 'igstAmount',
-  totalTax: 'totalTax'
+  totalTax: 'totalTax',
+  invoiceId: 'invoiceId'
 } as const
 
 export type TaxDetailScalarFieldEnum = (typeof TaxDetailScalarFieldEnum)[keyof typeof TaxDetailScalarFieldEnum]
@@ -549,7 +474,8 @@ export const InvoiceAmountSummaryScalarFieldEnum = {
   roundOff: 'roundOff',
   totalTaxAmount: 'totalTaxAmount',
   totalInvoiceValue: 'totalInvoiceValue',
-  amountInWords: 'amountInWords'
+  amountInWords: 'amountInWords',
+  invoiceId: 'invoiceId'
 } as const
 
 export type InvoiceAmountSummaryScalarFieldEnum = (typeof InvoiceAmountSummaryScalarFieldEnum)[keyof typeof InvoiceAmountSummaryScalarFieldEnum]
@@ -566,24 +492,11 @@ export const TransportDetailScalarFieldEnum = {
   lrRrDate: 'lrRrDate',
   dispatchFrom: 'dispatchFrom',
   destination: 'destination',
-  distanceKm: 'distanceKm'
-} as const
-
-export type TransportDetailScalarFieldEnum = (typeof TransportDetailScalarFieldEnum)[keyof typeof TransportDetailScalarFieldEnum]
-
-
-export const EInvoiceDetailScalarFieldEnum = {
-  id: 'id',
-  irnNumber: 'irnNumber',
-  qrCode: 'qrCode',
-  ewayBillNo: 'ewayBillNo',
-  ewayBillDate: 'ewayBillDate',
-  ewayBillValidity: 'ewayBillValidity',
-  gstRuleReference: 'gstRuleReference',
+  distanceKm: 'distanceKm',
   invoiceId: 'invoiceId'
 } as const
 
-export type EInvoiceDetailScalarFieldEnum = (typeof EInvoiceDetailScalarFieldEnum)[keyof typeof EInvoiceDetailScalarFieldEnum]
+export type TransportDetailScalarFieldEnum = (typeof TransportDetailScalarFieldEnum)[keyof typeof TransportDetailScalarFieldEnum]
 
 
 export const InvoiceAuditScalarFieldEnum = {
@@ -592,7 +505,8 @@ export const InvoiceAuditScalarFieldEnum = {
   checkedBy: 'checkedBy',
   authorizedBy: 'authorizedBy',
   declaration: 'declaration',
-  termsConditions: 'termsConditions'
+  termsConditions: 'termsConditions',
+  invoiceId: 'invoiceId'
 } as const
 
 export type InvoiceAuditScalarFieldEnum = (typeof InvoiceAuditScalarFieldEnum)[keyof typeof InvoiceAuditScalarFieldEnum]

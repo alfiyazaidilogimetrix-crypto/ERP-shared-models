@@ -42,6 +42,10 @@ model Vendor {
     updated_at DateTime @updatedAt
 
     contractorProjects ContractorProject[]
+
+    invoice_seller Invoice[] @relation("seller")
+
+    invoice_consignee Invoice[] @relation("consignee")
 }
 
 model VendorBankDetails {

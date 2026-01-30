@@ -25,4 +25,6 @@ model User {
     prs PR[] @relation("approvalUser")
 
     inventoryHistories InventoryHistory[]
+
+    invoices Invoice[]
 }
