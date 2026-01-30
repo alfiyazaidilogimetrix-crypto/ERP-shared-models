@@ -14,6 +14,7 @@ model DPR {
     labour_cost    Float
     machinery_cost Float
     total_cost     Float
+    Dimension      String?
 
     // Relations
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
@@ -38,7 +39,7 @@ model DPRMaterialConsumption {
     material_id Int
 
     quantity Float
-    rate     Float
+    rate     Float?
     amount   Float
 
     chainage_from String?

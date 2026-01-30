@@ -4204,6 +4204,7 @@ export const DPRScalarFieldEnum = {
   labour_cost: 'labour_cost',
   machinery_cost: 'machinery_cost',
   total_cost: 'total_cost',
+  Dimension: 'Dimension',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const

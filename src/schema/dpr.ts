@@ -75,6 +75,7 @@ export const dprSchema = z.object({
   date: z.date().or(z.string().pipe(z.coerce.date())),
   project_id: z.number().int().positive(),
   weather_conditions: z.string(),
+  Dimension: z.string().optional(),
   safety_incidents: z.string().nullable().optional(),
   remarks: z.string().nullable().optional(),
   submitted_by: z.number().int().positive(),
