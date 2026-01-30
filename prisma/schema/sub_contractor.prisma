@@ -16,11 +16,11 @@ model ContractorProject {
 }
 
 model ContractorFiles {
-  id                Int               @id @default(autoincrement())
-  contactProjectId  Int
-  file_id           Int
-  report_type       String
-  description       String?
-  contractorProject ContractorProject @relation(fields: [contactProjectId], references: [id])
-  file              File              @relation(fields: [file_id], references: [id])
+  id                  Int               @id @default(autoincrement())
+  contractorProjectId Int
+  file_id             Int
+  report_type         String
+  description         String?
+  contractorProject   ContractorProject @relation(fields: [contractorProjectId], references: [id])
+  file                File              @relation(fields: [file_id], references: [id])
 }

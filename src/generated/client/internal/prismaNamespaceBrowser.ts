@@ -708,7 +708,7 @@ export type ContractorProjectScalarFieldEnum = (typeof ContractorProjectScalarFi
 
 export const ContractorFilesScalarFieldEnum = {
   id: 'id',
-  contactProjectId: 'contactProjectId',
+  contractorProjectId: 'contractorProjectId',
   file_id: 'file_id',
   report_type: 'report_type',
   description: 'description'
