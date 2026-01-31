@@ -1,0 +1,56 @@
+model PRGRN {
+    id Int @id @default(autoincrement())
+
+    pr_id             Int
+    gate_entry_number String?
+    vehicle_number    String?
+    driver_name       String?
+    driver_contact    String?
+
+    transport_mode          TransportMode?
+    status                  ReceiptStatus
+    received_date           DateTime
+    received_time           String?
+    quality_check_completed Boolean        @default(false)
+    grn_remarks             String?
+
+    material_receipts PRGRNMaterialReceipt[]
+    purchase_request  PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+    created_by_id     Int?
+    created_by        User?                  @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+
+    created_at DateTime    @default(now())
+    updated_at DateTime    @updatedAt
+    grnfiles   PRGRNFile[]
+
+    @@index([pr_id])
+}
+
+model PRGRNMaterialReceipt {
+    id Int @id @default(autoincrement())
+
+    grn_id      Int
+    material_id Int
+    ordered     Int
+    chainage    String?
+    quality     String?
+    accepted    Int
+    rejected    Int
+    received    Int
+    grn         PRGRN    @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    material    Material @relation(fields: [material_id], references: [id])
+
+    created_at DateTime @default(now())
+}
+
+model PRGRNFile {
+    id Int @id @default(autoincrement())
+
+    grn_id  Int
+    file_id Int
+
+    grn  PRGRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    file File  @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+    @@unique([grn_id, file_id])
+}

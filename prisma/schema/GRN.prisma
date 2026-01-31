@@ -27,11 +27,12 @@ model GRN {
 
     material_receipts GRNMaterialReceipt[]
     purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
-
-    created_at   DateTime      @default(now())
-    updated_at   DateTime      @updatedAt
-    grnfiles     GRNFile[]
-    invoiceItems InvoiceItem[]
+    created_by_id     Int?
+    created_by        User?                @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+    created_at        DateTime             @default(now())
+    updated_at        DateTime             @updatedAt
+    grnfiles          GRNFile[]
+    invoiceItems      InvoiceItem[]
 
     @@index([po_id])
 }

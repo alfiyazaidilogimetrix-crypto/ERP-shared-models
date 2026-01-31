@@ -178,6 +178,21 @@ export type Module = Prisma.ModuleModel
  */
 export type Permission = Prisma.PermissionModel
 /**
+ * Model PRGRN
+ * 
+ */
+export type PRGRN = Prisma.PRGRNModel
+/**
+ * Model PRGRNMaterialReceipt
+ * 
+ */
+export type PRGRNMaterialReceipt = Prisma.PRGRNMaterialReceiptModel
+/**
+ * Model PRGRNFile
+ * 
+ */
+export type PRGRNFile = Prisma.PRGRNFileModel
+/**
  * Model Project
  * 
  */

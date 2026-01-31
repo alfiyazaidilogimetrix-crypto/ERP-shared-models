@@ -17,6 +17,7 @@ model Material {
     grnmaterialReceipts        GRNMaterialReceipt[]
     stocks                     Stock[]
     dprmaterialConsumptions    DPRMaterialConsumption[]
+    prgrnmaterialReceipts      PRGRNMaterialReceipt[]
 
     @@map("materials")
 }

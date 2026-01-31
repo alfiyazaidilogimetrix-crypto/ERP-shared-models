@@ -27,4 +27,8 @@ model User {
     inventoryHistories InventoryHistory[]
 
     invoices Invoice[]
+
+    prgrns PRGRN[]
+
+    grns GRN[]
 }

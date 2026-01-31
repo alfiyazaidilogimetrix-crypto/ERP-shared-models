@@ -416,6 +416,9 @@ export const ModelName = {
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
+  PRGRN: 'PRGRN',
+  PRGRNMaterialReceipt: 'PRGRNMaterialReceipt',
+  PRGRNFile: 'PRGRNFile',
   Project: 'Project',
   HAMSpecificDetails: 'HAMSpecificDetails',
   EPCSpecificDetails: 'EPCSpecificDetails',
@@ -449,7 +452,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "inventoryHistory" | "invoice" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+    modelProps: "dPR" | "dPRMaterialConsumption" | "dPRLabourConsumption" | "dPRLabour" | "dPRMachineryUsage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "category" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "inventoryHistory" | "invoice" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "location" | "material" | "module" | "permission" | "pRGRN" | "pRGRNMaterialReceipt" | "pRGRNFile" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2821,6 +2824,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PRGRN: {
+      payload: Prisma.$PRGRNPayload<ExtArgs>
+      fields: Prisma.PRGRNFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PRGRNFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PRGRNFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        findFirst: {
+          args: Prisma.PRGRNFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PRGRNFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        findMany: {
+          args: Prisma.PRGRNFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>[]
+        }
+        create: {
+          args: Prisma.PRGRNCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        createMany: {
+          args: Prisma.PRGRNCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PRGRNCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>[]
+        }
+        delete: {
+          args: Prisma.PRGRNDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        update: {
+          args: Prisma.PRGRNUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        deleteMany: {
+          args: Prisma.PRGRNDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PRGRNUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PRGRNUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>[]
+        }
+        upsert: {
+          args: Prisma.PRGRNUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNPayload>
+        }
+        aggregate: {
+          args: Prisma.PRGRNAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePRGRN>
+        }
+        groupBy: {
+          args: Prisma.PRGRNGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PRGRNCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNCountAggregateOutputType> | number
+        }
+      }
+    }
+    PRGRNMaterialReceipt: {
+      payload: Prisma.$PRGRNMaterialReceiptPayload<ExtArgs>
+      fields: Prisma.PRGRNMaterialReceiptFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PRGRNMaterialReceiptFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PRGRNMaterialReceiptFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        findFirst: {
+          args: Prisma.PRGRNMaterialReceiptFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PRGRNMaterialReceiptFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        findMany: {
+          args: Prisma.PRGRNMaterialReceiptFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>[]
+        }
+        create: {
+          args: Prisma.PRGRNMaterialReceiptCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        createMany: {
+          args: Prisma.PRGRNMaterialReceiptCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PRGRNMaterialReceiptCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>[]
+        }
+        delete: {
+          args: Prisma.PRGRNMaterialReceiptDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        update: {
+          args: Prisma.PRGRNMaterialReceiptUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        deleteMany: {
+          args: Prisma.PRGRNMaterialReceiptDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PRGRNMaterialReceiptUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PRGRNMaterialReceiptUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>[]
+        }
+        upsert: {
+          args: Prisma.PRGRNMaterialReceiptUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNMaterialReceiptPayload>
+        }
+        aggregate: {
+          args: Prisma.PRGRNMaterialReceiptAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePRGRNMaterialReceipt>
+        }
+        groupBy: {
+          args: Prisma.PRGRNMaterialReceiptGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNMaterialReceiptGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PRGRNMaterialReceiptCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNMaterialReceiptCountAggregateOutputType> | number
+        }
+      }
+    }
+    PRGRNFile: {
+      payload: Prisma.$PRGRNFilePayload<ExtArgs>
+      fields: Prisma.PRGRNFileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PRGRNFileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PRGRNFileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        findFirst: {
+          args: Prisma.PRGRNFileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PRGRNFileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        findMany: {
+          args: Prisma.PRGRNFileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>[]
+        }
+        create: {
+          args: Prisma.PRGRNFileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        createMany: {
+          args: Prisma.PRGRNFileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PRGRNFileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>[]
+        }
+        delete: {
+          args: Prisma.PRGRNFileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        update: {
+          args: Prisma.PRGRNFileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        deleteMany: {
+          args: Prisma.PRGRNFileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PRGRNFileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PRGRNFileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>[]
+        }
+        upsert: {
+          args: Prisma.PRGRNFileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PRGRNFilePayload>
+        }
+        aggregate: {
+          args: Prisma.PRGRNFileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePRGRNFile>
+        }
+        groupBy: {
+          args: Prisma.PRGRNFileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNFileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PRGRNFileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PRGRNFileCountAggregateOutputType> | number
+        }
+      }
+    }
     Project: {
       payload: Prisma.$ProjectPayload<ExtArgs>
       fields: Prisma.ProjectFieldRefs
@@ -4290,6 +4515,7 @@ export const GRNScalarFieldEnum = {
   store_location: 'store_location',
   quality_check_completed: 'quality_check_completed',
   grn_remarks: 'grn_remarks',
+  created_by_id: 'created_by_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -4677,6 +4903,52 @@ export const PermissionScalarFieldEnum = {
 } as const
 
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
+
+
+export const PRGRNScalarFieldEnum = {
+  id: 'id',
+  pr_id: 'pr_id',
+  gate_entry_number: 'gate_entry_number',
+  vehicle_number: 'vehicle_number',
+  driver_name: 'driver_name',
+  driver_contact: 'driver_contact',
+  transport_mode: 'transport_mode',
+  status: 'status',
+  received_date: 'received_date',
+  received_time: 'received_time',
+  quality_check_completed: 'quality_check_completed',
+  grn_remarks: 'grn_remarks',
+  created_by_id: 'created_by_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type PRGRNScalarFieldEnum = (typeof PRGRNScalarFieldEnum)[keyof typeof PRGRNScalarFieldEnum]
+
+
+export const PRGRNMaterialReceiptScalarFieldEnum = {
+  id: 'id',
+  grn_id: 'grn_id',
+  material_id: 'material_id',
+  ordered: 'ordered',
+  chainage: 'chainage',
+  quality: 'quality',
+  accepted: 'accepted',
+  rejected: 'rejected',
+  received: 'received',
+  created_at: 'created_at'
+} as const
+
+export type PRGRNMaterialReceiptScalarFieldEnum = (typeof PRGRNMaterialReceiptScalarFieldEnum)[keyof typeof PRGRNMaterialReceiptScalarFieldEnum]
+
+
+export const PRGRNFileScalarFieldEnum = {
+  id: 'id',
+  grn_id: 'grn_id',
+  file_id: 'file_id'
+} as const
+
+export type PRGRNFileScalarFieldEnum = (typeof PRGRNFileScalarFieldEnum)[keyof typeof PRGRNFileScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {
@@ -5470,6 +5742,9 @@ export type GlobalOmitConfig = {
   material?: Prisma.MaterialOmit
   module?: Prisma.ModuleOmit
   permission?: Prisma.PermissionOmit
+  pRGRN?: Prisma.PRGRNOmit
+  pRGRNMaterialReceipt?: Prisma.PRGRNMaterialReceiptOmit
+  pRGRNFile?: Prisma.PRGRNFileOmit
   project?: Prisma.ProjectOmit
   hAMSpecificDetails?: Prisma.HAMSpecificDetailsOmit
   ePCSpecificDetails?: Prisma.EPCSpecificDetailsOmit

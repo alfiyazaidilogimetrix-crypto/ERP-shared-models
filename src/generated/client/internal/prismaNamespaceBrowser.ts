@@ -83,6 +83,9 @@ export const ModelName = {
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
+  PRGRN: 'PRGRN',
+  PRGRNMaterialReceipt: 'PRGRNMaterialReceipt',
+  PRGRNFile: 'PRGRNFile',
   Project: 'Project',
   HAMSpecificDetails: 'HAMSpecificDetails',
   EPCSpecificDetails: 'EPCSpecificDetails',
@@ -217,6 +220,7 @@ export const GRNScalarFieldEnum = {
   store_location: 'store_location',
   quality_check_completed: 'quality_check_completed',
   grn_remarks: 'grn_remarks',
+  created_by_id: 'created_by_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -604,6 +608,52 @@ export const PermissionScalarFieldEnum = {
 } as const
 
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
+
+
+export const PRGRNScalarFieldEnum = {
+  id: 'id',
+  pr_id: 'pr_id',
+  gate_entry_number: 'gate_entry_number',
+  vehicle_number: 'vehicle_number',
+  driver_name: 'driver_name',
+  driver_contact: 'driver_contact',
+  transport_mode: 'transport_mode',
+  status: 'status',
+  received_date: 'received_date',
+  received_time: 'received_time',
+  quality_check_completed: 'quality_check_completed',
+  grn_remarks: 'grn_remarks',
+  created_by_id: 'created_by_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type PRGRNScalarFieldEnum = (typeof PRGRNScalarFieldEnum)[keyof typeof PRGRNScalarFieldEnum]
+
+
+export const PRGRNMaterialReceiptScalarFieldEnum = {
+  id: 'id',
+  grn_id: 'grn_id',
+  material_id: 'material_id',
+  ordered: 'ordered',
+  chainage: 'chainage',
+  quality: 'quality',
+  accepted: 'accepted',
+  rejected: 'rejected',
+  received: 'received',
+  created_at: 'created_at'
+} as const
+
+export type PRGRNMaterialReceiptScalarFieldEnum = (typeof PRGRNMaterialReceiptScalarFieldEnum)[keyof typeof PRGRNMaterialReceiptScalarFieldEnum]
+
+
+export const PRGRNFileScalarFieldEnum = {
+  id: 'id',
+  grn_id: 'grn_id',
+  file_id: 'file_id'
+} as const
+
+export type PRGRNFileScalarFieldEnum = (typeof PRGRNFileScalarFieldEnum)[keyof typeof PRGRNFileScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {

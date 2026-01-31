@@ -44,6 +44,7 @@ model PR {
     created_at     DateTime         @default(now())
     updated_at     DateTime         @updatedAt
     pos            PO[]
+    prgrns         PRGRN[]
 
     @@index([project_id])
     @@index([user_id])
