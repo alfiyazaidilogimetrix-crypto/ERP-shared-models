@@ -1,11 +1,8 @@
 import { z } from 'zod';
 import { vendorStatusSchema, vendorTypeSchema } from './enums';
 
-// Vendor schemas
 export const vendorSchema = z.object({
   id: z.number().int().positive().optional(),
-
-  // Vendor Details
   vendor_name: z.string().min(1).max(200),
   proprietor_name: z.string().optional().nullable(),
   contact_person: z.string().optional().nullable(),
