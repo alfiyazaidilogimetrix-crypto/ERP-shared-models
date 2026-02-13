@@ -15,10 +15,8 @@ model DPR {
     machinery_cost Float
     total_cost     Float
     Dimension      String?
-
-    // Relations
-    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-    user    User    @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+    project        Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+    user           User    @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
 
     materials DPRMaterialConsumption[]
     labours   DPRLabourConsumption[]
