@@ -4,6 +4,9 @@ import { z } from 'zod';
 export const inventoryManagerSchema = z.object({
   id: z.number().int().positive().optional(),
   userId: z.number().int().positive(),
+  pincode: z.string(),
+  district: z.string(),
+  state: z.string(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 });

@@ -362,10 +362,12 @@ model File {
 }
 
 model InventoryManager {
-  id     Int  @id @default(autoincrement())
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id])
-
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  pincode   String
+  district  String
+  state     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -889,10 +891,11 @@ enum StockStatus {
 }
 
 model Stock {
-  id          Int  @id @default(autoincrement())
-  material_id Int
-  locationId  Int?
-
+  id                         Int         @id @default(autoincrement())
+  material_id                Int
+  pincode                    String
+  State                      String
+  District                   String
   status                     StockStatus @default(IN_STOCK)
   minimum_threshold_quantity Int?
   current_stock              Int?

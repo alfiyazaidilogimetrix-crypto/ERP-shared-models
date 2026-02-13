@@ -5,8 +5,9 @@ import { stockStatusSchema } from './enums';
 export const stockSchema = z.object({
   id: z.number().int().positive().optional(),
   material_id: z.number().int().positive(),
-  locationId: z.number().int().positive().nullable().optional(),
-
+  pincode: z.string(),
+  state: z.string(),
+  district: z.string(),
   status: stockStatusSchema.default('IN_STOCK'),
   minimum_threshold_quantity: z
     .number()

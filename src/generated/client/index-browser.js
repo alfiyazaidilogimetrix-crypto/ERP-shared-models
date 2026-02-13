@@ -293,6 +293,9 @@ exports.Prisma.FileScalarFieldEnum = {
 exports.Prisma.InventoryManagerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  pincode: 'pincode',
+  district: 'district',
+  state: 'state',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -566,7 +569,9 @@ exports.Prisma.ScopeScalarFieldEnum = {
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   material_id: 'material_id',
-  locationId: 'locationId',
+  pincode: 'pincode',
+  State: 'State',
+  District: 'District',
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   current_stock: 'current_stock',

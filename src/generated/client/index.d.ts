@@ -22625,6 +22625,9 @@ export namespace Prisma {
   export type InventoryManagerMinAggregateOutputType = {
     id: number | null
     userId: number | null
+    pincode: string | null
+    district: string | null
+    state: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -22632,6 +22635,9 @@ export namespace Prisma {
   export type InventoryManagerMaxAggregateOutputType = {
     id: number | null
     userId: number | null
+    pincode: string | null
+    district: string | null
+    state: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -22639,6 +22645,9 @@ export namespace Prisma {
   export type InventoryManagerCountAggregateOutputType = {
     id: number
     userId: number
+    pincode: number
+    district: number
+    state: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -22658,6 +22667,9 @@ export namespace Prisma {
   export type InventoryManagerMinAggregateInputType = {
     id?: true
     userId?: true
+    pincode?: true
+    district?: true
+    state?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -22665,6 +22677,9 @@ export namespace Prisma {
   export type InventoryManagerMaxAggregateInputType = {
     id?: true
     userId?: true
+    pincode?: true
+    district?: true
+    state?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -22672,6 +22687,9 @@ export namespace Prisma {
   export type InventoryManagerCountAggregateInputType = {
     id?: true
     userId?: true
+    pincode?: true
+    district?: true
+    state?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -22766,6 +22784,9 @@ export namespace Prisma {
   export type InventoryManagerGroupByOutputType = {
     id: number
     userId: number
+    pincode: string
+    district: string
+    state: string
     createdAt: Date
     updatedAt: Date
     _count: InventoryManagerCountAggregateOutputType | null
@@ -22792,6 +22813,9 @@ export namespace Prisma {
   export type InventoryManagerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    pincode?: boolean
+    district?: boolean
+    state?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22802,6 +22826,9 @@ export namespace Prisma {
   export type InventoryManagerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    pincode?: boolean
+    district?: boolean
+    state?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22810,6 +22837,9 @@ export namespace Prisma {
   export type InventoryManagerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    pincode?: boolean
+    district?: boolean
+    state?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -22818,11 +22848,14 @@ export namespace Prisma {
   export type InventoryManagerSelectScalar = {
     id?: boolean
     userId?: boolean
+    pincode?: boolean
+    district?: boolean
+    state?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type InventoryManagerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["inventoryManager"]>
+  export type InventoryManagerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "pincode" | "district" | "state" | "createdAt" | "updatedAt", ExtArgs["result"]["inventoryManager"]>
   export type InventoryManagerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     stock_material?: boolean | InventoryManager$stock_materialArgs<ExtArgs>
@@ -22844,6 +22877,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
+      pincode: string
+      district: string
+      state: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["inventoryManager"]>
@@ -23273,6 +23309,9 @@ export namespace Prisma {
   interface InventoryManagerFieldRefs {
     readonly id: FieldRef<"InventoryManager", 'Int'>
     readonly userId: FieldRef<"InventoryManager", 'Int'>
+    readonly pincode: FieldRef<"InventoryManager", 'String'>
+    readonly district: FieldRef<"InventoryManager", 'String'>
+    readonly state: FieldRef<"InventoryManager", 'String'>
     readonly createdAt: FieldRef<"InventoryManager", 'DateTime'>
     readonly updatedAt: FieldRef<"InventoryManager", 'DateTime'>
   }
@@ -50261,7 +50300,6 @@ export namespace Prisma {
   export type StockAvgAggregateOutputType = {
     id: number | null
     material_id: number | null
-    locationId: number | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
     quantity: number | null
@@ -50270,7 +50308,6 @@ export namespace Prisma {
   export type StockSumAggregateOutputType = {
     id: number | null
     material_id: number | null
-    locationId: number | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
     quantity: number | null
@@ -50279,7 +50316,9 @@ export namespace Prisma {
   export type StockMinAggregateOutputType = {
     id: number | null
     material_id: number | null
-    locationId: number | null
+    pincode: string | null
+    State: string | null
+    District: string | null
     status: $Enums.StockStatus | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50292,7 +50331,9 @@ export namespace Prisma {
   export type StockMaxAggregateOutputType = {
     id: number | null
     material_id: number | null
-    locationId: number | null
+    pincode: string | null
+    State: string | null
+    District: string | null
     status: $Enums.StockStatus | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50305,7 +50346,9 @@ export namespace Prisma {
   export type StockCountAggregateOutputType = {
     id: number
     material_id: number
-    locationId: number
+    pincode: number
+    State: number
+    District: number
     status: number
     minimum_threshold_quantity: number
     current_stock: number
@@ -50320,7 +50363,6 @@ export namespace Prisma {
   export type StockAvgAggregateInputType = {
     id?: true
     material_id?: true
-    locationId?: true
     minimum_threshold_quantity?: true
     current_stock?: true
     quantity?: true
@@ -50329,7 +50371,6 @@ export namespace Prisma {
   export type StockSumAggregateInputType = {
     id?: true
     material_id?: true
-    locationId?: true
     minimum_threshold_quantity?: true
     current_stock?: true
     quantity?: true
@@ -50338,7 +50379,9 @@ export namespace Prisma {
   export type StockMinAggregateInputType = {
     id?: true
     material_id?: true
-    locationId?: true
+    pincode?: true
+    State?: true
+    District?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50351,7 +50394,9 @@ export namespace Prisma {
   export type StockMaxAggregateInputType = {
     id?: true
     material_id?: true
-    locationId?: true
+    pincode?: true
+    State?: true
+    District?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50364,7 +50409,9 @@ export namespace Prisma {
   export type StockCountAggregateInputType = {
     id?: true
     material_id?: true
-    locationId?: true
+    pincode?: true
+    State?: true
+    District?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50464,7 +50511,9 @@ export namespace Prisma {
   export type StockGroupByOutputType = {
     id: number
     material_id: number
-    locationId: number | null
+    pincode: string
+    State: string
+    District: string
     status: $Enums.StockStatus
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50496,7 +50545,9 @@ export namespace Prisma {
   export type StockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     material_id?: boolean
-    locationId?: boolean
+    pincode?: boolean
+    State?: boolean
+    District?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50512,7 +50563,9 @@ export namespace Prisma {
   export type StockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     material_id?: boolean
-    locationId?: boolean
+    pincode?: boolean
+    State?: boolean
+    District?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50526,7 +50579,9 @@ export namespace Prisma {
   export type StockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     material_id?: boolean
-    locationId?: boolean
+    pincode?: boolean
+    State?: boolean
+    District?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50540,7 +50595,9 @@ export namespace Prisma {
   export type StockSelectScalar = {
     id?: boolean
     material_id?: boolean
-    locationId?: boolean
+    pincode?: boolean
+    State?: boolean
+    District?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50550,7 +50607,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "material_id" | "locationId" | "status" | "minimum_threshold_quantity" | "current_stock" | "quantity" | "specifications" | "createdAt" | "updatedAt", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "material_id" | "pincode" | "State" | "District" | "status" | "minimum_threshold_quantity" | "current_stock" | "quantity" | "specifications" | "createdAt" | "updatedAt", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     material?: boolean | Stock$materialArgs<ExtArgs>
     inventoryStockEntries?: boolean | Stock$inventoryStockEntriesArgs<ExtArgs>
@@ -50572,7 +50629,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       material_id: number
-      locationId: number | null
+      pincode: string
+      State: string
+      District: string
       status: $Enums.StockStatus
       minimum_threshold_quantity: number | null
       current_stock: number | null
@@ -51007,7 +51066,9 @@ export namespace Prisma {
   interface StockFieldRefs {
     readonly id: FieldRef<"Stock", 'Int'>
     readonly material_id: FieldRef<"Stock", 'Int'>
-    readonly locationId: FieldRef<"Stock", 'Int'>
+    readonly pincode: FieldRef<"Stock", 'String'>
+    readonly State: FieldRef<"Stock", 'String'>
+    readonly District: FieldRef<"Stock", 'String'>
     readonly status: FieldRef<"Stock", 'StockStatus'>
     readonly minimum_threshold_quantity: FieldRef<"Stock", 'Int'>
     readonly current_stock: FieldRef<"Stock", 'Int'>
@@ -66343,6 +66404,9 @@ export namespace Prisma {
   export const InventoryManagerScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    pincode: 'pincode',
+    district: 'district',
+    state: 'state',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -66685,7 +66749,9 @@ export namespace Prisma {
   export const StockScalarFieldEnum: {
     id: 'id',
     material_id: 'material_id',
-    locationId: 'locationId',
+    pincode: 'pincode',
+    State: 'State',
+    District: 'District',
     status: 'status',
     minimum_threshold_quantity: 'minimum_threshold_quantity',
     current_stock: 'current_stock',
@@ -68480,6 +68546,9 @@ export namespace Prisma {
     NOT?: InventoryManagerWhereInput | InventoryManagerWhereInput[]
     id?: IntFilter<"InventoryManager"> | number
     userId?: IntFilter<"InventoryManager"> | number
+    pincode?: StringFilter<"InventoryManager"> | string
+    district?: StringFilter<"InventoryManager"> | string
+    state?: StringFilter<"InventoryManager"> | string
     createdAt?: DateTimeFilter<"InventoryManager"> | Date | string
     updatedAt?: DateTimeFilter<"InventoryManager"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -68489,6 +68558,9 @@ export namespace Prisma {
   export type InventoryManagerOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    pincode?: SortOrder
+    district?: SortOrder
+    state?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -68501,6 +68573,9 @@ export namespace Prisma {
     AND?: InventoryManagerWhereInput | InventoryManagerWhereInput[]
     OR?: InventoryManagerWhereInput[]
     NOT?: InventoryManagerWhereInput | InventoryManagerWhereInput[]
+    pincode?: StringFilter<"InventoryManager"> | string
+    district?: StringFilter<"InventoryManager"> | string
+    state?: StringFilter<"InventoryManager"> | string
     createdAt?: DateTimeFilter<"InventoryManager"> | Date | string
     updatedAt?: DateTimeFilter<"InventoryManager"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -68510,6 +68585,9 @@ export namespace Prisma {
   export type InventoryManagerOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    pincode?: SortOrder
+    district?: SortOrder
+    state?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: InventoryManagerCountOrderByAggregateInput
@@ -68525,6 +68603,9 @@ export namespace Prisma {
     NOT?: InventoryManagerScalarWhereWithAggregatesInput | InventoryManagerScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"InventoryManager"> | number
     userId?: IntWithAggregatesFilter<"InventoryManager"> | number
+    pincode?: StringWithAggregatesFilter<"InventoryManager"> | string
+    district?: StringWithAggregatesFilter<"InventoryManager"> | string
+    state?: StringWithAggregatesFilter<"InventoryManager"> | string
     createdAt?: DateTimeWithAggregatesFilter<"InventoryManager"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"InventoryManager"> | Date | string
   }
@@ -70361,7 +70442,9 @@ export namespace Prisma {
     NOT?: StockWhereInput | StockWhereInput[]
     id?: IntFilter<"Stock"> | number
     material_id?: IntFilter<"Stock"> | number
-    locationId?: IntNullableFilter<"Stock"> | number | null
+    pincode?: StringFilter<"Stock"> | string
+    State?: StringFilter<"Stock"> | string
+    District?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -70376,7 +70459,9 @@ export namespace Prisma {
   export type StockOrderByWithRelationInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrderInput | SortOrder
+    pincode?: SortOrder
+    State?: SortOrder
+    District?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrderInput | SortOrder
     current_stock?: SortOrderInput | SortOrder
@@ -70394,7 +70479,9 @@ export namespace Prisma {
     OR?: StockWhereInput[]
     NOT?: StockWhereInput | StockWhereInput[]
     material_id?: IntFilter<"Stock"> | number
-    locationId?: IntNullableFilter<"Stock"> | number | null
+    pincode?: StringFilter<"Stock"> | string
+    State?: StringFilter<"Stock"> | string
+    District?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -70409,7 +70496,9 @@ export namespace Prisma {
   export type StockOrderByWithAggregationInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrderInput | SortOrder
+    pincode?: SortOrder
+    State?: SortOrder
+    District?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrderInput | SortOrder
     current_stock?: SortOrderInput | SortOrder
@@ -70430,7 +70519,9 @@ export namespace Prisma {
     NOT?: StockScalarWhereWithAggregatesInput | StockScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Stock"> | number
     material_id?: IntWithAggregatesFilter<"Stock"> | number
-    locationId?: IntNullableWithAggregatesFilter<"Stock"> | number | null
+    pincode?: StringWithAggregatesFilter<"Stock"> | string
+    State?: StringWithAggregatesFilter<"Stock"> | string
+    District?: StringWithAggregatesFilter<"Stock"> | string
     status?: EnumStockStatusWithAggregatesFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     current_stock?: IntNullableWithAggregatesFilter<"Stock"> | number | null
@@ -72678,6 +72769,9 @@ export namespace Prisma {
   }
 
   export type InventoryManagerCreateInput = {
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutInventoryManagersInput
@@ -72687,12 +72781,18 @@ export namespace Prisma {
   export type InventoryManagerUncheckedCreateInput = {
     id?: number
     userId: number
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
     stock_material?: InventoryStockEntryUncheckedCreateNestedManyWithoutInventoryInput
   }
 
   export type InventoryManagerUpdateInput = {
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutInventoryManagersNestedInput
@@ -72702,6 +72802,9 @@ export namespace Prisma {
   export type InventoryManagerUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     stock_material?: InventoryStockEntryUncheckedUpdateManyWithoutInventoryNestedInput
@@ -72710,11 +72813,17 @@ export namespace Prisma {
   export type InventoryManagerCreateManyInput = {
     id?: number
     userId: number
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type InventoryManagerUpdateManyMutationInput = {
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -72722,6 +72831,9 @@ export namespace Prisma {
   export type InventoryManagerUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -74621,7 +74733,9 @@ export namespace Prisma {
   }
 
   export type StockCreateInput = {
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74636,7 +74750,9 @@ export namespace Prisma {
   export type StockUncheckedCreateInput = {
     id?: number
     material_id: number
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74648,7 +74764,9 @@ export namespace Prisma {
   }
 
   export type StockUpdateInput = {
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74663,7 +74781,9 @@ export namespace Prisma {
   export type StockUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74677,7 +74797,9 @@ export namespace Prisma {
   export type StockCreateManyInput = {
     id?: number
     material_id: number
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74688,7 +74810,9 @@ export namespace Prisma {
   }
 
   export type StockUpdateManyMutationInput = {
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74701,7 +74825,9 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -77143,6 +77269,9 @@ export namespace Prisma {
   export type InventoryManagerCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    pincode?: SortOrder
+    district?: SortOrder
+    state?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -77155,6 +77284,9 @@ export namespace Prisma {
   export type InventoryManagerMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    pincode?: SortOrder
+    district?: SortOrder
+    state?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -77162,6 +77294,9 @@ export namespace Prisma {
   export type InventoryManagerMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    pincode?: SortOrder
+    district?: SortOrder
+    state?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -78665,7 +78800,9 @@ export namespace Prisma {
   export type StockCountOrderByAggregateInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrder
+    pincode?: SortOrder
+    State?: SortOrder
+    District?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -78678,7 +78815,6 @@ export namespace Prisma {
   export type StockAvgOrderByAggregateInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
     quantity?: SortOrder
@@ -78687,7 +78823,9 @@ export namespace Prisma {
   export type StockMaxOrderByAggregateInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrder
+    pincode?: SortOrder
+    State?: SortOrder
+    District?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -78700,7 +78838,9 @@ export namespace Prisma {
   export type StockMinOrderByAggregateInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrder
+    pincode?: SortOrder
+    State?: SortOrder
+    District?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -78713,7 +78853,6 @@ export namespace Prisma {
   export type StockSumOrderByAggregateInput = {
     id?: SortOrder
     material_id?: SortOrder
-    locationId?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
     quantity?: SortOrder
@@ -88949,6 +89088,9 @@ export namespace Prisma {
   }
 
   export type InventoryManagerCreateWithoutStock_materialInput = {
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutInventoryManagersInput
@@ -88957,6 +89099,9 @@ export namespace Prisma {
   export type InventoryManagerUncheckedCreateWithoutStock_materialInput = {
     id?: number
     userId: number
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -88967,7 +89112,9 @@ export namespace Prisma {
   }
 
   export type StockCreateWithoutInventoryStockEntriesInput = {
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -88981,7 +89128,9 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutInventoryStockEntriesInput = {
     id?: number
     material_id: number
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -89008,6 +89157,9 @@ export namespace Prisma {
   }
 
   export type InventoryManagerUpdateWithoutStock_materialInput = {
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutInventoryManagersNestedInput
@@ -89016,6 +89168,9 @@ export namespace Prisma {
   export type InventoryManagerUncheckedUpdateWithoutStock_materialInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -89032,7 +89187,9 @@ export namespace Prisma {
   }
 
   export type StockUpdateWithoutInventoryStockEntriesInput = {
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -89046,7 +89203,9 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutInventoryStockEntriesInput = {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -91256,7 +91415,9 @@ export namespace Prisma {
   }
 
   export type StockCreateWithoutMaterialInput = {
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -91269,7 +91430,9 @@ export namespace Prisma {
 
   export type StockUncheckedCreateWithoutMaterialInput = {
     id?: number
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -91506,7 +91669,9 @@ export namespace Prisma {
     NOT?: StockScalarWhereInput | StockScalarWhereInput[]
     id?: IntFilter<"Stock"> | number
     material_id?: IntFilter<"Stock"> | number
-    locationId?: IntNullableFilter<"Stock"> | number | null
+    pincode?: StringFilter<"Stock"> | string
+    State?: StringFilter<"Stock"> | string
+    District?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -94913,6 +95078,9 @@ export namespace Prisma {
   }
 
   export type InventoryManagerCreateWithoutUserInput = {
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
     stock_material?: InventoryStockEntryCreateNestedManyWithoutInventoryInput
@@ -94920,6 +95088,9 @@ export namespace Prisma {
 
   export type InventoryManagerUncheckedCreateWithoutUserInput = {
     id?: number
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
     stock_material?: InventoryStockEntryUncheckedCreateNestedManyWithoutInventoryInput
@@ -95350,6 +95521,9 @@ export namespace Prisma {
     NOT?: InventoryManagerScalarWhereInput | InventoryManagerScalarWhereInput[]
     id?: IntFilter<"InventoryManager"> | number
     userId?: IntFilter<"InventoryManager"> | number
+    pincode?: StringFilter<"InventoryManager"> | string
+    district?: StringFilter<"InventoryManager"> | string
+    state?: StringFilter<"InventoryManager"> | string
     createdAt?: DateTimeFilter<"InventoryManager"> | Date | string
     updatedAt?: DateTimeFilter<"InventoryManager"> | Date | string
   }
@@ -98338,7 +98512,9 @@ export namespace Prisma {
 
   export type StockCreateManyMaterialInput = {
     id?: number
-    locationId?: number | null
+    pincode: string
+    State: string
+    District: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -98476,7 +98652,9 @@ export namespace Prisma {
   }
 
   export type StockUpdateWithoutMaterialInput = {
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -98489,7 +98667,9 @@ export namespace Prisma {
 
   export type StockUncheckedUpdateWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -98502,7 +98682,9 @@ export namespace Prisma {
 
   export type StockUncheckedUpdateManyWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
+    pincode?: StringFieldUpdateOperationsInput | string
+    State?: StringFieldUpdateOperationsInput | string
+    District?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -99663,6 +99845,9 @@ export namespace Prisma {
 
   export type InventoryManagerCreateManyUserInput = {
     id?: number
+    pincode: string
+    district: string
+    state: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -99997,6 +100182,9 @@ export namespace Prisma {
   }
 
   export type InventoryManagerUpdateWithoutUserInput = {
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     stock_material?: InventoryStockEntryUpdateManyWithoutInventoryNestedInput
@@ -100004,6 +100192,9 @@ export namespace Prisma {
 
   export type InventoryManagerUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     stock_material?: InventoryStockEntryUncheckedUpdateManyWithoutInventoryNestedInput
@@ -100011,6 +100202,9 @@ export namespace Prisma {
 
   export type InventoryManagerUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    pincode?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
