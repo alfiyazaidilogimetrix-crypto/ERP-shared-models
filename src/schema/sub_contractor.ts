@@ -9,6 +9,8 @@ export const contractorProjectSchema = z.object({
   start_date: z.date().nullable().optional(),
   end_date: z.date().nullable().optional(),
   overall_budget: z.string().nullable().optional(),
+  from_chainage: z.string().nullable().optional(),
+  to_chainage: z.string().nullable().optional(),
 });
 
 export type ContractorProject = z.infer<typeof contractorProjectSchema>;

@@ -1,19 +1,20 @@
 import { z } from 'zod';
 import { stockStatusSchema } from './enums';
+
 // Base schemas
 export const stockSchema = z.object({
   id: z.number().int().positive().optional(),
-  material_id: z.number().int().positive().nullable().optional(),
+  material_id: z.number().int().positive(),
   locationId: z.number().int().positive().nullable().optional(),
 
-  status: z.enum(stockStatusSchema.options).default('in_stock'),
+  status: stockStatusSchema.default('IN_STOCK'),
   minimum_threshold_quantity: z
     .number()
     .int()
     .nonnegative()
     .nullable()
     .optional(),
-  current_stock: z.number().int().nonnegative().default(0),
+  current_stock: z.number().int().nonnegative().nullable().optional(),
   quantity: z.number().int().nonnegative().nullable().optional(),
   specifications: z.string().max(1000).nullable().optional(),
 

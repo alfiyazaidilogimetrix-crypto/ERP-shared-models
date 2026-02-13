@@ -28,6 +28,8 @@ model VendorSupplyManagement {
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
+
+    @@map("vendor_supply_management")
 }
 
 model DirectSupplyConfiguration {
@@ -40,6 +42,8 @@ model DirectSupplyConfiguration {
 
     supply  VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
     project Project                @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+    @@map("direct_supply_configuration")
 }
 
 model InventorySupplyConfiguration {
@@ -51,4 +55,6 @@ model InventorySupplyConfiguration {
     quality_check_status   String? // Accepted / Rejected / Pending
 
     supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
+
+    @@map("inventory_supply_configuration")
 }

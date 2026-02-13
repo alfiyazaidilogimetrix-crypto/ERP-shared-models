@@ -1,10 +1,12 @@
 model Unit {
-    id          Int        @id @default(autoincrement())
-    name        String
-    description String?
-    createdAt   DateTime   @default(now())
-    updatedAt   DateTime   @updatedAt
-    materials   Material[]
+    id         Int        @id @default(autoincrement())
+    name       String
+    createdAt  DateTime   @default(now())
+    updatedAt  DateTime   @updatedAt
+    materials  Material[]
+    activities Activity[]
+    scopes     Scope[]
+    dprs       DPR[]
 
     @@map("units")
 }

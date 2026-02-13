@@ -45,26 +45,6 @@ export { Prisma }
  */
 export type DPR = Prisma.DPRModel
 /**
- * Model DPRMaterialConsumption
- * 
- */
-export type DPRMaterialConsumption = Prisma.DPRMaterialConsumptionModel
-/**
- * Model DPRLabourConsumption
- * 
- */
-export type DPRLabourConsumption = Prisma.DPRLabourConsumptionModel
-/**
- * Model DPRLabour
- * 
- */
-export type DPRLabour = Prisma.DPRLabourModel
-/**
- * Model DPRMachineryUsage
- * 
- */
-export type DPRMachineryUsage = Prisma.DPRMachineryUsageModel
-/**
  * Model DPRFile
  * 
  */
@@ -105,10 +85,10 @@ export type PR = Prisma.PRModel
  */
 export type PRMaterialItem = Prisma.PRMaterialItemModel
 /**
- * Model Category
+ * Model Activity
  * 
  */
-export type Category = Prisma.CategoryModel
+export type Activity = Prisma.ActivityModel
 /**
  * Model Chainage_consumption_ledger
  * 
@@ -180,11 +160,6 @@ export type Labour = Prisma.LabourModel
  */
 export type LabourAttendance = Prisma.LabourAttendanceModel
 /**
- * Model Location
- * 
- */
-export type Location = Prisma.LocationModel
-/**
  * Model Material
  * 
  */
@@ -239,6 +214,11 @@ export type BOTSpecificDetails = Prisma.BOTSpecificDetailsModel
  * 
  */
 export type Role = Prisma.RoleModel
+/**
+ * Model Scope
+ * 
+ */
+export type Scope = Prisma.ScopeModel
 /**
  * Model Stock
  * 

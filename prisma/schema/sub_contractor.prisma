@@ -6,6 +6,8 @@ model ContractorProject {
   start_date             DateTime?
   end_date               DateTime?
   overall_budget         String?
+  from_chainage          String?
+  to_chainage            String?
 
   contractor Vendor            @relation(fields: [contractorId], references: [id])
   project    Project           @relation(fields: [projectId], references: [id])
@@ -23,4 +25,6 @@ model ContractorFiles {
   description         String?
   contractorProject   ContractorProject @relation(fields: [contractorProjectId], references: [id])
   file                File              @relation(fields: [file_id], references: [id])
+
+  @@map("contractor_files")
 }

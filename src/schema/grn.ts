@@ -1,24 +1,5 @@
 import { z } from 'zod';
-
-// Enums
-export const ReceiptStatus = z.enum([
-  'RECEIVED',
-  'ACCEPTED',
-  'REJECTED',
-  'PARTIALLY_ACCEPTED',
-  'PENDING',
-]);
-
-export const TransportMode = z.enum([
-  'ROAD',
-  'RAIL',
-  'SEA',
-  'AIR',
-  'SELF_PICKUP',
-]);
-
-export type ReceiptStatus = z.infer<typeof ReceiptStatus>;
-export type TransportMode = z.infer<typeof TransportMode>;
+import { receiptStatusSchema, transportModeSchema } from './enums';
 
 // GRN Material Receipt Schema
 export const grnMaterialReceiptSchema = z.object({
@@ -53,13 +34,14 @@ export const grnSchema = z.object({
   vehicle_number: z.string().nullable().optional(),
   driver_name: z.string().nullable().optional(),
   driver_contact: z.string().nullable().optional(),
-  transport_mode: TransportMode.nullable().optional(),
-  status: ReceiptStatus,
+  transport_mode: transportModeSchema.nullable().optional(),
+  status: receiptStatusSchema,
   received_date: z.date().or(z.string().pipe(z.coerce.date())),
   received_time: z.string().nullable().optional(),
   store_location: z.string().nullable().optional(),
   quality_check_completed: z.boolean().default(false),
   grn_remarks: z.string().nullable().optional(),
+  created_by_id: z.number().int().positive().nullable().optional(),
   material_receipts: z.array(grnMaterialReceiptSchema).optional(),
   grnfiles: z.array(grnFileSchema).optional(),
   created_at: z.date().optional(),

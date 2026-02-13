@@ -18,10 +18,10 @@ model Stock {
     quantity                   Int?
     specifications             String?
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    location              Location?             @relation(fields: [locationId], references: [id])
+    createdAt             DateTime              @default(now())
+    updatedAt             DateTime              @updatedAt
     material              Material?             @relation(fields: [material_id], references: [id])
     inventoryStockEntries InventoryStockEntry[]
+
+    @@map("stock")
 }

@@ -24,25 +24,22 @@ model Project {
     budget String?
     status ProjectStatus @default(PLANNED)
 
-    client           String?
-    description      String?
-    progress         Int? // 0–100 %
-    manager_id       Int?
-    project_manager  User?     @relation(fields: [manager_id], references: [id])
-    location_id      Int?
-    project_location Location? @relation(fields: [location_id], references: [id])
-
-    /**
-     * Relations based on project_type
-     */
-    ham_details HAMSpecificDetails?
-    epc_details EPCSpecificDetails?
-    bot_details BOTSpecificDetails?
-
-    /**
-     * For OTHER project type
-     */
-    other_details Json?
+    client          String?
+    description     String?
+    progress        Int? // 0–100 %
+    manager_id      Int?
+    project_manager User?               @relation(fields: [manager_id], references: [id])
+    district        String?
+    state           String?
+    pincode         String?
+    from_length     String?
+    to_length       String?
+    total_length    String?
+    total_chainage  String[]
+    ham_details     HAMSpecificDetails?
+    epc_details     EPCSpecificDetails?
+    bot_details     BOTSpecificDetails?
+    other_details   Json?
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
@@ -58,6 +55,8 @@ model Project {
     labourAttendances LabourAttendance[]
 
     inventoryHistories InventoryHistory[]
+
+    @@map("project")
 }
 
 model HAMSpecificDetails {
@@ -71,6 +70,8 @@ model HAMSpecificDetails {
     progress                   Int? // 0–100 %
 
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+    @@map("ham_specific_details")
 }
 
 model EPCSpecificDetails {
@@ -84,6 +85,8 @@ model EPCSpecificDetails {
     progress              Int? // 0–100 %
 
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+    @@map("epc_specific_details")
 }
 
 model BOTSpecificDetails {
@@ -95,4 +98,6 @@ model BOTSpecificDetails {
     transfer_condition              String?
 
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+    @@map("bot_specific_details")
 }

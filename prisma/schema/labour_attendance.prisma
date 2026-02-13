@@ -35,4 +35,5 @@ model LabourAttendance {
 
     @@index([labour_id, date])
     @@index([project_id])
+    @@map("labour_attendance")
 }

@@ -5,7 +5,7 @@ enum VendorStatus {
 }
 
 enum VendorType {
-    WORK_VENDOR
+    SUB_CONTRACTOR
     MATERIAL_SUPPLIER
 }
 
@@ -24,11 +24,6 @@ model Vendor {
     vendor_type VendorType?
     status      VendorStatus @default(ACTIVE)
 
-    category_id Int
-
-    // Relations
-    category Category @relation(fields: [category_id], references: [id])
-
     bankDetails      VendorBankDetails?
     financialDetails VendorFinancialDetails?
     otherDetails     VendorOtherDetails?
@@ -46,6 +41,8 @@ model Vendor {
     invoice_seller Invoice[] @relation("seller")
 
     invoice_consignee Invoice[] @relation("consignee")
+
+    @@map("vendor")
 }
 
 model VendorBankDetails {
@@ -58,14 +55,17 @@ model VendorBankDetails {
     bank_contact_number String?
 
     account_number String
+    ifsc_code      String
     micr_code      String?
     rtgs_code      String?
-    neft_code      String
+    neft_code      String?
 
     vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("vendor_bank_details")
 }
 
 model VendorFinancialDetails {
@@ -87,6 +87,8 @@ model VendorFinancialDetails {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("vendor_financial_details")
 }
 
 model VendorOtherDetails {
@@ -111,6 +113,8 @@ model VendorOtherDetails {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("vendor_other_details")
 }
 
 model VendorDocuments {
@@ -123,4 +127,6 @@ model VendorDocuments {
     file      File?    @relation(fields: [file_id], references: [id], onDelete: Cascade)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("vendor_documents")
 }

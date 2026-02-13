@@ -36,4 +36,5 @@ model DieselTransaction {
 
     @@index([project_id])
     @@index([transaction_type])
+    @@map("diesel_transactions")
 }

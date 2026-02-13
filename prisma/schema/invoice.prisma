@@ -15,17 +15,15 @@ model Invoice {
     amountSummaryId   Int?
     transportDetailId Int?
     auditDetailId     Int?
-    location_id       Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     // 🔗 RELATIONS
-    po            PO       @relation(fields: [po_id], references: [id])
-    seller        Vendor   @relation("seller", fields: [sellerId], references: [id])
-    buyer         String?
-    consignee     Vendor?  @relation("consignee", fields: [consigneeId], references: [id])
-    placeOfSupply Location @relation(fields: [location_id], references: [id])
+    po        PO      @relation(fields: [po_id], references: [id])
+    seller    Vendor  @relation("seller", fields: [sellerId], references: [id])
+    buyer     String?
+    consignee Vendor? @relation("consignee", fields: [consigneeId], references: [id])
 
     taxDetail       TaxDetail?
     amountSummary   InvoiceAmountSummary?
@@ -37,6 +35,8 @@ model Invoice {
     invoiceAuditId         Int?
     user                   User?         @relation(fields: [userId], references: [id])
     userId                 Int?
+
+    @@map("invoice")
 }
 
 model InvoiceItem {
@@ -56,6 +56,7 @@ model InvoiceItem {
     grnItem GRNMaterialReceipt @relation(fields: [grn_material_receipt_id], references: [id])
 
     @@index([grn_id])
+    @@map("invoice_item")
 }
 
 model TaxDetail {
@@ -74,6 +75,8 @@ model TaxDetail {
 
     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
     invoiceId Int?     @unique
+
+    @@map("tax_detail")
 }
 
 model InvoiceAmountSummary {
@@ -94,6 +97,8 @@ model InvoiceAmountSummary {
 
     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
     invoiceId Int?     @unique
+
+    @@map("invoice_amount_summary")
 }
 
 model TransportDetail {
@@ -115,6 +120,8 @@ model TransportDetail {
 
     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
     invoiceId Int?     @unique
+
+    @@map("transport_detail")
 }
 
 model InvoiceAudit {
@@ -129,4 +136,6 @@ model InvoiceAudit {
 
     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
     invoiceId Int?     @unique
+
+    @@map("invoice_audit")
 }

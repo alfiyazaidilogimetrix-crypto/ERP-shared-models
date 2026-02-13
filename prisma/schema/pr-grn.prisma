@@ -24,6 +24,7 @@ model PRGRN {
     grnfiles   PRGRNFile[]
 
     @@index([pr_id])
+    @@map("pr_grns")
 }
 
 model PRGRNMaterialReceipt {
@@ -41,6 +42,8 @@ model PRGRNMaterialReceipt {
     material    Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
+
+    @@map("pr_grn_material_receipt")
 }
 
 model PRGRNFile {
@@ -53,4 +56,5 @@ model PRGRNFile {
     file File  @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
     @@unique([grn_id, file_id])
+    @@map("pr_grn_files")
 }

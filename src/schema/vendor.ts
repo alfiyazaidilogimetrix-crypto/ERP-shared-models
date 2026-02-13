@@ -14,8 +14,6 @@ export const vendorSchema = z.object({
   vendor_type: vendorTypeSchema.nullable().optional(),
   status: vendorStatusSchema.default('ACTIVE'),
 
-  category_id: z.number().int().positive(),
-
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });
@@ -30,6 +28,7 @@ export const vendorBankDetailsSchema = z.object({
   bank_contact_number: z.string().max(15).nullable().optional(),
 
   account_number: z.string().min(9).max(18),
+  ifsc_code: z.string().min(1),
   micr_code: z
     .string()
     .regex(/^\d{9}$/)
@@ -40,7 +39,11 @@ export const vendorBankDetailsSchema = z.object({
     .regex(/^[A-Z]{4}0[A-Z0-9]{6}$/)
     .nullable()
     .optional(),
-  neft_code: z.string().regex(/^[A-Z]{4}0[A-Z0-9]{6}$/),
+  neft_code: z
+    .string()
+    .regex(/^[A-Z]{4}0[A-Z0-9]{6}$/)
+    .nullable()
+    .optional(),
 
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),

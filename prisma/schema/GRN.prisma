@@ -35,6 +35,7 @@ model GRN {
     invoiceItems      InvoiceItem[]
 
     @@index([po_id])
+    @@map("grn")
 }
 
 model GRNMaterialReceipt {
@@ -54,6 +55,8 @@ model GRNMaterialReceipt {
     created_at DateTime @default(now())
 
     invoiceItems InvoiceItem[]
+
+    @@map("grn_matrial_receipt")
 }
 
 model GRNFile {
@@ -66,4 +69,5 @@ model GRNFile {
     file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
     @@unique([grn_id, file_id])
+    @@map("grn_file")
 }

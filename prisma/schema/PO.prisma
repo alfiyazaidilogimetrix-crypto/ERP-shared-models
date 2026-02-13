@@ -53,6 +53,7 @@ model PO {
     @@index([pr_id])
     @@index([project_id])
     @@index([vendor_id])
+    @@map("pos")
 }
 
 model POOrderItem {
@@ -69,4 +70,6 @@ model POOrderItem {
     material Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
+
+    @@map("po_order_items")
 }

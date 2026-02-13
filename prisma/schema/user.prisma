@@ -31,4 +31,6 @@ model User {
     prgrns PRGRN[]
 
     grns GRN[]
+
+    @@map("users")
 }

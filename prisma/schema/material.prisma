@@ -1,23 +1,19 @@
 model Material {
-    id                         Int                      @id @default(autoincrement())
-    name                       String
-    material_code              String?                  @unique
-    categoryId                 Int?
-    unitId                     Int?
-    status                     String                   @default("active")
-    minimum_threshold_quantity Int?
-    unit_of_measure            String?
-    specifications             String?
-    createdAt                  DateTime                 @default(now())
-    updatedAt                  DateTime                 @updatedAt
-    category                   Category?                @relation(fields: [categoryId], references: [id])
-    unit                       Unit?                    @relation(fields: [unitId], references: [id])
-    prmaterialItems            PRMaterialItem[]
-    poorderItems               POOrderItem[]
-    grnmaterialReceipts        GRNMaterialReceipt[]
-    stocks                     Stock[]
-    dprmaterialConsumptions    DPRMaterialConsumption[]
-    prgrnmaterialReceipts      PRGRNMaterialReceipt[]
+    id                    Int                    @id @default(autoincrement())
+    name                  String
+    material_code         String?                @unique
+    activityId            Int?
+    unitId                Int?
+    createdAt             DateTime               @default(now())
+    updatedAt             DateTime               @updatedAt
+    activity              Activity?              @relation(fields: [activityId], references: [id])
+    unit                  Unit?                  @relation(fields: [unitId], references: [id])
+    prmaterialItems       PRMaterialItem[]
+    poorderItems          POOrderItem[]
+    grnmaterialReceipts   GRNMaterialReceipt[]
+    stocks                Stock[]
+    prgrnmaterialReceipts PRGRNMaterialReceipt[]
+    dprs                  DPR[]
 
     @@map("materials")
 }

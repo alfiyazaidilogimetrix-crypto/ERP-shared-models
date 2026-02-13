@@ -16,4 +16,6 @@ model File {
     contractorFiles ContractorFiles[]
 
     prgrnfiles PRGRNFile[]
+
+    @@map("files")
 }

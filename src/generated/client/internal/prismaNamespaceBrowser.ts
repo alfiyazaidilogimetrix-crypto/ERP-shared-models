@@ -52,10 +52,6 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   DPR: 'DPR',
-  DPRMaterialConsumption: 'DPRMaterialConsumption',
-  DPRLabourConsumption: 'DPRLabourConsumption',
-  DPRLabour: 'DPRLabour',
-  DPRMachineryUsage: 'DPRMachineryUsage',
   DPRFile: 'DPRFile',
   GRN: 'GRN',
   GRNMaterialReceipt: 'GRNMaterialReceipt',
@@ -64,7 +60,7 @@ export const ModelName = {
   POOrderItem: 'POOrderItem',
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
-  Category: 'Category',
+  Activity: 'Activity',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
   File: 'File',
@@ -79,7 +75,6 @@ export const ModelName = {
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
-  Location: 'Location',
   Material: 'Material',
   Module: 'Module',
   Permission: 'Permission',
@@ -91,6 +86,7 @@ export const ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   Role: 'Role',
+  Scope: 'Scope',
   Stock: 'Stock',
   ContractorProject: 'ContractorProject',
   ContractorFiles: 'ContractorFiles',
@@ -126,75 +122,24 @@ export const DPRScalarFieldEnum = {
   id: 'id',
   date: 'date',
   project_id: 'project_id',
-  weather_conditions: 'weather_conditions',
-  safety_incidents: 'safety_incidents',
-  remarks: 'remarks',
+  site: 'site',
+  chainage: 'chainage',
+  category: 'category',
+  activity_id: 'activity_id',
+  sub_activity_id: 'sub_activity_id',
+  number: 'number',
+  length: 'length',
+  width: 'width',
+  depth: 'depth',
+  unit_id: 'unit_id',
+  quantity: 'quantity',
+  plan_quantity: 'plan_quantity',
   submitted_by: 'submitted_by',
-  material_cost: 'material_cost',
-  labour_cost: 'labour_cost',
-  machinery_cost: 'machinery_cost',
-  total_cost: 'total_cost',
-  Dimension: 'Dimension',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
 export type DPRScalarFieldEnum = (typeof DPRScalarFieldEnum)[keyof typeof DPRScalarFieldEnum]
-
-
-export const DPRMaterialConsumptionScalarFieldEnum = {
-  id: 'id',
-  dpr_id: 'dpr_id',
-  material_id: 'material_id',
-  quantity: 'quantity',
-  rate: 'rate',
-  amount: 'amount',
-  chainage_from: 'chainage_from',
-  chainage_to: 'chainage_to',
-  created_at: 'created_at'
-} as const
-
-export type DPRMaterialConsumptionScalarFieldEnum = (typeof DPRMaterialConsumptionScalarFieldEnum)[keyof typeof DPRMaterialConsumptionScalarFieldEnum]
-
-
-export const DPRLabourConsumptionScalarFieldEnum = {
-  id: 'id',
-  dpr_id: 'dpr_id',
-  skill: 'skill',
-  hours: 'hours',
-  charges: 'charges',
-  chainage_from: 'chainage_from',
-  chainage_to: 'chainage_to',
-  created_at: 'created_at'
-} as const
-
-export type DPRLabourConsumptionScalarFieldEnum = (typeof DPRLabourConsumptionScalarFieldEnum)[keyof typeof DPRLabourConsumptionScalarFieldEnum]
-
-
-export const DPRLabourScalarFieldEnum = {
-  id: 'id',
-  dpr_labour_consumption_id: 'dpr_labour_consumption_id',
-  labour_id: 'labour_id'
-} as const
-
-export type DPRLabourScalarFieldEnum = (typeof DPRLabourScalarFieldEnum)[keyof typeof DPRLabourScalarFieldEnum]
-
-
-export const DPRMachineryUsageScalarFieldEnum = {
-  id: 'id',
-  dpr_id: 'dpr_id',
-  machine_code: 'machine_code',
-  machine_name: 'machine_name',
-  chainage_from: 'chainage_from',
-  chainage_to: 'chainage_to',
-  working_hours: 'working_hours',
-  fuel_type: 'fuel_type',
-  fuel_consumed: 'fuel_consumed',
-  fuel_amount: 'fuel_amount',
-  created_at: 'created_at'
-} as const
-
-export type DPRMachineryUsageScalarFieldEnum = (typeof DPRMachineryUsageScalarFieldEnum)[keyof typeof DPRMachineryUsageScalarFieldEnum]
 
 
 export const DPRFileScalarFieldEnum = {
@@ -322,15 +267,16 @@ export const PRMaterialItemScalarFieldEnum = {
 export type PRMaterialItemScalarFieldEnum = (typeof PRMaterialItemScalarFieldEnum)[keyof typeof PRMaterialItemScalarFieldEnum]
 
 
-export const CategoryScalarFieldEnum = {
+export const ActivityScalarFieldEnum = {
   id: 'id',
+  category_type: 'category_type',
   name: 'name',
-  description: 'description',
+  unit_id: 'unit_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
 
 
 export const Chainage_consumption_ledgerScalarFieldEnum = {
@@ -384,7 +330,6 @@ export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof File
 export const InventoryManagerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  location_id: 'location_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -404,7 +349,6 @@ export type InventoryStockEntryScalarFieldEnum = (typeof InventoryStockEntryScal
 export const InventoryHistoryScalarFieldEnum = {
   id: 'id',
   manager_id: 'manager_id',
-  location_id: 'location_id',
   project_id: 'project_id',
   total_amount: 'total_amount',
   items_data: 'items_data',
@@ -429,7 +373,6 @@ export const InvoiceScalarFieldEnum = {
   amountSummaryId: 'amountSummaryId',
   transportDetailId: 'transportDetailId',
   auditDetailId: 'auditDetailId',
-  location_id: 'location_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   buyer: 'buyer',
@@ -556,32 +499,12 @@ export const LabourAttendanceScalarFieldEnum = {
 export type LabourAttendanceScalarFieldEnum = (typeof LabourAttendanceScalarFieldEnum)[keyof typeof LabourAttendanceScalarFieldEnum]
 
 
-export const LocationScalarFieldEnum = {
-  id: 'id',
-  country: 'country',
-  state: 'state',
-  district: 'district',
-  tehsil: 'tehsil',
-  village: 'village',
-  address: 'address',
-  pincode: 'pincode',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
-
-
 export const MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
   material_code: 'material_code',
-  categoryId: 'categoryId',
+  activityId: 'activityId',
   unitId: 'unitId',
-  status: 'status',
-  minimum_threshold_quantity: 'minimum_threshold_quantity',
-  unit_of_measure: 'unit_of_measure',
-  specifications: 'specifications',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -669,7 +592,13 @@ export const ProjectScalarFieldEnum = {
   description: 'description',
   progress: 'progress',
   manager_id: 'manager_id',
-  location_id: 'location_id',
+  district: 'district',
+  state: 'state',
+  pincode: 'pincode',
+  from_length: 'from_length',
+  to_length: 'to_length',
+  total_length: 'total_length',
+  total_chainage: 'total_chainage',
   other_details: 'other_details',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -727,6 +656,19 @@ export const RoleScalarFieldEnum = {
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
+export const ScopeScalarFieldEnum = {
+  id: 'id',
+  activity_id: 'activity_id',
+  length: 'length',
+  unit_id: 'unit_id',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScopeScalarFieldEnum = (typeof ScopeScalarFieldEnum)[keyof typeof ScopeScalarFieldEnum]
+
+
 export const StockScalarFieldEnum = {
   id: 'id',
   material_id: 'material_id',
@@ -750,7 +692,9 @@ export const ContractorProjectScalarFieldEnum = {
   partnership_percentage: 'partnership_percentage',
   start_date: 'start_date',
   end_date: 'end_date',
-  overall_budget: 'overall_budget'
+  overall_budget: 'overall_budget',
+  from_chainage: 'from_chainage',
+  to_chainage: 'to_chainage'
 } as const
 
 export type ContractorProjectScalarFieldEnum = (typeof ContractorProjectScalarFieldEnum)[keyof typeof ContractorProjectScalarFieldEnum]
@@ -770,7 +714,6 @@ export type ContractorFilesScalarFieldEnum = (typeof ContractorFilesScalarFieldE
 export const UnitScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -807,7 +750,6 @@ export const VendorScalarFieldEnum = {
   registered_address: 'registered_address',
   vendor_type: 'vendor_type',
   status: 'status',
-  category_id: 'category_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -823,6 +765,7 @@ export const VendorBankDetailsScalarFieldEnum = {
   bank_address: 'bank_address',
   bank_contact_number: 'bank_contact_number',
   account_number: 'account_number',
+  ifsc_code: 'ifsc_code',
   micr_code: 'micr_code',
   rtgs_code: 'rtgs_code',
   neft_code: 'neft_code',

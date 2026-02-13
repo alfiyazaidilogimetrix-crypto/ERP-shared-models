@@ -1,0 +1,13 @@
+model Scope {
+    id          Int      @id @default(autoincrement())
+    activity_id Int
+    activity    Activity @relation(fields: [activity_id], references: [id])
+    length      Int
+    unit_id     Int
+    quantity    Int
+    unit        Unit     @relation(fields: [unit_id], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("scopes")
+}

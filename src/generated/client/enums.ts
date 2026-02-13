@@ -9,6 +9,15 @@
 * 🟢 You can import this file directly.
 */
 
+export const Site_type = {
+  LHS: 'LHS',
+  RHS: 'RHS',
+  BHS: 'BHS'
+} as const
+
+export type Site_type = (typeof Site_type)[keyof typeof Site_type]
+
+
 export const ReceiptStatus = {
   RECEIVED: 'RECEIVED',
   ACCEPTED: 'ACCEPTED',
@@ -163,7 +172,7 @@ export type VendorStatus = (typeof VendorStatus)[keyof typeof VendorStatus]
 
 
 export const VendorType = {
-  WORK_VENDOR: 'WORK_VENDOR',
+  SUB_CONTRACTOR: 'SUB_CONTRACTOR',
   MATERIAL_SUPPLIER: 'MATERIAL_SUPPLIER'
 } as const
 
