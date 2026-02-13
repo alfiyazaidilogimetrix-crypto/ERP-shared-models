@@ -50317,8 +50317,8 @@ export namespace Prisma {
     id: number | null
     material_id: number | null
     pincode: string | null
-    State: string | null
-    District: string | null
+    state: string | null
+    district: string | null
     status: $Enums.StockStatus | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50332,8 +50332,8 @@ export namespace Prisma {
     id: number | null
     material_id: number | null
     pincode: string | null
-    State: string | null
-    District: string | null
+    state: string | null
+    district: string | null
     status: $Enums.StockStatus | null
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50347,8 +50347,8 @@ export namespace Prisma {
     id: number
     material_id: number
     pincode: number
-    State: number
-    District: number
+    state: number
+    district: number
     status: number
     minimum_threshold_quantity: number
     current_stock: number
@@ -50380,8 +50380,8 @@ export namespace Prisma {
     id?: true
     material_id?: true
     pincode?: true
-    State?: true
-    District?: true
+    state?: true
+    district?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50395,8 +50395,8 @@ export namespace Prisma {
     id?: true
     material_id?: true
     pincode?: true
-    State?: true
-    District?: true
+    state?: true
+    district?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50410,8 +50410,8 @@ export namespace Prisma {
     id?: true
     material_id?: true
     pincode?: true
-    State?: true
-    District?: true
+    state?: true
+    district?: true
     status?: true
     minimum_threshold_quantity?: true
     current_stock?: true
@@ -50512,8 +50512,8 @@ export namespace Prisma {
     id: number
     material_id: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status: $Enums.StockStatus
     minimum_threshold_quantity: number | null
     current_stock: number | null
@@ -50546,8 +50546,8 @@ export namespace Prisma {
     id?: boolean
     material_id?: boolean
     pincode?: boolean
-    State?: boolean
-    District?: boolean
+    state?: boolean
+    district?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50564,8 +50564,8 @@ export namespace Prisma {
     id?: boolean
     material_id?: boolean
     pincode?: boolean
-    State?: boolean
-    District?: boolean
+    state?: boolean
+    district?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50580,8 +50580,8 @@ export namespace Prisma {
     id?: boolean
     material_id?: boolean
     pincode?: boolean
-    State?: boolean
-    District?: boolean
+    state?: boolean
+    district?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50596,8 +50596,8 @@ export namespace Prisma {
     id?: boolean
     material_id?: boolean
     pincode?: boolean
-    State?: boolean
-    District?: boolean
+    state?: boolean
+    district?: boolean
     status?: boolean
     minimum_threshold_quantity?: boolean
     current_stock?: boolean
@@ -50607,7 +50607,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "material_id" | "pincode" | "State" | "District" | "status" | "minimum_threshold_quantity" | "current_stock" | "quantity" | "specifications" | "createdAt" | "updatedAt", ExtArgs["result"]["stock"]>
+  export type StockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "material_id" | "pincode" | "state" | "district" | "status" | "minimum_threshold_quantity" | "current_stock" | "quantity" | "specifications" | "createdAt" | "updatedAt", ExtArgs["result"]["stock"]>
   export type StockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     material?: boolean | Stock$materialArgs<ExtArgs>
     inventoryStockEntries?: boolean | Stock$inventoryStockEntriesArgs<ExtArgs>
@@ -50630,8 +50630,8 @@ export namespace Prisma {
       id: number
       material_id: number
       pincode: string
-      State: string
-      District: string
+      state: string
+      district: string
       status: $Enums.StockStatus
       minimum_threshold_quantity: number | null
       current_stock: number | null
@@ -51067,8 +51067,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Stock", 'Int'>
     readonly material_id: FieldRef<"Stock", 'Int'>
     readonly pincode: FieldRef<"Stock", 'String'>
-    readonly State: FieldRef<"Stock", 'String'>
-    readonly District: FieldRef<"Stock", 'String'>
+    readonly state: FieldRef<"Stock", 'String'>
+    readonly district: FieldRef<"Stock", 'String'>
     readonly status: FieldRef<"Stock", 'StockStatus'>
     readonly minimum_threshold_quantity: FieldRef<"Stock", 'Int'>
     readonly current_stock: FieldRef<"Stock", 'Int'>
@@ -66750,8 +66750,8 @@ export namespace Prisma {
     id: 'id',
     material_id: 'material_id',
     pincode: 'pincode',
-    State: 'State',
-    District: 'District',
+    state: 'state',
+    district: 'district',
     status: 'status',
     minimum_threshold_quantity: 'minimum_threshold_quantity',
     current_stock: 'current_stock',
@@ -70443,8 +70443,8 @@ export namespace Prisma {
     id?: IntFilter<"Stock"> | number
     material_id?: IntFilter<"Stock"> | number
     pincode?: StringFilter<"Stock"> | string
-    State?: StringFilter<"Stock"> | string
-    District?: StringFilter<"Stock"> | string
+    state?: StringFilter<"Stock"> | string
+    district?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -70460,8 +70460,8 @@ export namespace Prisma {
     id?: SortOrder
     material_id?: SortOrder
     pincode?: SortOrder
-    State?: SortOrder
-    District?: SortOrder
+    state?: SortOrder
+    district?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrderInput | SortOrder
     current_stock?: SortOrderInput | SortOrder
@@ -70480,8 +70480,8 @@ export namespace Prisma {
     NOT?: StockWhereInput | StockWhereInput[]
     material_id?: IntFilter<"Stock"> | number
     pincode?: StringFilter<"Stock"> | string
-    State?: StringFilter<"Stock"> | string
-    District?: StringFilter<"Stock"> | string
+    state?: StringFilter<"Stock"> | string
+    district?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -70497,8 +70497,8 @@ export namespace Prisma {
     id?: SortOrder
     material_id?: SortOrder
     pincode?: SortOrder
-    State?: SortOrder
-    District?: SortOrder
+    state?: SortOrder
+    district?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrderInput | SortOrder
     current_stock?: SortOrderInput | SortOrder
@@ -70520,8 +70520,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Stock"> | number
     material_id?: IntWithAggregatesFilter<"Stock"> | number
     pincode?: StringWithAggregatesFilter<"Stock"> | string
-    State?: StringWithAggregatesFilter<"Stock"> | string
-    District?: StringWithAggregatesFilter<"Stock"> | string
+    state?: StringWithAggregatesFilter<"Stock"> | string
+    district?: StringWithAggregatesFilter<"Stock"> | string
     status?: EnumStockStatusWithAggregatesFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableWithAggregatesFilter<"Stock"> | number | null
     current_stock?: IntNullableWithAggregatesFilter<"Stock"> | number | null
@@ -74734,8 +74734,8 @@ export namespace Prisma {
 
   export type StockCreateInput = {
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74751,8 +74751,8 @@ export namespace Prisma {
     id?: number
     material_id: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74765,8 +74765,8 @@ export namespace Prisma {
 
   export type StockUpdateInput = {
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74782,8 +74782,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74798,8 +74798,8 @@ export namespace Prisma {
     id?: number
     material_id: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -74811,8 +74811,8 @@ export namespace Prisma {
 
   export type StockUpdateManyMutationInput = {
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -74826,8 +74826,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -78801,8 +78801,8 @@ export namespace Prisma {
     id?: SortOrder
     material_id?: SortOrder
     pincode?: SortOrder
-    State?: SortOrder
-    District?: SortOrder
+    state?: SortOrder
+    district?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -78824,8 +78824,8 @@ export namespace Prisma {
     id?: SortOrder
     material_id?: SortOrder
     pincode?: SortOrder
-    State?: SortOrder
-    District?: SortOrder
+    state?: SortOrder
+    district?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -78839,8 +78839,8 @@ export namespace Prisma {
     id?: SortOrder
     material_id?: SortOrder
     pincode?: SortOrder
-    State?: SortOrder
-    District?: SortOrder
+    state?: SortOrder
+    district?: SortOrder
     status?: SortOrder
     minimum_threshold_quantity?: SortOrder
     current_stock?: SortOrder
@@ -89113,8 +89113,8 @@ export namespace Prisma {
 
   export type StockCreateWithoutInventoryStockEntriesInput = {
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -89129,8 +89129,8 @@ export namespace Prisma {
     id?: number
     material_id: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -89188,8 +89188,8 @@ export namespace Prisma {
 
   export type StockUpdateWithoutInventoryStockEntriesInput = {
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -89204,8 +89204,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     material_id?: IntFieldUpdateOperationsInput | number
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -91416,8 +91416,8 @@ export namespace Prisma {
 
   export type StockCreateWithoutMaterialInput = {
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -91431,8 +91431,8 @@ export namespace Prisma {
   export type StockUncheckedCreateWithoutMaterialInput = {
     id?: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -91670,8 +91670,8 @@ export namespace Prisma {
     id?: IntFilter<"Stock"> | number
     material_id?: IntFilter<"Stock"> | number
     pincode?: StringFilter<"Stock"> | string
-    State?: StringFilter<"Stock"> | string
-    District?: StringFilter<"Stock"> | string
+    state?: StringFilter<"Stock"> | string
+    district?: StringFilter<"Stock"> | string
     status?: EnumStockStatusFilter<"Stock"> | $Enums.StockStatus
     minimum_threshold_quantity?: IntNullableFilter<"Stock"> | number | null
     current_stock?: IntNullableFilter<"Stock"> | number | null
@@ -98513,8 +98513,8 @@ export namespace Prisma {
   export type StockCreateManyMaterialInput = {
     id?: number
     pincode: string
-    State: string
-    District: string
+    state: string
+    district: string
     status?: $Enums.StockStatus
     minimum_threshold_quantity?: number | null
     current_stock?: number | null
@@ -98653,8 +98653,8 @@ export namespace Prisma {
 
   export type StockUpdateWithoutMaterialInput = {
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -98668,8 +98668,8 @@ export namespace Prisma {
   export type StockUncheckedUpdateWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
@@ -98683,8 +98683,8 @@ export namespace Prisma {
   export type StockUncheckedUpdateManyWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
     pincode?: StringFieldUpdateOperationsInput | string
-    State?: StringFieldUpdateOperationsInput | string
-    District?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
     status?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     minimum_threshold_quantity?: NullableIntFieldUpdateOperationsInput | number | null
     current_stock?: NullableIntFieldUpdateOperationsInput | number | null
