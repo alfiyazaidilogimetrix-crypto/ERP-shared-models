@@ -1,0 +1,1183 @@
+enum Site_type {
+  LHS
+  RHS
+  BHS
+}
+
+model DPR {
+  id Int @id @default(autoincrement())
+
+  date DateTime
+
+  project_id      Int
+  site            Site_type
+  chainage        String[]
+  category        String
+  activity_id     Int
+  activity        Activity  @relation(fields: [activity_id], references: [id], onDelete: Cascade)
+  sub_activity_id Int
+  sub_activity    Material  @relation(fields: [sub_activity_id], references: [id], onDelete: Cascade)
+  number          Int
+  length          Int
+  width           Int
+  depth           Int
+  unit_id         Int
+  unit            Unit      @relation(fields: [unit_id], references: [id], onDelete: Cascade)
+  quantity        Int
+  plan_quantity   Int
+  submitted_by    Int
+  project         Project   @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  user            User      @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  dprfiles   DPRFile[]
+
+  @@index([project_id])
+  @@index([date])
+  @@map("dprs")
+}
+
+model DPRFile {
+  id      Int @id @default(autoincrement())
+  dpr_id  Int
+  file_id Int
+
+  dpr  DPR  @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+  file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+  @@unique([dpr_id, file_id])
+  @@map("dpr_files")
+}
+
+enum ReceiptStatus {
+  RECEIVED
+  ACCEPTED
+  REJECTED
+  PARTIALLY_ACCEPTED
+  PENDING
+}
+
+model GRN {
+  id Int @id @default(autoincrement())
+
+  po_id             Int
+  gate_entry_number String?
+  vehicle_number    String?
+  driver_name       String?
+  driver_contact    String?
+
+  transport_mode TransportMode?
+  status         ReceiptStatus
+  received_date  DateTime
+  received_time  String?
+
+  store_location String?
+
+  quality_check_completed Boolean @default(false)
+  grn_remarks             String?
+
+  material_receipts GRNMaterialReceipt[]
+  purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
+  created_by_id     Int?
+  created_by        User?                @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+  created_at        DateTime             @default(now())
+  updated_at        DateTime             @updatedAt
+  grnfiles          GRNFile[]
+  invoiceItems      InvoiceItem[]
+
+  @@index([po_id])
+  @@map("grn")
+}
+
+model GRNMaterialReceipt {
+  id Int @id @default(autoincrement())
+
+  grn_id      Int
+  material_id Int
+  ordered     Int
+  chainage    String?
+  quality     String? // Good / Damaged / Failed Test etc.
+  accepted    Int
+  rejected    Int
+  received    Int
+  grn         GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  material    Material @relation(fields: [material_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  invoiceItems InvoiceItem[]
+
+  @@map("grn_matrial_receipt")
+}
+
+model GRNFile {
+  id Int @id @default(autoincrement())
+
+  grn_id  Int
+  file_id Int
+
+  grn  GRN  @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+  @@unique([grn_id, file_id])
+  @@map("grn_file")
+}
+
+enum POStatus {
+  DRAFT
+  ISSUED
+  PARTIALLY_DELIVERED
+  DELIVERED
+  CANCELLED
+  CLOSED
+}
+
+enum TransportMode {
+  ROAD
+  RAIL
+  SEA
+  AIR
+  SELF_PICKUP
+}
+
+model PO {
+  id Int @id @default(autoincrement())
+
+  pr_id      Int
+  project_id Int
+  vendor_id  Int
+
+  po_code                String    @unique
+  po_date                DateTime  @default(now())
+  expected_delivery_date DateTime?
+
+  transport_mode TransportMode?
+
+  total_amount String
+
+  po_status POStatus @default(DRAFT)
+
+  payment_terms  String?
+  delivery_terms String?
+
+  shipping_address String?
+  billing_address  String?
+
+  remarks String?
+
+  order_items             POOrderItem[]
+  pr                      PR                       @relation(fields: [pr_id], references: [id])
+  project                 Project                  @relation(fields: [project_id], references: [id])
+  vendor                  Vendor                   @relation(fields: [vendor_id], references: [id])
+  created_at              DateTime                 @default(now())
+  updated_at              DateTime                 @updatedAt
+  grns                    GRN[]
+  vendorSupplyManagements VendorSupplyManagement[]
+  invoices                Invoice[]
+
+  @@index([pr_id])
+  @@index([project_id])
+  @@index([vendor_id])
+  @@map("pos")
+}
+
+model POOrderItem {
+  id Int @id @default(autoincrement())
+
+  po_id       Int
+  material_id Int
+
+  quantity String
+  rate     String
+  amount   String
+
+  po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
+  material Material @relation(fields: [material_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@map("po_order_items")
+}
+
+enum PRStatus {
+  DRAFT // PR created but not submitted
+  SUBMITTED // PR submitted by requester
+  INVENTORY_CHECK // Inventory manager checking availability
+  PARTIAL_AVAILABLE // Some items available, some not
+  PROCUREMENT_REQUIRED // At least one item not available → procurement needed
+  APPROVED // Approved for issue / purchase
+  REJECTED
+  CLOSED // Fully issued (after stock / purchase)
+}
+
+enum UrgencyLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum PRType {
+  INVENTORY // Material issued directly from stock
+  PROCUREMENT // Material not available → purchase required
+  NONE // Default value
+}
+
+model PR {
+  id            Int          @id @default(autoincrement())
+  project_id    Int
+  pr_code       String       @unique
+  pr_type       PRType       @default(NONE)
+  urgency_level UrgencyLevel
+  status        PRStatus     @default(DRAFT)
+
+  remarks String?
+
+  user_id       Int? // Created by
+  approved_by   Int? // Approver (User ID)
+  send_to       Int?
+  user          User? @relation("CreatedBy", fields: [user_id], references: [id])
+  approval_user User? @relation("approvalUser", fields: [send_to], references: [id])
+  approvedUser  User? @relation("ApprovedBy", fields: [approved_by], references: [id])
+
+  material_items PRMaterialItem[]
+  project        Project          @relation(fields: [project_id], references: [id])
+  created_at     DateTime         @default(now())
+  updated_at     DateTime         @updatedAt
+  pos            PO[]
+  prgrns         PRGRN[]
+
+  @@index([project_id])
+  @@index([user_id])
+  @@map("prs")
+}
+
+model PRMaterialItem {
+  id    Int @id @default(autoincrement())
+  pr_id Int
+
+  material_id      Int
+  quantity         String
+  required_date    DateTime
+  is_approved      Boolean  @default(false)
+  approved_qty     String?
+  approval_remarks String?
+
+  pr       PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+  material Material @relation(fields: [material_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@map("pr_material_items")
+}
+
+model Activity {
+  id            Int        @id @default(autoincrement())
+  category_type String
+  name          String
+  unit_id       Int
+  unit          Unit       @relation(fields: [unit_id], references: [id])
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  materials     Material[]
+  scopes        Scope[]
+  dprs          DPR[]
+
+  @@map("activities")
+}
+
+model Chainage_consumption_ledger {
+  id            Int      @id @default(autoincrement())
+  chainage_data Json
+  projectId     Int
+  project       Project  @relation(fields: [projectId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("chainage_consumption_ledger")
+}
+
+enum DieselTransactionType {
+  DIESEL_RECEIPT
+  DIESEL_ISSUE
+}
+
+model DieselTransaction {
+  id Int @id @default(autoincrement())
+
+  transaction_type DieselTransactionType
+
+  date       DateTime
+  project_id Int
+
+  /**
+   * -------- Diesel Receipt Fields --------
+   */
+  vendor_id      Int?
+  invoice_number String?
+  quantity       String? // in litres
+  rate_per_litre String?
+  total_amount   String?
+
+  /**
+   * -------- Diesel Issue Fields --------
+   */
+  equipment_name       String?
+  vehicle_number       String?
+  purpose              String?
+  issue_rate_per_litre String?
+  remarks              String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  vendor     Vendor?  @relation(fields: [vendor_id], references: [id])
+  project    Project  @relation(fields: [project_id], references: [id])
+
+  @@index([project_id])
+  @@index([transaction_type])
+  @@map("diesel_transactions")
+}
+
+model File {
+  id           Int      @id @default(autoincrement())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  filePath     String
+  fileContent  Bytes
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  users           User[]
+  dprfiles        DPRFile[]
+  grnfiles        GRNFile[]
+  vendorDocuments VendorDocuments[]
+  contractorFiles ContractorFiles[]
+
+  prgrnfiles PRGRNFile[]
+
+  @@map("files")
+}
+
+model InventoryManager {
+  id     Int  @id @default(autoincrement())
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stock_material InventoryStockEntry[]
+
+  @@map("inventory_manager")
+}
+
+model InventoryStockEntry {
+  id          Int @id @default(autoincrement())
+  inventoryId Int
+  stockId     Int
+
+  inventory InventoryManager @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+  stock     Stock            @relation(fields: [stockId], references: [id], onDelete: Cascade)
+
+  @@unique([inventoryId, stockId])
+  @@map("inventory_stock_entry")
+}
+
+model InventoryHistory {
+  id Int @id @default(autoincrement())
+
+  manager_id   Int
+  project_id   Int
+  total_amount Float?
+  items_data   Json
+
+  manager User    @relation(fields: [manager_id], references: [id])
+  project Project @relation(fields: [project_id], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("inventory_history")
+}
+
+model Invoice {
+  id Int @id @default(autoincrement())
+
+  invoiceNumber String   @unique
+  invoiceDate   DateTime
+
+  invoiceType       String // TAX_INVOICE
+  reverseCharge     Boolean @default(false)
+  currency          String  @default("INR")
+  // 🔗 CORE LINK
+  po_id             Int
+  sellerId          Int
+  consigneeId       Int?
+  taxDetailId       Int?
+  amountSummaryId   Int?
+  transportDetailId Int?
+  auditDetailId     Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 🔗 RELATIONS
+  po        PO      @relation(fields: [po_id], references: [id])
+  seller    Vendor  @relation("seller", fields: [sellerId], references: [id])
+  buyer     String?
+  consignee Vendor? @relation("consignee", fields: [consigneeId], references: [id])
+
+  taxDetail       TaxDetail?
+  amountSummary   InvoiceAmountSummary?
+  transportDetail TransportDetail?
+  auditDetail     InvoiceAudit?
+
+  items                  InvoiceItem[]
+  invoiceAmountSummaryId Int?
+  invoiceAuditId         Int?
+  user                   User?         @relation(fields: [userId], references: [id])
+  userId                 Int?
+
+  @@map("invoice")
+}
+
+model InvoiceItem {
+  id Int @id @default(autoincrement())
+
+  invoiceId               Int
+  grn_id                  Int
+  grn_material_receipt_id Int
+
+  basicAmount          Float?
+  taxableValue         Float?
+  freightRatePerUnit   Float?
+  unloadingRatePerUnit Float?
+
+  invoice Invoice            @relation(fields: [invoiceId], references: [id])
+  grn     GRN                @relation(fields: [grn_id], references: [id])
+  grnItem GRNMaterialReceipt @relation(fields: [grn_material_receipt_id], references: [id])
+
+  @@index([grn_id])
+  @@map("invoice_item")
+}
+
+model TaxDetail {
+  id Int @id @default(autoincrement())
+
+  cgstRate   Float?
+  cgstAmount Float?
+
+  sgstRate   Float?
+  sgstAmount Float?
+
+  igstRate   Float?
+  igstAmount Float?
+
+  totalTax Float?
+
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId Int?     @unique
+
+  @@map("tax_detail")
+}
+
+model InvoiceAmountSummary {
+  id Int @id @default(autoincrement())
+
+  goodsValue   Float?
+  taxableValue Float?
+
+  freightAmount   Float?
+  unloadingAmount Float?
+
+  roundOff Float?
+
+  totalTaxAmount    Float?
+  totalInvoiceValue Float?
+
+  amountInWords String
+
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId Int?     @unique
+
+  @@map("invoice_amount_summary")
+}
+
+model TransportDetail {
+  id Int @id @default(autoincrement())
+
+  transporterName  String
+  transporterGstin String?
+
+  vehicleNumber String?
+  wagonNumber   String?
+
+  transportMode String // ROAD / RAIL
+  lrRrNo        String?
+  lrRrDate      DateTime?
+
+  dispatchFrom String?
+  destination  String?
+  distanceKm   Int?
+
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId Int?     @unique
+
+  @@map("transport_detail")
+}
+
+model InvoiceAudit {
+  id Int @id @default(autoincrement())
+
+  preparedBy   String?
+  checkedBy    String?
+  authorizedBy String?
+
+  declaration     String?
+  termsConditions String?
+
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId Int?     @unique
+
+  @@map("invoice_audit")
+}
+
+enum LabourStatus {
+  ACTIVE
+  INACTIVE
+  LEFT
+  BLACKLISTED
+}
+
+enum LabourType {
+  DIRECT
+  CONTRACT
+}
+
+model Labour {
+  id Int @id @default(autoincrement())
+
+  labour_name String
+  labour_code String @unique
+
+  labour_type LabourType
+  skill       String
+
+  phone_number  String?
+  aadhar_number String? @unique
+  address       String?
+
+  joining_date DateTime?
+  status       LabourStatus @default(ACTIVE)
+
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @updatedAt
+  labourAttendances LabourAttendance[]
+
+  @@index([labour_type])
+  @@index([status])
+  @@map("labours")
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  HALF_DAY
+  ON_LEAVE
+}
+
+model LabourAttendance {
+  id String @id @default(uuid())
+
+  labour_id  Int
+  project_id Int
+
+  date           DateTime  @db.Date
+  check_in_time  DateTime?
+  check_out_time DateTime?
+
+  total_working_hours Float?
+  field_working_hours Float? // actual hours worked on site
+  overtime_hours      Float?
+
+  status AttendanceStatus
+
+  chainage_from String?
+  chainage_to   String?
+
+  remarks String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // Relations (optional but recommended)
+  labour  Labour  @relation(fields: [labour_id], references: [id])
+  project Project @relation(fields: [project_id], references: [id])
+
+  @@index([labour_id, date])
+  @@index([project_id])
+  @@map("labour_attendance")
+}
+
+model Material {
+  id                    Int                    @id @default(autoincrement())
+  name                  String
+  material_code         String?                @unique
+  activityId            Int?
+  unitId                Int?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  activity              Activity?              @relation(fields: [activityId], references: [id])
+  unit                  Unit?                  @relation(fields: [unitId], references: [id])
+  prmaterialItems       PRMaterialItem[]
+  poorderItems          POOrderItem[]
+  grnmaterialReceipts   GRNMaterialReceipt[]
+  stocks                Stock[]
+  prgrnmaterialReceipts PRGRNMaterialReceipt[]
+  dprs                  DPR[]
+
+  @@map("materials")
+}
+
+model Module {
+  id          Int          @id @default(autoincrement())
+  Name        String
+  description String?
+  permissions Permission[] @relation("PermissionModules")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("modules")
+}
+
+model Permission {
+  id      Int      @id @default(autoincrement())
+  action  String[]
+  modules Module[] @relation("PermissionModules")
+  roles   Role[]   @relation("RolePermissions")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("permissions")
+}
+
+model PRGRN {
+  id Int @id @default(autoincrement())
+
+  pr_id             Int
+  gate_entry_number String?
+  vehicle_number    String?
+  driver_name       String?
+  driver_contact    String?
+
+  transport_mode          TransportMode?
+  status                  ReceiptStatus
+  received_date           DateTime
+  received_time           String?
+  quality_check_completed Boolean        @default(false)
+  grn_remarks             String?
+
+  material_receipts PRGRNMaterialReceipt[]
+  purchase_request  PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+  created_by_id     Int?
+  created_by        User?                  @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  grnfiles   PRGRNFile[]
+
+  @@index([pr_id])
+  @@map("pr_grns")
+}
+
+model PRGRNMaterialReceipt {
+  id Int @id @default(autoincrement())
+
+  grn_id      Int
+  material_id Int
+  ordered     Int
+  chainage    String?
+  quality     String?
+  accepted    Int
+  rejected    Int
+  received    Int
+  grn         PRGRN    @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  material    Material @relation(fields: [material_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@map("pr_grn_material_receipt")
+}
+
+model PRGRNFile {
+  id Int @id @default(autoincrement())
+
+  grn_id  Int
+  file_id Int
+
+  grn  PRGRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  file File  @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+  @@unique([grn_id, file_id])
+  @@map("pr_grn_files")
+}
+
+enum ProjectType {
+  HAM
+  EPC
+  BOT
+  OTHER
+}
+
+enum ProjectStatus {
+  PLANNED
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+model Project {
+  id           Int         @id @default(autoincrement())
+  project_type ProjectType
+  project_name String
+  project_code String
+  start_date   DateTime?
+  end_date     DateTime?
+
+  budget String?
+  status ProjectStatus @default(PLANNED)
+
+  client          String?
+  description     String?
+  progress        Int? // 0–100 %
+  manager_id      Int?
+  project_manager User?               @relation(fields: [manager_id], references: [id])
+  district        String?
+  state           String?
+  pincode         String?
+  from_length     String?
+  to_length       String?
+  total_length    String?
+  total_chainage  String[]
+  ham_details     HAMSpecificDetails?
+  epc_details     EPCSpecificDetails?
+  bot_details     BOTSpecificDetails?
+  other_details   Json?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  directSupplyConfigurations DirectSupplyConfiguration[]
+  sub_contractors            ContractorProject[]
+  chainageConsumptionLedgers Chainage_consumption_ledger[]
+  prs                        PR[]
+  pos                        PO[]
+  dieselTransactions         DieselTransaction[]
+  dprs                       DPR[]
+
+  labourAttendances LabourAttendance[]
+
+  inventoryHistories InventoryHistory[]
+
+  @@map("project")
+}
+
+model HAMSpecificDetails {
+  id         Int @id @default(autoincrement())
+  project_id Int @unique
+
+  annuity_amount             String?
+  annuity_period             Int? // in years
+  construction_period        Int? // in months
+  maintenance_responsibility String?
+  progress                   Int? // 0–100 %
+
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@map("ham_specific_details")
+}
+
+model EPCSpecificDetails {
+  id         Int @id @default(autoincrement())
+  project_id Int @unique
+
+  engineering_scope     String?
+  procurement_budget    String?
+  construction_timeline String?
+  performance_guarantee String?
+  progress              Int? // 0–100 %
+
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@map("epc_specific_details")
+}
+
+model BOTSpecificDetails {
+  id                              Int     @id @default(autoincrement())
+  project_id                      Int     @unique
+  concession_period               Int? // in years
+  estimated_operating_cost        String? // per year
+  toll_revenue_collection_enabled Boolean @default(false)
+  transfer_condition              String?
+
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@map("bot_specific_details")
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String?
+  users       User[]
+
+  permissions Permission[] @relation("RolePermissions")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("roles")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// mcxc
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Provider {
+  credentials
+  google
+}
+
+model Scope {
+  id          Int      @id @default(autoincrement())
+  activity_id Int
+  activity    Activity @relation(fields: [activity_id], references: [id])
+  length      Int
+  unit_id     Int
+  quantity    Int
+  unit        Unit     @relation(fields: [unit_id], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("scopes")
+}
+
+enum StockStatus {
+  IN_STOCK
+  LOW_STOCK
+  OUT_OF_STOCK
+  RESERVED
+  DAMAGED
+  DISPOSED
+}
+
+model Stock {
+  id          Int  @id @default(autoincrement())
+  material_id Int
+  locationId  Int?
+
+  status                     StockStatus @default(IN_STOCK)
+  minimum_threshold_quantity Int?
+  current_stock              Int?
+  quantity                   Int?
+  specifications             String?
+
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  material              Material?             @relation(fields: [material_id], references: [id])
+  inventoryStockEntries InventoryStockEntry[]
+
+  @@map("stock")
+}
+
+model ContractorProject {
+  id                     Int       @id @default(autoincrement())
+  contractorId           Int
+  projectId              Int
+  partnership_percentage String?
+  start_date             DateTime?
+  end_date               DateTime?
+  overall_budget         String?
+  from_chainage          String?
+  to_chainage            String?
+
+  contractor Vendor            @relation(fields: [contractorId], references: [id])
+  project    Project           @relation(fields: [projectId], references: [id])
+  reports    ContractorFiles[]
+
+  @@unique([contractorId, projectId])
+  @@map("contractor_projects")
+}
+
+model ContractorFiles {
+  id                  Int               @id @default(autoincrement())
+  contractorProjectId Int
+  file_id             Int
+  report_type         String
+  description         String?
+  contractorProject   ContractorProject @relation(fields: [contractorProjectId], references: [id])
+  file                File              @relation(fields: [file_id], references: [id])
+
+  @@map("contractor_files")
+}
+
+model Unit {
+  id         Int        @id @default(autoincrement())
+  name       String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  materials  Material[]
+  activities Activity[]
+  scopes     Scope[]
+  dprs       DPR[]
+
+  @@map("units")
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  name              String
+  email             String   @unique
+  emailVerified     Boolean  @default(false)
+  password          String
+  fileId            Int?
+  profileImage      File?    @relation(fields: [fileId], references: [id])
+  original_password String?
+  mobileNumber      String?
+  roleId            Int?
+  role              Role?    @relation(fields: [roleId], references: [id])
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  provider          Provider @default(credentials)
+  dprs              DPR[]
+  prs_created_by    PR[]     @relation("CreatedBy")
+
+  prs_approved_by PR[] @relation("ApprovedBy")
+
+  projects Project[]
+
+  inventoryManagers InventoryManager[]
+
+  prs PR[] @relation("approvalUser")
+
+  inventoryHistories InventoryHistory[]
+
+  invoices Invoice[]
+
+  prgrns PRGRN[]
+
+  grns GRN[]
+
+  @@map("users")
+}
+
+enum VendorStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum VendorType {
+  SUB_CONTRACTOR
+  MATERIAL_SUPPLIER
+}
+
+model Vendor {
+  id Int @id @default(autoincrement())
+
+  // Vendor Details
+  vendor_name        String
+  proprietor_name    String?
+  contact_person     String?
+  contact_number     String
+  email_address      String?
+  address            String
+  registered_address String?
+
+  vendor_type VendorType?
+  status      VendorStatus @default(ACTIVE)
+
+  bankDetails      VendorBankDetails?
+  financialDetails VendorFinancialDetails?
+  otherDetails     VendorOtherDetails?
+  documents        VendorDocuments[]
+
+  supplies           VendorSupplyManagement[]
+  pos                PO[]
+  dieselTransactions DieselTransaction[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  contractorProjects ContractorProject[]
+
+  invoice_seller Invoice[] @relation("seller")
+
+  invoice_consignee Invoice[] @relation("consignee")
+
+  @@map("vendor")
+}
+
+model VendorBankDetails {
+  id       Int @id @default(autoincrement())
+  vendorId Int @unique
+
+  bank_name           String
+  branch_name         String?
+  bank_address        String?
+  bank_contact_number String?
+
+  account_number String
+  ifsc_code      String
+  micr_code      String?
+  rtgs_code      String?
+  neft_code      String?
+
+  vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vendor_bank_details")
+}
+
+model VendorFinancialDetails {
+  id       Int @id @default(autoincrement())
+  vendorId Int @unique
+
+  registration_number String?
+  pan_number          String
+  esi_number          String?
+  pf_number           String?
+  gst_number          String?
+  gst_state           String?
+
+  annual_turnover       String?
+  audited_balance_years String?
+  yearly_work_capacity  String?
+
+  vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vendor_financial_details")
+}
+
+model VendorOtherDetails {
+  id       Int @id @default(autoincrement())
+  vendorId Int @unique
+
+  organization_type   String?
+  total_team_size     String?
+  plant_and_machinery String?
+  organization_chart  String?
+
+  interested_other_work String?
+  association_status    String?
+  geographical_presence String?
+  major_clients         String?
+
+  sop_qap_signoff     String?
+  sop_quality_manual  String?
+  relative_experience String?
+
+  vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vendor_other_details")
+}
+
+model VendorDocuments {
+  id            Int     @id @default(autoincrement())
+  vendorId      Int
+  file_id       Int?
+  document_type String?
+
+  vendor    Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  file      File?    @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vendor_documents")
+}
+
+enum SupplyStatus {
+  PENDING // PO created, supply not started
+  APPROVED // Approved for dispatch
+  IN_TRANSIT // Vendor dispatched material
+  PARTIALLY_RECEIVED
+  RECEIVED // Fully received
+  REJECTED
+}
+
+enum SupplyType {
+  TO_INVENTORY
+  DIRECT_TO_SITE
+}
+
+model VendorSupplyManagement {
+  id Int @id @default(autoincrement())
+
+  vendor_id               Int
+  supply_type             SupplyType
+  po_id                   Int?
+  amount                  String
+  payment_terms           String?
+  status                  SupplyStatus                  @default(PENDING)
+  direct_supply_config    DirectSupplyConfiguration?
+  inventory_supply_config InventorySupplyConfiguration?
+  vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+  po                      PO?                           @relation(fields: [po_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("vendor_supply_management")
+}
+
+model DirectSupplyConfiguration {
+  id                Int     @id @default(autoincrement())
+  supply_id         Int     @unique
+  project_id        Int
+  chainage_location String?
+  delivery_location String?
+  fob_destination   String?
+
+  supply  VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
+  project Project                @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@map("direct_supply_configuration")
+}
+
+model InventorySupplyConfiguration {
+  id                     Int       @id @default(autoincrement())
+  supply_id              Int       @unique
+  warehouse_location     String?
+  expected_delivery_date DateTime?
+  batch_number           String?
+  quality_check_status   String? // Accepted / Rejected / Pending
+
+  supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
+
+  @@map("inventory_supply_configuration")
+}
