@@ -7,27 +7,27 @@ enum Site_type {
 model DPR {
     id Int @id @default(autoincrement())
 
-    date DateTime
+    date         DateTime
+    project_id   Int
+    submitted_by Int
 
-    project_id      Int
-    site            Site_type
-    chainage        String[]
-    category        String
-    activity_id     Int
-    activity        Activity  @relation(fields: [activity_id], references: [id], onDelete: Cascade)
-    sub_activity_id Int
-    sub_activity    Material  @relation(fields: [sub_activity_id], references: [id], onDelete: Cascade)
-    number          Int
-    length          Int
-    width           Int
-    depth           Int
-    unit_id         Int
-    unit            Unit      @relation(fields: [unit_id], references: [id], onDelete: Cascade)
-    quantity        Int
-    plan_quantity   Int
-    submitted_by    Int
-    project         Project   @relation(fields: [project_id], references: [id], onDelete: Cascade)
-    user            User      @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+    user    User    @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+
+    // 🔥 Remove these from here:
+    // site
+    // chainage
+    // activity_id
+    // sub_activity_id
+    // number
+    // length
+    // width
+    // depth
+    // unit_id
+    // quantity
+    // plan_quantity
+
+    entries DPRChainage[] // 👈 NEW relation
 
     created_at DateTime  @default(now())
     updated_at DateTime  @updatedAt
@@ -36,6 +36,40 @@ model DPR {
     @@index([project_id])
     @@index([date])
     @@map("dprs")
+}
+
+model DPRChainage {
+    id Int @id @default(autoincrement())
+
+    dpr_id Int
+    dpr    DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
+
+    site     Site_type
+    chainage String
+    category String
+
+    activity_id Int
+    activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
+
+    sub_activity_id Int
+    sub_activity    Material @relation(fields: [sub_activity_id], references: [id], onDelete: Cascade)
+
+    number Int
+    length Int
+    width  Int
+    depth  Int
+
+    unit_id Int
+    unit    Unit @relation(fields: [unit_id], references: [id], onDelete: Cascade)
+
+    quantity      Int
+    plan_quantity Int
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@index([dpr_id])
+    @@map("dpr_chainages")
 }
 
 model DPRFile {

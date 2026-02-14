@@ -124,6 +124,14 @@ exports.Prisma.DPRScalarFieldEnum = {
   id: 'id',
   date: 'date',
   project_id: 'project_id',
+  submitted_by: 'submitted_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.DPRChainageScalarFieldEnum = {
+  id: 'id',
+  dpr_id: 'dpr_id',
   site: 'site',
   chainage: 'chainage',
   category: 'category',
@@ -136,7 +144,6 @@ exports.Prisma.DPRScalarFieldEnum = {
   unit_id: 'unit_id',
   quantity: 'quantity',
   plan_quantity: 'plan_quantity',
-  submitted_by: 'submitted_by',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -891,6 +898,7 @@ exports.SupplyStatus = exports.$Enums.SupplyStatus = {
 
 exports.Prisma.ModelName = {
   DPR: 'DPR',
+  DPRChainage: 'DPRChainage',
   DPRFile: 'DPRFile',
   GRN: 'GRN',
   GRNMaterialReceipt: 'GRNMaterialReceipt',

@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type DPR = $Result.DefaultSelection<Prisma.$DPRPayload>
 /**
+ * Model DPRChainage
+ * 
+ */
+export type DPRChainage = $Result.DefaultSelection<Prisma.$DPRChainagePayload>
+/**
  * Model DPRFile
  * 
  */
@@ -656,6 +661,16 @@ export class PrismaClient<
     * ```
     */
   get dPR(): Prisma.DPRDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dPRChainage`: Exposes CRUD operations for the **DPRChainage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DPRChainages
+    * const dPRChainages = await prisma.dPRChainage.findMany()
+    * ```
+    */
+  get dPRChainage(): Prisma.DPRChainageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.dPRFile`: Exposes CRUD operations for the **DPRFile** model.
@@ -1571,6 +1586,7 @@ export namespace Prisma {
 
   export const ModelName: {
     DPR: 'DPR',
+    DPRChainage: 'DPRChainage',
     DPRFile: 'DPRFile',
     GRN: 'GRN',
     GRNMaterialReceipt: 'GRNMaterialReceipt',
@@ -1634,7 +1650,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "dPR" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "activity" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "inventoryHistory" | "invoice" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "material" | "module" | "permission" | "pRGRN" | "pRGRNMaterialReceipt" | "pRGRNFile" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "scope" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
+      modelProps: "dPR" | "dPRChainage" | "dPRFile" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "activity" | "chainage_consumption_ledger" | "dieselTransaction" | "file" | "inventoryManager" | "inventoryStockEntry" | "inventoryHistory" | "invoice" | "invoiceItem" | "taxDetail" | "invoiceAmountSummary" | "transportDetail" | "invoiceAudit" | "labour" | "labourAttendance" | "material" | "module" | "permission" | "pRGRN" | "pRGRNMaterialReceipt" | "pRGRNFile" | "project" | "hAMSpecificDetails" | "ePCSpecificDetails" | "bOTSpecificDetails" | "role" | "scope" | "stock" | "contractorProject" | "contractorFiles" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "vendorSupplyManagement" | "directSupplyConfiguration" | "inventorySupplyConfiguration"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1709,6 +1725,80 @@ export namespace Prisma {
           count: {
             args: Prisma.DPRCountArgs<ExtArgs>
             result: $Utils.Optional<DPRCountAggregateOutputType> | number
+          }
+        }
+      }
+      DPRChainage: {
+        payload: Prisma.$DPRChainagePayload<ExtArgs>
+        fields: Prisma.DPRChainageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DPRChainageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DPRChainageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          findFirst: {
+            args: Prisma.DPRChainageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DPRChainageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          findMany: {
+            args: Prisma.DPRChainageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>[]
+          }
+          create: {
+            args: Prisma.DPRChainageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          createMany: {
+            args: Prisma.DPRChainageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DPRChainageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>[]
+          }
+          delete: {
+            args: Prisma.DPRChainageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          update: {
+            args: Prisma.DPRChainageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          deleteMany: {
+            args: Prisma.DPRChainageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DPRChainageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DPRChainageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>[]
+          }
+          upsert: {
+            args: Prisma.DPRChainageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DPRChainagePayload>
+          }
+          aggregate: {
+            args: Prisma.DPRChainageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDPRChainage>
+          }
+          groupBy: {
+            args: Prisma.DPRChainageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DPRChainageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DPRChainageCountArgs<ExtArgs>
+            result: $Utils.Optional<DPRChainageCountAggregateOutputType> | number
           }
         }
       }
@@ -5373,6 +5463,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     dPR?: DPROmit
+    dPRChainage?: DPRChainageOmit
     dPRFile?: DPRFileOmit
     gRN?: GRNOmit
     gRNMaterialReceipt?: GRNMaterialReceiptOmit
@@ -5501,10 +5592,12 @@ export namespace Prisma {
    */
 
   export type DPRCountOutputType = {
+    entries: number
     dprfiles: number
   }
 
   export type DPRCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entries?: boolean | DPRCountOutputTypeCountEntriesArgs
     dprfiles?: boolean | DPRCountOutputTypeCountDprfilesArgs
   }
 
@@ -5517,6 +5610,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the DPRCountOutputType
      */
     select?: DPRCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DPRCountOutputType without action
+   */
+  export type DPRCountOutputTypeCountEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DPRChainageWhereInput
   }
 
   /**
@@ -5721,13 +5821,13 @@ export namespace Prisma {
   export type ActivityCountOutputType = {
     materials: number
     scopes: number
-    dprs: number
+    dprchainages: number
   }
 
   export type ActivityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     materials?: boolean | ActivityCountOutputTypeCountMaterialsArgs
     scopes?: boolean | ActivityCountOutputTypeCountScopesArgs
-    dprs?: boolean | ActivityCountOutputTypeCountDprsArgs
+    dprchainages?: boolean | ActivityCountOutputTypeCountDprchainagesArgs
   }
 
   // Custom InputTypes
@@ -5758,8 +5858,8 @@ export namespace Prisma {
   /**
    * ActivityCountOutputType without action
    */
-  export type ActivityCountOutputTypeCountDprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DPRWhereInput
+  export type ActivityCountOutputTypeCountDprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DPRChainageWhereInput
   }
 
 
@@ -5942,7 +6042,7 @@ export namespace Prisma {
     grnmaterialReceipts: number
     stocks: number
     prgrnmaterialReceipts: number
-    dprs: number
+    dprchainages: number
   }
 
   export type MaterialCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5951,7 +6051,7 @@ export namespace Prisma {
     grnmaterialReceipts?: boolean | MaterialCountOutputTypeCountGrnmaterialReceiptsArgs
     stocks?: boolean | MaterialCountOutputTypeCountStocksArgs
     prgrnmaterialReceipts?: boolean | MaterialCountOutputTypeCountPrgrnmaterialReceiptsArgs
-    dprs?: boolean | MaterialCountOutputTypeCountDprsArgs
+    dprchainages?: boolean | MaterialCountOutputTypeCountDprchainagesArgs
   }
 
   // Custom InputTypes
@@ -6003,8 +6103,8 @@ export namespace Prisma {
   /**
    * MaterialCountOutputType without action
    */
-  export type MaterialCountOutputTypeCountDprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DPRWhereInput
+  export type MaterialCountOutputTypeCountDprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DPRChainageWhereInput
   }
 
 
@@ -6332,14 +6432,14 @@ export namespace Prisma {
     materials: number
     activities: number
     scopes: number
-    dprs: number
+    dprchainages: number
   }
 
   export type UnitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     materials?: boolean | UnitCountOutputTypeCountMaterialsArgs
     activities?: boolean | UnitCountOutputTypeCountActivitiesArgs
     scopes?: boolean | UnitCountOutputTypeCountScopesArgs
-    dprs?: boolean | UnitCountOutputTypeCountDprsArgs
+    dprchainages?: boolean | UnitCountOutputTypeCountDprchainagesArgs
   }
 
   // Custom InputTypes
@@ -6377,8 +6477,8 @@ export namespace Prisma {
   /**
    * UnitCountOutputType without action
    */
-  export type UnitCountOutputTypeCountDprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DPRWhereInput
+  export type UnitCountOutputTypeCountDprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DPRChainageWhereInput
   }
 
 
@@ -6598,30 +6698,12 @@ export namespace Prisma {
   export type DPRAvgAggregateOutputType = {
     id: number | null
     project_id: number | null
-    activity_id: number | null
-    sub_activity_id: number | null
-    number: number | null
-    length: number | null
-    width: number | null
-    depth: number | null
-    unit_id: number | null
-    quantity: number | null
-    plan_quantity: number | null
     submitted_by: number | null
   }
 
   export type DPRSumAggregateOutputType = {
     id: number | null
     project_id: number | null
-    activity_id: number | null
-    sub_activity_id: number | null
-    number: number | null
-    length: number | null
-    width: number | null
-    depth: number | null
-    unit_id: number | null
-    quantity: number | null
-    plan_quantity: number | null
     submitted_by: number | null
   }
 
@@ -6629,17 +6711,6 @@ export namespace Prisma {
     id: number | null
     date: Date | null
     project_id: number | null
-    site: $Enums.Site_type | null
-    category: string | null
-    activity_id: number | null
-    sub_activity_id: number | null
-    number: number | null
-    length: number | null
-    width: number | null
-    depth: number | null
-    unit_id: number | null
-    quantity: number | null
-    plan_quantity: number | null
     submitted_by: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -6649,17 +6720,6 @@ export namespace Prisma {
     id: number | null
     date: Date | null
     project_id: number | null
-    site: $Enums.Site_type | null
-    category: string | null
-    activity_id: number | null
-    sub_activity_id: number | null
-    number: number | null
-    length: number | null
-    width: number | null
-    depth: number | null
-    unit_id: number | null
-    quantity: number | null
-    plan_quantity: number | null
     submitted_by: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -6669,18 +6729,6 @@ export namespace Prisma {
     id: number
     date: number
     project_id: number
-    site: number
-    chainage: number
-    category: number
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at: number
     updated_at: number
@@ -6691,30 +6739,12 @@ export namespace Prisma {
   export type DPRAvgAggregateInputType = {
     id?: true
     project_id?: true
-    activity_id?: true
-    sub_activity_id?: true
-    number?: true
-    length?: true
-    width?: true
-    depth?: true
-    unit_id?: true
-    quantity?: true
-    plan_quantity?: true
     submitted_by?: true
   }
 
   export type DPRSumAggregateInputType = {
     id?: true
     project_id?: true
-    activity_id?: true
-    sub_activity_id?: true
-    number?: true
-    length?: true
-    width?: true
-    depth?: true
-    unit_id?: true
-    quantity?: true
-    plan_quantity?: true
     submitted_by?: true
   }
 
@@ -6722,17 +6752,6 @@ export namespace Prisma {
     id?: true
     date?: true
     project_id?: true
-    site?: true
-    category?: true
-    activity_id?: true
-    sub_activity_id?: true
-    number?: true
-    length?: true
-    width?: true
-    depth?: true
-    unit_id?: true
-    quantity?: true
-    plan_quantity?: true
     submitted_by?: true
     created_at?: true
     updated_at?: true
@@ -6742,17 +6761,6 @@ export namespace Prisma {
     id?: true
     date?: true
     project_id?: true
-    site?: true
-    category?: true
-    activity_id?: true
-    sub_activity_id?: true
-    number?: true
-    length?: true
-    width?: true
-    depth?: true
-    unit_id?: true
-    quantity?: true
-    plan_quantity?: true
     submitted_by?: true
     created_at?: true
     updated_at?: true
@@ -6762,18 +6770,6 @@ export namespace Prisma {
     id?: true
     date?: true
     project_id?: true
-    site?: true
-    chainage?: true
-    category?: true
-    activity_id?: true
-    sub_activity_id?: true
-    number?: true
-    length?: true
-    width?: true
-    depth?: true
-    unit_id?: true
-    quantity?: true
-    plan_quantity?: true
     submitted_by?: true
     created_at?: true
     updated_at?: true
@@ -6870,18 +6866,6 @@ export namespace Prisma {
     id: number
     date: Date
     project_id: number
-    site: $Enums.Site_type
-    chainage: string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at: Date
     updated_at: Date
@@ -6910,26 +6894,12 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     project_id?: boolean
-    site?: boolean
-    chainage?: boolean
-    category?: boolean
-    activity_id?: boolean
-    sub_activity_id?: boolean
-    number?: boolean
-    length?: boolean
-    width?: boolean
-    depth?: boolean
-    unit_id?: boolean
-    quantity?: boolean
-    plan_quantity?: boolean
     submitted_by?: boolean
     created_at?: boolean
     updated_at?: boolean
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    entries?: boolean | DPR$entriesArgs<ExtArgs>
     dprfiles?: boolean | DPR$dprfilesArgs<ExtArgs>
     _count?: boolean | DPRCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dPR"]>
@@ -6938,24 +6908,9 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     project_id?: boolean
-    site?: boolean
-    chainage?: boolean
-    category?: boolean
-    activity_id?: boolean
-    sub_activity_id?: boolean
-    number?: boolean
-    length?: boolean
-    width?: boolean
-    depth?: boolean
-    unit_id?: boolean
-    quantity?: boolean
-    plan_quantity?: boolean
     submitted_by?: boolean
     created_at?: boolean
     updated_at?: boolean
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dPR"]>
@@ -6964,24 +6919,9 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     project_id?: boolean
-    site?: boolean
-    chainage?: boolean
-    category?: boolean
-    activity_id?: boolean
-    sub_activity_id?: boolean
-    number?: boolean
-    length?: boolean
-    width?: boolean
-    depth?: boolean
-    unit_id?: boolean
-    quantity?: boolean
-    plan_quantity?: boolean
     submitted_by?: boolean
     created_at?: boolean
     updated_at?: boolean
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dPR"]>
@@ -6990,44 +6930,24 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     project_id?: boolean
-    site?: boolean
-    chainage?: boolean
-    category?: boolean
-    activity_id?: boolean
-    sub_activity_id?: boolean
-    number?: boolean
-    length?: boolean
-    width?: boolean
-    depth?: boolean
-    unit_id?: boolean
-    quantity?: boolean
-    plan_quantity?: boolean
     submitted_by?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type DPROmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "project_id" | "site" | "chainage" | "category" | "activity_id" | "sub_activity_id" | "number" | "length" | "width" | "depth" | "unit_id" | "quantity" | "plan_quantity" | "submitted_by" | "created_at" | "updated_at", ExtArgs["result"]["dPR"]>
+  export type DPROmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "project_id" | "submitted_by" | "created_at" | "updated_at", ExtArgs["result"]["dPR"]>
   export type DPRInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    entries?: boolean | DPR$entriesArgs<ExtArgs>
     dprfiles?: boolean | DPR$dprfilesArgs<ExtArgs>
     _count?: boolean | DPRCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DPRIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type DPRIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7035,29 +6955,15 @@ export namespace Prisma {
   export type $DPRPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DPR"
     objects: {
-      activity: Prisma.$ActivityPayload<ExtArgs>
-      sub_activity: Prisma.$MaterialPayload<ExtArgs>
-      unit: Prisma.$UnitPayload<ExtArgs>
       project: Prisma.$ProjectPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      entries: Prisma.$DPRChainagePayload<ExtArgs>[]
       dprfiles: Prisma.$DPRFilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       date: Date
       project_id: number
-      site: $Enums.Site_type
-      chainage: string[]
-      category: string
-      activity_id: number
-      sub_activity_id: number
-      number: number
-      length: number
-      width: number
-      depth: number
-      unit_id: number
-      quantity: number
-      plan_quantity: number
       submitted_by: number
       created_at: Date
       updated_at: Date
@@ -7455,11 +7361,9 @@ export namespace Prisma {
    */
   export interface Prisma__DPRClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    activity<T extends ActivityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ActivityDefaultArgs<ExtArgs>>): Prisma__ActivityClient<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    sub_activity<T extends MaterialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialDefaultArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    entries<T extends DPR$entriesArgs<ExtArgs> = {}>(args?: Subset<T, DPR$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dprfiles<T extends DPR$dprfilesArgs<ExtArgs> = {}>(args?: Subset<T, DPR$dprfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7493,18 +7397,6 @@ export namespace Prisma {
     readonly id: FieldRef<"DPR", 'Int'>
     readonly date: FieldRef<"DPR", 'DateTime'>
     readonly project_id: FieldRef<"DPR", 'Int'>
-    readonly site: FieldRef<"DPR", 'Site_type'>
-    readonly chainage: FieldRef<"DPR", 'String[]'>
-    readonly category: FieldRef<"DPR", 'String'>
-    readonly activity_id: FieldRef<"DPR", 'Int'>
-    readonly sub_activity_id: FieldRef<"DPR", 'Int'>
-    readonly number: FieldRef<"DPR", 'Int'>
-    readonly length: FieldRef<"DPR", 'Int'>
-    readonly width: FieldRef<"DPR", 'Int'>
-    readonly depth: FieldRef<"DPR", 'Int'>
-    readonly unit_id: FieldRef<"DPR", 'Int'>
-    readonly quantity: FieldRef<"DPR", 'Int'>
-    readonly plan_quantity: FieldRef<"DPR", 'Int'>
     readonly submitted_by: FieldRef<"DPR", 'Int'>
     readonly created_at: FieldRef<"DPR", 'DateTime'>
     readonly updated_at: FieldRef<"DPR", 'DateTime'>
@@ -7904,6 +7796,30 @@ export namespace Prisma {
   }
 
   /**
+   * DPR.entries
+   */
+  export type DPR$entriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    where?: DPRChainageWhereInput
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    cursor?: DPRChainageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
+  }
+
+  /**
    * DPR.dprfiles
    */
   export type DPR$dprfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7943,6 +7859,1305 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DPRInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DPRChainage
+   */
+
+  export type AggregateDPRChainage = {
+    _count: DPRChainageCountAggregateOutputType | null
+    _avg: DPRChainageAvgAggregateOutputType | null
+    _sum: DPRChainageSumAggregateOutputType | null
+    _min: DPRChainageMinAggregateOutputType | null
+    _max: DPRChainageMaxAggregateOutputType | null
+  }
+
+  export type DPRChainageAvgAggregateOutputType = {
+    id: number | null
+    dpr_id: number | null
+    activity_id: number | null
+    sub_activity_id: number | null
+    number: number | null
+    length: number | null
+    width: number | null
+    depth: number | null
+    unit_id: number | null
+    quantity: number | null
+    plan_quantity: number | null
+  }
+
+  export type DPRChainageSumAggregateOutputType = {
+    id: number | null
+    dpr_id: number | null
+    activity_id: number | null
+    sub_activity_id: number | null
+    number: number | null
+    length: number | null
+    width: number | null
+    depth: number | null
+    unit_id: number | null
+    quantity: number | null
+    plan_quantity: number | null
+  }
+
+  export type DPRChainageMinAggregateOutputType = {
+    id: number | null
+    dpr_id: number | null
+    site: $Enums.Site_type | null
+    chainage: string | null
+    category: string | null
+    activity_id: number | null
+    sub_activity_id: number | null
+    number: number | null
+    length: number | null
+    width: number | null
+    depth: number | null
+    unit_id: number | null
+    quantity: number | null
+    plan_quantity: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type DPRChainageMaxAggregateOutputType = {
+    id: number | null
+    dpr_id: number | null
+    site: $Enums.Site_type | null
+    chainage: string | null
+    category: string | null
+    activity_id: number | null
+    sub_activity_id: number | null
+    number: number | null
+    length: number | null
+    width: number | null
+    depth: number | null
+    unit_id: number | null
+    quantity: number | null
+    plan_quantity: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type DPRChainageCountAggregateOutputType = {
+    id: number
+    dpr_id: number
+    site: number
+    chainage: number
+    category: number
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type DPRChainageAvgAggregateInputType = {
+    id?: true
+    dpr_id?: true
+    activity_id?: true
+    sub_activity_id?: true
+    number?: true
+    length?: true
+    width?: true
+    depth?: true
+    unit_id?: true
+    quantity?: true
+    plan_quantity?: true
+  }
+
+  export type DPRChainageSumAggregateInputType = {
+    id?: true
+    dpr_id?: true
+    activity_id?: true
+    sub_activity_id?: true
+    number?: true
+    length?: true
+    width?: true
+    depth?: true
+    unit_id?: true
+    quantity?: true
+    plan_quantity?: true
+  }
+
+  export type DPRChainageMinAggregateInputType = {
+    id?: true
+    dpr_id?: true
+    site?: true
+    chainage?: true
+    category?: true
+    activity_id?: true
+    sub_activity_id?: true
+    number?: true
+    length?: true
+    width?: true
+    depth?: true
+    unit_id?: true
+    quantity?: true
+    plan_quantity?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type DPRChainageMaxAggregateInputType = {
+    id?: true
+    dpr_id?: true
+    site?: true
+    chainage?: true
+    category?: true
+    activity_id?: true
+    sub_activity_id?: true
+    number?: true
+    length?: true
+    width?: true
+    depth?: true
+    unit_id?: true
+    quantity?: true
+    plan_quantity?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type DPRChainageCountAggregateInputType = {
+    id?: true
+    dpr_id?: true
+    site?: true
+    chainage?: true
+    category?: true
+    activity_id?: true
+    sub_activity_id?: true
+    number?: true
+    length?: true
+    width?: true
+    depth?: true
+    unit_id?: true
+    quantity?: true
+    plan_quantity?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type DPRChainageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DPRChainage to aggregate.
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DPRChainages to fetch.
+     */
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DPRChainageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DPRChainages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DPRChainages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DPRChainages
+    **/
+    _count?: true | DPRChainageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DPRChainageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DPRChainageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DPRChainageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DPRChainageMaxAggregateInputType
+  }
+
+  export type GetDPRChainageAggregateType<T extends DPRChainageAggregateArgs> = {
+        [P in keyof T & keyof AggregateDPRChainage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDPRChainage[P]>
+      : GetScalarType<T[P], AggregateDPRChainage[P]>
+  }
+
+
+
+
+  export type DPRChainageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DPRChainageWhereInput
+    orderBy?: DPRChainageOrderByWithAggregationInput | DPRChainageOrderByWithAggregationInput[]
+    by: DPRChainageScalarFieldEnum[] | DPRChainageScalarFieldEnum
+    having?: DPRChainageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DPRChainageCountAggregateInputType | true
+    _avg?: DPRChainageAvgAggregateInputType
+    _sum?: DPRChainageSumAggregateInputType
+    _min?: DPRChainageMinAggregateInputType
+    _max?: DPRChainageMaxAggregateInputType
+  }
+
+  export type DPRChainageGroupByOutputType = {
+    id: number
+    dpr_id: number
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at: Date
+    updated_at: Date
+    _count: DPRChainageCountAggregateOutputType | null
+    _avg: DPRChainageAvgAggregateOutputType | null
+    _sum: DPRChainageSumAggregateOutputType | null
+    _min: DPRChainageMinAggregateOutputType | null
+    _max: DPRChainageMaxAggregateOutputType | null
+  }
+
+  type GetDPRChainageGroupByPayload<T extends DPRChainageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DPRChainageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DPRChainageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DPRChainageGroupByOutputType[P]>
+            : GetScalarType<T[P], DPRChainageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DPRChainageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    dpr_id?: boolean
+    site?: boolean
+    chainage?: boolean
+    category?: boolean
+    activity_id?: boolean
+    sub_activity_id?: boolean
+    number?: boolean
+    length?: boolean
+    width?: boolean
+    depth?: boolean
+    unit_id?: boolean
+    quantity?: boolean
+    plan_quantity?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dPRChainage"]>
+
+  export type DPRChainageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    dpr_id?: boolean
+    site?: boolean
+    chainage?: boolean
+    category?: boolean
+    activity_id?: boolean
+    sub_activity_id?: boolean
+    number?: boolean
+    length?: boolean
+    width?: boolean
+    depth?: boolean
+    unit_id?: boolean
+    quantity?: boolean
+    plan_quantity?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dPRChainage"]>
+
+  export type DPRChainageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    dpr_id?: boolean
+    site?: boolean
+    chainage?: boolean
+    category?: boolean
+    activity_id?: boolean
+    sub_activity_id?: boolean
+    number?: boolean
+    length?: boolean
+    width?: boolean
+    depth?: boolean
+    unit_id?: boolean
+    quantity?: boolean
+    plan_quantity?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dPRChainage"]>
+
+  export type DPRChainageSelectScalar = {
+    id?: boolean
+    dpr_id?: boolean
+    site?: boolean
+    chainage?: boolean
+    category?: boolean
+    activity_id?: boolean
+    sub_activity_id?: boolean
+    number?: boolean
+    length?: boolean
+    width?: boolean
+    depth?: boolean
+    unit_id?: boolean
+    quantity?: boolean
+    plan_quantity?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type DPRChainageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "dpr_id" | "site" | "chainage" | "category" | "activity_id" | "sub_activity_id" | "number" | "length" | "width" | "depth" | "unit_id" | "quantity" | "plan_quantity" | "created_at" | "updated_at", ExtArgs["result"]["dPRChainage"]>
+  export type DPRChainageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }
+  export type DPRChainageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }
+  export type DPRChainageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dpr?: boolean | DPRDefaultArgs<ExtArgs>
+    activity?: boolean | ActivityDefaultArgs<ExtArgs>
+    sub_activity?: boolean | MaterialDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+  }
+
+  export type $DPRChainagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DPRChainage"
+    objects: {
+      dpr: Prisma.$DPRPayload<ExtArgs>
+      activity: Prisma.$ActivityPayload<ExtArgs>
+      sub_activity: Prisma.$MaterialPayload<ExtArgs>
+      unit: Prisma.$UnitPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      dpr_id: number
+      site: $Enums.Site_type
+      chainage: string
+      category: string
+      activity_id: number
+      sub_activity_id: number
+      number: number
+      length: number
+      width: number
+      depth: number
+      unit_id: number
+      quantity: number
+      plan_quantity: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["dPRChainage"]>
+    composites: {}
+  }
+
+  type DPRChainageGetPayload<S extends boolean | null | undefined | DPRChainageDefaultArgs> = $Result.GetResult<Prisma.$DPRChainagePayload, S>
+
+  type DPRChainageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DPRChainageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DPRChainageCountAggregateInputType | true
+    }
+
+  export interface DPRChainageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DPRChainage'], meta: { name: 'DPRChainage' } }
+    /**
+     * Find zero or one DPRChainage that matches the filter.
+     * @param {DPRChainageFindUniqueArgs} args - Arguments to find a DPRChainage
+     * @example
+     * // Get one DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DPRChainageFindUniqueArgs>(args: SelectSubset<T, DPRChainageFindUniqueArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DPRChainage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DPRChainageFindUniqueOrThrowArgs} args - Arguments to find a DPRChainage
+     * @example
+     * // Get one DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DPRChainageFindUniqueOrThrowArgs>(args: SelectSubset<T, DPRChainageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DPRChainage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageFindFirstArgs} args - Arguments to find a DPRChainage
+     * @example
+     * // Get one DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DPRChainageFindFirstArgs>(args?: SelectSubset<T, DPRChainageFindFirstArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DPRChainage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageFindFirstOrThrowArgs} args - Arguments to find a DPRChainage
+     * @example
+     * // Get one DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DPRChainageFindFirstOrThrowArgs>(args?: SelectSubset<T, DPRChainageFindFirstOrThrowArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DPRChainages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DPRChainages
+     * const dPRChainages = await prisma.dPRChainage.findMany()
+     * 
+     * // Get first 10 DPRChainages
+     * const dPRChainages = await prisma.dPRChainage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dPRChainageWithIdOnly = await prisma.dPRChainage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DPRChainageFindManyArgs>(args?: SelectSubset<T, DPRChainageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DPRChainage.
+     * @param {DPRChainageCreateArgs} args - Arguments to create a DPRChainage.
+     * @example
+     * // Create one DPRChainage
+     * const DPRChainage = await prisma.dPRChainage.create({
+     *   data: {
+     *     // ... data to create a DPRChainage
+     *   }
+     * })
+     * 
+     */
+    create<T extends DPRChainageCreateArgs>(args: SelectSubset<T, DPRChainageCreateArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DPRChainages.
+     * @param {DPRChainageCreateManyArgs} args - Arguments to create many DPRChainages.
+     * @example
+     * // Create many DPRChainages
+     * const dPRChainage = await prisma.dPRChainage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DPRChainageCreateManyArgs>(args?: SelectSubset<T, DPRChainageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DPRChainages and returns the data saved in the database.
+     * @param {DPRChainageCreateManyAndReturnArgs} args - Arguments to create many DPRChainages.
+     * @example
+     * // Create many DPRChainages
+     * const dPRChainage = await prisma.dPRChainage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DPRChainages and only return the `id`
+     * const dPRChainageWithIdOnly = await prisma.dPRChainage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DPRChainageCreateManyAndReturnArgs>(args?: SelectSubset<T, DPRChainageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DPRChainage.
+     * @param {DPRChainageDeleteArgs} args - Arguments to delete one DPRChainage.
+     * @example
+     * // Delete one DPRChainage
+     * const DPRChainage = await prisma.dPRChainage.delete({
+     *   where: {
+     *     // ... filter to delete one DPRChainage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DPRChainageDeleteArgs>(args: SelectSubset<T, DPRChainageDeleteArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DPRChainage.
+     * @param {DPRChainageUpdateArgs} args - Arguments to update one DPRChainage.
+     * @example
+     * // Update one DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DPRChainageUpdateArgs>(args: SelectSubset<T, DPRChainageUpdateArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DPRChainages.
+     * @param {DPRChainageDeleteManyArgs} args - Arguments to filter DPRChainages to delete.
+     * @example
+     * // Delete a few DPRChainages
+     * const { count } = await prisma.dPRChainage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DPRChainageDeleteManyArgs>(args?: SelectSubset<T, DPRChainageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DPRChainages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DPRChainages
+     * const dPRChainage = await prisma.dPRChainage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DPRChainageUpdateManyArgs>(args: SelectSubset<T, DPRChainageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DPRChainages and returns the data updated in the database.
+     * @param {DPRChainageUpdateManyAndReturnArgs} args - Arguments to update many DPRChainages.
+     * @example
+     * // Update many DPRChainages
+     * const dPRChainage = await prisma.dPRChainage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DPRChainages and only return the `id`
+     * const dPRChainageWithIdOnly = await prisma.dPRChainage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DPRChainageUpdateManyAndReturnArgs>(args: SelectSubset<T, DPRChainageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DPRChainage.
+     * @param {DPRChainageUpsertArgs} args - Arguments to update or create a DPRChainage.
+     * @example
+     * // Update or create a DPRChainage
+     * const dPRChainage = await prisma.dPRChainage.upsert({
+     *   create: {
+     *     // ... data to create a DPRChainage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DPRChainage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DPRChainageUpsertArgs>(args: SelectSubset<T, DPRChainageUpsertArgs<ExtArgs>>): Prisma__DPRChainageClient<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DPRChainages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageCountArgs} args - Arguments to filter DPRChainages to count.
+     * @example
+     * // Count the number of DPRChainages
+     * const count = await prisma.dPRChainage.count({
+     *   where: {
+     *     // ... the filter for the DPRChainages we want to count
+     *   }
+     * })
+    **/
+    count<T extends DPRChainageCountArgs>(
+      args?: Subset<T, DPRChainageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DPRChainageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DPRChainage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DPRChainageAggregateArgs>(args: Subset<T, DPRChainageAggregateArgs>): Prisma.PrismaPromise<GetDPRChainageAggregateType<T>>
+
+    /**
+     * Group by DPRChainage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DPRChainageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DPRChainageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DPRChainageGroupByArgs['orderBy'] }
+        : { orderBy?: DPRChainageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DPRChainageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDPRChainageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DPRChainage model
+   */
+  readonly fields: DPRChainageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DPRChainage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DPRChainageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    dpr<T extends DPRDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DPRDefaultArgs<ExtArgs>>): Prisma__DPRClient<$Result.GetResult<Prisma.$DPRPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    activity<T extends ActivityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ActivityDefaultArgs<ExtArgs>>): Prisma__ActivityClient<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    sub_activity<T extends MaterialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialDefaultArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DPRChainage model
+   */
+  interface DPRChainageFieldRefs {
+    readonly id: FieldRef<"DPRChainage", 'Int'>
+    readonly dpr_id: FieldRef<"DPRChainage", 'Int'>
+    readonly site: FieldRef<"DPRChainage", 'Site_type'>
+    readonly chainage: FieldRef<"DPRChainage", 'String'>
+    readonly category: FieldRef<"DPRChainage", 'String'>
+    readonly activity_id: FieldRef<"DPRChainage", 'Int'>
+    readonly sub_activity_id: FieldRef<"DPRChainage", 'Int'>
+    readonly number: FieldRef<"DPRChainage", 'Int'>
+    readonly length: FieldRef<"DPRChainage", 'Int'>
+    readonly width: FieldRef<"DPRChainage", 'Int'>
+    readonly depth: FieldRef<"DPRChainage", 'Int'>
+    readonly unit_id: FieldRef<"DPRChainage", 'Int'>
+    readonly quantity: FieldRef<"DPRChainage", 'Int'>
+    readonly plan_quantity: FieldRef<"DPRChainage", 'Int'>
+    readonly created_at: FieldRef<"DPRChainage", 'DateTime'>
+    readonly updated_at: FieldRef<"DPRChainage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DPRChainage findUnique
+   */
+  export type DPRChainageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter, which DPRChainage to fetch.
+     */
+    where: DPRChainageWhereUniqueInput
+  }
+
+  /**
+   * DPRChainage findUniqueOrThrow
+   */
+  export type DPRChainageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter, which DPRChainage to fetch.
+     */
+    where: DPRChainageWhereUniqueInput
+  }
+
+  /**
+   * DPRChainage findFirst
+   */
+  export type DPRChainageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter, which DPRChainage to fetch.
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DPRChainages to fetch.
+     */
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DPRChainages.
+     */
+    cursor?: DPRChainageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DPRChainages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DPRChainages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DPRChainages.
+     */
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
+  }
+
+  /**
+   * DPRChainage findFirstOrThrow
+   */
+  export type DPRChainageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter, which DPRChainage to fetch.
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DPRChainages to fetch.
+     */
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DPRChainages.
+     */
+    cursor?: DPRChainageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DPRChainages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DPRChainages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DPRChainages.
+     */
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
+  }
+
+  /**
+   * DPRChainage findMany
+   */
+  export type DPRChainageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter, which DPRChainages to fetch.
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DPRChainages to fetch.
+     */
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DPRChainages.
+     */
+    cursor?: DPRChainageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DPRChainages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DPRChainages.
+     */
+    skip?: number
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
+  }
+
+  /**
+   * DPRChainage create
+   */
+  export type DPRChainageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DPRChainage.
+     */
+    data: XOR<DPRChainageCreateInput, DPRChainageUncheckedCreateInput>
+  }
+
+  /**
+   * DPRChainage createMany
+   */
+  export type DPRChainageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DPRChainages.
+     */
+    data: DPRChainageCreateManyInput | DPRChainageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DPRChainage createManyAndReturn
+   */
+  export type DPRChainageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * The data used to create many DPRChainages.
+     */
+    data: DPRChainageCreateManyInput | DPRChainageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DPRChainage update
+   */
+  export type DPRChainageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DPRChainage.
+     */
+    data: XOR<DPRChainageUpdateInput, DPRChainageUncheckedUpdateInput>
+    /**
+     * Choose, which DPRChainage to update.
+     */
+    where: DPRChainageWhereUniqueInput
+  }
+
+  /**
+   * DPRChainage updateMany
+   */
+  export type DPRChainageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DPRChainages.
+     */
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyInput>
+    /**
+     * Filter which DPRChainages to update
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * Limit how many DPRChainages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DPRChainage updateManyAndReturn
+   */
+  export type DPRChainageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * The data used to update DPRChainages.
+     */
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyInput>
+    /**
+     * Filter which DPRChainages to update
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * Limit how many DPRChainages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DPRChainage upsert
+   */
+  export type DPRChainageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DPRChainage to update in case it exists.
+     */
+    where: DPRChainageWhereUniqueInput
+    /**
+     * In case the DPRChainage found by the `where` argument doesn't exist, create a new DPRChainage with this data.
+     */
+    create: XOR<DPRChainageCreateInput, DPRChainageUncheckedCreateInput>
+    /**
+     * In case the DPRChainage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DPRChainageUpdateInput, DPRChainageUncheckedUpdateInput>
+  }
+
+  /**
+   * DPRChainage delete
+   */
+  export type DPRChainageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
+    /**
+     * Filter which DPRChainage to delete.
+     */
+    where: DPRChainageWhereUniqueInput
+  }
+
+  /**
+   * DPRChainage deleteMany
+   */
+  export type DPRChainageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DPRChainages to delete
+     */
+    where?: DPRChainageWhereInput
+    /**
+     * Limit how many DPRChainages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DPRChainage without action
+   */
+  export type DPRChainageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DPRChainage
+     */
+    select?: DPRChainageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DPRChainage
+     */
+    omit?: DPRChainageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DPRChainageInclude<ExtArgs> | null
   }
 
 
@@ -17948,7 +19163,7 @@ export namespace Prisma {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
     materials?: boolean | Activity$materialsArgs<ExtArgs>
     scopes?: boolean | Activity$scopesArgs<ExtArgs>
-    dprs?: boolean | Activity$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Activity$dprchainagesArgs<ExtArgs>
     _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
@@ -17986,7 +19201,7 @@ export namespace Prisma {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
     materials?: boolean | Activity$materialsArgs<ExtArgs>
     scopes?: boolean | Activity$scopesArgs<ExtArgs>
-    dprs?: boolean | Activity$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Activity$dprchainagesArgs<ExtArgs>
     _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18002,7 +19217,7 @@ export namespace Prisma {
       unit: Prisma.$UnitPayload<ExtArgs>
       materials: Prisma.$MaterialPayload<ExtArgs>[]
       scopes: Prisma.$ScopePayload<ExtArgs>[]
-      dprs: Prisma.$DPRPayload<ExtArgs>[]
+      dprchainages: Prisma.$DPRChainagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -18408,7 +19623,7 @@ export namespace Prisma {
     unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     materials<T extends Activity$materialsArgs<ExtArgs> = {}>(args?: Subset<T, Activity$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     scopes<T extends Activity$scopesArgs<ExtArgs> = {}>(args?: Subset<T, Activity$scopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    dprs<T extends Activity$dprsArgs<ExtArgs> = {}>(args?: Subset<T, Activity$dprsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dprchainages<T extends Activity$dprchainagesArgs<ExtArgs> = {}>(args?: Subset<T, Activity$dprchainagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18888,27 +20103,27 @@ export namespace Prisma {
   }
 
   /**
-   * Activity.dprs
+   * Activity.dprchainages
    */
-  export type Activity$dprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Activity$dprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DPR
+     * Select specific fields to fetch from the DPRChainage
      */
-    select?: DPRSelect<ExtArgs> | null
+    select?: DPRChainageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DPR
+     * Omit specific fields from the DPRChainage
      */
-    omit?: DPROmit<ExtArgs> | null
+    omit?: DPRChainageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DPRInclude<ExtArgs> | null
-    where?: DPRWhereInput
-    orderBy?: DPROrderByWithRelationInput | DPROrderByWithRelationInput[]
-    cursor?: DPRWhereUniqueInput
+    include?: DPRChainageInclude<ExtArgs> | null
+    where?: DPRChainageWhereInput
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    cursor?: DPRChainageWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: DPRScalarFieldEnum | DPRScalarFieldEnum[]
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
   }
 
   /**
@@ -36065,7 +37280,7 @@ export namespace Prisma {
     grnmaterialReceipts?: boolean | Material$grnmaterialReceiptsArgs<ExtArgs>
     stocks?: boolean | Material$stocksArgs<ExtArgs>
     prgrnmaterialReceipts?: boolean | Material$prgrnmaterialReceiptsArgs<ExtArgs>
-    dprs?: boolean | Material$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Material$dprchainagesArgs<ExtArgs>
     _count?: boolean | MaterialCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["material"]>
 
@@ -36112,7 +37327,7 @@ export namespace Prisma {
     grnmaterialReceipts?: boolean | Material$grnmaterialReceiptsArgs<ExtArgs>
     stocks?: boolean | Material$stocksArgs<ExtArgs>
     prgrnmaterialReceipts?: boolean | Material$prgrnmaterialReceiptsArgs<ExtArgs>
-    dprs?: boolean | Material$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Material$dprchainagesArgs<ExtArgs>
     _count?: boolean | MaterialCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MaterialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -36134,7 +37349,7 @@ export namespace Prisma {
       grnmaterialReceipts: Prisma.$GRNMaterialReceiptPayload<ExtArgs>[]
       stocks: Prisma.$StockPayload<ExtArgs>[]
       prgrnmaterialReceipts: Prisma.$PRGRNMaterialReceiptPayload<ExtArgs>[]
-      dprs: Prisma.$DPRPayload<ExtArgs>[]
+      dprchainages: Prisma.$DPRChainagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -36545,7 +37760,7 @@ export namespace Prisma {
     grnmaterialReceipts<T extends Material$grnmaterialReceiptsArgs<ExtArgs> = {}>(args?: Subset<T, Material$grnmaterialReceiptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GRNMaterialReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stocks<T extends Material$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Material$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     prgrnmaterialReceipts<T extends Material$prgrnmaterialReceiptsArgs<ExtArgs> = {}>(args?: Subset<T, Material$prgrnmaterialReceiptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRGRNMaterialReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    dprs<T extends Material$dprsArgs<ExtArgs> = {}>(args?: Subset<T, Material$dprsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dprchainages<T extends Material$dprchainagesArgs<ExtArgs> = {}>(args?: Subset<T, Material$dprchainagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -37136,27 +38351,27 @@ export namespace Prisma {
   }
 
   /**
-   * Material.dprs
+   * Material.dprchainages
    */
-  export type Material$dprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Material$dprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DPR
+     * Select specific fields to fetch from the DPRChainage
      */
-    select?: DPRSelect<ExtArgs> | null
+    select?: DPRChainageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DPR
+     * Omit specific fields from the DPRChainage
      */
-    omit?: DPROmit<ExtArgs> | null
+    omit?: DPRChainageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DPRInclude<ExtArgs> | null
-    where?: DPRWhereInput
-    orderBy?: DPROrderByWithRelationInput | DPROrderByWithRelationInput[]
-    cursor?: DPRWhereUniqueInput
+    include?: DPRChainageInclude<ExtArgs> | null
+    where?: DPRChainageWhereInput
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    cursor?: DPRChainageWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: DPRScalarFieldEnum | DPRScalarFieldEnum[]
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
   }
 
   /**
@@ -54024,7 +55239,7 @@ export namespace Prisma {
     materials?: boolean | Unit$materialsArgs<ExtArgs>
     activities?: boolean | Unit$activitiesArgs<ExtArgs>
     scopes?: boolean | Unit$scopesArgs<ExtArgs>
-    dprs?: boolean | Unit$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Unit$dprchainagesArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unit"]>
 
@@ -54054,7 +55269,7 @@ export namespace Prisma {
     materials?: boolean | Unit$materialsArgs<ExtArgs>
     activities?: boolean | Unit$activitiesArgs<ExtArgs>
     scopes?: boolean | Unit$scopesArgs<ExtArgs>
-    dprs?: boolean | Unit$dprsArgs<ExtArgs>
+    dprchainages?: boolean | Unit$dprchainagesArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UnitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -54066,7 +55281,7 @@ export namespace Prisma {
       materials: Prisma.$MaterialPayload<ExtArgs>[]
       activities: Prisma.$ActivityPayload<ExtArgs>[]
       scopes: Prisma.$ScopePayload<ExtArgs>[]
-      dprs: Prisma.$DPRPayload<ExtArgs>[]
+      dprchainages: Prisma.$DPRChainagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -54470,7 +55685,7 @@ export namespace Prisma {
     materials<T extends Unit$materialsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     activities<T extends Unit$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, Unit$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     scopes<T extends Unit$scopesArgs<ExtArgs> = {}>(args?: Subset<T, Unit$scopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    dprs<T extends Unit$dprsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$dprsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dprchainages<T extends Unit$dprchainagesArgs<ExtArgs> = {}>(args?: Subset<T, Unit$dprchainagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DPRChainagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -54964,27 +56179,27 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.dprs
+   * Unit.dprchainages
    */
-  export type Unit$dprsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$dprchainagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DPR
+     * Select specific fields to fetch from the DPRChainage
      */
-    select?: DPRSelect<ExtArgs> | null
+    select?: DPRChainageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DPR
+     * Omit specific fields from the DPRChainage
      */
-    omit?: DPROmit<ExtArgs> | null
+    omit?: DPRChainageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DPRInclude<ExtArgs> | null
-    where?: DPRWhereInput
-    orderBy?: DPROrderByWithRelationInput | DPROrderByWithRelationInput[]
-    cursor?: DPRWhereUniqueInput
+    include?: DPRChainageInclude<ExtArgs> | null
+    where?: DPRChainageWhereInput
+    orderBy?: DPRChainageOrderByWithRelationInput | DPRChainageOrderByWithRelationInput[]
+    cursor?: DPRChainageWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: DPRScalarFieldEnum | DPRScalarFieldEnum[]
+    distinct?: DPRChainageScalarFieldEnum | DPRChainageScalarFieldEnum[]
   }
 
   /**
@@ -66196,6 +67411,17 @@ export namespace Prisma {
     id: 'id',
     date: 'date',
     project_id: 'project_id',
+    submitted_by: 'submitted_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type DPRScalarFieldEnum = (typeof DPRScalarFieldEnum)[keyof typeof DPRScalarFieldEnum]
+
+
+  export const DPRChainageScalarFieldEnum: {
+    id: 'id',
+    dpr_id: 'dpr_id',
     site: 'site',
     chainage: 'chainage',
     category: 'category',
@@ -66208,12 +67434,11 @@ export namespace Prisma {
     unit_id: 'unit_id',
     quantity: 'quantity',
     plan_quantity: 'plan_quantity',
-    submitted_by: 'submitted_by',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
-  export type DPRScalarFieldEnum = (typeof DPRScalarFieldEnum)[keyof typeof DPRScalarFieldEnum]
+  export type DPRChainageScalarFieldEnum = (typeof DPRChainageScalarFieldEnum)[keyof typeof DPRChainageScalarFieldEnum]
 
 
   export const DPRFileScalarFieldEnum: {
@@ -67042,16 +68267,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String[]'
+   * Reference to a field of type 'String'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'String[]'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -67366,26 +68591,12 @@ export namespace Prisma {
     id?: IntFilter<"DPR"> | number
     date?: DateTimeFilter<"DPR"> | Date | string
     project_id?: IntFilter<"DPR"> | number
-    site?: EnumSite_typeFilter<"DPR"> | $Enums.Site_type
-    chainage?: StringNullableListFilter<"DPR">
-    category?: StringFilter<"DPR"> | string
-    activity_id?: IntFilter<"DPR"> | number
-    sub_activity_id?: IntFilter<"DPR"> | number
-    number?: IntFilter<"DPR"> | number
-    length?: IntFilter<"DPR"> | number
-    width?: IntFilter<"DPR"> | number
-    depth?: IntFilter<"DPR"> | number
-    unit_id?: IntFilter<"DPR"> | number
-    quantity?: IntFilter<"DPR"> | number
-    plan_quantity?: IntFilter<"DPR"> | number
     submitted_by?: IntFilter<"DPR"> | number
     created_at?: DateTimeFilter<"DPR"> | Date | string
     updated_at?: DateTimeFilter<"DPR"> | Date | string
-    activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
-    sub_activity?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
-    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    entries?: DPRChainageListRelationFilter
     dprfiles?: DPRFileListRelationFilter
   }
 
@@ -67393,26 +68604,12 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     project_id?: SortOrder
-    site?: SortOrder
-    chainage?: SortOrder
-    category?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    activity?: ActivityOrderByWithRelationInput
-    sub_activity?: MaterialOrderByWithRelationInput
-    unit?: UnitOrderByWithRelationInput
     project?: ProjectOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    entries?: DPRChainageOrderByRelationAggregateInput
     dprfiles?: DPRFileOrderByRelationAggregateInput
   }
 
@@ -67423,26 +68620,12 @@ export namespace Prisma {
     NOT?: DPRWhereInput | DPRWhereInput[]
     date?: DateTimeFilter<"DPR"> | Date | string
     project_id?: IntFilter<"DPR"> | number
-    site?: EnumSite_typeFilter<"DPR"> | $Enums.Site_type
-    chainage?: StringNullableListFilter<"DPR">
-    category?: StringFilter<"DPR"> | string
-    activity_id?: IntFilter<"DPR"> | number
-    sub_activity_id?: IntFilter<"DPR"> | number
-    number?: IntFilter<"DPR"> | number
-    length?: IntFilter<"DPR"> | number
-    width?: IntFilter<"DPR"> | number
-    depth?: IntFilter<"DPR"> | number
-    unit_id?: IntFilter<"DPR"> | number
-    quantity?: IntFilter<"DPR"> | number
-    plan_quantity?: IntFilter<"DPR"> | number
     submitted_by?: IntFilter<"DPR"> | number
     created_at?: DateTimeFilter<"DPR"> | Date | string
     updated_at?: DateTimeFilter<"DPR"> | Date | string
-    activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
-    sub_activity?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
-    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    entries?: DPRChainageListRelationFilter
     dprfiles?: DPRFileListRelationFilter
   }, "id">
 
@@ -67450,18 +68633,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     project_id?: SortOrder
-    site?: SortOrder
-    chainage?: SortOrder
-    category?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -67479,21 +68650,130 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"DPR"> | number
     date?: DateTimeWithAggregatesFilter<"DPR"> | Date | string
     project_id?: IntWithAggregatesFilter<"DPR"> | number
-    site?: EnumSite_typeWithAggregatesFilter<"DPR"> | $Enums.Site_type
-    chainage?: StringNullableListFilter<"DPR">
-    category?: StringWithAggregatesFilter<"DPR"> | string
-    activity_id?: IntWithAggregatesFilter<"DPR"> | number
-    sub_activity_id?: IntWithAggregatesFilter<"DPR"> | number
-    number?: IntWithAggregatesFilter<"DPR"> | number
-    length?: IntWithAggregatesFilter<"DPR"> | number
-    width?: IntWithAggregatesFilter<"DPR"> | number
-    depth?: IntWithAggregatesFilter<"DPR"> | number
-    unit_id?: IntWithAggregatesFilter<"DPR"> | number
-    quantity?: IntWithAggregatesFilter<"DPR"> | number
-    plan_quantity?: IntWithAggregatesFilter<"DPR"> | number
     submitted_by?: IntWithAggregatesFilter<"DPR"> | number
     created_at?: DateTimeWithAggregatesFilter<"DPR"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"DPR"> | Date | string
+  }
+
+  export type DPRChainageWhereInput = {
+    AND?: DPRChainageWhereInput | DPRChainageWhereInput[]
+    OR?: DPRChainageWhereInput[]
+    NOT?: DPRChainageWhereInput | DPRChainageWhereInput[]
+    id?: IntFilter<"DPRChainage"> | number
+    dpr_id?: IntFilter<"DPRChainage"> | number
+    site?: EnumSite_typeFilter<"DPRChainage"> | $Enums.Site_type
+    chainage?: StringFilter<"DPRChainage"> | string
+    category?: StringFilter<"DPRChainage"> | string
+    activity_id?: IntFilter<"DPRChainage"> | number
+    sub_activity_id?: IntFilter<"DPRChainage"> | number
+    number?: IntFilter<"DPRChainage"> | number
+    length?: IntFilter<"DPRChainage"> | number
+    width?: IntFilter<"DPRChainage"> | number
+    depth?: IntFilter<"DPRChainage"> | number
+    unit_id?: IntFilter<"DPRChainage"> | number
+    quantity?: IntFilter<"DPRChainage"> | number
+    plan_quantity?: IntFilter<"DPRChainage"> | number
+    created_at?: DateTimeFilter<"DPRChainage"> | Date | string
+    updated_at?: DateTimeFilter<"DPRChainage"> | Date | string
+    dpr?: XOR<DPRScalarRelationFilter, DPRWhereInput>
+    activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
+    sub_activity?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
+    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+  }
+
+  export type DPRChainageOrderByWithRelationInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    site?: SortOrder
+    chainage?: SortOrder
+    category?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    dpr?: DPROrderByWithRelationInput
+    activity?: ActivityOrderByWithRelationInput
+    sub_activity?: MaterialOrderByWithRelationInput
+    unit?: UnitOrderByWithRelationInput
+  }
+
+  export type DPRChainageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DPRChainageWhereInput | DPRChainageWhereInput[]
+    OR?: DPRChainageWhereInput[]
+    NOT?: DPRChainageWhereInput | DPRChainageWhereInput[]
+    dpr_id?: IntFilter<"DPRChainage"> | number
+    site?: EnumSite_typeFilter<"DPRChainage"> | $Enums.Site_type
+    chainage?: StringFilter<"DPRChainage"> | string
+    category?: StringFilter<"DPRChainage"> | string
+    activity_id?: IntFilter<"DPRChainage"> | number
+    sub_activity_id?: IntFilter<"DPRChainage"> | number
+    number?: IntFilter<"DPRChainage"> | number
+    length?: IntFilter<"DPRChainage"> | number
+    width?: IntFilter<"DPRChainage"> | number
+    depth?: IntFilter<"DPRChainage"> | number
+    unit_id?: IntFilter<"DPRChainage"> | number
+    quantity?: IntFilter<"DPRChainage"> | number
+    plan_quantity?: IntFilter<"DPRChainage"> | number
+    created_at?: DateTimeFilter<"DPRChainage"> | Date | string
+    updated_at?: DateTimeFilter<"DPRChainage"> | Date | string
+    dpr?: XOR<DPRScalarRelationFilter, DPRWhereInput>
+    activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
+    sub_activity?: XOR<MaterialScalarRelationFilter, MaterialWhereInput>
+    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+  }, "id">
+
+  export type DPRChainageOrderByWithAggregationInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    site?: SortOrder
+    chainage?: SortOrder
+    category?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: DPRChainageCountOrderByAggregateInput
+    _avg?: DPRChainageAvgOrderByAggregateInput
+    _max?: DPRChainageMaxOrderByAggregateInput
+    _min?: DPRChainageMinOrderByAggregateInput
+    _sum?: DPRChainageSumOrderByAggregateInput
+  }
+
+  export type DPRChainageScalarWhereWithAggregatesInput = {
+    AND?: DPRChainageScalarWhereWithAggregatesInput | DPRChainageScalarWhereWithAggregatesInput[]
+    OR?: DPRChainageScalarWhereWithAggregatesInput[]
+    NOT?: DPRChainageScalarWhereWithAggregatesInput | DPRChainageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DPRChainage"> | number
+    dpr_id?: IntWithAggregatesFilter<"DPRChainage"> | number
+    site?: EnumSite_typeWithAggregatesFilter<"DPRChainage"> | $Enums.Site_type
+    chainage?: StringWithAggregatesFilter<"DPRChainage"> | string
+    category?: StringWithAggregatesFilter<"DPRChainage"> | string
+    activity_id?: IntWithAggregatesFilter<"DPRChainage"> | number
+    sub_activity_id?: IntWithAggregatesFilter<"DPRChainage"> | number
+    number?: IntWithAggregatesFilter<"DPRChainage"> | number
+    length?: IntWithAggregatesFilter<"DPRChainage"> | number
+    width?: IntWithAggregatesFilter<"DPRChainage"> | number
+    depth?: IntWithAggregatesFilter<"DPRChainage"> | number
+    unit_id?: IntWithAggregatesFilter<"DPRChainage"> | number
+    quantity?: IntWithAggregatesFilter<"DPRChainage"> | number
+    plan_quantity?: IntWithAggregatesFilter<"DPRChainage"> | number
+    created_at?: DateTimeWithAggregatesFilter<"DPRChainage"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"DPRChainage"> | Date | string
   }
 
   export type DPRFileWhereInput = {
@@ -68218,7 +69498,7 @@ export namespace Prisma {
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     materials?: MaterialListRelationFilter
     scopes?: ScopeListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }
 
   export type ActivityOrderByWithRelationInput = {
@@ -68231,7 +69511,7 @@ export namespace Prisma {
     unit?: UnitOrderByWithRelationInput
     materials?: MaterialOrderByRelationAggregateInput
     scopes?: ScopeOrderByRelationAggregateInput
-    dprs?: DPROrderByRelationAggregateInput
+    dprchainages?: DPRChainageOrderByRelationAggregateInput
   }
 
   export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -68247,7 +69527,7 @@ export namespace Prisma {
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     materials?: MaterialListRelationFilter
     scopes?: ScopeListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }, "id">
 
   export type ActivityOrderByWithAggregationInput = {
@@ -69498,7 +70778,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptListRelationFilter
     stocks?: StockListRelationFilter
     prgrnmaterialReceipts?: PRGRNMaterialReceiptListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }
 
   export type MaterialOrderByWithRelationInput = {
@@ -69516,7 +70796,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptOrderByRelationAggregateInput
     stocks?: StockOrderByRelationAggregateInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptOrderByRelationAggregateInput
-    dprs?: DPROrderByRelationAggregateInput
+    dprchainages?: DPRChainageOrderByRelationAggregateInput
   }
 
   export type MaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -69537,7 +70817,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptListRelationFilter
     stocks?: StockListRelationFilter
     prgrnmaterialReceipts?: PRGRNMaterialReceiptListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }, "id" | "material_code">
 
   export type MaterialOrderByWithAggregationInput = {
@@ -70686,7 +71966,7 @@ export namespace Prisma {
     materials?: MaterialListRelationFilter
     activities?: ActivityListRelationFilter
     scopes?: ScopeListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }
 
   export type UnitOrderByWithRelationInput = {
@@ -70697,7 +71977,7 @@ export namespace Prisma {
     materials?: MaterialOrderByRelationAggregateInput
     activities?: ActivityOrderByRelationAggregateInput
     scopes?: ScopeOrderByRelationAggregateInput
-    dprs?: DPROrderByRelationAggregateInput
+    dprchainages?: DPRChainageOrderByRelationAggregateInput
   }
 
   export type UnitWhereUniqueInput = Prisma.AtLeast<{
@@ -70711,7 +71991,7 @@ export namespace Prisma {
     materials?: MaterialListRelationFilter
     activities?: ActivityListRelationFilter
     scopes?: ScopeListRelationFilter
-    dprs?: DPRListRelationFilter
+    dprchainages?: DPRChainageListRelationFilter
   }, "id">
 
   export type UnitOrderByWithAggregationInput = {
@@ -71561,22 +72841,11 @@ export namespace Prisma {
 
   export type DPRCreateInput = {
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    number: number
-    length: number
-    width: number
-    depth: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
     project: ProjectCreateNestedOneWithoutDprsInput
     user: UserCreateNestedOneWithoutDprsInput
+    entries?: DPRChainageCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileCreateNestedManyWithoutDprInput
   }
 
@@ -71584,42 +72853,20 @@ export namespace Prisma {
     id?: number
     date: Date | string
     project_id: number
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    entries?: DPRChainageUncheckedCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
   export type DPRUpdateInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
     project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
     user?: UserUpdateOneRequiredWithoutDprsNestedInput
+    entries?: DPRChainageUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
   }
 
@@ -71627,21 +72874,10 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     project_id?: IntFieldUpdateOperationsInput | number
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    entries?: DPRChainageUncheckedUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
@@ -71649,18 +72885,6 @@ export namespace Prisma {
     id?: number
     date: Date | string
     project_id: number
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -71668,15 +72892,6 @@ export namespace Prisma {
 
   export type DPRUpdateManyMutationInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -71685,8 +72900,71 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     project_id?: IntFieldUpdateOperationsInput | number
+    submitted_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DPRChainageCreateInput = {
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    number: number
+    length: number
+    width: number
+    depth: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    dpr: DPRCreateNestedOneWithoutEntriesInput
+    activity: ActivityCreateNestedOneWithoutDprchainagesInput
+    sub_activity: MaterialCreateNestedOneWithoutDprchainagesInput
+    unit: UnitCreateNestedOneWithoutDprchainagesInput
+  }
+
+  export type DPRChainageUncheckedCreateInput = {
+    id?: number
+    dpr_id: number
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type DPRChainageUpdateInput = {
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    dpr?: DPRUpdateOneRequiredWithoutEntriesNestedInput
+    activity?: ActivityUpdateOneRequiredWithoutDprchainagesNestedInput
+    sub_activity?: MaterialUpdateOneRequiredWithoutDprchainagesNestedInput
+    unit?: UnitUpdateOneRequiredWithoutDprchainagesNestedInput
+  }
+
+  export type DPRChainageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     activity_id?: IntFieldUpdateOperationsInput | number
     sub_activity_id?: IntFieldUpdateOperationsInput | number
@@ -71697,7 +72975,58 @@ export namespace Prisma {
     unit_id?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DPRChainageCreateManyInput = {
+    id?: number
+    dpr_id: number
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type DPRChainageUpdateManyMutationInput = {
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DPRChainageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    sub_activity_id?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    unit_id?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -72420,7 +73749,7 @@ export namespace Prisma {
     unit: UnitCreateNestedOneWithoutActivitiesInput
     materials?: MaterialCreateNestedManyWithoutActivityInput
     scopes?: ScopeCreateNestedManyWithoutActivityInput
-    dprs?: DPRCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateInput = {
@@ -72432,7 +73761,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialUncheckedCreateNestedManyWithoutActivityInput
     scopes?: ScopeUncheckedCreateNestedManyWithoutActivityInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUpdateInput = {
@@ -72443,7 +73772,7 @@ export namespace Prisma {
     unit?: UnitUpdateOneRequiredWithoutActivitiesNestedInput
     materials?: MaterialUpdateManyWithoutActivityNestedInput
     scopes?: ScopeUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
@@ -72455,7 +73784,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUncheckedUpdateManyWithoutActivityNestedInput
     scopes?: ScopeUncheckedUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityCreateManyInput = {
@@ -73755,7 +75084,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateInput = {
@@ -73771,7 +75100,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUpdateInput = {
@@ -73786,7 +75115,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateInput = {
@@ -73802,7 +75131,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialCreateManyInput = {
@@ -74978,7 +76307,7 @@ export namespace Prisma {
     materials?: MaterialCreateNestedManyWithoutUnitInput
     activities?: ActivityCreateNestedManyWithoutUnitInput
     scopes?: ScopeCreateNestedManyWithoutUnitInput
-    dprs?: DPRCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateInput = {
@@ -74989,7 +76318,7 @@ export namespace Prisma {
     materials?: MaterialUncheckedCreateNestedManyWithoutUnitInput
     activities?: ActivityUncheckedCreateNestedManyWithoutUnitInput
     scopes?: ScopeUncheckedCreateNestedManyWithoutUnitInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUpdateInput = {
@@ -74999,7 +76328,7 @@ export namespace Prisma {
     materials?: MaterialUpdateManyWithoutUnitNestedInput
     activities?: ActivityUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateInput = {
@@ -75010,7 +76339,7 @@ export namespace Prisma {
     materials?: MaterialUncheckedUpdateManyWithoutUnitNestedInput
     activities?: ActivityUncheckedUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUncheckedUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitCreateManyInput = {
@@ -75937,51 +77266,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type EnumSite_typeFilter<$PrismaModel = never> = {
-    equals?: $Enums.Site_type | EnumSite_typeFieldRefInput<$PrismaModel>
-    in?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSite_typeFilter<$PrismaModel> | $Enums.Site_type
-  }
-
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type ActivityScalarRelationFilter = {
-    is?: ActivityWhereInput
-    isNot?: ActivityWhereInput
-  }
-
-  export type MaterialScalarRelationFilter = {
-    is?: MaterialWhereInput
-    isNot?: MaterialWhereInput
-  }
-
-  export type UnitScalarRelationFilter = {
-    is?: UnitWhereInput
-    isNot?: UnitWhereInput
-  }
-
   export type ProjectScalarRelationFilter = {
     is?: ProjectWhereInput
     isNot?: ProjectWhereInput
@@ -75992,10 +77276,20 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type DPRChainageListRelationFilter = {
+    every?: DPRChainageWhereInput
+    some?: DPRChainageWhereInput
+    none?: DPRChainageWhereInput
+  }
+
   export type DPRFileListRelationFilter = {
     every?: DPRFileWhereInput
     some?: DPRFileWhereInput
     none?: DPRFileWhereInput
+  }
+
+  export type DPRChainageOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type DPRFileOrderByRelationAggregateInput = {
@@ -76006,18 +77300,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     project_id?: SortOrder
-    site?: SortOrder
-    chainage?: SortOrder
-    category?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -76026,15 +77308,6 @@ export namespace Prisma {
   export type DPRAvgOrderByAggregateInput = {
     id?: SortOrder
     project_id?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
   }
 
@@ -76042,17 +77315,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     project_id?: SortOrder
-    site?: SortOrder
-    category?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -76062,17 +77324,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     project_id?: SortOrder
-    site?: SortOrder
-    category?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -76081,15 +77332,6 @@ export namespace Prisma {
   export type DPRSumOrderByAggregateInput = {
     id?: SortOrder
     project_id?: SortOrder
-    activity_id?: SortOrder
-    sub_activity_id?: SortOrder
-    number?: SortOrder
-    length?: SortOrder
-    width?: SortOrder
-    depth?: SortOrder
-    unit_id?: SortOrder
-    quantity?: SortOrder
-    plan_quantity?: SortOrder
     submitted_by?: SortOrder
   }
 
@@ -76123,6 +77365,133 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumSite_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.Site_type | EnumSite_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSite_typeFilter<$PrismaModel> | $Enums.Site_type
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DPRScalarRelationFilter = {
+    is?: DPRWhereInput
+    isNot?: DPRWhereInput
+  }
+
+  export type ActivityScalarRelationFilter = {
+    is?: ActivityWhereInput
+    isNot?: ActivityWhereInput
+  }
+
+  export type MaterialScalarRelationFilter = {
+    is?: MaterialWhereInput
+    isNot?: MaterialWhereInput
+  }
+
+  export type UnitScalarRelationFilter = {
+    is?: UnitWhereInput
+    isNot?: UnitWhereInput
+  }
+
+  export type DPRChainageCountOrderByAggregateInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    site?: SortOrder
+    chainage?: SortOrder
+    category?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type DPRChainageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+  }
+
+  export type DPRChainageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    site?: SortOrder
+    chainage?: SortOrder
+    category?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type DPRChainageMinOrderByAggregateInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    site?: SortOrder
+    chainage?: SortOrder
+    category?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type DPRChainageSumOrderByAggregateInput = {
+    id?: SortOrder
+    dpr_id?: SortOrder
+    activity_id?: SortOrder
+    sub_activity_id?: SortOrder
+    number?: SortOrder
+    length?: SortOrder
+    width?: SortOrder
+    depth?: SortOrder
+    unit_id?: SortOrder
+    quantity?: SortOrder
+    plan_quantity?: SortOrder
+  }
+
   export type EnumSite_typeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Site_type | EnumSite_typeFieldRefInput<$PrismaModel>
     in?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
@@ -76149,11 +77518,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type DPRScalarRelationFilter = {
-    is?: DPRWhereInput
-    isNot?: DPRWhereInput
   }
 
   export type FileScalarRelationFilter = {
@@ -76926,21 +78290,11 @@ export namespace Prisma {
     none?: ScopeWhereInput
   }
 
-  export type DPRListRelationFilter = {
-    every?: DPRWhereInput
-    some?: DPRWhereInput
-    none?: DPRWhereInput
-  }
-
   export type MaterialOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ScopeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type DPROrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -78127,6 +79481,14 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type ModuleListRelationFilter = {
     every?: ModuleWhereInput
     some?: ModuleWhereInput
@@ -78421,6 +79783,12 @@ export namespace Prisma {
     none?: DieselTransactionWhereInput
   }
 
+  export type DPRListRelationFilter = {
+    every?: DPRWhereInput
+    some?: DPRWhereInput
+    none?: DPRWhereInput
+  }
+
   export type InventoryHistoryListRelationFilter = {
     every?: InventoryHistoryWhereInput
     some?: InventoryHistoryWhereInput
@@ -78444,6 +79812,10 @@ export namespace Prisma {
   }
 
   export type DieselTransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DPROrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -79604,28 +80976,6 @@ export namespace Prisma {
     supply_id?: SortOrder
   }
 
-  export type DPRCreatechainageInput = {
-    set: string[]
-  }
-
-  export type ActivityCreateNestedOneWithoutDprsInput = {
-    create?: XOR<ActivityCreateWithoutDprsInput, ActivityUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: ActivityCreateOrConnectWithoutDprsInput
-    connect?: ActivityWhereUniqueInput
-  }
-
-  export type MaterialCreateNestedOneWithoutDprsInput = {
-    create?: XOR<MaterialCreateWithoutDprsInput, MaterialUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: MaterialCreateOrConnectWithoutDprsInput
-    connect?: MaterialWhereUniqueInput
-  }
-
-  export type UnitCreateNestedOneWithoutDprsInput = {
-    create?: XOR<UnitCreateWithoutDprsInput, UnitUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: UnitCreateOrConnectWithoutDprsInput
-    connect?: UnitWhereUniqueInput
-  }
-
   export type ProjectCreateNestedOneWithoutDprsInput = {
     create?: XOR<ProjectCreateWithoutDprsInput, ProjectUncheckedCreateWithoutDprsInput>
     connectOrCreate?: ProjectCreateOrConnectWithoutDprsInput
@@ -79638,11 +80988,25 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type DPRChainageCreateNestedManyWithoutDprInput = {
+    create?: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput> | DPRChainageCreateWithoutDprInput[] | DPRChainageUncheckedCreateWithoutDprInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutDprInput | DPRChainageCreateOrConnectWithoutDprInput[]
+    createMany?: DPRChainageCreateManyDprInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+  }
+
   export type DPRFileCreateNestedManyWithoutDprInput = {
     create?: XOR<DPRFileCreateWithoutDprInput, DPRFileUncheckedCreateWithoutDprInput> | DPRFileCreateWithoutDprInput[] | DPRFileUncheckedCreateWithoutDprInput[]
     connectOrCreate?: DPRFileCreateOrConnectWithoutDprInput | DPRFileCreateOrConnectWithoutDprInput[]
     createMany?: DPRFileCreateManyDprInputEnvelope
     connect?: DPRFileWhereUniqueInput | DPRFileWhereUniqueInput[]
+  }
+
+  export type DPRChainageUncheckedCreateNestedManyWithoutDprInput = {
+    create?: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput> | DPRChainageCreateWithoutDprInput[] | DPRChainageUncheckedCreateWithoutDprInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutDprInput | DPRChainageCreateOrConnectWithoutDprInput[]
+    createMany?: DPRChainageCreateManyDprInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type DPRFileUncheckedCreateNestedManyWithoutDprInput = {
@@ -79654,51 +81018,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type EnumSite_typeFieldUpdateOperationsInput = {
-    set?: $Enums.Site_type
-  }
-
-  export type DPRUpdatechainageInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type ActivityUpdateOneRequiredWithoutDprsNestedInput = {
-    create?: XOR<ActivityCreateWithoutDprsInput, ActivityUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: ActivityCreateOrConnectWithoutDprsInput
-    upsert?: ActivityUpsertWithoutDprsInput
-    connect?: ActivityWhereUniqueInput
-    update?: XOR<XOR<ActivityUpdateToOneWithWhereWithoutDprsInput, ActivityUpdateWithoutDprsInput>, ActivityUncheckedUpdateWithoutDprsInput>
-  }
-
-  export type MaterialUpdateOneRequiredWithoutDprsNestedInput = {
-    create?: XOR<MaterialCreateWithoutDprsInput, MaterialUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: MaterialCreateOrConnectWithoutDprsInput
-    upsert?: MaterialUpsertWithoutDprsInput
-    connect?: MaterialWhereUniqueInput
-    update?: XOR<XOR<MaterialUpdateToOneWithWhereWithoutDprsInput, MaterialUpdateWithoutDprsInput>, MaterialUncheckedUpdateWithoutDprsInput>
-  }
-
-  export type UnitUpdateOneRequiredWithoutDprsNestedInput = {
-    create?: XOR<UnitCreateWithoutDprsInput, UnitUncheckedCreateWithoutDprsInput>
-    connectOrCreate?: UnitCreateOrConnectWithoutDprsInput
-    upsert?: UnitUpsertWithoutDprsInput
-    connect?: UnitWhereUniqueInput
-    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutDprsInput, UnitUpdateWithoutDprsInput>, UnitUncheckedUpdateWithoutDprsInput>
   }
 
   export type ProjectUpdateOneRequiredWithoutDprsNestedInput = {
@@ -79717,6 +81036,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDprsInput, UserUpdateWithoutDprsInput>, UserUncheckedUpdateWithoutDprsInput>
   }
 
+  export type DPRChainageUpdateManyWithoutDprNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput> | DPRChainageCreateWithoutDprInput[] | DPRChainageUncheckedCreateWithoutDprInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutDprInput | DPRChainageCreateOrConnectWithoutDprInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutDprInput | DPRChainageUpsertWithWhereUniqueWithoutDprInput[]
+    createMany?: DPRChainageCreateManyDprInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutDprInput | DPRChainageUpdateWithWhereUniqueWithoutDprInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutDprInput | DPRChainageUpdateManyWithWhereWithoutDprInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
+  }
+
   export type DPRFileUpdateManyWithoutDprNestedInput = {
     create?: XOR<DPRFileCreateWithoutDprInput, DPRFileUncheckedCreateWithoutDprInput> | DPRFileCreateWithoutDprInput[] | DPRFileUncheckedCreateWithoutDprInput[]
     connectOrCreate?: DPRFileCreateOrConnectWithoutDprInput | DPRFileCreateOrConnectWithoutDprInput[]
@@ -79731,6 +81064,28 @@ export namespace Prisma {
     deleteMany?: DPRFileScalarWhereInput | DPRFileScalarWhereInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type DPRChainageUncheckedUpdateManyWithoutDprNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput> | DPRChainageCreateWithoutDprInput[] | DPRChainageUncheckedCreateWithoutDprInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutDprInput | DPRChainageCreateOrConnectWithoutDprInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutDprInput | DPRChainageUpsertWithWhereUniqueWithoutDprInput[]
+    createMany?: DPRChainageCreateManyDprInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutDprInput | DPRChainageUpdateWithWhereUniqueWithoutDprInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutDprInput | DPRChainageUpdateManyWithWhereWithoutDprInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
+  }
+
   export type DPRFileUncheckedUpdateManyWithoutDprNestedInput = {
     create?: XOR<DPRFileCreateWithoutDprInput, DPRFileUncheckedCreateWithoutDprInput> | DPRFileCreateWithoutDprInput[] | DPRFileUncheckedCreateWithoutDprInput[]
     connectOrCreate?: DPRFileCreateOrConnectWithoutDprInput | DPRFileCreateOrConnectWithoutDprInput[]
@@ -79743,6 +81098,70 @@ export namespace Prisma {
     update?: DPRFileUpdateWithWhereUniqueWithoutDprInput | DPRFileUpdateWithWhereUniqueWithoutDprInput[]
     updateMany?: DPRFileUpdateManyWithWhereWithoutDprInput | DPRFileUpdateManyWithWhereWithoutDprInput[]
     deleteMany?: DPRFileScalarWhereInput | DPRFileScalarWhereInput[]
+  }
+
+  export type DPRCreateNestedOneWithoutEntriesInput = {
+    create?: XOR<DPRCreateWithoutEntriesInput, DPRUncheckedCreateWithoutEntriesInput>
+    connectOrCreate?: DPRCreateOrConnectWithoutEntriesInput
+    connect?: DPRWhereUniqueInput
+  }
+
+  export type ActivityCreateNestedOneWithoutDprchainagesInput = {
+    create?: XOR<ActivityCreateWithoutDprchainagesInput, ActivityUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: ActivityCreateOrConnectWithoutDprchainagesInput
+    connect?: ActivityWhereUniqueInput
+  }
+
+  export type MaterialCreateNestedOneWithoutDprchainagesInput = {
+    create?: XOR<MaterialCreateWithoutDprchainagesInput, MaterialUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: MaterialCreateOrConnectWithoutDprchainagesInput
+    connect?: MaterialWhereUniqueInput
+  }
+
+  export type UnitCreateNestedOneWithoutDprchainagesInput = {
+    create?: XOR<UnitCreateWithoutDprchainagesInput, UnitUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutDprchainagesInput
+    connect?: UnitWhereUniqueInput
+  }
+
+  export type EnumSite_typeFieldUpdateOperationsInput = {
+    set?: $Enums.Site_type
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type DPRUpdateOneRequiredWithoutEntriesNestedInput = {
+    create?: XOR<DPRCreateWithoutEntriesInput, DPRUncheckedCreateWithoutEntriesInput>
+    connectOrCreate?: DPRCreateOrConnectWithoutEntriesInput
+    upsert?: DPRUpsertWithoutEntriesInput
+    connect?: DPRWhereUniqueInput
+    update?: XOR<XOR<DPRUpdateToOneWithWhereWithoutEntriesInput, DPRUpdateWithoutEntriesInput>, DPRUncheckedUpdateWithoutEntriesInput>
+  }
+
+  export type ActivityUpdateOneRequiredWithoutDprchainagesNestedInput = {
+    create?: XOR<ActivityCreateWithoutDprchainagesInput, ActivityUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: ActivityCreateOrConnectWithoutDprchainagesInput
+    upsert?: ActivityUpsertWithoutDprchainagesInput
+    connect?: ActivityWhereUniqueInput
+    update?: XOR<XOR<ActivityUpdateToOneWithWhereWithoutDprchainagesInput, ActivityUpdateWithoutDprchainagesInput>, ActivityUncheckedUpdateWithoutDprchainagesInput>
+  }
+
+  export type MaterialUpdateOneRequiredWithoutDprchainagesNestedInput = {
+    create?: XOR<MaterialCreateWithoutDprchainagesInput, MaterialUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: MaterialCreateOrConnectWithoutDprchainagesInput
+    upsert?: MaterialUpsertWithoutDprchainagesInput
+    connect?: MaterialWhereUniqueInput
+    update?: XOR<XOR<MaterialUpdateToOneWithWhereWithoutDprchainagesInput, MaterialUpdateWithoutDprchainagesInput>, MaterialUncheckedUpdateWithoutDprchainagesInput>
+  }
+
+  export type UnitUpdateOneRequiredWithoutDprchainagesNestedInput = {
+    create?: XOR<UnitCreateWithoutDprchainagesInput, UnitUncheckedCreateWithoutDprchainagesInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutDprchainagesInput
+    upsert?: UnitUpsertWithoutDprchainagesInput
+    connect?: UnitWhereUniqueInput
+    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutDprchainagesInput, UnitUpdateWithoutDprchainagesInput>, UnitUncheckedUpdateWithoutDprchainagesInput>
   }
 
   export type DPRCreateNestedOneWithoutDprfilesInput = {
@@ -80545,11 +81964,11 @@ export namespace Prisma {
     connect?: ScopeWhereUniqueInput | ScopeWhereUniqueInput[]
   }
 
-  export type DPRCreateNestedManyWithoutActivityInput = {
-    create?: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput> | DPRCreateWithoutActivityInput[] | DPRUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutActivityInput | DPRCreateOrConnectWithoutActivityInput[]
-    createMany?: DPRCreateManyActivityInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageCreateNestedManyWithoutActivityInput = {
+    create?: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput> | DPRChainageCreateWithoutActivityInput[] | DPRChainageUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutActivityInput | DPRChainageCreateOrConnectWithoutActivityInput[]
+    createMany?: DPRChainageCreateManyActivityInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type MaterialUncheckedCreateNestedManyWithoutActivityInput = {
@@ -80566,11 +81985,11 @@ export namespace Prisma {
     connect?: ScopeWhereUniqueInput | ScopeWhereUniqueInput[]
   }
 
-  export type DPRUncheckedCreateNestedManyWithoutActivityInput = {
-    create?: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput> | DPRCreateWithoutActivityInput[] | DPRUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutActivityInput | DPRCreateOrConnectWithoutActivityInput[]
-    createMany?: DPRCreateManyActivityInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageUncheckedCreateNestedManyWithoutActivityInput = {
+    create?: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput> | DPRChainageCreateWithoutActivityInput[] | DPRChainageUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutActivityInput | DPRChainageCreateOrConnectWithoutActivityInput[]
+    createMany?: DPRChainageCreateManyActivityInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type UnitUpdateOneRequiredWithoutActivitiesNestedInput = {
@@ -80609,18 +82028,18 @@ export namespace Prisma {
     deleteMany?: ScopeScalarWhereInput | ScopeScalarWhereInput[]
   }
 
-  export type DPRUpdateManyWithoutActivityNestedInput = {
-    create?: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput> | DPRCreateWithoutActivityInput[] | DPRUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutActivityInput | DPRCreateOrConnectWithoutActivityInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutActivityInput | DPRUpsertWithWhereUniqueWithoutActivityInput[]
-    createMany?: DPRCreateManyActivityInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutActivityInput | DPRUpdateWithWhereUniqueWithoutActivityInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutActivityInput | DPRUpdateManyWithWhereWithoutActivityInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUpdateManyWithoutActivityNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput> | DPRChainageCreateWithoutActivityInput[] | DPRChainageUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutActivityInput | DPRChainageCreateOrConnectWithoutActivityInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutActivityInput | DPRChainageUpsertWithWhereUniqueWithoutActivityInput[]
+    createMany?: DPRChainageCreateManyActivityInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutActivityInput | DPRChainageUpdateWithWhereUniqueWithoutActivityInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutActivityInput | DPRChainageUpdateManyWithWhereWithoutActivityInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type MaterialUncheckedUpdateManyWithoutActivityNestedInput = {
@@ -80651,18 +82070,18 @@ export namespace Prisma {
     deleteMany?: ScopeScalarWhereInput | ScopeScalarWhereInput[]
   }
 
-  export type DPRUncheckedUpdateManyWithoutActivityNestedInput = {
-    create?: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput> | DPRCreateWithoutActivityInput[] | DPRUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutActivityInput | DPRCreateOrConnectWithoutActivityInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutActivityInput | DPRUpsertWithWhereUniqueWithoutActivityInput[]
-    createMany?: DPRCreateManyActivityInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutActivityInput | DPRUpdateWithWhereUniqueWithoutActivityInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutActivityInput | DPRUpdateManyWithWhereWithoutActivityInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUncheckedUpdateManyWithoutActivityNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput> | DPRChainageCreateWithoutActivityInput[] | DPRChainageUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutActivityInput | DPRChainageCreateOrConnectWithoutActivityInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutActivityInput | DPRChainageUpsertWithWhereUniqueWithoutActivityInput[]
+    createMany?: DPRChainageCreateManyActivityInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutActivityInput | DPRChainageUpdateWithWhereUniqueWithoutActivityInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutActivityInput | DPRChainageUpdateManyWithWhereWithoutActivityInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type ProjectCreateNestedOneWithoutChainageConsumptionLedgersInput = {
@@ -81554,11 +82973,11 @@ export namespace Prisma {
     connect?: PRGRNMaterialReceiptWhereUniqueInput | PRGRNMaterialReceiptWhereUniqueInput[]
   }
 
-  export type DPRCreateNestedManyWithoutSub_activityInput = {
-    create?: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput> | DPRCreateWithoutSub_activityInput[] | DPRUncheckedCreateWithoutSub_activityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutSub_activityInput | DPRCreateOrConnectWithoutSub_activityInput[]
-    createMany?: DPRCreateManySub_activityInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageCreateNestedManyWithoutSub_activityInput = {
+    create?: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput> | DPRChainageCreateWithoutSub_activityInput[] | DPRChainageUncheckedCreateWithoutSub_activityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutSub_activityInput | DPRChainageCreateOrConnectWithoutSub_activityInput[]
+    createMany?: DPRChainageCreateManySub_activityInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type PRMaterialItemUncheckedCreateNestedManyWithoutMaterialInput = {
@@ -81596,11 +83015,11 @@ export namespace Prisma {
     connect?: PRGRNMaterialReceiptWhereUniqueInput | PRGRNMaterialReceiptWhereUniqueInput[]
   }
 
-  export type DPRUncheckedCreateNestedManyWithoutSub_activityInput = {
-    create?: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput> | DPRCreateWithoutSub_activityInput[] | DPRUncheckedCreateWithoutSub_activityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutSub_activityInput | DPRCreateOrConnectWithoutSub_activityInput[]
-    createMany?: DPRCreateManySub_activityInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput = {
+    create?: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput> | DPRChainageCreateWithoutSub_activityInput[] | DPRChainageUncheckedCreateWithoutSub_activityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutSub_activityInput | DPRChainageCreateOrConnectWithoutSub_activityInput[]
+    createMany?: DPRChainageCreateManySub_activityInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type ActivityUpdateOneWithoutMaterialsNestedInput = {
@@ -81693,18 +83112,18 @@ export namespace Prisma {
     deleteMany?: PRGRNMaterialReceiptScalarWhereInput | PRGRNMaterialReceiptScalarWhereInput[]
   }
 
-  export type DPRUpdateManyWithoutSub_activityNestedInput = {
-    create?: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput> | DPRCreateWithoutSub_activityInput[] | DPRUncheckedCreateWithoutSub_activityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutSub_activityInput | DPRCreateOrConnectWithoutSub_activityInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutSub_activityInput | DPRUpsertWithWhereUniqueWithoutSub_activityInput[]
-    createMany?: DPRCreateManySub_activityInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutSub_activityInput | DPRUpdateWithWhereUniqueWithoutSub_activityInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutSub_activityInput | DPRUpdateManyWithWhereWithoutSub_activityInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUpdateManyWithoutSub_activityNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput> | DPRChainageCreateWithoutSub_activityInput[] | DPRChainageUncheckedCreateWithoutSub_activityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutSub_activityInput | DPRChainageCreateOrConnectWithoutSub_activityInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutSub_activityInput | DPRChainageUpsertWithWhereUniqueWithoutSub_activityInput[]
+    createMany?: DPRChainageCreateManySub_activityInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutSub_activityInput | DPRChainageUpdateWithWhereUniqueWithoutSub_activityInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutSub_activityInput | DPRChainageUpdateManyWithWhereWithoutSub_activityInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type PRMaterialItemUncheckedUpdateManyWithoutMaterialNestedInput = {
@@ -81777,18 +83196,18 @@ export namespace Prisma {
     deleteMany?: PRGRNMaterialReceiptScalarWhereInput | PRGRNMaterialReceiptScalarWhereInput[]
   }
 
-  export type DPRUncheckedUpdateManyWithoutSub_activityNestedInput = {
-    create?: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput> | DPRCreateWithoutSub_activityInput[] | DPRUncheckedCreateWithoutSub_activityInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutSub_activityInput | DPRCreateOrConnectWithoutSub_activityInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutSub_activityInput | DPRUpsertWithWhereUniqueWithoutSub_activityInput[]
-    createMany?: DPRCreateManySub_activityInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutSub_activityInput | DPRUpdateWithWhereUniqueWithoutSub_activityInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutSub_activityInput | DPRUpdateManyWithWhereWithoutSub_activityInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput> | DPRChainageCreateWithoutSub_activityInput[] | DPRChainageUncheckedCreateWithoutSub_activityInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutSub_activityInput | DPRChainageCreateOrConnectWithoutSub_activityInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutSub_activityInput | DPRChainageUpsertWithWhereUniqueWithoutSub_activityInput[]
+    createMany?: DPRChainageCreateManySub_activityInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutSub_activityInput | DPRChainageUpdateWithWhereUniqueWithoutSub_activityInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutSub_activityInput | DPRChainageUpdateManyWithWhereWithoutSub_activityInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type PermissionCreateNestedManyWithoutModulesInput = {
@@ -82922,11 +84341,11 @@ export namespace Prisma {
     connect?: ScopeWhereUniqueInput | ScopeWhereUniqueInput[]
   }
 
-  export type DPRCreateNestedManyWithoutUnitInput = {
-    create?: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput> | DPRCreateWithoutUnitInput[] | DPRUncheckedCreateWithoutUnitInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutUnitInput | DPRCreateOrConnectWithoutUnitInput[]
-    createMany?: DPRCreateManyUnitInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageCreateNestedManyWithoutUnitInput = {
+    create?: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput> | DPRChainageCreateWithoutUnitInput[] | DPRChainageUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutUnitInput | DPRChainageCreateOrConnectWithoutUnitInput[]
+    createMany?: DPRChainageCreateManyUnitInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type MaterialUncheckedCreateNestedManyWithoutUnitInput = {
@@ -82950,11 +84369,11 @@ export namespace Prisma {
     connect?: ScopeWhereUniqueInput | ScopeWhereUniqueInput[]
   }
 
-  export type DPRUncheckedCreateNestedManyWithoutUnitInput = {
-    create?: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput> | DPRCreateWithoutUnitInput[] | DPRUncheckedCreateWithoutUnitInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutUnitInput | DPRCreateOrConnectWithoutUnitInput[]
-    createMany?: DPRCreateManyUnitInputEnvelope
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
+  export type DPRChainageUncheckedCreateNestedManyWithoutUnitInput = {
+    create?: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput> | DPRChainageCreateWithoutUnitInput[] | DPRChainageUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutUnitInput | DPRChainageCreateOrConnectWithoutUnitInput[]
+    createMany?: DPRChainageCreateManyUnitInputEnvelope
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
   }
 
   export type MaterialUpdateManyWithoutUnitNestedInput = {
@@ -82999,18 +84418,18 @@ export namespace Prisma {
     deleteMany?: ScopeScalarWhereInput | ScopeScalarWhereInput[]
   }
 
-  export type DPRUpdateManyWithoutUnitNestedInput = {
-    create?: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput> | DPRCreateWithoutUnitInput[] | DPRUncheckedCreateWithoutUnitInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutUnitInput | DPRCreateOrConnectWithoutUnitInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutUnitInput | DPRUpsertWithWhereUniqueWithoutUnitInput[]
-    createMany?: DPRCreateManyUnitInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutUnitInput | DPRUpdateWithWhereUniqueWithoutUnitInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutUnitInput | DPRUpdateManyWithWhereWithoutUnitInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput> | DPRChainageCreateWithoutUnitInput[] | DPRChainageUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutUnitInput | DPRChainageCreateOrConnectWithoutUnitInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutUnitInput | DPRChainageUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: DPRChainageCreateManyUnitInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutUnitInput | DPRChainageUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutUnitInput | DPRChainageUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type MaterialUncheckedUpdateManyWithoutUnitNestedInput = {
@@ -83055,18 +84474,18 @@ export namespace Prisma {
     deleteMany?: ScopeScalarWhereInput | ScopeScalarWhereInput[]
   }
 
-  export type DPRUncheckedUpdateManyWithoutUnitNestedInput = {
-    create?: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput> | DPRCreateWithoutUnitInput[] | DPRUncheckedCreateWithoutUnitInput[]
-    connectOrCreate?: DPRCreateOrConnectWithoutUnitInput | DPRCreateOrConnectWithoutUnitInput[]
-    upsert?: DPRUpsertWithWhereUniqueWithoutUnitInput | DPRUpsertWithWhereUniqueWithoutUnitInput[]
-    createMany?: DPRCreateManyUnitInputEnvelope
-    set?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    disconnect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    delete?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    connect?: DPRWhereUniqueInput | DPRWhereUniqueInput[]
-    update?: DPRUpdateWithWhereUniqueWithoutUnitInput | DPRUpdateWithWhereUniqueWithoutUnitInput[]
-    updateMany?: DPRUpdateManyWithWhereWithoutUnitInput | DPRUpdateManyWithWhereWithoutUnitInput[]
-    deleteMany?: DPRScalarWhereInput | DPRScalarWhereInput[]
+  export type DPRChainageUncheckedUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput> | DPRChainageCreateWithoutUnitInput[] | DPRChainageUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: DPRChainageCreateOrConnectWithoutUnitInput | DPRChainageCreateOrConnectWithoutUnitInput[]
+    upsert?: DPRChainageUpsertWithWhereUniqueWithoutUnitInput | DPRChainageUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: DPRChainageCreateManyUnitInputEnvelope
+    set?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    disconnect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    delete?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    connect?: DPRChainageWhereUniqueInput | DPRChainageWhereUniqueInput[]
+    update?: DPRChainageUpdateWithWhereUniqueWithoutUnitInput | DPRChainageUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: DPRChainageUpdateManyWithWhereWithoutUnitInput | DPRChainageUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
   }
 
   export type FileCreateNestedOneWithoutUsersInput = {
@@ -84161,27 +85580,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedEnumSite_typeFilter<$PrismaModel = never> = {
-    equals?: $Enums.Site_type | EnumSite_typeFieldRefInput<$PrismaModel>
-    in?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSite_typeFilter<$PrismaModel> | $Enums.Site_type
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -84221,6 +85619,27 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSite_typeFilter<$PrismaModel = never> = {
+    equals?: $Enums.Site_type | EnumSite_typeFieldRefInput<$PrismaModel>
+    in?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Site_type[] | ListEnumSite_typeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSite_typeFilter<$PrismaModel> | $Enums.Site_type
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedEnumSite_typeWithAggregatesFilter<$PrismaModel = never> = {
@@ -84742,90 +86161,6 @@ export namespace Prisma {
     _max?: NestedEnumSupplyStatusFilter<$PrismaModel>
   }
 
-  export type ActivityCreateWithoutDprsInput = {
-    category_type: string
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    unit: UnitCreateNestedOneWithoutActivitiesInput
-    materials?: MaterialCreateNestedManyWithoutActivityInput
-    scopes?: ScopeCreateNestedManyWithoutActivityInput
-  }
-
-  export type ActivityUncheckedCreateWithoutDprsInput = {
-    id?: number
-    category_type: string
-    name: string
-    unit_id: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    materials?: MaterialUncheckedCreateNestedManyWithoutActivityInput
-    scopes?: ScopeUncheckedCreateNestedManyWithoutActivityInput
-  }
-
-  export type ActivityCreateOrConnectWithoutDprsInput = {
-    where: ActivityWhereUniqueInput
-    create: XOR<ActivityCreateWithoutDprsInput, ActivityUncheckedCreateWithoutDprsInput>
-  }
-
-  export type MaterialCreateWithoutDprsInput = {
-    name: string
-    material_code?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    activity?: ActivityCreateNestedOneWithoutMaterialsInput
-    unit?: UnitCreateNestedOneWithoutMaterialsInput
-    prmaterialItems?: PRMaterialItemCreateNestedManyWithoutMaterialInput
-    poorderItems?: POOrderItemCreateNestedManyWithoutMaterialInput
-    grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    stocks?: StockCreateNestedManyWithoutMaterialInput
-    prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-  }
-
-  export type MaterialUncheckedCreateWithoutDprsInput = {
-    id?: number
-    name: string
-    material_code?: string | null
-    activityId?: number | null
-    unitId?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    prmaterialItems?: PRMaterialItemUncheckedCreateNestedManyWithoutMaterialInput
-    poorderItems?: POOrderItemUncheckedCreateNestedManyWithoutMaterialInput
-    grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
-    prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-  }
-
-  export type MaterialCreateOrConnectWithoutDprsInput = {
-    where: MaterialWhereUniqueInput
-    create: XOR<MaterialCreateWithoutDprsInput, MaterialUncheckedCreateWithoutDprsInput>
-  }
-
-  export type UnitCreateWithoutDprsInput = {
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    materials?: MaterialCreateNestedManyWithoutUnitInput
-    activities?: ActivityCreateNestedManyWithoutUnitInput
-    scopes?: ScopeCreateNestedManyWithoutUnitInput
-  }
-
-  export type UnitUncheckedCreateWithoutDprsInput = {
-    id?: number
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    materials?: MaterialUncheckedCreateNestedManyWithoutUnitInput
-    activities?: ActivityUncheckedCreateNestedManyWithoutUnitInput
-    scopes?: ScopeUncheckedCreateNestedManyWithoutUnitInput
-  }
-
-  export type UnitCreateOrConnectWithoutDprsInput = {
-    where: UnitWhereUniqueInput
-    create: XOR<UnitCreateWithoutDprsInput, UnitUncheckedCreateWithoutDprsInput>
-  }
-
   export type ProjectCreateWithoutDprsInput = {
     project_type: $Enums.ProjectType
     project_name: string
@@ -84954,6 +86289,51 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutDprsInput, UserUncheckedCreateWithoutDprsInput>
   }
 
+  export type DPRChainageCreateWithoutDprInput = {
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    number: number
+    length: number
+    width: number
+    depth: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    activity: ActivityCreateNestedOneWithoutDprchainagesInput
+    sub_activity: MaterialCreateNestedOneWithoutDprchainagesInput
+    unit: UnitCreateNestedOneWithoutDprchainagesInput
+  }
+
+  export type DPRChainageUncheckedCreateWithoutDprInput = {
+    id?: number
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type DPRChainageCreateOrConnectWithoutDprInput = {
+    where: DPRChainageWhereUniqueInput
+    create: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput>
+  }
+
+  export type DPRChainageCreateManyDprInputEnvelope = {
+    data: DPRChainageCreateManyDprInput | DPRChainageCreateManyDprInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DPRFileCreateWithoutDprInput = {
     file: FileCreateNestedOneWithoutDprfilesInput
   }
@@ -84971,108 +86351,6 @@ export namespace Prisma {
   export type DPRFileCreateManyDprInputEnvelope = {
     data: DPRFileCreateManyDprInput | DPRFileCreateManyDprInput[]
     skipDuplicates?: boolean
-  }
-
-  export type ActivityUpsertWithoutDprsInput = {
-    update: XOR<ActivityUpdateWithoutDprsInput, ActivityUncheckedUpdateWithoutDprsInput>
-    create: XOR<ActivityCreateWithoutDprsInput, ActivityUncheckedCreateWithoutDprsInput>
-    where?: ActivityWhereInput
-  }
-
-  export type ActivityUpdateToOneWithWhereWithoutDprsInput = {
-    where?: ActivityWhereInput
-    data: XOR<ActivityUpdateWithoutDprsInput, ActivityUncheckedUpdateWithoutDprsInput>
-  }
-
-  export type ActivityUpdateWithoutDprsInput = {
-    category_type?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    unit?: UnitUpdateOneRequiredWithoutActivitiesNestedInput
-    materials?: MaterialUpdateManyWithoutActivityNestedInput
-    scopes?: ScopeUpdateManyWithoutActivityNestedInput
-  }
-
-  export type ActivityUncheckedUpdateWithoutDprsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    category_type?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    unit_id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    materials?: MaterialUncheckedUpdateManyWithoutActivityNestedInput
-    scopes?: ScopeUncheckedUpdateManyWithoutActivityNestedInput
-  }
-
-  export type MaterialUpsertWithoutDprsInput = {
-    update: XOR<MaterialUpdateWithoutDprsInput, MaterialUncheckedUpdateWithoutDprsInput>
-    create: XOR<MaterialCreateWithoutDprsInput, MaterialUncheckedCreateWithoutDprsInput>
-    where?: MaterialWhereInput
-  }
-
-  export type MaterialUpdateToOneWithWhereWithoutDprsInput = {
-    where?: MaterialWhereInput
-    data: XOR<MaterialUpdateWithoutDprsInput, MaterialUncheckedUpdateWithoutDprsInput>
-  }
-
-  export type MaterialUpdateWithoutDprsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    material_code?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneWithoutMaterialsNestedInput
-    unit?: UnitUpdateOneWithoutMaterialsNestedInput
-    prmaterialItems?: PRMaterialItemUpdateManyWithoutMaterialNestedInput
-    poorderItems?: POOrderItemUpdateManyWithoutMaterialNestedInput
-    grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    stocks?: StockUpdateManyWithoutMaterialNestedInput
-    prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-  }
-
-  export type MaterialUncheckedUpdateWithoutDprsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    material_code?: NullableStringFieldUpdateOperationsInput | string | null
-    activityId?: NullableIntFieldUpdateOperationsInput | number | null
-    unitId?: NullableIntFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    prmaterialItems?: PRMaterialItemUncheckedUpdateManyWithoutMaterialNestedInput
-    poorderItems?: POOrderItemUncheckedUpdateManyWithoutMaterialNestedInput
-    grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
-    prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-  }
-
-  export type UnitUpsertWithoutDprsInput = {
-    update: XOR<UnitUpdateWithoutDprsInput, UnitUncheckedUpdateWithoutDprsInput>
-    create: XOR<UnitCreateWithoutDprsInput, UnitUncheckedCreateWithoutDprsInput>
-    where?: UnitWhereInput
-  }
-
-  export type UnitUpdateToOneWithWhereWithoutDprsInput = {
-    where?: UnitWhereInput
-    data: XOR<UnitUpdateWithoutDprsInput, UnitUncheckedUpdateWithoutDprsInput>
-  }
-
-  export type UnitUpdateWithoutDprsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    materials?: MaterialUpdateManyWithoutUnitNestedInput
-    activities?: ActivityUpdateManyWithoutUnitNestedInput
-    scopes?: ScopeUpdateManyWithoutUnitNestedInput
-  }
-
-  export type UnitUncheckedUpdateWithoutDprsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    materials?: MaterialUncheckedUpdateManyWithoutUnitNestedInput
-    activities?: ActivityUncheckedUpdateManyWithoutUnitNestedInput
-    scopes?: ScopeUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type ProjectUpsertWithoutDprsInput = {
@@ -85215,6 +86493,44 @@ export namespace Prisma {
     grns?: GRNUncheckedUpdateManyWithoutCreated_byNestedInput
   }
 
+  export type DPRChainageUpsertWithWhereUniqueWithoutDprInput = {
+    where: DPRChainageWhereUniqueInput
+    update: XOR<DPRChainageUpdateWithoutDprInput, DPRChainageUncheckedUpdateWithoutDprInput>
+    create: XOR<DPRChainageCreateWithoutDprInput, DPRChainageUncheckedCreateWithoutDprInput>
+  }
+
+  export type DPRChainageUpdateWithWhereUniqueWithoutDprInput = {
+    where: DPRChainageWhereUniqueInput
+    data: XOR<DPRChainageUpdateWithoutDprInput, DPRChainageUncheckedUpdateWithoutDprInput>
+  }
+
+  export type DPRChainageUpdateManyWithWhereWithoutDprInput = {
+    where: DPRChainageScalarWhereInput
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyWithoutDprInput>
+  }
+
+  export type DPRChainageScalarWhereInput = {
+    AND?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
+    OR?: DPRChainageScalarWhereInput[]
+    NOT?: DPRChainageScalarWhereInput | DPRChainageScalarWhereInput[]
+    id?: IntFilter<"DPRChainage"> | number
+    dpr_id?: IntFilter<"DPRChainage"> | number
+    site?: EnumSite_typeFilter<"DPRChainage"> | $Enums.Site_type
+    chainage?: StringFilter<"DPRChainage"> | string
+    category?: StringFilter<"DPRChainage"> | string
+    activity_id?: IntFilter<"DPRChainage"> | number
+    sub_activity_id?: IntFilter<"DPRChainage"> | number
+    number?: IntFilter<"DPRChainage"> | number
+    length?: IntFilter<"DPRChainage"> | number
+    width?: IntFilter<"DPRChainage"> | number
+    depth?: IntFilter<"DPRChainage"> | number
+    unit_id?: IntFilter<"DPRChainage"> | number
+    quantity?: IntFilter<"DPRChainage"> | number
+    plan_quantity?: IntFilter<"DPRChainage"> | number
+    created_at?: DateTimeFilter<"DPRChainage"> | Date | string
+    updated_at?: DateTimeFilter<"DPRChainage"> | Date | string
+  }
+
   export type DPRFileUpsertWithWhereUniqueWithoutDprInput = {
     where: DPRFileWhereUniqueInput
     update: XOR<DPRFileUpdateWithoutDprInput, DPRFileUncheckedUpdateWithoutDprInput>
@@ -85240,45 +86556,263 @@ export namespace Prisma {
     file_id?: IntFilter<"DPRFile"> | number
   }
 
-  export type DPRCreateWithoutDprfilesInput = {
+  export type DPRCreateWithoutEntriesInput = {
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    number: number
-    length: number
-    width: number
-    depth: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
     project: ProjectCreateNestedOneWithoutDprsInput
     user: UserCreateNestedOneWithoutDprsInput
+    dprfiles?: DPRFileCreateNestedManyWithoutDprInput
+  }
+
+  export type DPRUncheckedCreateWithoutEntriesInput = {
+    id?: number
+    date: Date | string
+    project_id: number
+    submitted_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
+  }
+
+  export type DPRCreateOrConnectWithoutEntriesInput = {
+    where: DPRWhereUniqueInput
+    create: XOR<DPRCreateWithoutEntriesInput, DPRUncheckedCreateWithoutEntriesInput>
+  }
+
+  export type ActivityCreateWithoutDprchainagesInput = {
+    category_type: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    unit: UnitCreateNestedOneWithoutActivitiesInput
+    materials?: MaterialCreateNestedManyWithoutActivityInput
+    scopes?: ScopeCreateNestedManyWithoutActivityInput
+  }
+
+  export type ActivityUncheckedCreateWithoutDprchainagesInput = {
+    id?: number
+    category_type: string
+    name: string
+    unit_id: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    materials?: MaterialUncheckedCreateNestedManyWithoutActivityInput
+    scopes?: ScopeUncheckedCreateNestedManyWithoutActivityInput
+  }
+
+  export type ActivityCreateOrConnectWithoutDprchainagesInput = {
+    where: ActivityWhereUniqueInput
+    create: XOR<ActivityCreateWithoutDprchainagesInput, ActivityUncheckedCreateWithoutDprchainagesInput>
+  }
+
+  export type MaterialCreateWithoutDprchainagesInput = {
+    name: string
+    material_code?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    activity?: ActivityCreateNestedOneWithoutMaterialsInput
+    unit?: UnitCreateNestedOneWithoutMaterialsInput
+    prmaterialItems?: PRMaterialItemCreateNestedManyWithoutMaterialInput
+    poorderItems?: POOrderItemCreateNestedManyWithoutMaterialInput
+    grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
+    stocks?: StockCreateNestedManyWithoutMaterialInput
+    prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
+  }
+
+  export type MaterialUncheckedCreateWithoutDprchainagesInput = {
+    id?: number
+    name: string
+    material_code?: string | null
+    activityId?: number | null
+    unitId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    prmaterialItems?: PRMaterialItemUncheckedCreateNestedManyWithoutMaterialInput
+    poorderItems?: POOrderItemUncheckedCreateNestedManyWithoutMaterialInput
+    grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
+    stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
+    prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
+  }
+
+  export type MaterialCreateOrConnectWithoutDprchainagesInput = {
+    where: MaterialWhereUniqueInput
+    create: XOR<MaterialCreateWithoutDprchainagesInput, MaterialUncheckedCreateWithoutDprchainagesInput>
+  }
+
+  export type UnitCreateWithoutDprchainagesInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    materials?: MaterialCreateNestedManyWithoutUnitInput
+    activities?: ActivityCreateNestedManyWithoutUnitInput
+    scopes?: ScopeCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitUncheckedCreateWithoutDprchainagesInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    materials?: MaterialUncheckedCreateNestedManyWithoutUnitInput
+    activities?: ActivityUncheckedCreateNestedManyWithoutUnitInput
+    scopes?: ScopeUncheckedCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitCreateOrConnectWithoutDprchainagesInput = {
+    where: UnitWhereUniqueInput
+    create: XOR<UnitCreateWithoutDprchainagesInput, UnitUncheckedCreateWithoutDprchainagesInput>
+  }
+
+  export type DPRUpsertWithoutEntriesInput = {
+    update: XOR<DPRUpdateWithoutEntriesInput, DPRUncheckedUpdateWithoutEntriesInput>
+    create: XOR<DPRCreateWithoutEntriesInput, DPRUncheckedCreateWithoutEntriesInput>
+    where?: DPRWhereInput
+  }
+
+  export type DPRUpdateToOneWithWhereWithoutEntriesInput = {
+    where?: DPRWhereInput
+    data: XOR<DPRUpdateWithoutEntriesInput, DPRUncheckedUpdateWithoutEntriesInput>
+  }
+
+  export type DPRUpdateWithoutEntriesInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
+    user?: UserUpdateOneRequiredWithoutDprsNestedInput
+    dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
+  }
+
+  export type DPRUncheckedUpdateWithoutEntriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    project_id?: IntFieldUpdateOperationsInput | number
+    submitted_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
+  }
+
+  export type ActivityUpsertWithoutDprchainagesInput = {
+    update: XOR<ActivityUpdateWithoutDprchainagesInput, ActivityUncheckedUpdateWithoutDprchainagesInput>
+    create: XOR<ActivityCreateWithoutDprchainagesInput, ActivityUncheckedCreateWithoutDprchainagesInput>
+    where?: ActivityWhereInput
+  }
+
+  export type ActivityUpdateToOneWithWhereWithoutDprchainagesInput = {
+    where?: ActivityWhereInput
+    data: XOR<ActivityUpdateWithoutDprchainagesInput, ActivityUncheckedUpdateWithoutDprchainagesInput>
+  }
+
+  export type ActivityUpdateWithoutDprchainagesInput = {
+    category_type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unit?: UnitUpdateOneRequiredWithoutActivitiesNestedInput
+    materials?: MaterialUpdateManyWithoutActivityNestedInput
+    scopes?: ScopeUpdateManyWithoutActivityNestedInput
+  }
+
+  export type ActivityUncheckedUpdateWithoutDprchainagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    category_type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    unit_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    materials?: MaterialUncheckedUpdateManyWithoutActivityNestedInput
+    scopes?: ScopeUncheckedUpdateManyWithoutActivityNestedInput
+  }
+
+  export type MaterialUpsertWithoutDprchainagesInput = {
+    update: XOR<MaterialUpdateWithoutDprchainagesInput, MaterialUncheckedUpdateWithoutDprchainagesInput>
+    create: XOR<MaterialCreateWithoutDprchainagesInput, MaterialUncheckedCreateWithoutDprchainagesInput>
+    where?: MaterialWhereInput
+  }
+
+  export type MaterialUpdateToOneWithWhereWithoutDprchainagesInput = {
+    where?: MaterialWhereInput
+    data: XOR<MaterialUpdateWithoutDprchainagesInput, MaterialUncheckedUpdateWithoutDprchainagesInput>
+  }
+
+  export type MaterialUpdateWithoutDprchainagesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    material_code?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    activity?: ActivityUpdateOneWithoutMaterialsNestedInput
+    unit?: UnitUpdateOneWithoutMaterialsNestedInput
+    prmaterialItems?: PRMaterialItemUpdateManyWithoutMaterialNestedInput
+    poorderItems?: POOrderItemUpdateManyWithoutMaterialNestedInput
+    grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
+    stocks?: StockUpdateManyWithoutMaterialNestedInput
+    prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
+  }
+
+  export type MaterialUncheckedUpdateWithoutDprchainagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    material_code?: NullableStringFieldUpdateOperationsInput | string | null
+    activityId?: NullableIntFieldUpdateOperationsInput | number | null
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prmaterialItems?: PRMaterialItemUncheckedUpdateManyWithoutMaterialNestedInput
+    poorderItems?: POOrderItemUncheckedUpdateManyWithoutMaterialNestedInput
+    grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
+    stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
+    prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
+  }
+
+  export type UnitUpsertWithoutDprchainagesInput = {
+    update: XOR<UnitUpdateWithoutDprchainagesInput, UnitUncheckedUpdateWithoutDprchainagesInput>
+    create: XOR<UnitCreateWithoutDprchainagesInput, UnitUncheckedCreateWithoutDprchainagesInput>
+    where?: UnitWhereInput
+  }
+
+  export type UnitUpdateToOneWithWhereWithoutDprchainagesInput = {
+    where?: UnitWhereInput
+    data: XOR<UnitUpdateWithoutDprchainagesInput, UnitUncheckedUpdateWithoutDprchainagesInput>
+  }
+
+  export type UnitUpdateWithoutDprchainagesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    materials?: MaterialUpdateManyWithoutUnitNestedInput
+    activities?: ActivityUpdateManyWithoutUnitNestedInput
+    scopes?: ScopeUpdateManyWithoutUnitNestedInput
+  }
+
+  export type UnitUncheckedUpdateWithoutDprchainagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    materials?: MaterialUncheckedUpdateManyWithoutUnitNestedInput
+    activities?: ActivityUncheckedUpdateManyWithoutUnitNestedInput
+    scopes?: ScopeUncheckedUpdateManyWithoutUnitNestedInput
+  }
+
+  export type DPRCreateWithoutDprfilesInput = {
+    date: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+    project: ProjectCreateNestedOneWithoutDprsInput
+    user: UserCreateNestedOneWithoutDprsInput
+    entries?: DPRChainageCreateNestedManyWithoutDprInput
   }
 
   export type DPRUncheckedCreateWithoutDprfilesInput = {
     id?: number
     date: Date | string
     project_id: number
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    entries?: DPRChainageUncheckedCreateNestedManyWithoutDprInput
   }
 
   export type DPRCreateOrConnectWithoutDprfilesInput = {
@@ -85337,43 +86871,21 @@ export namespace Prisma {
 
   export type DPRUpdateWithoutDprfilesInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
     project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
     user?: UserUpdateOneRequiredWithoutDprsNestedInput
+    entries?: DPRChainageUpdateManyWithoutDprNestedInput
   }
 
   export type DPRUncheckedUpdateWithoutDprfilesInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     project_id?: IntFieldUpdateOperationsInput | number
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    entries?: DPRChainageUncheckedUpdateManyWithoutDprNestedInput
   }
 
   export type FileUpsertWithoutDprfilesInput = {
@@ -85863,7 +87375,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutGrnmaterialReceiptsInput = {
@@ -85878,7 +87390,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutGrnmaterialReceiptsInput = {
@@ -85989,7 +87501,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutGrnmaterialReceiptsInput = {
@@ -86004,7 +87516,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type InvoiceItemUpsertWithWhereUniqueWithoutGrnItemInput = {
@@ -86927,7 +88439,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutPoorderItemsInput = {
@@ -86942,7 +88454,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutPoorderItemsInput = {
@@ -87028,7 +88540,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutPoorderItemsInput = {
@@ -87043,7 +88555,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type UserCreateWithoutPrs_created_byInput = {
@@ -87823,7 +89335,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutPrmaterialItemsInput = {
@@ -87838,7 +89350,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutPrmaterialItemsInput = {
@@ -87912,7 +89424,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutPrmaterialItemsInput = {
@@ -87927,7 +89439,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type UnitCreateWithoutActivitiesInput = {
@@ -87936,7 +89448,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialCreateNestedManyWithoutUnitInput
     scopes?: ScopeCreateNestedManyWithoutUnitInput
-    dprs?: DPRCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutActivitiesInput = {
@@ -87946,7 +89458,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialUncheckedCreateNestedManyWithoutUnitInput
     scopes?: ScopeUncheckedCreateNestedManyWithoutUnitInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutActivitiesInput = {
@@ -87965,7 +89477,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutActivityInput = {
@@ -87980,7 +89492,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutActivityInput = {
@@ -88020,10 +89532,9 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DPRCreateWithoutActivityInput = {
-    date: Date | string
+  export type DPRChainageCreateWithoutActivityInput = {
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     number: number
     length: number
@@ -88033,19 +89544,16 @@ export namespace Prisma {
     plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
-    project: ProjectCreateNestedOneWithoutDprsInput
-    user: UserCreateNestedOneWithoutDprsInput
-    dprfiles?: DPRFileCreateNestedManyWithoutDprInput
+    dpr: DPRCreateNestedOneWithoutEntriesInput
+    sub_activity: MaterialCreateNestedOneWithoutDprchainagesInput
+    unit: UnitCreateNestedOneWithoutDprchainagesInput
   }
 
-  export type DPRUncheckedCreateWithoutActivityInput = {
+  export type DPRChainageUncheckedCreateWithoutActivityInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     sub_activity_id: number
     number: number
@@ -88055,19 +89563,17 @@ export namespace Prisma {
     unit_id: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
-  export type DPRCreateOrConnectWithoutActivityInput = {
-    where: DPRWhereUniqueInput
-    create: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput>
+  export type DPRChainageCreateOrConnectWithoutActivityInput = {
+    where: DPRChainageWhereUniqueInput
+    create: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput>
   }
 
-  export type DPRCreateManyActivityInputEnvelope = {
-    data: DPRCreateManyActivityInput | DPRCreateManyActivityInput[]
+  export type DPRChainageCreateManyActivityInputEnvelope = {
+    data: DPRChainageCreateManyActivityInput | DPRChainageCreateManyActivityInput[]
     skipDuplicates?: boolean
   }
 
@@ -88088,7 +89594,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutActivitiesInput = {
@@ -88098,7 +89604,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUncheckedUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUncheckedUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type MaterialUpsertWithWhereUniqueWithoutActivityInput = {
@@ -88159,44 +89665,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Scope"> | Date | string
   }
 
-  export type DPRUpsertWithWhereUniqueWithoutActivityInput = {
-    where: DPRWhereUniqueInput
-    update: XOR<DPRUpdateWithoutActivityInput, DPRUncheckedUpdateWithoutActivityInput>
-    create: XOR<DPRCreateWithoutActivityInput, DPRUncheckedCreateWithoutActivityInput>
+  export type DPRChainageUpsertWithWhereUniqueWithoutActivityInput = {
+    where: DPRChainageWhereUniqueInput
+    update: XOR<DPRChainageUpdateWithoutActivityInput, DPRChainageUncheckedUpdateWithoutActivityInput>
+    create: XOR<DPRChainageCreateWithoutActivityInput, DPRChainageUncheckedCreateWithoutActivityInput>
   }
 
-  export type DPRUpdateWithWhereUniqueWithoutActivityInput = {
-    where: DPRWhereUniqueInput
-    data: XOR<DPRUpdateWithoutActivityInput, DPRUncheckedUpdateWithoutActivityInput>
+  export type DPRChainageUpdateWithWhereUniqueWithoutActivityInput = {
+    where: DPRChainageWhereUniqueInput
+    data: XOR<DPRChainageUpdateWithoutActivityInput, DPRChainageUncheckedUpdateWithoutActivityInput>
   }
 
-  export type DPRUpdateManyWithWhereWithoutActivityInput = {
-    where: DPRScalarWhereInput
-    data: XOR<DPRUpdateManyMutationInput, DPRUncheckedUpdateManyWithoutActivityInput>
-  }
-
-  export type DPRScalarWhereInput = {
-    AND?: DPRScalarWhereInput | DPRScalarWhereInput[]
-    OR?: DPRScalarWhereInput[]
-    NOT?: DPRScalarWhereInput | DPRScalarWhereInput[]
-    id?: IntFilter<"DPR"> | number
-    date?: DateTimeFilter<"DPR"> | Date | string
-    project_id?: IntFilter<"DPR"> | number
-    site?: EnumSite_typeFilter<"DPR"> | $Enums.Site_type
-    chainage?: StringNullableListFilter<"DPR">
-    category?: StringFilter<"DPR"> | string
-    activity_id?: IntFilter<"DPR"> | number
-    sub_activity_id?: IntFilter<"DPR"> | number
-    number?: IntFilter<"DPR"> | number
-    length?: IntFilter<"DPR"> | number
-    width?: IntFilter<"DPR"> | number
-    depth?: IntFilter<"DPR"> | number
-    unit_id?: IntFilter<"DPR"> | number
-    quantity?: IntFilter<"DPR"> | number
-    plan_quantity?: IntFilter<"DPR"> | number
-    submitted_by?: IntFilter<"DPR"> | number
-    created_at?: DateTimeFilter<"DPR"> | Date | string
-    updated_at?: DateTimeFilter<"DPR"> | Date | string
+  export type DPRChainageUpdateManyWithWhereWithoutActivityInput = {
+    where: DPRChainageScalarWhereInput
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyWithoutActivityInput>
   }
 
   export type ProjectCreateWithoutChainageConsumptionLedgersInput = {
@@ -91278,7 +92760,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     unit: UnitCreateNestedOneWithoutActivitiesInput
     scopes?: ScopeCreateNestedManyWithoutActivityInput
-    dprs?: DPRCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutMaterialsInput = {
@@ -91289,7 +92771,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     scopes?: ScopeUncheckedCreateNestedManyWithoutActivityInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityCreateOrConnectWithoutMaterialsInput = {
@@ -91303,7 +92785,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     activities?: ActivityCreateNestedManyWithoutUnitInput
     scopes?: ScopeCreateNestedManyWithoutUnitInput
-    dprs?: DPRCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutMaterialsInput = {
@@ -91313,7 +92795,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     activities?: ActivityUncheckedCreateNestedManyWithoutUnitInput
     scopes?: ScopeUncheckedCreateNestedManyWithoutUnitInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutMaterialsInput = {
@@ -91486,10 +92968,9 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DPRCreateWithoutSub_activityInput = {
-    date: Date | string
+  export type DPRChainageCreateWithoutSub_activityInput = {
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     number: number
     length: number
@@ -91499,19 +92980,16 @@ export namespace Prisma {
     plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
-    project: ProjectCreateNestedOneWithoutDprsInput
-    user: UserCreateNestedOneWithoutDprsInput
-    dprfiles?: DPRFileCreateNestedManyWithoutDprInput
+    dpr: DPRCreateNestedOneWithoutEntriesInput
+    activity: ActivityCreateNestedOneWithoutDprchainagesInput
+    unit: UnitCreateNestedOneWithoutDprchainagesInput
   }
 
-  export type DPRUncheckedCreateWithoutSub_activityInput = {
+  export type DPRChainageUncheckedCreateWithoutSub_activityInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     activity_id: number
     number: number
@@ -91521,19 +92999,17 @@ export namespace Prisma {
     unit_id: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
-  export type DPRCreateOrConnectWithoutSub_activityInput = {
-    where: DPRWhereUniqueInput
-    create: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput>
+  export type DPRChainageCreateOrConnectWithoutSub_activityInput = {
+    where: DPRChainageWhereUniqueInput
+    create: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput>
   }
 
-  export type DPRCreateManySub_activityInputEnvelope = {
-    data: DPRCreateManySub_activityInput | DPRCreateManySub_activityInput[]
+  export type DPRChainageCreateManySub_activityInputEnvelope = {
+    data: DPRChainageCreateManySub_activityInput | DPRChainageCreateManySub_activityInput[]
     skipDuplicates?: boolean
   }
 
@@ -91555,7 +93031,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitUpdateOneRequiredWithoutActivitiesNestedInput
     scopes?: ScopeUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutMaterialsInput = {
@@ -91566,7 +93042,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scopes?: ScopeUncheckedUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type UnitUpsertWithoutMaterialsInput = {
@@ -91586,7 +93062,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     activities?: ActivityUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutMaterialsInput = {
@@ -91596,7 +93072,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     activities?: ActivityUncheckedUpdateManyWithoutUnitNestedInput
     scopes?: ScopeUncheckedUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type PRMaterialItemUpsertWithWhereUniqueWithoutMaterialInput = {
@@ -91713,20 +93189,20 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"PRGRNMaterialReceipt"> | Date | string
   }
 
-  export type DPRUpsertWithWhereUniqueWithoutSub_activityInput = {
-    where: DPRWhereUniqueInput
-    update: XOR<DPRUpdateWithoutSub_activityInput, DPRUncheckedUpdateWithoutSub_activityInput>
-    create: XOR<DPRCreateWithoutSub_activityInput, DPRUncheckedCreateWithoutSub_activityInput>
+  export type DPRChainageUpsertWithWhereUniqueWithoutSub_activityInput = {
+    where: DPRChainageWhereUniqueInput
+    update: XOR<DPRChainageUpdateWithoutSub_activityInput, DPRChainageUncheckedUpdateWithoutSub_activityInput>
+    create: XOR<DPRChainageCreateWithoutSub_activityInput, DPRChainageUncheckedCreateWithoutSub_activityInput>
   }
 
-  export type DPRUpdateWithWhereUniqueWithoutSub_activityInput = {
-    where: DPRWhereUniqueInput
-    data: XOR<DPRUpdateWithoutSub_activityInput, DPRUncheckedUpdateWithoutSub_activityInput>
+  export type DPRChainageUpdateWithWhereUniqueWithoutSub_activityInput = {
+    where: DPRChainageWhereUniqueInput
+    data: XOR<DPRChainageUpdateWithoutSub_activityInput, DPRChainageUncheckedUpdateWithoutSub_activityInput>
   }
 
-  export type DPRUpdateManyWithWhereWithoutSub_activityInput = {
-    where: DPRScalarWhereInput
-    data: XOR<DPRUpdateManyMutationInput, DPRUncheckedUpdateManyWithoutSub_activityInput>
+  export type DPRChainageUpdateManyWithWhereWithoutSub_activityInput = {
+    where: DPRChainageScalarWhereInput
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyWithoutSub_activityInput>
   }
 
   export type PermissionCreateWithoutModulesInput = {
@@ -92200,7 +93676,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemCreateNestedManyWithoutMaterialInput
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutPrgrnmaterialReceiptsInput = {
@@ -92215,7 +93691,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedCreateNestedManyWithoutMaterialInput
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutPrgrnmaterialReceiptsInput = {
@@ -92293,7 +93769,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUpdateManyWithoutMaterialNestedInput
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutPrgrnmaterialReceiptsInput = {
@@ -92308,7 +93784,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedUpdateManyWithoutMaterialNestedInput
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type PRGRNCreateWithoutGrnfilesInput = {
@@ -92825,42 +94301,20 @@ export namespace Prisma {
 
   export type DPRCreateWithoutProjectInput = {
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    number: number
-    length: number
-    width: number
-    depth: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
     user: UserCreateNestedOneWithoutDprsInput
+    entries?: DPRChainageCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileCreateNestedManyWithoutDprInput
   }
 
   export type DPRUncheckedCreateWithoutProjectInput = {
     id?: number
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    entries?: DPRChainageUncheckedCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
@@ -93273,6 +94727,18 @@ export namespace Prisma {
   export type DPRUpdateManyWithWhereWithoutProjectInput = {
     where: DPRScalarWhereInput
     data: XOR<DPRUpdateManyMutationInput, DPRUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type DPRScalarWhereInput = {
+    AND?: DPRScalarWhereInput | DPRScalarWhereInput[]
+    OR?: DPRScalarWhereInput[]
+    NOT?: DPRScalarWhereInput | DPRScalarWhereInput[]
+    id?: IntFilter<"DPR"> | number
+    date?: DateTimeFilter<"DPR"> | Date | string
+    project_id?: IntFilter<"DPR"> | number
+    submitted_by?: IntFilter<"DPR"> | number
+    created_at?: DateTimeFilter<"DPR"> | Date | string
+    updated_at?: DateTimeFilter<"DPR"> | Date | string
   }
 
   export type LabourAttendanceUpsertWithWhereUniqueWithoutProjectInput = {
@@ -93910,7 +95376,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     unit: UnitCreateNestedOneWithoutActivitiesInput
     materials?: MaterialCreateNestedManyWithoutActivityInput
-    dprs?: DPRCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutScopesInput = {
@@ -93921,7 +95387,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     materials?: MaterialUncheckedCreateNestedManyWithoutActivityInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityCreateOrConnectWithoutScopesInput = {
@@ -93935,7 +95401,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialCreateNestedManyWithoutUnitInput
     activities?: ActivityCreateNestedManyWithoutUnitInput
-    dprs?: DPRCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutScopesInput = {
@@ -93945,7 +95411,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialUncheckedCreateNestedManyWithoutUnitInput
     activities?: ActivityUncheckedCreateNestedManyWithoutUnitInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutUnitInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutScopesInput = {
@@ -93971,7 +95437,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitUpdateOneRequiredWithoutActivitiesNestedInput
     materials?: MaterialUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutScopesInput = {
@@ -93982,7 +95448,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUncheckedUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type UnitUpsertWithoutScopesInput = {
@@ -94002,7 +95468,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUpdateManyWithoutUnitNestedInput
     activities?: ActivityUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutScopesInput = {
@@ -94012,7 +95478,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUncheckedUpdateManyWithoutUnitNestedInput
     activities?: ActivityUncheckedUpdateManyWithoutUnitNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutUnitNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type MaterialCreateWithoutStocksInput = {
@@ -94026,7 +95492,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemCreateNestedManyWithoutMaterialInput
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutStocksInput = {
@@ -94041,7 +95507,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedCreateNestedManyWithoutMaterialInput
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutStocksInput = {
@@ -94090,7 +95556,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUpdateManyWithoutMaterialNestedInput
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutStocksInput = {
@@ -94105,7 +95571,7 @@ export namespace Prisma {
     poorderItems?: POOrderItemUncheckedUpdateManyWithoutMaterialNestedInput
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type InventoryStockEntryUpsertWithWhereUniqueWithoutStockInput = {
@@ -94586,7 +96052,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptCreateNestedManyWithoutMaterialInput
     stocks?: StockCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptCreateNestedManyWithoutMaterialInput
-    dprs?: DPRCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialUncheckedCreateWithoutUnitInput = {
@@ -94601,7 +96067,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
     stocks?: StockUncheckedCreateNestedManyWithoutMaterialInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedCreateNestedManyWithoutMaterialInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutSub_activityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutSub_activityInput
   }
 
   export type MaterialCreateOrConnectWithoutUnitInput = {
@@ -94621,7 +96087,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialCreateNestedManyWithoutActivityInput
     scopes?: ScopeCreateNestedManyWithoutActivityInput
-    dprs?: DPRCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutUnitInput = {
@@ -94632,7 +96098,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     materials?: MaterialUncheckedCreateNestedManyWithoutActivityInput
     scopes?: ScopeUncheckedCreateNestedManyWithoutActivityInput
-    dprs?: DPRUncheckedCreateNestedManyWithoutActivityInput
+    dprchainages?: DPRChainageUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityCreateOrConnectWithoutUnitInput = {
@@ -94672,10 +96138,9 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DPRCreateWithoutUnitInput = {
-    date: Date | string
+  export type DPRChainageCreateWithoutUnitInput = {
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     number: number
     length: number
@@ -94685,19 +96150,16 @@ export namespace Prisma {
     plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    project: ProjectCreateNestedOneWithoutDprsInput
-    user: UserCreateNestedOneWithoutDprsInput
-    dprfiles?: DPRFileCreateNestedManyWithoutDprInput
+    dpr: DPRCreateNestedOneWithoutEntriesInput
+    activity: ActivityCreateNestedOneWithoutDprchainagesInput
+    sub_activity: MaterialCreateNestedOneWithoutDprchainagesInput
   }
 
-  export type DPRUncheckedCreateWithoutUnitInput = {
+  export type DPRChainageUncheckedCreateWithoutUnitInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     activity_id: number
     sub_activity_id: number
@@ -94707,19 +96169,17 @@ export namespace Prisma {
     depth: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
-  export type DPRCreateOrConnectWithoutUnitInput = {
-    where: DPRWhereUniqueInput
-    create: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput>
+  export type DPRChainageCreateOrConnectWithoutUnitInput = {
+    where: DPRChainageWhereUniqueInput
+    create: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput>
   }
 
-  export type DPRCreateManyUnitInputEnvelope = {
-    data: DPRCreateManyUnitInput | DPRCreateManyUnitInput[]
+  export type DPRChainageCreateManyUnitInputEnvelope = {
+    data: DPRChainageCreateManyUnitInput | DPRChainageCreateManyUnitInput[]
     skipDuplicates?: boolean
   }
 
@@ -94783,20 +96243,20 @@ export namespace Prisma {
     data: XOR<ScopeUpdateManyMutationInput, ScopeUncheckedUpdateManyWithoutUnitInput>
   }
 
-  export type DPRUpsertWithWhereUniqueWithoutUnitInput = {
-    where: DPRWhereUniqueInput
-    update: XOR<DPRUpdateWithoutUnitInput, DPRUncheckedUpdateWithoutUnitInput>
-    create: XOR<DPRCreateWithoutUnitInput, DPRUncheckedCreateWithoutUnitInput>
+  export type DPRChainageUpsertWithWhereUniqueWithoutUnitInput = {
+    where: DPRChainageWhereUniqueInput
+    update: XOR<DPRChainageUpdateWithoutUnitInput, DPRChainageUncheckedUpdateWithoutUnitInput>
+    create: XOR<DPRChainageCreateWithoutUnitInput, DPRChainageUncheckedCreateWithoutUnitInput>
   }
 
-  export type DPRUpdateWithWhereUniqueWithoutUnitInput = {
-    where: DPRWhereUniqueInput
-    data: XOR<DPRUpdateWithoutUnitInput, DPRUncheckedUpdateWithoutUnitInput>
+  export type DPRChainageUpdateWithWhereUniqueWithoutUnitInput = {
+    where: DPRChainageWhereUniqueInput
+    data: XOR<DPRChainageUpdateWithoutUnitInput, DPRChainageUncheckedUpdateWithoutUnitInput>
   }
 
-  export type DPRUpdateManyWithWhereWithoutUnitInput = {
-    where: DPRScalarWhereInput
-    data: XOR<DPRUpdateManyMutationInput, DPRUncheckedUpdateManyWithoutUnitInput>
+  export type DPRChainageUpdateManyWithWhereWithoutUnitInput = {
+    where: DPRChainageScalarWhereInput
+    data: XOR<DPRChainageUpdateManyMutationInput, DPRChainageUncheckedUpdateManyWithoutUnitInput>
   }
 
   export type FileCreateWithoutUsersInput = {
@@ -94861,21 +96321,10 @@ export namespace Prisma {
 
   export type DPRCreateWithoutUserInput = {
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    number: number
-    length: number
-    width: number
-    depth: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
-    activity: ActivityCreateNestedOneWithoutDprsInput
-    sub_activity: MaterialCreateNestedOneWithoutDprsInput
-    unit: UnitCreateNestedOneWithoutDprsInput
     project: ProjectCreateNestedOneWithoutDprsInput
+    entries?: DPRChainageCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileCreateNestedManyWithoutDprInput
   }
 
@@ -94883,20 +96332,9 @@ export namespace Prisma {
     id?: number
     date: Date | string
     project_id: number
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
+    entries?: DPRChainageUncheckedCreateNestedManyWithoutDprInput
     dprfiles?: DPRFileUncheckedCreateNestedManyWithoutDprInput
   }
 
@@ -97385,9 +98823,80 @@ export namespace Prisma {
     direct_supply_config?: DirectSupplyConfigurationUncheckedUpdateOneWithoutSupplyNestedInput
   }
 
+  export type DPRChainageCreateManyDprInput = {
+    id?: number
+    site: $Enums.Site_type
+    chainage: string
+    category: string
+    activity_id: number
+    sub_activity_id: number
+    number: number
+    length: number
+    width: number
+    depth: number
+    unit_id: number
+    quantity: number
+    plan_quantity: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
   export type DPRFileCreateManyDprInput = {
     id?: number
     file_id: number
+  }
+
+  export type DPRChainageUpdateWithoutDprInput = {
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    activity?: ActivityUpdateOneRequiredWithoutDprchainagesNestedInput
+    sub_activity?: MaterialUpdateOneRequiredWithoutDprchainagesNestedInput
+    unit?: UnitUpdateOneRequiredWithoutDprchainagesNestedInput
+  }
+
+  export type DPRChainageUncheckedUpdateWithoutDprInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    sub_activity_id?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    unit_id?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DPRChainageUncheckedUpdateManyWithoutDprInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
+    chainage?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    sub_activity_id?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    length?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
+    depth?: IntFieldUpdateOperationsInput | number
+    unit_id?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    plan_quantity?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DPRFileUpdateWithoutDprInput = {
@@ -98017,12 +99526,11 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type DPRCreateManyActivityInput = {
+  export type DPRChainageCreateManyActivityInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     sub_activity_id: number
     number: number
@@ -98032,7 +99540,6 @@ export namespace Prisma {
     unit_id: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -98048,7 +99555,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutActivityInput = {
@@ -98063,7 +99570,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateManyWithoutActivityInput = {
@@ -98101,10 +99608,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DPRUpdateWithoutActivityInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type DPRChainageUpdateWithoutActivityInput = {
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     length?: IntFieldUpdateOperationsInput | number
@@ -98114,19 +99620,16 @@ export namespace Prisma {
     plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
-    project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
-    user?: UserUpdateOneRequiredWithoutDprsNestedInput
-    dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
+    dpr?: DPRUpdateOneRequiredWithoutEntriesNestedInput
+    sub_activity?: MaterialUpdateOneRequiredWithoutDprchainagesNestedInput
+    unit?: UnitUpdateOneRequiredWithoutDprchainagesNestedInput
   }
 
-  export type DPRUncheckedUpdateWithoutActivityInput = {
+  export type DPRChainageUncheckedUpdateWithoutActivityInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     sub_activity_id?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -98136,18 +99639,15 @@ export namespace Prisma {
     unit_id?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
-  export type DPRUncheckedUpdateManyWithoutActivityInput = {
+  export type DPRChainageUncheckedUpdateManyWithoutActivityInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     sub_activity_id?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -98157,7 +99657,6 @@ export namespace Prisma {
     unit_id?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -98536,12 +100035,11 @@ export namespace Prisma {
     created_at?: Date | string
   }
 
-  export type DPRCreateManySub_activityInput = {
+  export type DPRChainageCreateManySub_activityInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     activity_id: number
     number: number
@@ -98551,7 +100049,6 @@ export namespace Prisma {
     unit_id: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -98729,10 +100226,9 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DPRUpdateWithoutSub_activityInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type DPRChainageUpdateWithoutSub_activityInput = {
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     length?: IntFieldUpdateOperationsInput | number
@@ -98742,19 +100238,16 @@ export namespace Prisma {
     plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
-    project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
-    user?: UserUpdateOneRequiredWithoutDprsNestedInput
-    dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
+    dpr?: DPRUpdateOneRequiredWithoutEntriesNestedInput
+    activity?: ActivityUpdateOneRequiredWithoutDprchainagesNestedInput
+    unit?: UnitUpdateOneRequiredWithoutDprchainagesNestedInput
   }
 
-  export type DPRUncheckedUpdateWithoutSub_activityInput = {
+  export type DPRChainageUncheckedUpdateWithoutSub_activityInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     activity_id?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -98764,18 +100257,15 @@ export namespace Prisma {
     unit_id?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
-  export type DPRUncheckedUpdateManyWithoutSub_activityInput = {
+  export type DPRChainageUncheckedUpdateManyWithoutSub_activityInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     activity_id?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -98785,7 +100275,6 @@ export namespace Prisma {
     unit_id?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -99006,18 +100495,6 @@ export namespace Prisma {
   export type DPRCreateManyProjectInput = {
     id?: number
     date: Date | string
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -99292,60 +100769,26 @@ export namespace Prisma {
 
   export type DPRUpdateWithoutProjectInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
     user?: UserUpdateOneRequiredWithoutDprsNestedInput
+    entries?: DPRChainageUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
   }
 
   export type DPRUncheckedUpdateWithoutProjectInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    entries?: DPRChainageUncheckedUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
   export type DPRUncheckedUpdateManyWithoutProjectInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -99597,12 +101040,11 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type DPRCreateManyUnitInput = {
+  export type DPRChainageCreateManyUnitInput = {
     id?: number
-    date: Date | string
-    project_id: number
+    dpr_id: number
     site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
+    chainage: string
     category: string
     activity_id: number
     sub_activity_id: number
@@ -99612,7 +101054,6 @@ export namespace Prisma {
     depth: number
     quantity: number
     plan_quantity: number
-    submitted_by: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -99628,7 +101069,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
     stocks?: StockUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateWithoutUnitInput = {
@@ -99643,7 +101084,7 @@ export namespace Prisma {
     grnmaterialReceipts?: GRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
     stocks?: StockUncheckedUpdateManyWithoutMaterialNestedInput
     prgrnmaterialReceipts?: PRGRNMaterialReceiptUncheckedUpdateManyWithoutMaterialNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutSub_activityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutSub_activityNestedInput
   }
 
   export type MaterialUncheckedUpdateManyWithoutUnitInput = {
@@ -99662,7 +101103,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUpdateManyWithoutActivityNestedInput
     scopes?: ScopeUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutUnitInput = {
@@ -99673,7 +101114,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     materials?: MaterialUncheckedUpdateManyWithoutActivityNestedInput
     scopes?: ScopeUncheckedUpdateManyWithoutActivityNestedInput
-    dprs?: DPRUncheckedUpdateManyWithoutActivityNestedInput
+    dprchainages?: DPRChainageUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateManyWithoutUnitInput = {
@@ -99710,10 +101151,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type DPRUpdateWithoutUnitInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type DPRChainageUpdateWithoutUnitInput = {
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     length?: IntFieldUpdateOperationsInput | number
@@ -99723,19 +101163,16 @@ export namespace Prisma {
     plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
-    user?: UserUpdateOneRequiredWithoutDprsNestedInput
-    dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
+    dpr?: DPRUpdateOneRequiredWithoutEntriesNestedInput
+    activity?: ActivityUpdateOneRequiredWithoutDprchainagesNestedInput
+    sub_activity?: MaterialUpdateOneRequiredWithoutDprchainagesNestedInput
   }
 
-  export type DPRUncheckedUpdateWithoutUnitInput = {
+  export type DPRChainageUncheckedUpdateWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     activity_id?: IntFieldUpdateOperationsInput | number
     sub_activity_id?: IntFieldUpdateOperationsInput | number
@@ -99745,18 +101182,15 @@ export namespace Prisma {
     depth?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
-  export type DPRUncheckedUpdateManyWithoutUnitInput = {
+  export type DPRChainageUncheckedUpdateManyWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    project_id?: IntFieldUpdateOperationsInput | number
+    dpr_id?: IntFieldUpdateOperationsInput | number
     site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
+    chainage?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     activity_id?: IntFieldUpdateOperationsInput | number
     sub_activity_id?: IntFieldUpdateOperationsInput | number
@@ -99766,7 +101200,6 @@ export namespace Prisma {
     depth?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     plan_quantity?: IntFieldUpdateOperationsInput | number
-    submitted_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -99775,18 +101208,6 @@ export namespace Prisma {
     id?: number
     date: Date | string
     project_id: number
-    site: $Enums.Site_type
-    chainage?: DPRCreatechainageInput | string[]
-    category: string
-    activity_id: number
-    sub_activity_id: number
-    number: number
-    length: number
-    width: number
-    depth: number
-    unit_id: number
-    quantity: number
-    plan_quantity: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -99933,21 +101354,10 @@ export namespace Prisma {
 
   export type DPRUpdateWithoutUserInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    activity?: ActivityUpdateOneRequiredWithoutDprsNestedInput
-    sub_activity?: MaterialUpdateOneRequiredWithoutDprsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutDprsNestedInput
     project?: ProjectUpdateOneRequiredWithoutDprsNestedInput
+    entries?: DPRChainageUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUpdateManyWithoutDprNestedInput
   }
 
@@ -99955,20 +101365,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     project_id?: IntFieldUpdateOperationsInput | number
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    entries?: DPRChainageUncheckedUpdateManyWithoutDprNestedInput
     dprfiles?: DPRFileUncheckedUpdateManyWithoutDprNestedInput
   }
 
@@ -99976,18 +101375,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     project_id?: IntFieldUpdateOperationsInput | number
-    site?: EnumSite_typeFieldUpdateOperationsInput | $Enums.Site_type
-    chainage?: DPRUpdatechainageInput | string[]
-    category?: StringFieldUpdateOperationsInput | string
-    activity_id?: IntFieldUpdateOperationsInput | number
-    sub_activity_id?: IntFieldUpdateOperationsInput | number
-    number?: IntFieldUpdateOperationsInput | number
-    length?: IntFieldUpdateOperationsInput | number
-    width?: IntFieldUpdateOperationsInput | number
-    depth?: IntFieldUpdateOperationsInput | number
-    unit_id?: IntFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    plan_quantity?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
