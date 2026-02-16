@@ -11,27 +11,12 @@ model DPR {
   project_id   Int
   submitted_by Int
 
-  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-  user    User    @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+  project Project       @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  user    User          @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
+  entries DPRChainage[]
 
-  // 🔥 Remove these from here:
-  // site
-  // chainage
-  // activity_id
-  // sub_activity_id
-  // number
-  // length
-  // width
-  // depth
-  // unit_id
-  // quantity
-  // plan_quantity
-
-  entries DPRChainage[] // 👈 NEW relation
-
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  dprfiles   DPRFile[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@index([project_id])
   @@index([date])
@@ -44,15 +29,16 @@ model DPRChainage {
   dpr_id Int
   dpr    DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
-  site     Site_type
-  chainage String
-  category String
+  site          Site_type
+  chainage_from String
+  chainge_to    String
+  category      String
 
   activity_id Int
   activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
 
-  sub_activity_id Int
-  sub_activity    Material @relation(fields: [sub_activity_id], references: [id], onDelete: Cascade)
+  material_id Int
+  material    Material @relation(fields: [material_id], references: [id], onDelete: Cascade)
 
   number Int
   length Int
@@ -65,8 +51,9 @@ model DPRChainage {
   quantity      Int
   plan_quantity Int
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  images     DPRFile[]
 
   @@index([dpr_id])
   @@map("dpr_chainages")
@@ -77,8 +64,8 @@ model DPRFile {
   dpr_id  Int
   file_id Int
 
-  dpr  DPR  @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
-  file File @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  file File        @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  dpr  DPRChainage @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
   @@unique([dpr_id, file_id])
   @@map("dpr_files")

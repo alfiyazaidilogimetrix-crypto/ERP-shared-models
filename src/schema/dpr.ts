@@ -1,6 +1,13 @@
 import { z } from 'zod';
 import { siteTypeSchema } from './enums';
 
+export const dprFileSchema = z.object({
+  id: z.number().int().positive().optional(),
+  dpr_id: z.number().int().positive().optional(),
+  file_id: z.number().int().positive(),
+});
+
+export type DPRFile = z.infer<typeof dprFileSchema>;
 // DPR Chainage Entry Schema
 export const dprChainageSchema = z.object({
   id: z.number().int().positive().optional(),
@@ -9,7 +16,9 @@ export const dprChainageSchema = z.object({
 
   site: siteTypeSchema,
 
-  chainage: z.string().min(1),
+  chainage_from: z.string().min(1),
+
+  chainage_to: z.string().min(1),
 
   category: z.string().min(1),
 
@@ -30,6 +39,7 @@ export const dprChainageSchema = z.object({
   quantity: z.number().int(),
 
   plan_quantity: z.number().int(),
+  dprfiles: z.array(dprFileSchema).optional(),
 
   created_at: z.date().optional(),
 
@@ -37,13 +47,6 @@ export const dprChainageSchema = z.object({
 });
 
 export type DPRChainage = z.infer<typeof dprChainageSchema>;
-export const dprFileSchema = z.object({
-  id: z.number().int().positive().optional(),
-  dpr_id: z.number().int().positive().optional(),
-  file_id: z.number().int().positive(),
-});
-
-export type DPRFile = z.infer<typeof dprFileSchema>;
 
 export const dprSchema = z.object({
   id: z.number().int().positive().optional(),
@@ -55,9 +58,6 @@ export const dprSchema = z.object({
   submitted_by: z.number().int().positive(),
 
   entries: z.array(dprChainageSchema).min(1),
-
-  dprfiles: z.array(dprFileSchema).optional(),
-
   created_at: z.date().optional(),
 
   updated_at: z.date().optional(),
