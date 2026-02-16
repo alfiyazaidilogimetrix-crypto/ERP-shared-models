@@ -55,6 +55,8 @@ model Project {
     labourAttendances LabourAttendance[]
 
     inventoryHistories InventoryHistory[]
+    scopes             Scope[]
+    project_files      ProjectFile[]
 
     @@map("project")
 }
@@ -100,4 +102,14 @@ model BOTSpecificDetails {
     project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
 
     @@map("bot_specific_details")
+}
+
+model ProjectFile {
+    id         Int     @id @default(autoincrement())
+    project_id Int
+    project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+    file_id    Int
+    file       File    @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+    @@map("project_file")
 }

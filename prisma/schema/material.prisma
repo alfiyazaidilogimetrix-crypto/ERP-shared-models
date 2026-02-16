@@ -4,6 +4,7 @@ model Material {
     material_code         String?                @unique
     activityId            Int?
     unitId                Int?
+    category_type         String
     createdAt             DateTime               @default(now())
     updatedAt             DateTime               @updatedAt
     activity              Activity?              @relation(fields: [activityId], references: [id])

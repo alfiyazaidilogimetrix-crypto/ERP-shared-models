@@ -307,16 +307,16 @@ model PRMaterialItem {
 }
 
 model Activity {
-  id            Int           @id @default(autoincrement())
+  id            Int            @id @default(autoincrement())
   category_type String
   name          String
   unit_id       Int
-  unit          Unit          @relation(fields: [unit_id], references: [id])
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  unit          Unit           @relation(fields: [unit_id], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   materials     Material[]
-  scopes        Scope[]
   dprchainages  DPRChainage[]
+  projectSopes  ProjectSopes[]
 
   @@map("activities")
 }
@@ -390,7 +390,8 @@ model File {
   vendorDocuments VendorDocuments[]
   contractorFiles ContractorFiles[]
 
-  prgrnfiles PRGRNFile[]
+  prgrnfiles   PRGRNFile[]
+  projectFiles ProjectFile[]
 
   @@map("files")
 }
@@ -664,6 +665,7 @@ model Material {
   material_code         String?                @unique
   activityId            Int?
   unitId                Int?
+  category_type         String
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   activity              Activity?              @relation(fields: [activityId], references: [id])
@@ -820,6 +822,8 @@ model Project {
   labourAttendances LabourAttendance[]
 
   inventoryHistories InventoryHistory[]
+  scopes             Scope[]
+  project_files      ProjectFile[]
 
   @@map("project")
 }
@@ -867,6 +871,16 @@ model BOTSpecificDetails {
   @@map("bot_specific_details")
 }
 
+model ProjectFile {
+  id         Int     @id @default(autoincrement())
+  project_id Int
+  project    Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  file_id    Int
+  file       File    @relation(fields: [file_id], references: [id], onDelete: Cascade)
+
+  @@map("project_file")
+}
+
 model Role {
   id          Int     @id @default(autoincrement())
   name        String  @unique
@@ -902,17 +916,32 @@ enum Provider {
 }
 
 model Scope {
-  id          Int      @id @default(autoincrement())
-  activity_id Int
-  activity    Activity @relation(fields: [activity_id], references: [id])
-  length      Int
-  unit_id     Int
-  quantity    Int
-  unit        Unit     @relation(fields: [unit_id], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         Int     @id @default(autoincrement())
+  project_id Int
+  project    Project @relation(fields: [project_id], references: [id])
+
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  projectSopes ProjectSopes[]
 
   @@map("scopes")
+}
+
+model ProjectSopes {
+  id            Int      @id @default(autoincrement())
+  scope_id      Int
+  scope         Scope    @relation(fields: [scope_id], references: [id])
+  category_type String
+  activity_id   Int
+  activity      Activity @relation(fields: [activity_id], references: [id])
+  length        Int
+  unit_id       Int
+  quantity      Int
+  unit          Unit     @relation(fields: [unit_id], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("project_scopes")
 }
 
 enum StockStatus {
@@ -976,14 +1005,14 @@ model ContractorFiles {
 }
 
 model Unit {
-  id           Int           @id @default(autoincrement())
+  id           Int            @id @default(autoincrement())
   name         String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   materials    Material[]
   activities   Activity[]
-  scopes       Scope[]
   dprchainages DPRChainage[]
+  projectSopes ProjectSopes[]
 
   @@map("units")
 }

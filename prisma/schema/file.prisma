@@ -15,7 +15,8 @@ model File {
     vendorDocuments VendorDocuments[]
     contractorFiles ContractorFiles[]
 
-    prgrnfiles PRGRNFile[]
+    prgrnfiles   PRGRNFile[]
+    projectFiles ProjectFile[]
 
     @@map("files")
 }

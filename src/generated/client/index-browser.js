@@ -445,6 +445,7 @@ exports.Prisma.MaterialScalarFieldEnum = {
   material_code: 'material_code',
   activityId: 'activityId',
   unitId: 'unitId',
+  category_type: 'category_type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -555,6 +556,12 @@ exports.Prisma.BOTSpecificDetailsScalarFieldEnum = {
   transfer_condition: 'transfer_condition'
 };
 
+exports.Prisma.ProjectFileScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  file_id: 'file_id'
+};
+
 exports.Prisma.RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -565,6 +572,15 @@ exports.Prisma.RoleScalarFieldEnum = {
 
 exports.Prisma.ScopeScalarFieldEnum = {
   id: 'id',
+  project_id: 'project_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProjectSopesScalarFieldEnum = {
+  id: 'id',
+  scope_id: 'scope_id',
+  category_type: 'category_type',
   activity_id: 'activity_id',
   length: 'length',
   unit_id: 'unit_id',
@@ -932,8 +948,10 @@ exports.Prisma.ModelName = {
   HAMSpecificDetails: 'HAMSpecificDetails',
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
+  ProjectFile: 'ProjectFile',
   Role: 'Role',
   Scope: 'Scope',
+  ProjectSopes: 'ProjectSopes',
   Stock: 'Stock',
   ContractorProject: 'ContractorProject',
   ContractorFiles: 'ContractorFiles',
