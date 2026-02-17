@@ -37,8 +37,8 @@ model DPRChainage {
   activity_id Int
   activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
 
-  material_id Int
-  material    Material @relation(fields: [material_id], references: [id], onDelete: Cascade)
+  material_id Int?
+  material    Material? @relation(fields: [material_id], references: [id], onDelete: Cascade)
 
   number Int
   length Int
