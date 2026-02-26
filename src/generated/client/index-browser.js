@@ -298,32 +298,6 @@ exports.Prisma.FileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.InventoryManagerScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  pincode: 'pincode',
-  district: 'district',
-  state: 'state',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.InventoryStockEntryScalarFieldEnum = {
-  id: 'id',
-  inventoryId: 'inventoryId',
-  stockId: 'stockId'
-};
-
-exports.Prisma.InventoryHistoryScalarFieldEnum = {
-  id: 'id',
-  manager_id: 'manager_id',
-  project_id: 'project_id',
-  total_amount: 'total_amount',
-  items_data: 'items_data',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.InvoiceScalarFieldEnum = {
   id: 'id',
   invoiceNumber: 'invoiceNumber',
@@ -601,6 +575,7 @@ exports.Prisma.StockScalarFieldEnum = {
   current_stock: 'current_stock',
   quantity: 'quantity',
   specifications: 'specifications',
+  manager_id: 'manager_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -928,9 +903,6 @@ exports.Prisma.ModelName = {
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
   File: 'File',
-  InventoryManager: 'InventoryManager',
-  InventoryStockEntry: 'InventoryStockEntry',
-  InventoryHistory: 'InventoryHistory',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   TaxDetail: 'TaxDetail',

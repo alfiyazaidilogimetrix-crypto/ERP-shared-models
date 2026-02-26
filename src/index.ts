@@ -22,7 +22,6 @@ export * from './schema/vendor';
 export * from './schema/vendor_supply_management';
 export * from './schema/enums';
 export * from './schema/location';
-export * from './schema/inventory_manager';
 export * from './schema/invoice';
 export * from './schema/scope';
 export * from './schema/activity';

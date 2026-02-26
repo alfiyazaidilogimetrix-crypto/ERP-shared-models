@@ -54,9 +54,8 @@ model Project {
 
     labourAttendances LabourAttendance[]
 
-    inventoryHistories InventoryHistory[]
-    scopes             Scope[]
-    project_files      ProjectFile[]
+    scopes        Scope[]
+    project_files ProjectFile[]
 
     @@map("project")
 }

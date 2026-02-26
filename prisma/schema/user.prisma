@@ -20,17 +20,14 @@ model User {
 
     projects Project[]
 
-    inventoryManagers InventoryManager[]
-
     prs PR[] @relation("approvalUser")
-
-    inventoryHistories InventoryHistory[]
 
     invoices Invoice[]
 
     prgrns PRGRN[]
 
-    grns GRN[]
+    grns   GRN[]
+    stocks Stock[]
 
     @@map("users")
 }
