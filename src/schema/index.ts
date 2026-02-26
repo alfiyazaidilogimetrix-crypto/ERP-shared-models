@@ -21,7 +21,6 @@ import * as vendor from './vendor';
 import * as vendor_supply_management from './vendor_supply_management';
 import * as enums from './enums';
 import * as location from './location';
-import * as inventory_manager from './inventory_manager';
 import * as invoice from './invoice';
 import * as scope from './scope';
 import * as activity from './activity';
@@ -52,7 +51,6 @@ export * from './vendor';
 export * from './vendor_supply_management';
 export * from './enums';
 export * from './location';
-export * from './inventory_manager';
 export * from './invoice';
 export * from './scope';
 export * from './activity';
@@ -84,7 +82,6 @@ export const allModels = {
   ...vendor_supply_management,
   ...enums,
   ...location,
-  ...inventory_manager,
   ...invoice,
   ...scope,
   ...activity,
