@@ -294,16 +294,18 @@ model PRMaterialItem {
 }
 
 model Activity {
-  id            Int            @id @default(autoincrement())
-  category_type String
-  name          String
-  unit_id       Int
-  unit          Unit           @relation(fields: [unit_id], references: [id])
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  materials     Material[]
-  dprchainages  DPRChainage[]
-  projectSopes  ProjectSopes[]
+  id               Int               @id @default(autoincrement())
+  category_type    String
+  name             String
+  unit_id          Int
+  unit             Unit              @relation(fields: [unit_id], references: [id])
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  materials        Material[]
+  dprchainages     DPRChainage[]
+  projectSopes     ProjectSopes[]
+  materialBoqItems MaterialBoqItem[]
+  workScopeItems   WorkScopeItem[]
 
   @@map("activities")
 }
@@ -619,8 +621,42 @@ model Material {
   stocks                Stock[]
   prgrnmaterialReceipts PRGRNMaterialReceipt[]
   dprchainages          DPRChainage[]
+  materialBoqItems      MaterialBoqItem[]
+  workScopeItems        WorkScopeItem[]
 
   @@map("materials")
+}
+
+model MaterialBoq {
+  id               Int               @id @default(autoincrement())
+  project_id       Int
+  project          Project           @relation(fields: [project_id], references: [id])
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  materialBoqItems MaterialBoqItem[]
+
+  @@map("material_boq")
+}
+
+model MaterialBoqItem {
+  id              Int         @id @default(autoincrement())
+  material_boq_id Int
+  material_boq    MaterialBoq @relation(fields: [material_boq_id], references: [id])
+
+  material_id        Int
+  material           Material @relation(fields: [material_id], references: [id])
+  unit_id            Int
+  unit               Unit     @relation(fields: [unit_id], references: [id])
+  activity_id        Int
+  activity           Activity @relation(fields: [activity_id], references: [id])
+  category           String
+  scope_quantity     Float?
+  purchased_quantity Float?
+  balanced_quantity  Float?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("material_boq_item")
 }
 
 model Module {
@@ -766,6 +802,8 @@ model Project {
 
   scopes        Scope[]
   project_files ProjectFile[]
+  materialBoqs  MaterialBoq[]
+  workScopes    WorkScope[]
 
   @@map("project")
 }
@@ -947,14 +985,16 @@ model ContractorFiles {
 }
 
 model Unit {
-  id           Int            @id @default(autoincrement())
-  name         String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  materials    Material[]
-  activities   Activity[]
-  dprchainages DPRChainage[]
-  projectSopes ProjectSopes[]
+  id               Int               @id @default(autoincrement())
+  name             String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  materials        Material[]
+  activities       Activity[]
+  dprchainages     DPRChainage[]
+  projectSopes     ProjectSopes[]
+  materialBoqItems MaterialBoqItem[]
+  workScopeItems   WorkScopeItem[]
 
   @@map("units")
 }
@@ -1185,4 +1225,36 @@ model InventorySupplyConfiguration {
   supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
 
   @@map("inventory_supply_configuration")
+}
+
+model WorkScope {
+  id             Int             @id @default(autoincrement())
+  project_id     Int
+  project        Project         @relation(fields: [project_id], references: [id])
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  workScopeItems WorkScopeItem[]
+
+  @@map("workscope")
+}
+
+model WorkScopeItem {
+  id           Int       @id @default(autoincrement())
+  workscope_id Int
+  workscope    WorkScope @relation(fields: [workscope_id], references: [id])
+  material_id  Int
+  material     Material  @relation(fields: [material_id], references: [id])
+  unit_id      Int
+  unit         Unit      @relation(fields: [unit_id], references: [id])
+  activity_id  Int
+  activity     Activity  @relation(fields: [activity_id], references: [id])
+  category     String
+  length       Int?
+  executed     Float?
+  quantity     Float?
+  balanced     Float?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("workscope_item")
 }

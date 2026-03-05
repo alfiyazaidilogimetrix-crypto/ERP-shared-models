@@ -1,0 +1,31 @@
+model WorkScope {
+    id             Int             @id @default(autoincrement())
+    project_id     Int
+    project        Project         @relation(fields: [project_id], references: [id])
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @updatedAt
+    workScopeItems WorkScopeItem[]
+
+    @@map("workscope")
+}
+
+model WorkScopeItem {
+    id           Int       @id @default(autoincrement())
+    workscope_id Int
+    workscope    WorkScope @relation(fields: [workscope_id], references: [id])
+    material_id  Int
+    material     Material  @relation(fields: [material_id], references: [id])
+    unit_id      Int
+    unit         Unit      @relation(fields: [unit_id], references: [id])
+    activity_id  Int
+    activity     Activity  @relation(fields: [activity_id], references: [id])
+    category     String
+    length       Int?
+    executed     Float?
+    quantity     Float?
+    balanced     Float?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+
+    @@map("workscope_item")
+}

@@ -425,6 +425,27 @@ exports.Prisma.MaterialScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MaterialBoqScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MaterialBoqItemScalarFieldEnum = {
+  id: 'id',
+  material_boq_id: 'material_boq_id',
+  material_id: 'material_id',
+  unit_id: 'unit_id',
+  activity_id: 'activity_id',
+  category: 'category',
+  scope_quantity: 'scope_quantity',
+  purchased_quantity: 'purchased_quantity',
+  balanced_quantity: 'balanced_quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ModuleScalarFieldEnum = {
   id: 'id',
   Name: 'Name',
@@ -726,6 +747,28 @@ exports.Prisma.InventorySupplyConfigurationScalarFieldEnum = {
   quality_check_status: 'quality_check_status'
 };
 
+exports.Prisma.WorkScopeScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WorkScopeItemScalarFieldEnum = {
+  id: 'id',
+  workscope_id: 'workscope_id',
+  material_id: 'material_id',
+  unit_id: 'unit_id',
+  activity_id: 'activity_id',
+  category: 'category',
+  length: 'length',
+  executed: 'executed',
+  quantity: 'quantity',
+  balanced: 'balanced',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -912,6 +955,8 @@ exports.Prisma.ModelName = {
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
   Material: 'Material',
+  MaterialBoq: 'MaterialBoq',
+  MaterialBoqItem: 'MaterialBoqItem',
   Module: 'Module',
   Permission: 'Permission',
   PRGRN: 'PRGRN',
@@ -937,7 +982,9 @@ exports.Prisma.ModelName = {
   VendorDocuments: 'VendorDocuments',
   VendorSupplyManagement: 'VendorSupplyManagement',
   DirectSupplyConfiguration: 'DirectSupplyConfiguration',
-  InventorySupplyConfiguration: 'InventorySupplyConfiguration'
+  InventorySupplyConfiguration: 'InventorySupplyConfiguration',
+  WorkScope: 'WorkScope',
+  WorkScopeItem: 'WorkScopeItem'
 };
 
 /**

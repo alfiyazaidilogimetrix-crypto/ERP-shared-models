@@ -56,6 +56,8 @@ model Project {
 
     scopes        Scope[]
     project_files ProjectFile[]
+    materialBoqs  MaterialBoq[]
+    workScopes    WorkScope[]
 
     @@map("project")
 }
