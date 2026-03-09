@@ -6,7 +6,6 @@ model Unit {
     materials        Material[]
     activities       Activity[]
     dprchainages     DPRChainage[]
-    projectSopes     ProjectSopes[]
     materialBoqItems MaterialBoqItem[]
     workScopeItems   WorkScopeItem[]
 

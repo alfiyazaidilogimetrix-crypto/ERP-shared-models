@@ -303,7 +303,6 @@ model Activity {
   updatedAt        DateTime          @updatedAt
   materials        Material[]
   dprchainages     DPRChainage[]
-  projectSopes     ProjectSopes[]
   materialBoqItems MaterialBoqItem[]
   workScopeItems   WorkScopeItem[]
 
@@ -800,7 +799,6 @@ model Project {
 
   labourAttendances LabourAttendance[]
 
-  scopes        Scope[]
   project_files ProjectFile[]
   materialBoqs  MaterialBoq[]
   workScopes    WorkScope[]
@@ -895,35 +893,6 @@ enum Provider {
   google
 }
 
-model Scope {
-  id         Int     @id @default(autoincrement())
-  project_id Int
-  project    Project @relation(fields: [project_id], references: [id])
-
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  projectSopes ProjectSopes[]
-
-  @@map("scopes")
-}
-
-model ProjectSopes {
-  id            Int      @id @default(autoincrement())
-  scope_id      Int
-  scope         Scope    @relation(fields: [scope_id], references: [id])
-  category_type String
-  activity_id   Int
-  activity      Activity @relation(fields: [activity_id], references: [id])
-  length        Int
-  unit_id       Int
-  quantity      Int
-  unit          Unit     @relation(fields: [unit_id], references: [id])
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@map("project_scopes")
-}
-
 enum StockStatus {
   IN_STOCK
   LOW_STOCK
@@ -992,7 +961,6 @@ model Unit {
   materials        Material[]
   activities       Activity[]
   dprchainages     DPRChainage[]
-  projectSopes     ProjectSopes[]
   materialBoqItems MaterialBoqItem[]
   workScopeItems   WorkScopeItem[]
 

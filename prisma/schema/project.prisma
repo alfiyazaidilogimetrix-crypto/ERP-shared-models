@@ -54,7 +54,6 @@ model Project {
 
     labourAttendances LabourAttendance[]
 
-    scopes        Scope[]
     project_files ProjectFile[]
     materialBoqs  MaterialBoq[]
     workScopes    WorkScope[]

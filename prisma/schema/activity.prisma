@@ -8,7 +8,6 @@ model Activity {
     updatedAt        DateTime          @updatedAt
     materials        Material[]
     dprchainages     DPRChainage[]
-    projectSopes     ProjectSopes[]
     materialBoqItems MaterialBoqItem[]
     workScopeItems   WorkScopeItem[]
 

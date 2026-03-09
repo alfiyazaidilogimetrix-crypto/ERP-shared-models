@@ -566,25 +566,6 @@ exports.Prisma.RoleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ScopeScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ProjectSopesScalarFieldEnum = {
-  id: 'id',
-  scope_id: 'scope_id',
-  category_type: 'category_type',
-  activity_id: 'activity_id',
-  length: 'length',
-  unit_id: 'unit_id',
-  quantity: 'quantity',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   material_id: 'material_id',
@@ -968,8 +949,6 @@ exports.Prisma.ModelName = {
   BOTSpecificDetails: 'BOTSpecificDetails',
   ProjectFile: 'ProjectFile',
   Role: 'Role',
-  Scope: 'Scope',
-  ProjectSopes: 'ProjectSopes',
   Stock: 'Stock',
   ContractorProject: 'ContractorProject',
   ContractorFiles: 'ContractorFiles',
