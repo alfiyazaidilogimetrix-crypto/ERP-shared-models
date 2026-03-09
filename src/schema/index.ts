@@ -22,11 +22,12 @@ import * as vendor_supply_management from './vendor_supply_management';
 import * as enums from './enums';
 import * as location from './location';
 import * as invoice from './invoice';
-import * as scope from './scope';
 import * as activity from './activity';
 import * as labour_attendance from './labour_attendance';
 import * as stock from './stock';
 import * as prgrn from './pr-grn';
+import * as material_boq from './material_boq';
+import * as workscope from './workscope';
 
 export * from './user';
 export * from './mail';
@@ -52,11 +53,12 @@ export * from './vendor_supply_management';
 export * from './enums';
 export * from './location';
 export * from './invoice';
-export * from './scope';
 export * from './activity';
 export * from './labour_attendance';
 export * from './stock';
 export * from './pr-grn';
+export * from './material_boq';
+export * from './workscope';
 
 export const allModels = {
   ...user,
@@ -83,9 +85,10 @@ export const allModels = {
   ...enums,
   ...location,
   ...invoice,
-  ...scope,
   ...activity,
   ...labour_attendance,
   ...stock,
   ...prgrn,
+  ...material_boq,
+  ...workscope,
 };
