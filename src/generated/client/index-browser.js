@@ -135,7 +135,7 @@ exports.Prisma.DPRChainageScalarFieldEnum = {
   site: 'site',
   chainage_from: 'chainage_from',
   chainge_to: 'chainge_to',
-  category: 'category',
+  category_id: 'category_id',
   activity_id: 'activity_id',
   material_id: 'material_id',
   number: 'number',
@@ -252,9 +252,17 @@ exports.Prisma.PRMaterialItemScalarFieldEnum = {
 
 exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
-  category_type: 'category_type',
   name: 'name',
   unit_id: 'unit_id',
+  category_id: 'category_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -420,7 +428,7 @@ exports.Prisma.MaterialScalarFieldEnum = {
   material_code: 'material_code',
   activityId: 'activityId',
   unitId: 'unitId',
-  category_type: 'category_type',
+  categoryId: 'categoryId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -438,7 +446,7 @@ exports.Prisma.MaterialBoqItemScalarFieldEnum = {
   material_id: 'material_id',
   unit_id: 'unit_id',
   activity_id: 'activity_id',
-  category: 'category',
+  category_id: 'category_id',
   scope_quantity: 'scope_quantity',
   purchased_quantity: 'purchased_quantity',
   balanced_quantity: 'balanced_quantity',
@@ -741,7 +749,7 @@ exports.Prisma.WorkScopeItemScalarFieldEnum = {
   material_id: 'material_id',
   unit_id: 'unit_id',
   activity_id: 'activity_id',
-  category: 'category',
+  category_id: 'category_id',
   length: 'length',
   executed: 'executed',
   quantity: 'quantity',
@@ -924,6 +932,7 @@ exports.Prisma.ModelName = {
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
   Activity: 'Activity',
+  Category: 'Category',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
   File: 'File',

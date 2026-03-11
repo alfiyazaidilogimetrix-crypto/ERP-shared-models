@@ -19,7 +19,8 @@ model WorkScopeItem {
     unit         Unit      @relation(fields: [unit_id], references: [id])
     activity_id  Int
     activity     Activity  @relation(fields: [activity_id], references: [id])
-    category     String
+    category_id  Int
+    category     Category  @relation(fields: [category_id], references: [id])
     length       Int?
     executed     Float?
     quantity     Float?

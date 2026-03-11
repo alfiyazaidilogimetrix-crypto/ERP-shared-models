@@ -27,6 +27,8 @@ export * from './schema/activity';
 export * from './schema/stock';
 export * from './schema/pr-grn';
 export * from './schema/labour_attendance';
+export * from './schema/material_boq';
+export * from './schema/workscope';
 export { allModels } from './schema';
 export * from './lib/tools';
 export * from './lib/env';

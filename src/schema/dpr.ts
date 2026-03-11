@@ -20,11 +20,9 @@ export const dprChainageSchema = z.object({
 
   chainage_to: z.string().min(1),
 
-  category: z.string().min(1),
-
+  category_id: z.number().int().positive(),
   activity_id: z.number().int().positive(),
-
-  sub_activity_id: z.number().int().positive(),
+  material_id: z.number().int().positive().nullable().optional(),
 
   number: z.number().int(),
 

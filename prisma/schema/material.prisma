@@ -4,11 +4,12 @@ model Material {
     material_code         String?                @unique
     activityId            Int?
     unitId                Int?
-    category_type         String
+    categoryId            Int?
     createdAt             DateTime               @default(now())
     updatedAt             DateTime               @updatedAt
     activity              Activity?              @relation(fields: [activityId], references: [id])
     unit                  Unit?                  @relation(fields: [unitId], references: [id])
+    category              Category?              @relation(fields: [categoryId], references: [id])
     prmaterialItems       PRMaterialItem[]
     poorderItems          POOrderItem[]
     grnmaterialReceipts   GRNMaterialReceipt[]

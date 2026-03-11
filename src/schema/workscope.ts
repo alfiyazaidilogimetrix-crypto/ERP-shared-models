@@ -13,7 +13,7 @@ export const workScopeItemSchema = z.object({
     material_id: z.number().int().positive(),
     unit_id: z.number().int().positive(),
     activity_id: z.number().int().positive(),
-    category: z.string().min(1),
+    category_id: z.number().int().positive(),
     length: z.number().int().nullable().optional(),
     executed: z.number().nullable().optional(),
     quantity: z.number().nullable().optional(),

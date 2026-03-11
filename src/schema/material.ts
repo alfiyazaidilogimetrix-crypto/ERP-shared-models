@@ -6,7 +6,7 @@ export const materialSchema = z.object({
   material_code: z.string().nullable().optional(),
   activityId: z.number().int().positive().nullable().optional(),
   unitId: z.number().int().positive().nullable().optional(),
-  category_type: z.string().min(1),
+  categoryId: z.number().int().positive().nullable().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 });

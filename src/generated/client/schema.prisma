@@ -32,7 +32,8 @@ model DPRChainage {
   site          Site_type
   chainage_from String
   chainge_to    String
-  category      String
+  category_id   Int
+  category      Category  @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
   activity_id Int
   activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
@@ -295,10 +296,11 @@ model PRMaterialItem {
 
 model Activity {
   id               Int               @id @default(autoincrement())
-  category_type    String
   name             String
   unit_id          Int
   unit             Unit              @relation(fields: [unit_id], references: [id])
+  category_id      Int
+  category         Category          @relation(fields: [category_id], references: [id])
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   materials        Material[]
@@ -307,6 +309,21 @@ model Activity {
   workScopeItems   WorkScopeItem[]
 
   @@map("activities")
+}
+
+model Category {
+  id               Int               @id @default(autoincrement())
+  name             String
+  description      String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  activities       Activity[]
+  materials        Material[]
+  dprchainages     DPRChainage[]
+  materialBoqItems MaterialBoqItem[]
+  workScopeItems   WorkScopeItem[]
+
+  @@map("categories")
 }
 
 model Chainage_consumption_ledger {
@@ -609,11 +626,12 @@ model Material {
   material_code         String?                @unique
   activityId            Int?
   unitId                Int?
-  category_type         String
+  categoryId            Int?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   activity              Activity?              @relation(fields: [activityId], references: [id])
   unit                  Unit?                  @relation(fields: [unitId], references: [id])
+  category              Category?              @relation(fields: [categoryId], references: [id])
   prmaterialItems       PRMaterialItem[]
   poorderItems          POOrderItem[]
   grnmaterialReceipts   GRNMaterialReceipt[]
@@ -648,7 +666,8 @@ model MaterialBoqItem {
   unit               Unit     @relation(fields: [unit_id], references: [id])
   activity_id        Int
   activity           Activity @relation(fields: [activity_id], references: [id])
-  category           String
+  category_id        Int
+  category           Category @relation(fields: [category_id], references: [id])
   scope_quantity     Float?
   purchased_quantity Float?
   balanced_quantity  Float?
@@ -1216,7 +1235,8 @@ model WorkScopeItem {
   unit         Unit      @relation(fields: [unit_id], references: [id])
   activity_id  Int
   activity     Activity  @relation(fields: [activity_id], references: [id])
-  category     String
+  category_id  Int
+  category     Category  @relation(fields: [category_id], references: [id])
   length       Int?
   executed     Float?
   quantity     Float?

@@ -13,7 +13,7 @@ export const materialBoqItemSchema = z.object({
   material_id: z.number().int().positive(),
   unit_id: z.number().int().positive(),
   activity_id: z.number().int().positive(),
-  category: z.string().min(1),
+  category_id: z.number().int().positive(),
   scope_quantity: z.number().nullable().optional(),
   purchased_quantity: z.number().nullable().optional(),
   balanced_quantity: z.number().nullable().optional(),
