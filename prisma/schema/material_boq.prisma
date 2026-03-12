@@ -25,6 +25,7 @@ model MaterialBoqItem {
   scope_quantity     Float?
   purchased_quantity Float?
   balanced_quantity  Float?
+  rate               Float?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 

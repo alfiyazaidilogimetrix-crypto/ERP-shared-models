@@ -450,6 +450,7 @@ exports.Prisma.MaterialBoqItemScalarFieldEnum = {
   scope_quantity: 'scope_quantity',
   purchased_quantity: 'purchased_quantity',
   balanced_quantity: 'balanced_quantity',
+  rate: 'rate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
