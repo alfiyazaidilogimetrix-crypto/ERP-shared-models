@@ -177,6 +177,8 @@ model PO {
   transport_mode TransportMode?
 
   total_amount String
+  gst_percent  String?
+  gst_amount   String?
 
   po_status POStatus @default(DRAFT)
 
@@ -393,7 +395,6 @@ model File {
   dprfiles        DPRFile[]
   grnfiles        GRNFile[]
   vendorDocuments VendorDocuments[]
-  contractorFiles ContractorFiles[]
 
   prgrnfiles   PRGRNFile[]
   projectFiles ProjectFile[]
@@ -645,12 +646,13 @@ model Material {
 }
 
 model MaterialBoq {
-  id               Int               @id @default(autoincrement())
-  project_id       Int
-  project          Project           @relation(fields: [project_id], references: [id])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  materialBoqItems MaterialBoqItem[]
+  id                      Int                         @id @default(autoincrement())
+  project_id              Int
+  project                 Project                     @relation(fields: [project_id], references: [id])
+  createdAt               DateTime                    @default(now())
+  updatedAt               DateTime                    @updatedAt
+  materialBoqItems        MaterialBoqItem[]
+  subContractorWorkOrders sub_contractor_work_order[]
 
   @@map("material_boq")
 }
@@ -810,7 +812,6 @@ model Project {
   updated_at DateTime @updatedAt
 
   directSupplyConfigurations DirectSupplyConfiguration[]
-  sub_contractors            ContractorProject[]
   chainageConsumptionLedgers Chainage_consumption_ledger[]
   prs                        PR[]
   pos                        PO[]
@@ -819,9 +820,10 @@ model Project {
 
   labourAttendances LabourAttendance[]
 
-  project_files ProjectFile[]
-  materialBoqs  MaterialBoq[]
-  workScopes    WorkScope[]
+  project_files           ProjectFile[]
+  materialBoqs            MaterialBoq[]
+  workScopes              WorkScope[]
+  subContractorWorkOrders sub_contractor_work_order[]
 
   @@map("project")
 }
@@ -942,35 +944,36 @@ model Stock {
   @@map("stock")
 }
 
-model ContractorProject {
-  id                     Int       @id @default(autoincrement())
-  contractorId           Int
-  projectId              Int
-  partnership_percentage String?
-  start_date             DateTime?
-  end_date               DateTime?
-  overall_budget         String?
-  from_chainage          String?
-  to_chainage            String?
-
-  contractor Vendor            @relation(fields: [contractorId], references: [id])
-  project    Project           @relation(fields: [projectId], references: [id])
-  reports    ContractorFiles[]
-
-  @@unique([contractorId, projectId])
-  @@map("contractor_projects")
+enum work_order_status {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
-model ContractorFiles {
-  id                  Int               @id @default(autoincrement())
-  contractorProjectId Int
-  file_id             Int
-  report_type         String
-  description         String?
-  contractorProject   ContractorProject @relation(fields: [contractorProjectId], references: [id])
-  file                File              @relation(fields: [file_id], references: [id])
+enum payment_status {
+  PENDING
+  PAID
+  PARTIALLY_PAID
+}
 
-  @@map("contractor_files")
+model sub_contractor_work_order {
+  id                     Int                @id @default(autoincrement())
+  project_id             Int
+  vendor_id              Int
+  materia_boq_id         Int
+  work_order_no          String
+  work_order_date        DateTime
+  work_order_status      work_order_status?
+  work_order_description String?
+  work_order_amount      String?
+  payment_status         payment_status     @default(PENDING)
+  project                Project            @relation(fields: [project_id], references: [id])
+  vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
+  material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
+  created_at             DateTime           @default(now())
+  updated_at             DateTime           @updatedAt
+
+  @@map("sub_contractor_work_order")
 }
 
 model Unit {
@@ -1059,11 +1062,10 @@ model Vendor {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  contractorProjects ContractorProject[]
-
   invoice_seller Invoice[] @relation("seller")
 
-  invoice_consignee Invoice[] @relation("consignee")
+  invoice_consignee       Invoice[]                   @relation("consignee")
+  subContractorWorkOrders sub_contractor_work_order[]
 
   @@map("vendor")
 }

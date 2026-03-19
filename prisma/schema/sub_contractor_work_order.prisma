@@ -1,0 +1,31 @@
+enum work_order_status {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+enum payment_status {
+    PENDING
+    PAID
+    PARTIALLY_PAID
+}
+
+model sub_contractor_work_order {
+    id                     Int                @id @default(autoincrement())
+    project_id             Int
+    vendor_id              Int
+    materia_boq_id         Int
+    work_order_no          String
+    work_order_date        DateTime
+    work_order_status      work_order_status?
+    work_order_description String?
+    work_order_amount      String?
+    payment_status         payment_status     @default(PENDING)
+    project                Project            @relation(fields: [project_id], references: [id])
+    vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
+    material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
+    created_at             DateTime           @default(now())
+    updated_at             DateTime           @updatedAt
+
+    @@map("sub_contractor_work_order")
+}

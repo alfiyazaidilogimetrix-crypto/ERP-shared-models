@@ -13,7 +13,6 @@ model File {
     dprfiles        DPRFile[]
     grnfiles        GRNFile[]
     vendorDocuments VendorDocuments[]
-    contractorFiles ContractorFiles[]
 
     prgrnfiles   PRGRNFile[]
     projectFiles ProjectFile[]

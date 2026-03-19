@@ -45,7 +45,6 @@ model Project {
     updated_at DateTime @updatedAt
 
     directSupplyConfigurations DirectSupplyConfiguration[]
-    sub_contractors            ContractorProject[]
     chainageConsumptionLedgers Chainage_consumption_ledger[]
     prs                        PR[]
     pos                        PO[]
@@ -54,9 +53,10 @@ model Project {
 
     labourAttendances LabourAttendance[]
 
-    project_files ProjectFile[]
-    materialBoqs  MaterialBoq[]
-    workScopes    WorkScope[]
+    project_files           ProjectFile[]
+    materialBoqs            MaterialBoq[]
+    workScopes              WorkScope[]
+    subContractorWorkOrders sub_contractor_work_order[]
 
     @@map("project")
 }

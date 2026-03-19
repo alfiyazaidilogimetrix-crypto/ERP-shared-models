@@ -203,6 +203,8 @@ exports.Prisma.POScalarFieldEnum = {
   expected_delivery_date: 'expected_delivery_date',
   transport_mode: 'transport_mode',
   total_amount: 'total_amount',
+  gst_percent: 'gst_percent',
+  gst_amount: 'gst_amount',
   po_status: 'po_status',
   payment_terms: 'payment_terms',
   delivery_terms: 'delivery_terms',
@@ -591,24 +593,19 @@ exports.Prisma.StockScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ContractorProjectScalarFieldEnum = {
+exports.Prisma.Sub_contractor_work_orderScalarFieldEnum = {
   id: 'id',
-  contractorId: 'contractorId',
-  projectId: 'projectId',
-  partnership_percentage: 'partnership_percentage',
-  start_date: 'start_date',
-  end_date: 'end_date',
-  overall_budget: 'overall_budget',
-  from_chainage: 'from_chainage',
-  to_chainage: 'to_chainage'
-};
-
-exports.Prisma.ContractorFilesScalarFieldEnum = {
-  id: 'id',
-  contractorProjectId: 'contractorProjectId',
-  file_id: 'file_id',
-  report_type: 'report_type',
-  description: 'description'
+  project_id: 'project_id',
+  vendor_id: 'vendor_id',
+  materia_boq_id: 'materia_boq_id',
+  work_order_no: 'work_order_no',
+  work_order_date: 'work_order_date',
+  work_order_status: 'work_order_status',
+  work_order_description: 'work_order_description',
+  work_order_amount: 'work_order_amount',
+  payment_status: 'payment_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.UnitScalarFieldEnum = {
@@ -891,6 +888,18 @@ exports.StockStatus = exports.$Enums.StockStatus = {
   DISPOSED: 'DISPOSED'
 };
 
+exports.work_order_status = exports.$Enums.work_order_status = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+exports.payment_status = exports.$Enums.payment_status = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  PARTIALLY_PAID: 'PARTIALLY_PAID'
+};
+
 exports.Provider = exports.$Enums.Provider = {
   credentials: 'credentials',
   google: 'google'
@@ -960,8 +969,7 @@ exports.Prisma.ModelName = {
   ProjectFile: 'ProjectFile',
   Role: 'Role',
   Stock: 'Stock',
-  ContractorProject: 'ContractorProject',
-  ContractorFiles: 'ContractorFiles',
+  sub_contractor_work_order: 'sub_contractor_work_order',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',

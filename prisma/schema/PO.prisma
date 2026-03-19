@@ -29,6 +29,8 @@ model PO {
     transport_mode TransportMode?
 
     total_amount String
+    gst_percent  String?
+    gst_amount   String?
 
     po_status POStatus @default(DRAFT)
 

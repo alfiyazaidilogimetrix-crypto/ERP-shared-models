@@ -36,11 +36,10 @@ model Vendor {
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 
-    contractorProjects ContractorProject[]
-
     invoice_seller Invoice[] @relation("seller")
 
-    invoice_consignee Invoice[] @relation("consignee")
+    invoice_consignee       Invoice[]                   @relation("consignee")
+    subContractorWorkOrders sub_contractor_work_order[]
 
     @@map("vendor")
 }

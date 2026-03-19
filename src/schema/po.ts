@@ -17,6 +17,8 @@ export const poBaseSchema = z.object({
     .refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) >= 0, {
       message: 'Total amount must be a valid number',
     }),
+  gst_percent: z.string().nullable().optional(),
+  gst_amount: z.string().nullable().optional(),
   po_status: poStatusSchema.default('DRAFT'),
   payment_terms: z.string().nullable().optional(),
   delivery_terms: z.string().nullable().optional(),

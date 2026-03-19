@@ -15,7 +15,6 @@ import * as material from './material';
 import * as modules from './modules';
 import * as permission from './permission';
 import * as role from './role';
-import * as sub_contractor from './sub_contractor';
 import * as unit from './unit';
 import * as vendor from './vendor';
 import * as vendor_supply_management from './vendor_supply_management';
@@ -28,6 +27,7 @@ import * as stock from './stock';
 import * as prgrn from './pr-grn';
 import * as material_boq from './material_boq';
 import * as workscope from './workscope';
+import * as sub_contractor_work_order from './sub_contractor_work_order';
 
 export * from './user';
 export * from './mail';
@@ -46,7 +46,6 @@ export * from './material';
 export * from './modules';
 export * from './permission';
 export * from './role';
-export * from './sub_contractor';
 export * from './unit';
 export * from './vendor';
 export * from './vendor_supply_management';
@@ -59,6 +58,7 @@ export * from './stock';
 export * from './pr-grn';
 export * from './material_boq';
 export * from './workscope';
+export * from './sub_contractor_work_order';
 
 export const allModels = {
   ...user,
@@ -78,7 +78,6 @@ export const allModels = {
   ...modules,
   ...permission,
   ...role,
-  ...sub_contractor,
   ...unit,
   ...vendor,
   ...vendor_supply_management,
@@ -91,4 +90,5 @@ export const allModels = {
   ...prgrn,
   ...material_boq,
   ...workscope,
+  ...sub_contractor_work_order,
 };

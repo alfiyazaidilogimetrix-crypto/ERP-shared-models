@@ -1,10 +1,11 @@
 model MaterialBoq {
-  id               Int               @id @default(autoincrement())
-  project_id       Int
-  project          Project           @relation(fields: [project_id], references: [id])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  materialBoqItems MaterialBoqItem[]
+  id                      Int                         @id @default(autoincrement())
+  project_id              Int
+  project                 Project                     @relation(fields: [project_id], references: [id])
+  createdAt               DateTime                    @default(now())
+  updatedAt               DateTime                    @updatedAt
+  materialBoqItems        MaterialBoqItem[]
+  subContractorWorkOrders sub_contractor_work_order[]
 
   @@map("material_boq")
 }

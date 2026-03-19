@@ -101,6 +101,14 @@ export const supplyTypeSchema = z.enum(['TO_INVENTORY', 'DIRECT_TO_SITE']);
 // DPR Site type enum
 export const siteTypeSchema = z.enum(['LHS', 'RHS', 'BHS']);
 
+// Work Order enums
+export const workOrderStatusSchema = z.enum(['PENDING', 'APPROVED', 'REJECTED']);
+export const paymentStatusSchema = z.enum([
+  'PENDING',
+  'PAID',
+  'PARTIALLY_PAID',
+]);
+
 // Type exports
 export type PRStatus = z.infer<typeof prStatusSchema>;
 export type UrgencyLevel = z.infer<typeof urgencyLevelSchema>;
@@ -121,3 +129,5 @@ export type LabourType = z.infer<typeof labourTypeSchema>;
 export type ProjectType = z.infer<typeof projectTypeSchema>;
 export type ProjectStatus = z.infer<typeof projectStatusSchema>;
 export type Provider = z.infer<typeof providerSchema>;
+export type WorkOrderStatus = z.infer<typeof workOrderStatusSchema>;
+export type PaymentStatus = z.infer<typeof paymentStatusSchema>;
