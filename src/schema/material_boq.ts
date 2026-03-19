@@ -10,10 +10,11 @@ export const materialBoqSchema = z.object({
 export const materialBoqItemSchema = z.object({
   id: z.number().int().positive().optional(),
   material_boq_id: z.number().int().positive(),
-  material_id: z.number().int().positive(),
+  material_id: z.number().int().positive().optional(),
   unit_id: z.number().int().positive(),
   activity_id: z.number().int().positive(),
-  category_id: z.number().int().positive(),
+  category_id: z.number().int().positive().optional(),
+  item_description: z.string().optional(),
   scope_quantity: z.number().nullable().optional(),
   purchased_quantity: z.number().nullable().optional(),
   balanced_quantity: z.number().nullable().optional(),
