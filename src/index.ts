@@ -16,7 +16,6 @@ export * from './schema/material';
 export * from './schema/modules';
 export * from './schema/permission';
 export * from './schema/role';
-export * from './schema/sub_contractor';
 export * from './schema/unit';
 export * from './schema/vendor';
 export * from './schema/vendor_supply_management';
