@@ -445,6 +445,7 @@ exports.Prisma.MaterialBoqScalarFieldEnum = {
 exports.Prisma.MaterialBoqItemScalarFieldEnum = {
   id: 'id',
   material_boq_id: 'material_boq_id',
+  item_no: 'item_no',
   material_id: 'material_id',
   unit_id: 'unit_id',
   activity_id: 'activity_id',

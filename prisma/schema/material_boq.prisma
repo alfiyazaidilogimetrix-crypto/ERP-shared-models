@@ -14,6 +14,7 @@ model MaterialBoqItem {
   id              Int         @id @default(autoincrement())
   material_boq_id Int
   material_boq    MaterialBoq @relation(fields: [material_boq_id], references: [id])
+  item_no         String?
 
   material_id        Int?
   material           Material? @relation(fields: [material_id], references: [id])
