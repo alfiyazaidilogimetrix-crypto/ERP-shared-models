@@ -145,6 +145,9 @@ exports.Prisma.DPRChainageScalarFieldEnum = {
   unit_id: 'unit_id',
   quantity: 'quantity',
   plan_quantity: 'plan_quantity',
+  work_description: 'work_description',
+  boq_rate: 'boq_rate',
+  amount: 'amount',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -222,6 +225,7 @@ exports.Prisma.POOrderItemScalarFieldEnum = {
   quantity: 'quantity',
   rate: 'rate',
   amount: 'amount',
+  hsn_no: 'hsn_no',
   created_at: 'created_at'
 };
 
@@ -513,7 +517,7 @@ exports.Prisma.PRGRNFileScalarFieldEnum = {
 
 exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
-  project_type: 'project_type',
+  project_type_id: 'project_type_id',
   project_name: 'project_name',
   project_code: 'project_code',
   start_date: 'start_date',
@@ -571,6 +575,20 @@ exports.Prisma.ProjectFileScalarFieldEnum = {
   file_id: 'file_id'
 };
 
+exports.Prisma.Project_categoryScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  category_id: 'category_id'
+};
+
+exports.Prisma.ProjectTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -605,7 +623,16 @@ exports.Prisma.Sub_contractor_work_orderScalarFieldEnum = {
   work_order_status: 'work_order_status',
   work_order_description: 'work_order_description',
   work_order_amount: 'work_order_amount',
+  meta_data: 'meta_data',
   payment_status: 'payment_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Work_order_itemsScalarFieldEnum = {
+  id: 'id',
+  work_order_id: 'work_order_id',
+  material_boq_item_id: 'material_boq_item_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -866,13 +893,6 @@ exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
   ON_LEAVE: 'ON_LEAVE'
 };
 
-exports.ProjectType = exports.$Enums.ProjectType = {
-  HAM: 'HAM',
-  EPC: 'EPC',
-  BOT: 'BOT',
-  OTHER: 'OTHER'
-};
-
 exports.ProjectStatus = exports.$Enums.ProjectStatus = {
   PLANNED: 'PLANNED',
   IN_PROGRESS: 'IN_PROGRESS',
@@ -969,9 +989,12 @@ exports.Prisma.ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   ProjectFile: 'ProjectFile',
+  project_category: 'project_category',
+  ProjectType: 'ProjectType',
   Role: 'Role',
   Stock: 'Stock',
   sub_contractor_work_order: 'sub_contractor_work_order',
+  work_order_items: 'work_order_items',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',

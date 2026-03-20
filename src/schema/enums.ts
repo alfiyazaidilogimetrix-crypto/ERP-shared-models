@@ -29,7 +29,7 @@ export const transportModeSchema = z.enum([
 
 export const urgencyLevelSchema = z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']);
 
-export const projectTypeSchema = z.enum(['HAM', 'EPC', 'BOT', 'OTHER']);
+// projectTypeSchema removed as it is now a model
 
 export const projectStatusSchema = z.enum([
   'PLANNED',
@@ -126,7 +126,7 @@ export type SiteType = z.infer<typeof siteTypeSchema>;
 export type DieselTransactionType = z.infer<typeof dieselTransactionTypeSchema>;
 export type LabourStatus = z.infer<typeof labourStatusSchema>;
 export type LabourType = z.infer<typeof labourTypeSchema>;
-export type ProjectType = z.infer<typeof projectTypeSchema>;
+// export type ProjectType = z.infer<typeof projectTypeSchema>;
 export type ProjectStatus = z.infer<typeof projectStatusSchema>;
 export type Provider = z.infer<typeof providerSchema>;
 export type WorkOrderStatus = z.infer<typeof workOrderStatusSchema>;

@@ -20,6 +20,7 @@ export const materialBoqItemSchema = z.object({
   balanced_quantity: z.number().nullable().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
+  workOrderItems: z.array(z.any()).optional(),
 });
 
 export type MaterialBoq = z.infer<typeof materialBoqSchema>;

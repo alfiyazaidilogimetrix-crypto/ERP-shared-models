@@ -6,6 +6,7 @@ export const categorySchema = z.object({
   description: z.string().nullable().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
+  projectCategories: z.array(z.any()).optional(),
 });
 
 export type Category = z.infer<typeof categorySchema>;

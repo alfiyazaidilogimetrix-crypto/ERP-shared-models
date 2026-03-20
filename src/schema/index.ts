@@ -28,6 +28,9 @@ import * as prgrn from './pr-grn';
 import * as material_boq from './material_boq';
 import * as workscope from './workscope';
 import * as sub_contractor_work_order from './sub_contractor_work_order';
+import * as project_type from './ProjectType';
+import * as project_category from './project_category';
+import * as work_order_items from './work_order_items';
 
 export * from './user';
 export * from './mail';
@@ -59,6 +62,9 @@ export * from './pr-grn';
 export * from './material_boq';
 export * from './workscope';
 export * from './sub_contractor_work_order';
+export * from './ProjectType';
+export * from './project_category';
+export * from './work_order_items';
 
 export const allModels = {
   ...user,
@@ -91,4 +97,7 @@ export const allModels = {
   ...material_boq,
   ...workscope,
   ...sub_contractor_work_order,
+  ...project_type,
+  ...project_category,
+  ...work_order_items,
 };

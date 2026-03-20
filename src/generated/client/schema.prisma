@@ -29,11 +29,11 @@ model DPRChainage {
   dpr_id Int
   dpr    DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
-  site          Site_type
-  chainage_from String
-  chainge_to    String
+  site          Site_type?
+  chainage_from String?
+  chainge_to    String?
   category_id   Int
-  category      Category  @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  category      Category   @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
   activity_id Int
   activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
@@ -41,16 +41,19 @@ model DPRChainage {
   material_id Int?
   material    Material? @relation(fields: [material_id], references: [id], onDelete: Cascade)
 
-  number Int
-  length Int
-  width  Int
-  depth  Int
+  number Int?
+  length Int?
+  width  Int?
+  depth  Int?
 
   unit_id Int
   unit    Unit @relation(fields: [unit_id], references: [id], onDelete: Cascade)
 
-  quantity      Int
-  plan_quantity Int
+  quantity         Int?
+  plan_quantity    Int?
+  work_description String?
+  boq_rate         Int?
+  amount           Int?
 
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
@@ -215,6 +218,7 @@ model POOrderItem {
   quantity String
   rate     String
   amount   String
+  hsn_no   String?
 
   po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
   material Material @relation(fields: [material_id], references: [id])
@@ -314,16 +318,17 @@ model Activity {
 }
 
 model Category {
-  id               Int               @id @default(autoincrement())
-  name             String
-  description      String?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  activities       Activity[]
-  materials        Material[]
-  dprchainages     DPRChainage[]
-  materialBoqItems MaterialBoqItem[]
-  workScopeItems   WorkScopeItem[]
+  id                Int                @id @default(autoincrement())
+  name              String
+  description       String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  activities        Activity[]
+  materials         Material[]
+  dprchainages      DPRChainage[]
+  materialBoqItems  MaterialBoqItem[]
+  workScopeItems    WorkScopeItem[]
+  projectCategories project_category[]
 
   @@map("categories")
 }
@@ -664,20 +669,21 @@ model MaterialBoqItem {
   item_no         String?
 
   material_id        Int?
-  material           Material? @relation(fields: [material_id], references: [id])
+  material           Material?          @relation(fields: [material_id], references: [id])
   unit_id            Int
-  unit               Unit      @relation(fields: [unit_id], references: [id])
+  unit               Unit               @relation(fields: [unit_id], references: [id])
   activity_id        Int
-  activity           Activity  @relation(fields: [activity_id], references: [id])
+  activity           Activity           @relation(fields: [activity_id], references: [id])
   category_id        Int?
-  category           Category? @relation(fields: [category_id], references: [id])
+  category           Category?          @relation(fields: [category_id], references: [id])
   item_description   String?
   scope_quantity     Float?
   purchased_quantity Float?
   balanced_quantity  Float?
   rate               Float?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  workOrderItems     work_order_items[]
 
   @@map("material_boq_item")
 }
@@ -767,12 +773,12 @@ model PRGRNFile {
   @@map("pr_grn_files")
 }
 
-enum ProjectType {
-  HAM
-  EPC
-  BOT
-  OTHER
-}
+// enum ProjectType {
+//     HAM
+//     EPC
+//     BOT
+//     OTHER
+// }
 
 enum ProjectStatus {
   PLANNED
@@ -783,12 +789,13 @@ enum ProjectStatus {
 }
 
 model Project {
-  id           Int         @id @default(autoincrement())
-  project_type ProjectType
-  project_name String
-  project_code String
-  start_date   DateTime?
-  end_date     DateTime?
+  id              Int          @id @default(autoincrement())
+  project_type_id Int?
+  project_type    ProjectType? @relation(fields: [project_type_id], references: [id], onDelete: Cascade)
+  project_name    String
+  project_code    String
+  start_date      DateTime?
+  end_date        DateTime?
 
   budget String?
   status ProjectStatus @default(PLANNED)
@@ -826,6 +833,7 @@ model Project {
   materialBoqs            MaterialBoq[]
   workScopes              WorkScope[]
   subContractorWorkOrders sub_contractor_work_order[]
+  projectCategories       project_category[]
 
   @@map("project")
 }
@@ -881,6 +889,27 @@ model ProjectFile {
   file       File    @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
   @@map("project_file")
+}
+
+model project_category {
+  id          Int      @id @default(autoincrement())
+  project_id  Int
+  project     Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  category_id Int
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@map("project_category")
+}
+
+model ProjectType {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  projects    Project[]
+
+  @@map("project_types")
 }
 
 model Role {
@@ -968,14 +997,28 @@ model sub_contractor_work_order {
   work_order_status      work_order_status?
   work_order_description String?
   work_order_amount      String?
+  meta_data              Json?
   payment_status         payment_status     @default(PENDING)
   project                Project            @relation(fields: [project_id], references: [id])
   vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
   material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
   created_at             DateTime           @default(now())
   updated_at             DateTime           @updatedAt
+  workOrderItems         work_order_items[]
 
   @@map("sub_contractor_work_order")
+}
+
+model work_order_items {
+  id                   Int                       @id @default(autoincrement())
+  work_order_id        Int
+  material_boq_item_id Int
+  material_boq_item    MaterialBoqItem           @relation(fields: [material_boq_item_id], references: [id])
+  work_order           sub_contractor_work_order @relation(fields: [work_order_id], references: [id], onDelete: Cascade)
+  created_at           DateTime                  @default(now())
+  updated_at           DateTime                  @updatedAt
+
+  @@map("work_order_items")
 }
 
 model Unit {

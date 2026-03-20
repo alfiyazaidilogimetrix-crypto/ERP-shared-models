@@ -29,11 +29,11 @@ model DPRChainage {
     dpr_id Int
     dpr    DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
-    site          Site_type
-    chainage_from String
-    chainge_to    String
+    site          Site_type?
+    chainage_from String?
+    chainge_to    String?
     category_id   Int
-    category      Category  @relation(fields: [category_id], references: [id], onDelete: Cascade)
+    category      Category   @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
     activity_id Int
     activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
@@ -41,16 +41,19 @@ model DPRChainage {
     material_id Int?
     material    Material? @relation(fields: [material_id], references: [id], onDelete: Cascade)
 
-    number Int
-    length Int
-    width  Int
-    depth  Int
+    number Int?
+    length Int?
+    width  Int?
+    depth  Int?
 
     unit_id Int
     unit    Unit @relation(fields: [unit_id], references: [id], onDelete: Cascade)
 
-    quantity      Int
-    plan_quantity Int
+    quantity         Int?
+    plan_quantity    Int?
+    work_description String?
+    boq_rate         Int?
+    amount           Int?
 
     created_at DateTime  @default(now())
     updated_at DateTime  @updatedAt

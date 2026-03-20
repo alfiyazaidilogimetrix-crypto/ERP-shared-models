@@ -13,8 +13,10 @@ export const subContractorWorkOrderBaseSchema = z.object({
   work_order_description: z.string().nullable().optional(),
   work_order_amount: z.string().nullable().optional(),
   payment_status: paymentStatusSchema.default('PENDING'),
+  meta_data: z.any().nullable().optional(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
+  workOrderItems: z.array(z.any()).optional(),
 });
 
 // Full schema with relationships

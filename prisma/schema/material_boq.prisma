@@ -17,20 +17,21 @@ model MaterialBoqItem {
   item_no         String?
 
   material_id        Int?
-  material           Material? @relation(fields: [material_id], references: [id])
+  material           Material?          @relation(fields: [material_id], references: [id])
   unit_id            Int
-  unit               Unit      @relation(fields: [unit_id], references: [id])
+  unit               Unit               @relation(fields: [unit_id], references: [id])
   activity_id        Int
-  activity           Activity  @relation(fields: [activity_id], references: [id])
+  activity           Activity           @relation(fields: [activity_id], references: [id])
   category_id        Int?
-  category           Category? @relation(fields: [category_id], references: [id])
+  category           Category?          @relation(fields: [category_id], references: [id])
   item_description   String?
   scope_quantity     Float?
   purchased_quantity Float?
   balanced_quantity  Float?
   rate               Float?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  workOrderItems     work_order_items[]
 
   @@map("material_boq_item")
 }

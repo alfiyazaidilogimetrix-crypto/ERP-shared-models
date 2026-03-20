@@ -51,6 +51,7 @@ export const poOrderItemBaseSchema = z.object({
     .refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) >= 0, {
       message: 'Amount must be a valid number',
     }),
+  hsn_no: z.string().nullable().optional(),
   created_at: z.date().optional(),
 });
 

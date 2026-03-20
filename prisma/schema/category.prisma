@@ -1,14 +1,15 @@
 model Category {
-    id               Int               @id @default(autoincrement())
-    name             String
-    description      String?
-    createdAt        DateTime          @default(now())
-    updatedAt        DateTime          @updatedAt
-    activities       Activity[]
-    materials        Material[]
-    dprchainages     DPRChainage[]
-    materialBoqItems MaterialBoqItem[]
-    workScopeItems   WorkScopeItem[]
+    id                Int                @id @default(autoincrement())
+    name              String
+    description       String?
+    createdAt         DateTime           @default(now())
+    updatedAt         DateTime           @updatedAt
+    activities        Activity[]
+    materials         Material[]
+    dprchainages      DPRChainage[]
+    materialBoqItems  MaterialBoqItem[]
+    workScopeItems    WorkScopeItem[]
+    projectCategories project_category[]
 
     @@map("categories")
 }

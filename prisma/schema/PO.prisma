@@ -67,6 +67,7 @@ model POOrderItem {
     quantity String
     rate     String
     amount   String
+    hsn_no   String?
 
     po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
     material Material @relation(fields: [material_id], references: [id])

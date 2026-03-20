@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { projectTypeSchema, projectStatusSchema } from './enums';
+import { projectStatusSchema } from './enums';
 
 export const projectSchema = z.object({
   id: z.number().int().positive().optional(),
-  project_type: projectTypeSchema,
+  project_type_id: z.number().int().positive().nullable().optional(),
   project_name: z.string().min(1),
   project_code: z.string().min(1),
   start_date: z.date().nullable().optional(),
@@ -24,6 +24,7 @@ export const projectSchema = z.object({
   other_details: z.any().nullable().optional(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
+  projectCategories: z.array(z.any()).optional(),
 });
 
 export const hamSpecificDetailsSchema = z.object({

@@ -1,9 +1,9 @@
-enum ProjectType {
-    HAM
-    EPC
-    BOT
-    OTHER
-}
+// enum ProjectType {
+//     HAM
+//     EPC
+//     BOT
+//     OTHER
+// }
 
 enum ProjectStatus {
     PLANNED
@@ -14,12 +14,13 @@ enum ProjectStatus {
 }
 
 model Project {
-    id           Int         @id @default(autoincrement())
-    project_type ProjectType
-    project_name String
-    project_code String
-    start_date   DateTime?
-    end_date     DateTime?
+    id              Int          @id @default(autoincrement())
+    project_type_id Int?
+    project_type    ProjectType? @relation(fields: [project_type_id], references: [id], onDelete: Cascade)
+    project_name    String
+    project_code    String
+    start_date      DateTime?
+    end_date        DateTime?
 
     budget String?
     status ProjectStatus @default(PLANNED)
@@ -57,6 +58,7 @@ model Project {
     materialBoqs            MaterialBoq[]
     workScopes              WorkScope[]
     subContractorWorkOrders sub_contractor_work_order[]
+    projectCategories       project_category[]
 
     @@map("project")
 }
@@ -112,4 +114,14 @@ model ProjectFile {
     file       File    @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
     @@map("project_file")
+}
+
+model project_category {
+    id          Int      @id @default(autoincrement())
+    project_id  Int
+    project     Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+    category_id Int
+    category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+    @@map("project_category")
 }

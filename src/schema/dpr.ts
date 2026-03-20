@@ -14,29 +14,32 @@ export const dprChainageSchema = z.object({
 
   dpr_id: z.number().int().positive().optional(),
 
-  site: siteTypeSchema,
+  site: siteTypeSchema.nullable().optional(),
 
-  chainage_from: z.string().min(1),
+  chainage_from: z.string().nullable().optional(),
 
-  chainage_to: z.string().min(1),
+  chainage_to: z.string().nullable().optional(),
 
   category_id: z.number().int().positive(),
   activity_id: z.number().int().positive(),
   material_id: z.number().int().positive().nullable().optional(),
 
-  number: z.number().int(),
+  number: z.number().int().nullable().optional(),
 
-  length: z.number().int(),
+  length: z.number().int().nullable().optional(),
 
-  width: z.number().int(),
+  width: z.number().int().nullable().optional(),
 
-  depth: z.number().int(),
+  depth: z.number().int().nullable().optional(),
 
   unit_id: z.number().int().positive(),
 
-  quantity: z.number().int(),
+  quantity: z.number().int().nullable().optional(),
 
-  plan_quantity: z.number().int(),
+  plan_quantity: z.number().int().nullable().optional(),
+  work_description: z.string().nullable().optional(),
+  boq_rate: z.number().int().nullable().optional(),
+  amount: z.number().int().nullable().optional(),
   dprfiles: z.array(dprFileSchema).optional(),
 
   created_at: z.date().optional(),

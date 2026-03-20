@@ -20,12 +20,26 @@ model sub_contractor_work_order {
     work_order_status      work_order_status?
     work_order_description String?
     work_order_amount      String?
+    meta_data              Json?
     payment_status         payment_status     @default(PENDING)
     project                Project            @relation(fields: [project_id], references: [id])
     vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
     material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
     created_at             DateTime           @default(now())
     updated_at             DateTime           @updatedAt
+    workOrderItems         work_order_items[]
 
     @@map("sub_contractor_work_order")
+}
+
+model work_order_items {
+    id                   Int                       @id @default(autoincrement())
+    work_order_id        Int
+    material_boq_item_id Int
+    material_boq_item    MaterialBoqItem           @relation(fields: [material_boq_item_id], references: [id])
+    work_order           sub_contractor_work_order @relation(fields: [work_order_id], references: [id], onDelete: Cascade)
+    created_at           DateTime                  @default(now())
+    updated_at           DateTime                  @updatedAt
+
+    @@map("work_order_items")
 }
