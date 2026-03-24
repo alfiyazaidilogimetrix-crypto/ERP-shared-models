@@ -281,25 +281,6 @@ exports.Prisma.Chainage_consumption_ledgerScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.DieselTransactionScalarFieldEnum = {
-  id: 'id',
-  transaction_type: 'transaction_type',
-  date: 'date',
-  project_id: 'project_id',
-  vendor_id: 'vendor_id',
-  invoice_number: 'invoice_number',
-  quantity: 'quantity',
-  rate_per_litre: 'rate_per_litre',
-  total_amount: 'total_amount',
-  equipment_name: 'equipment_name',
-  vehicle_number: 'vehicle_number',
-  purpose: 'purpose',
-  issue_rate_per_litre: 'issue_rate_per_litre',
-  remarks: 'remarks',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
 exports.Prisma.Diesel_consumptionScalarFieldEnum = {
   id: 'id',
   machine_id: 'machine_id',
@@ -310,6 +291,7 @@ exports.Prisma.Diesel_consumptionScalarFieldEnum = {
   date: 'date',
   issued_by: 'issued_by',
   remarks: 'remarks',
+  project_id: 'project_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -937,11 +919,6 @@ exports.PRStatus = exports.$Enums.PRStatus = {
   CLOSED: 'CLOSED'
 };
 
-exports.DieselTransactionType = exports.$Enums.DieselTransactionType = {
-  DIESEL_RECEIPT: 'DIESEL_RECEIPT',
-  DIESEL_ISSUE: 'DIESEL_ISSUE'
-};
-
 exports.LabourType = exports.$Enums.LabourType = {
   DIRECT: 'DIRECT',
   CONTRACT: 'CONTRACT'
@@ -1034,7 +1011,6 @@ exports.Prisma.ModelName = {
   Activity: 'Activity',
   Category: 'Category',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
-  DieselTransaction: 'DieselTransaction',
   diesel_consumption: 'diesel_consumption',
   DieselSupplier: 'DieselSupplier',
   DieselInward: 'DieselInward',

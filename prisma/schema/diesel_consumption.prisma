@@ -8,6 +8,8 @@ model diesel_consumption {
     date               DateTime
     issued_by          Int
     remarks            String
+    project_id         Int
+    project            Project  @relation(fields: [project_id], references: [id])
     machine            Machine  @relation(fields: [machine_id], references: [id])
     activity           Activity @relation(fields: [activity_id], references: [id])
     user               User     @relation(fields: [issued_by], references: [id])
