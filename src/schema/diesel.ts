@@ -45,6 +45,7 @@ export const dieselInwardSchema = z.object({
   assigned_to: z.number().int().positive(),
   received_by: z.string().min(1, 'Received by is required'),
   received_at: z.date().or(z.string().pipe(z.coerce.date())),
+  status: z.enum(['PENDING', 'RECEIVED', 'CANCELLED']).optional(),
   invoiceNumber: z.string().nullable().optional(),
   remarks: z.string().nullable().optional(),
   createdAt: z.date().optional(),

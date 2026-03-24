@@ -319,6 +319,7 @@ exports.Prisma.DieselInwardScalarFieldEnum = {
   assigned_to: 'assigned_to',
   received_by: 'received_by',
   received_at: 'received_at',
+  status: 'status',
   invoiceNumber: 'invoiceNumber',
   remarks: 'remarks',
   createdAt: 'createdAt',
@@ -917,6 +918,12 @@ exports.PRStatus = exports.$Enums.PRStatus = {
   APPROVED: 'APPROVED',
   REJECTED: 'REJECTED',
   CLOSED: 'CLOSED'
+};
+
+exports.DieselInwardStatus = exports.$Enums.DieselInwardStatus = {
+  PENDING: 'PENDING',
+  RECEIVED: 'RECEIVED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.LabourType = exports.$Enums.LabourType = {

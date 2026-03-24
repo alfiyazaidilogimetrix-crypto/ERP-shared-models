@@ -12,6 +12,12 @@ model DieselSupplier {
     @@map("diesel_supplier")
 }
 
+enum DieselInwardStatus {
+    PENDING
+    RECEIVED
+    CANCELLED
+}
+
 model DieselInward {
     id Int @id @default(autoincrement())
 
@@ -27,9 +33,10 @@ model DieselInward {
     delivery_person_name String?
     vehicle_number       String?
     assigned_to          Int
-    assigned             User     @relation(fields: [assigned_to], references: [id])
+    assigned             User               @relation(fields: [assigned_to], references: [id])
     received_by          String
     received_at          DateTime
+    status               DieselInwardStatus @default(PENDING)
     invoiceNumber        String?
     remarks              String?
 
