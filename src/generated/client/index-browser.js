@@ -300,6 +300,61 @@ exports.Prisma.DieselTransactionScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Diesel_consumptionScalarFieldEnum = {
+  id: 'id',
+  machine_id: 'machine_id',
+  activity_id: 'activity_id',
+  diesel_used_liters: 'diesel_used_liters',
+  hours_used: 'hours_used',
+  operator_name: 'operator_name',
+  date: 'date',
+  issued_by: 'issued_by',
+  remarks: 'remarks',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.DieselSupplierScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contact_number: 'contact_number',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DieselInwardScalarFieldEnum = {
+  id: 'id',
+  supplier_id: 'supplier_id',
+  state: 'state',
+  district: 'district',
+  pincode: 'pincode',
+  quantity_litres: 'quantity_litres',
+  rate_per_litre: 'rate_per_litre',
+  total_amount: 'total_amount',
+  delivery_person_name: 'delivery_person_name',
+  vehicle_number: 'vehicle_number',
+  assigned_to: 'assigned_to',
+  received_by: 'received_by',
+  received_at: 'received_at',
+  invoiceNumber: 'invoiceNumber',
+  remarks: 'remarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DieselStockScalarFieldEnum = {
+  id: 'id',
+  state: 'state',
+  district: 'district',
+  pincode: 'pincode',
+  current_quantity_litres: 'current_quantity_litres',
+  tank_capacity_litres: 'tank_capacity_litres',
+  manager_id: 'manager_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FileScalarFieldEnum = {
   id: 'id',
   filename: 'filename',
@@ -428,6 +483,17 @@ exports.Prisma.LabourAttendanceScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.MachineScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  is_owned: 'is_owned',
+  rent_per_hour: 'rent_per_hour',
+  purchase_cost: 'purchase_cost',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -474,6 +540,8 @@ exports.Prisma.ModuleScalarFieldEnum = {
 exports.Prisma.PermissionScalarFieldEnum = {
   id: 'id',
   action: 'action',
+  title: 'title',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -967,6 +1035,10 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   DieselTransaction: 'DieselTransaction',
+  diesel_consumption: 'diesel_consumption',
+  DieselSupplier: 'DieselSupplier',
+  DieselInward: 'DieselInward',
+  DieselStock: 'DieselStock',
   File: 'File',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
@@ -976,6 +1048,7 @@ exports.Prisma.ModelName = {
   InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
+  Machine: 'Machine',
   Material: 'Material',
   MaterialBoq: 'MaterialBoq',
   MaterialBoqItem: 'MaterialBoqItem',

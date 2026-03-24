@@ -11,6 +11,7 @@ import * as category from './category';
 import * as chainage from './chainage';
 import * as diesel from './diesel';
 import * as labour from './labour';
+import * as machine from './machine';
 import * as material from './material';
 import * as modules from './modules';
 import * as permission from './permission';
@@ -45,6 +46,7 @@ export * from './category';
 export * from './chainage';
 export * from './diesel';
 export * from './labour';
+export * from './machine';
 export * from './material';
 export * from './modules';
 export * from './permission';
@@ -80,6 +82,7 @@ export const allModels = {
   ...chainage,
   ...diesel,
   ...labour,
+  ...machine,
   ...material,
   ...modules,
   ...permission,

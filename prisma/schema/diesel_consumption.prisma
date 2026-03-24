@@ -1,0 +1,18 @@
+model diesel_consumption {
+    id                 Int      @id @default(autoincrement())
+    machine_id         Int
+    activity_id        Int
+    diesel_used_liters Int
+    hours_used         Int
+    operator_name      String
+    date               DateTime
+    issued_by          Int
+    remarks            String
+    machine            Machine  @relation(fields: [machine_id], references: [id])
+    activity           Activity @relation(fields: [activity_id], references: [id])
+    user               User     @relation(fields: [issued_by], references: [id])
+    created_at         DateTime @default(now())
+    updated_at         DateTime @updatedAt
+
+    @@map("diesel_consumption")
+}

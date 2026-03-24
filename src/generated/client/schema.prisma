@@ -301,18 +301,19 @@ model PRMaterialItem {
 }
 
 model Activity {
-  id               Int               @id @default(autoincrement())
-  name             String
-  unit_id          Int
-  unit             Unit              @relation(fields: [unit_id], references: [id])
-  category_id      Int
-  category         Category          @relation(fields: [category_id], references: [id])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  materials        Material[]
-  dprchainages     DPRChainage[]
-  materialBoqItems MaterialBoqItem[]
-  workScopeItems   WorkScopeItem[]
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  unit_id            Int
+  unit               Unit                 @relation(fields: [unit_id], references: [id])
+  category_id        Int
+  category           Category             @relation(fields: [category_id], references: [id])
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  materials          Material[]
+  dprchainages       DPRChainage[]
+  materialBoqItems   MaterialBoqItem[]
+  workScopeItems     WorkScopeItem[]
+  dieselConsumptions diesel_consumption[]
 
   @@map("activities")
 }
@@ -383,6 +384,82 @@ model DieselTransaction {
   @@index([project_id])
   @@index([transaction_type])
   @@map("diesel_transactions")
+}
+
+model diesel_consumption {
+  id                 Int      @id @default(autoincrement())
+  machine_id         Int
+  activity_id        Int
+  diesel_used_liters Int
+  hours_used         Int
+  operator_name      String
+  date               DateTime
+  issued_by          Int
+  remarks            String
+  machine            Machine  @relation(fields: [machine_id], references: [id])
+  activity           Activity @relation(fields: [activity_id], references: [id])
+  user               User     @relation(fields: [issued_by], references: [id])
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  @@map("diesel_consumption")
+}
+
+model DieselSupplier {
+  id             Int    @id @default(autoincrement())
+  name           String
+  contact_number String
+  address        String
+
+  diesel_inwards DieselInward[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("diesel_supplier")
+}
+
+model DieselInward {
+  id Int @id @default(autoincrement())
+
+  supplier_id     Int
+  supplier        DieselSupplier @relation(fields: [supplier_id], references: [id])
+  state           String
+  district        String
+  pincode         String
+  quantity_litres Float
+  rate_per_litre  Float
+  total_amount    Float
+
+  delivery_person_name String?
+  vehicle_number       String?
+  assigned_to          Int
+  assigned             User     @relation(fields: [assigned_to], references: [id])
+  received_by          String
+  received_at          DateTime
+  invoiceNumber        String?
+  remarks              String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("diesel_inward")
+}
+
+model DieselStock {
+  id                      Int    @id @default(autoincrement())
+  state                   String
+  district                String
+  pincode                 String
+  current_quantity_litres Float
+  tank_capacity_litres    Float?
+  manager_id              Int
+  manager                 User   @relation(fields: [manager_id], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("diesel_stock")
 }
 
 model File {
@@ -626,6 +703,20 @@ model LabourAttendance {
   @@map("labour_attendance")
 }
 
+model Machine {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  type               String
+  is_owned           Boolean              @default(false)
+  rent_per_hour      String?
+  purchase_cost      String?
+  created_at         DateTime             @default(now())
+  updated_at         DateTime             @updatedAt
+  dieselConsumptions diesel_consumption[]
+
+  @@map("machines")
+}
+
 model Material {
   id                    Int                    @id @default(autoincrement())
   name                  String
@@ -701,13 +792,14 @@ model Module {
 }
 
 model Permission {
-  id      Int      @id @default(autoincrement())
-  action  String[]
-  modules Module[] @relation("PermissionModules")
-  roles   Role[]   @relation("RolePermissions")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  action      String[]
+  modules     Module[] @relation("PermissionModules")
+  roles       Role[]   @relation("RolePermissions")
+  title       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("permissions")
 }
@@ -1063,8 +1155,11 @@ model User {
 
   prgrns PRGRN[]
 
-  grns   GRN[]
-  stocks Stock[]
+  grns               GRN[]
+  stocks             Stock[]
+  dieselStocks       DieselStock[]
+  dieselInwards      DieselInward[]
+  dieselConsumptions diesel_consumption[]
 
   @@map("users")
 }

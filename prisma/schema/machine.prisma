@@ -1,0 +1,13 @@
+model Machine {
+    id                 Int                  @id @default(autoincrement())
+    name               String
+    type               String
+    is_owned           Boolean              @default(false)
+    rent_per_hour      String?
+    purchase_cost      String?
+    created_at         DateTime             @default(now())
+    updated_at         DateTime             @updatedAt
+    dieselConsumptions diesel_consumption[]
+
+    @@map("machines")
+}

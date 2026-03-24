@@ -1,0 +1,56 @@
+model DieselSupplier {
+    id             Int    @id @default(autoincrement())
+    name           String
+    contact_number String
+    address        String
+
+    diesel_inwards DieselInward[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("diesel_supplier")
+}
+
+model DieselInward {
+    id Int @id @default(autoincrement())
+
+    supplier_id     Int
+    supplier        DieselSupplier @relation(fields: [supplier_id], references: [id])
+    state           String
+    district        String
+    pincode         String
+    quantity_litres Float
+    rate_per_litre  Float
+    total_amount    Float
+
+    delivery_person_name String?
+    vehicle_number       String?
+    assigned_to          Int
+    assigned             User     @relation(fields: [assigned_to], references: [id])
+    received_by          String
+    received_at          DateTime
+    invoiceNumber        String?
+    remarks              String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("diesel_inward")
+}
+
+model DieselStock {
+    id                      Int    @id @default(autoincrement())
+    state                   String
+    district                String
+    pincode                 String
+    current_quantity_litres Float
+    tank_capacity_litres    Float?
+    manager_id              Int
+    manager                 User   @relation(fields: [manager_id], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("diesel_stock")
+}
