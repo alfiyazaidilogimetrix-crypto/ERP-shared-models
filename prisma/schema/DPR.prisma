@@ -32,8 +32,8 @@ model DPRChainage {
     site          Site_type?
     chainage_from String?
     chainge_to    String?
-    category_id   Int
-    category      Category   @relation(fields: [category_id], references: [id], onDelete: Cascade)
+    category_id   Int?
+    category      Category?  @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
     activity_id Int
     activity    Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
