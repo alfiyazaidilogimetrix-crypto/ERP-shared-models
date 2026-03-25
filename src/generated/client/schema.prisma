@@ -2,6 +2,7 @@ enum Site_type {
   LHS
   RHS
   BHS
+  NONE
 }
 
 model DPR {
@@ -29,7 +30,7 @@ model DPRChainage {
   dpr_id Int
   dpr    DPR @relation(fields: [dpr_id], references: [id], onDelete: Cascade)
 
-  site          Site_type?
+  site          Site_type? @default(NONE)
   chainage_from String?
   chainge_to    String?
   category_id   Int?

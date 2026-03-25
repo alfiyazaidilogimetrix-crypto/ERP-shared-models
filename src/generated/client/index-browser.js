@@ -868,7 +868,8 @@ exports.Prisma.JsonNullValueFilter = {
 exports.Site_type = exports.$Enums.Site_type = {
   LHS: 'LHS',
   RHS: 'RHS',
-  BHS: 'BHS'
+  BHS: 'BHS',
+  NONE: 'NONE'
 };
 
 exports.TransportMode = exports.$Enums.TransportMode = {
