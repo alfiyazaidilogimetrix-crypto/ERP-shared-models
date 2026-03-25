@@ -402,8 +402,8 @@ model DieselInward {
   vehicle_number       String?
   assigned_to          Int
   assigned             User               @relation(fields: [assigned_to], references: [id])
-  received_by          String
-  received_at          DateTime
+  received_by          String?
+  received_at          DateTime?
   status               DieselInwardStatus @default(PENDING)
   invoiceNumber        String?
   remarks              String?
