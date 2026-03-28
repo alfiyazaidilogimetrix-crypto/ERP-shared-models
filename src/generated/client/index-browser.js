@@ -260,7 +260,14 @@ exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
   name: 'name',
   unit_id: 'unit_id',
-  category_id: 'category_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Project_activityScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  activity_id: 'activity_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -271,6 +278,12 @@ exports.Prisma.CategoryScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Project_categoryScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  category_id: 'category_id'
 };
 
 exports.Prisma.Chainage_consumption_ledgerScalarFieldEnum = {
@@ -350,89 +363,6 @@ exports.Prisma.FileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.InvoiceScalarFieldEnum = {
-  id: 'id',
-  invoiceNumber: 'invoiceNumber',
-  invoiceDate: 'invoiceDate',
-  invoiceType: 'invoiceType',
-  reverseCharge: 'reverseCharge',
-  currency: 'currency',
-  po_id: 'po_id',
-  sellerId: 'sellerId',
-  consigneeId: 'consigneeId',
-  taxDetailId: 'taxDetailId',
-  amountSummaryId: 'amountSummaryId',
-  transportDetailId: 'transportDetailId',
-  auditDetailId: 'auditDetailId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  buyer: 'buyer',
-  invoiceAmountSummaryId: 'invoiceAmountSummaryId',
-  invoiceAuditId: 'invoiceAuditId',
-  userId: 'userId'
-};
-
-exports.Prisma.InvoiceItemScalarFieldEnum = {
-  id: 'id',
-  invoiceId: 'invoiceId',
-  grn_id: 'grn_id',
-  grn_material_receipt_id: 'grn_material_receipt_id',
-  basicAmount: 'basicAmount',
-  taxableValue: 'taxableValue',
-  freightRatePerUnit: 'freightRatePerUnit',
-  unloadingRatePerUnit: 'unloadingRatePerUnit'
-};
-
-exports.Prisma.TaxDetailScalarFieldEnum = {
-  id: 'id',
-  cgstRate: 'cgstRate',
-  cgstAmount: 'cgstAmount',
-  sgstRate: 'sgstRate',
-  sgstAmount: 'sgstAmount',
-  igstRate: 'igstRate',
-  igstAmount: 'igstAmount',
-  totalTax: 'totalTax',
-  invoiceId: 'invoiceId'
-};
-
-exports.Prisma.InvoiceAmountSummaryScalarFieldEnum = {
-  id: 'id',
-  goodsValue: 'goodsValue',
-  taxableValue: 'taxableValue',
-  freightAmount: 'freightAmount',
-  unloadingAmount: 'unloadingAmount',
-  roundOff: 'roundOff',
-  totalTaxAmount: 'totalTaxAmount',
-  totalInvoiceValue: 'totalInvoiceValue',
-  amountInWords: 'amountInWords',
-  invoiceId: 'invoiceId'
-};
-
-exports.Prisma.TransportDetailScalarFieldEnum = {
-  id: 'id',
-  transporterName: 'transporterName',
-  transporterGstin: 'transporterGstin',
-  vehicleNumber: 'vehicleNumber',
-  wagonNumber: 'wagonNumber',
-  transportMode: 'transportMode',
-  lrRrNo: 'lrRrNo',
-  lrRrDate: 'lrRrDate',
-  dispatchFrom: 'dispatchFrom',
-  destination: 'destination',
-  distanceKm: 'distanceKm',
-  invoiceId: 'invoiceId'
-};
-
-exports.Prisma.InvoiceAuditScalarFieldEnum = {
-  id: 'id',
-  preparedBy: 'preparedBy',
-  checkedBy: 'checkedBy',
-  authorizedBy: 'authorizedBy',
-  declaration: 'declaration',
-  termsConditions: 'termsConditions',
-  invoiceId: 'invoiceId'
-};
-
 exports.Prisma.LabourScalarFieldEnum = {
   id: 'id',
   labour_name: 'labour_name',
@@ -481,9 +411,16 @@ exports.Prisma.MaterialScalarFieldEnum = {
   id: 'id',
   name: 'name',
   material_code: 'material_code',
-  activityId: 'activityId',
   unitId: 'unitId',
-  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Project_materialScalarFieldEnum = {
+  id: 'id',
+  project_id: 'project_id',
+  material_id: 'material_id',
+  activity_id: 'activity_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -502,7 +439,6 @@ exports.Prisma.MaterialBoqItemScalarFieldEnum = {
   material_id: 'material_id',
   unit_id: 'unit_id',
   activity_id: 'activity_id',
-  category_id: 'category_id',
   item_description: 'item_description',
   scope_quantity: 'scope_quantity',
   purchased_quantity: 'purchased_quantity',
@@ -624,12 +560,6 @@ exports.Prisma.ProjectFileScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
   file_id: 'file_id'
-};
-
-exports.Prisma.Project_categoryScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  category_id: 'category_id'
 };
 
 exports.Prisma.ProjectTypeScalarFieldEnum = {
@@ -827,7 +757,6 @@ exports.Prisma.WorkScopeItemScalarFieldEnum = {
   material_id: 'material_id',
   unit_id: 'unit_id',
   activity_id: 'activity_id',
-  category_id: 'category_id',
   length: 'length',
   executed: 'executed',
   quantity: 'quantity',
@@ -1017,23 +946,20 @@ exports.Prisma.ModelName = {
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
   Activity: 'Activity',
+  project_activity: 'project_activity',
   Category: 'Category',
+  project_category: 'project_category',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
   diesel_consumption: 'diesel_consumption',
   DieselSupplier: 'DieselSupplier',
   DieselInward: 'DieselInward',
   DieselStock: 'DieselStock',
   File: 'File',
-  Invoice: 'Invoice',
-  InvoiceItem: 'InvoiceItem',
-  TaxDetail: 'TaxDetail',
-  InvoiceAmountSummary: 'InvoiceAmountSummary',
-  TransportDetail: 'TransportDetail',
-  InvoiceAudit: 'InvoiceAudit',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
   Machine: 'Machine',
   Material: 'Material',
+  project_material: 'project_material',
   MaterialBoq: 'MaterialBoq',
   MaterialBoqItem: 'MaterialBoqItem',
   Module: 'Module',
@@ -1046,7 +972,6 @@ exports.Prisma.ModelName = {
   EPCSpecificDetails: 'EPCSpecificDetails',
   BOTSpecificDetails: 'BOTSpecificDetails',
   ProjectFile: 'ProjectFile',
-  project_category: 'project_category',
   ProjectType: 'ProjectType',
   Role: 'Role',
   Stock: 'Stock',

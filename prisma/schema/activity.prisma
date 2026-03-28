@@ -3,15 +3,26 @@ model Activity {
     name               String
     unit_id            Int
     unit               Unit                 @relation(fields: [unit_id], references: [id])
-    category_id        Int
-    category           Category             @relation(fields: [category_id], references: [id])
     createdAt          DateTime             @default(now())
     updatedAt          DateTime             @updatedAt
-    materials          Material[]
     dprchainages       DPRChainage[]
     materialBoqItems   MaterialBoqItem[]
     workScopeItems     WorkScopeItem[]
     dieselConsumptions diesel_consumption[]
+    projectActivities  project_activity[]
+    projectMaterials   project_material[]
 
     @@map("activities")
+}
+
+model project_activity {
+    id          Int      @id @default(autoincrement())
+    project_id  Int
+    activity_id Int
+    activity    Activity @relation(fields: [activity_id], references: [id])
+    project     Project  @relation(fields: [project_id], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("project_activities")
 }

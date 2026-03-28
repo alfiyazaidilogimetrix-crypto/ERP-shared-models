@@ -22,8 +22,6 @@ model User {
 
     prs PR[] @relation("approvalUser")
 
-    invoices Invoice[]
-
     prgrns PRGRN[]
 
     grns               GRN[]

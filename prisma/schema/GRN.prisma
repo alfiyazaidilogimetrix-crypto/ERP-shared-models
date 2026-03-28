@@ -32,7 +32,6 @@ model GRN {
     created_at        DateTime             @default(now())
     updated_at        DateTime             @updatedAt
     grnfiles          GRNFile[]
-    invoiceItems      InvoiceItem[]
 
     @@index([po_id])
     @@map("grn")
@@ -53,8 +52,6 @@ model GRNMaterialReceipt {
     material    Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
-
-    invoiceItems InvoiceItem[]
 
     @@map("grn_matrial_receipt")
 }

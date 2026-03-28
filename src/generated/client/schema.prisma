@@ -110,7 +110,6 @@ model GRN {
   created_at        DateTime             @default(now())
   updated_at        DateTime             @updatedAt
   grnfiles          GRNFile[]
-  invoiceItems      InvoiceItem[]
 
   @@index([po_id])
   @@map("grn")
@@ -131,8 +130,6 @@ model GRNMaterialReceipt {
   material    Material @relation(fields: [material_id], references: [id])
 
   created_at DateTime @default(now())
-
-  invoiceItems InvoiceItem[]
 
   @@map("grn_matrial_receipt")
 }
@@ -202,7 +199,6 @@ model PO {
   updated_at              DateTime                 @updatedAt
   grns                    GRN[]
   vendorSupplyManagements VendorSupplyManagement[]
-  invoices                Invoice[]
 
   @@index([pr_id])
   @@index([project_id])
@@ -306,17 +302,28 @@ model Activity {
   name               String
   unit_id            Int
   unit               Unit                 @relation(fields: [unit_id], references: [id])
-  category_id        Int
-  category           Category             @relation(fields: [category_id], references: [id])
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
-  materials          Material[]
   dprchainages       DPRChainage[]
   materialBoqItems   MaterialBoqItem[]
   workScopeItems     WorkScopeItem[]
   dieselConsumptions diesel_consumption[]
+  projectActivities  project_activity[]
+  projectMaterials   project_material[]
 
   @@map("activities")
+}
+
+model project_activity {
+  id          Int      @id @default(autoincrement())
+  project_id  Int
+  activity_id Int
+  activity    Activity @relation(fields: [activity_id], references: [id])
+  project     Project  @relation(fields: [project_id], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("project_activities")
 }
 
 model Category {
@@ -325,14 +332,20 @@ model Category {
   description       String?
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
-  activities        Activity[]
-  materials         Material[]
   dprchainages      DPRChainage[]
-  materialBoqItems  MaterialBoqItem[]
-  workScopeItems    WorkScopeItem[]
   projectCategories project_category[]
 
   @@map("categories")
+}
+
+model project_category {
+  id          Int      @id @default(autoincrement())
+  project_id  Int
+  project     Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  category_id Int
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@map("project_category")
 }
 
 model Chainage_consumption_ledger {
@@ -453,148 +466,6 @@ model File {
   @@map("files")
 }
 
-model Invoice {
-  id Int @id @default(autoincrement())
-
-  invoiceNumber String   @unique
-  invoiceDate   DateTime
-
-  invoiceType       String // TAX_INVOICE
-  reverseCharge     Boolean @default(false)
-  currency          String  @default("INR")
-  // 🔗 CORE LINK
-  po_id             Int
-  sellerId          Int
-  consigneeId       Int?
-  taxDetailId       Int?
-  amountSummaryId   Int?
-  transportDetailId Int?
-  auditDetailId     Int?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // 🔗 RELATIONS
-  po        PO      @relation(fields: [po_id], references: [id])
-  seller    Vendor  @relation("seller", fields: [sellerId], references: [id])
-  buyer     String?
-  consignee Vendor? @relation("consignee", fields: [consigneeId], references: [id])
-
-  taxDetail       TaxDetail?
-  amountSummary   InvoiceAmountSummary?
-  transportDetail TransportDetail?
-  auditDetail     InvoiceAudit?
-
-  items                  InvoiceItem[]
-  invoiceAmountSummaryId Int?
-  invoiceAuditId         Int?
-  user                   User?         @relation(fields: [userId], references: [id])
-  userId                 Int?
-
-  @@map("invoice")
-}
-
-model InvoiceItem {
-  id Int @id @default(autoincrement())
-
-  invoiceId               Int
-  grn_id                  Int
-  grn_material_receipt_id Int
-
-  basicAmount          Float?
-  taxableValue         Float?
-  freightRatePerUnit   Float?
-  unloadingRatePerUnit Float?
-
-  invoice Invoice            @relation(fields: [invoiceId], references: [id])
-  grn     GRN                @relation(fields: [grn_id], references: [id])
-  grnItem GRNMaterialReceipt @relation(fields: [grn_material_receipt_id], references: [id])
-
-  @@index([grn_id])
-  @@map("invoice_item")
-}
-
-model TaxDetail {
-  id Int @id @default(autoincrement())
-
-  cgstRate   Float?
-  cgstAmount Float?
-
-  sgstRate   Float?
-  sgstAmount Float?
-
-  igstRate   Float?
-  igstAmount Float?
-
-  totalTax Float?
-
-  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
-  invoiceId Int?     @unique
-
-  @@map("tax_detail")
-}
-
-model InvoiceAmountSummary {
-  id Int @id @default(autoincrement())
-
-  goodsValue   Float?
-  taxableValue Float?
-
-  freightAmount   Float?
-  unloadingAmount Float?
-
-  roundOff Float?
-
-  totalTaxAmount    Float?
-  totalInvoiceValue Float?
-
-  amountInWords String
-
-  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
-  invoiceId Int?     @unique
-
-  @@map("invoice_amount_summary")
-}
-
-model TransportDetail {
-  id Int @id @default(autoincrement())
-
-  transporterName  String
-  transporterGstin String?
-
-  vehicleNumber String?
-  wagonNumber   String?
-
-  transportMode String // ROAD / RAIL
-  lrRrNo        String?
-  lrRrDate      DateTime?
-
-  dispatchFrom String?
-  destination  String?
-  distanceKm   Int?
-
-  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
-  invoiceId Int?     @unique
-
-  @@map("transport_detail")
-}
-
-model InvoiceAudit {
-  id Int @id @default(autoincrement())
-
-  preparedBy   String?
-  checkedBy    String?
-  authorizedBy String?
-
-  declaration     String?
-  termsConditions String?
-
-  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
-  invoiceId Int?     @unique
-
-  @@map("invoice_audit")
-}
-
 enum LabourStatus {
   ACTIVE
   INACTIVE
@@ -690,14 +561,10 @@ model Material {
   id                    Int                    @id @default(autoincrement())
   name                  String
   material_code         String?                @unique
-  activityId            Int?
   unitId                Int?
-  categoryId            Int?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
-  activity              Activity?              @relation(fields: [activityId], references: [id])
   unit                  Unit?                  @relation(fields: [unitId], references: [id])
-  category              Category?              @relation(fields: [categoryId], references: [id])
   prmaterialItems       PRMaterialItem[]
   poorderItems          POOrderItem[]
   grnmaterialReceipts   GRNMaterialReceipt[]
@@ -706,8 +573,23 @@ model Material {
   dprchainages          DPRChainage[]
   materialBoqItems      MaterialBoqItem[]
   workScopeItems        WorkScopeItem[]
+  projectMaterials      project_material[]
 
   @@map("materials")
+}
+
+model project_material {
+  id          Int      @id @default(autoincrement())
+  project_id  Int
+  material_id Int
+  activity_id Int
+  activity    Activity @relation(fields: [activity_id], references: [id])
+  material    Material @relation(fields: [material_id], references: [id])
+  project     Project  @relation(fields: [project_id], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("project_materials")
 }
 
 model MaterialBoq {
@@ -734,8 +616,6 @@ model MaterialBoqItem {
   unit               Unit               @relation(fields: [unit_id], references: [id])
   activity_id        Int
   activity           Activity           @relation(fields: [activity_id], references: [id])
-  category_id        Int?
-  category           Category?          @relation(fields: [category_id], references: [id])
   item_description   String?
   scope_quantity     Float?
   purchased_quantity Float?
@@ -834,13 +714,6 @@ model PRGRNFile {
   @@map("pr_grn_files")
 }
 
-// enum ProjectType {
-//     HAM
-//     EPC
-//     BOT
-//     OTHER
-// }
-
 enum ProjectStatus {
   PLANNED
   IN_PROGRESS
@@ -895,6 +768,8 @@ model Project {
   subContractorWorkOrders sub_contractor_work_order[]
   projectCategories       project_category[]
   dieselConsumptions      diesel_consumption[]
+  projectActivities       project_activity[]
+  projectMaterials        project_material[]
 
   @@map("project")
 }
@@ -950,16 +825,6 @@ model ProjectFile {
   file       File    @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
   @@map("project_file")
-}
-
-model project_category {
-  id          Int      @id @default(autoincrement())
-  project_id  Int
-  project     Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
-  category_id Int
-  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
-
-  @@map("project_category")
 }
 
 model ProjectType {
@@ -1120,8 +985,6 @@ model User {
 
   prs PR[] @relation("approvalUser")
 
-  invoices Invoice[]
-
   prgrns PRGRN[]
 
   grns               GRN[]
@@ -1167,12 +1030,8 @@ model Vendor {
   supplies VendorSupplyManagement[]
   pos      PO[]
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  invoice_seller Invoice[] @relation("seller")
-
-  invoice_consignee       Invoice[]                   @relation("consignee")
+  created_at              DateTime                    @default(now())
+  updated_at              DateTime                    @updatedAt
   subContractorWorkOrders sub_contractor_work_order[]
 
   @@map("vendor")
@@ -1346,8 +1205,6 @@ model WorkScopeItem {
   unit         Unit      @relation(fields: [unit_id], references: [id])
   activity_id  Int
   activity     Activity  @relation(fields: [activity_id], references: [id])
-  category_id  Int
-  category     Category  @relation(fields: [category_id], references: [id])
   length       Int?
   executed     Float?
   quantity     Float?
