@@ -7,6 +7,8 @@ export const machineSchema = z.object({
   is_owned: z.boolean().default(false),
   rent_per_hour: z.string().nullable().optional(),
   purchase_cost: z.string().nullable().optional(),
+  project_id: z.number().int().positive(),
+  machine_count: z.number().int().positive().default(1),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

@@ -403,6 +403,8 @@ exports.Prisma.MachineScalarFieldEnum = {
   is_owned: 'is_owned',
   rent_per_hour: 'rent_per_hour',
   purchase_cost: 'purchase_cost',
+  machine_count: 'machine_count',
+  project_id: 'project_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };

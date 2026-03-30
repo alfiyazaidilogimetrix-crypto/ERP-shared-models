@@ -54,6 +54,7 @@ model Project {
     dieselConsumptions      diesel_consumption[]
     projectActivities       project_activity[]
     projectMaterials        project_material[]
+    machines                Machine[]
 
     @@map("project")
 }
