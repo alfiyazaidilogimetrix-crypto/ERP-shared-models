@@ -32,6 +32,7 @@ model GRN {
     created_at        DateTime             @default(now())
     updated_at        DateTime             @updatedAt
     grnfiles          GRNFile[]
+    invoices          invoice[]
 
     @@index([po_id])
     @@map("grn")
@@ -45,9 +46,12 @@ model GRNMaterialReceipt {
     ordered     Int
     chainage    String?
     quality     String? // Good / Damaged / Failed Test etc.
-    accepted    Int
     rejected    Int
     received    Int
+    rate        Int?
+    amount      Int?
+    quantity    Int?
+    hsn_no      String?
     grn         GRN      @relation(fields: [grn_id], references: [id], onDelete: Cascade)
     material    Material @relation(fields: [material_id], references: [id])
 

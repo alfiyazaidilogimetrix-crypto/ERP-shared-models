@@ -1,1 +1,102 @@
+model invoice {
+    id              Int       @id @default(autoincrement())
+    invoice_number  String
+    invoice_date    DateTime
+    invoice_type    String
+    irn             String?
+    ack_no          String?
+    ack_date        DateTime?
+    eway_bill_no    String?
+    place_of_supply String?
+    destination     String?
+    vehicle_number  String?
+    total_quantity  Float?
+    total_amount    Float?
+    round_off       Float?
+    amount_in_words String?
+    grn_id          Int
+    grn             GRN       @relation(fields: [grn_id], references: [id], onDelete: Cascade)
 
+    seller       invoice_seller?
+    buyer        invoice_buyer?
+    consignee    invoice_consignee?
+    tax          invoice_tax?
+    bank_details invoice_bank_details?
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@map("invoices")
+}
+
+model invoice_seller {
+    id             Int      @id @default(autoincrement())
+    invoice_id     Int      @unique
+    invoice        invoice  @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+    name           String
+    address        String
+    godown_address String?
+    phone          String[]
+    email          String?
+    gstin          String?
+    state          String?
+    state_code     String?
+    udyog_aadhar   String?
+    pan            String?
+
+    @@map("invoice_seller")
+}
+
+model invoice_buyer {
+    id         Int     @id @default(autoincrement())
+    invoice_id Int     @unique
+    invoice    invoice @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+    name       String
+    address    String?
+    gstin      String?
+    state      String?
+    state_code String?
+
+    @@map("invoice_buyer")
+}
+
+model invoice_consignee {
+    id         Int     @id @default(autoincrement())
+    invoice_id Int     @unique
+    invoice    invoice @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+    name       String
+    address    String?
+    gstin      String?
+    state      String?
+    state_code String?
+
+    @@map("invoice_consignee")
+}
+
+model invoice_tax {
+    id             Int     @id @default(autoincrement())
+    invoice_id     Int     @unique
+    invoice        invoice @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+    taxable_amount Float?
+    cgst_rate      Float?
+    cgst_amount    Float?
+    sgst_rate      Float?
+    sgst_amount    Float?
+    total_tax      Float?
+    tax_in_words   String?
+
+    @@map("invoice_tax")
+}
+
+model invoice_bank_details {
+    id                  Int     @id @default(autoincrement())
+    invoice_id          Int     @unique
+    invoice             invoice @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+    account_holder_name String?
+    bank_name           String?
+    account_number      String?
+    ifsc_code           String?
+    branch              String?
+
+    @@map("invoice_bank_details")
+}
