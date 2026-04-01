@@ -184,9 +184,12 @@ exports.Prisma.GRNMaterialReceiptScalarFieldEnum = {
   ordered: 'ordered',
   chainage: 'chainage',
   quality: 'quality',
-  accepted: 'accepted',
   rejected: 'rejected',
   received: 'received',
+  rate: 'rate',
+  amount: 'amount',
+  quantity: 'quantity',
+  hsn_no: 'hsn_no',
   created_at: 'created_at'
 };
 
@@ -361,6 +364,84 @@ exports.Prisma.FileScalarFieldEnum = {
   fileContent: 'fileContent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  invoice_number: 'invoice_number',
+  invoice_date: 'invoice_date',
+  invoice_type: 'invoice_type',
+  irn: 'irn',
+  ack_no: 'ack_no',
+  ack_date: 'ack_date',
+  eway_bill_no: 'eway_bill_no',
+  place_of_supply: 'place_of_supply',
+  destination: 'destination',
+  vehicle_number: 'vehicle_number',
+  total_quantity: 'total_quantity',
+  total_amount: 'total_amount',
+  round_off: 'round_off',
+  amount_in_words: 'amount_in_words',
+  grn_id: 'grn_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Invoice_sellerScalarFieldEnum = {
+  id: 'id',
+  invoice_id: 'invoice_id',
+  name: 'name',
+  address: 'address',
+  godown_address: 'godown_address',
+  phone: 'phone',
+  email: 'email',
+  gstin: 'gstin',
+  state: 'state',
+  state_code: 'state_code',
+  udyog_aadhar: 'udyog_aadhar',
+  pan: 'pan'
+};
+
+exports.Prisma.Invoice_buyerScalarFieldEnum = {
+  id: 'id',
+  invoice_id: 'invoice_id',
+  name: 'name',
+  address: 'address',
+  gstin: 'gstin',
+  state: 'state',
+  state_code: 'state_code'
+};
+
+exports.Prisma.Invoice_consigneeScalarFieldEnum = {
+  id: 'id',
+  invoice_id: 'invoice_id',
+  name: 'name',
+  address: 'address',
+  gstin: 'gstin',
+  state: 'state',
+  state_code: 'state_code'
+};
+
+exports.Prisma.Invoice_taxScalarFieldEnum = {
+  id: 'id',
+  invoice_id: 'invoice_id',
+  taxable_amount: 'taxable_amount',
+  cgst_rate: 'cgst_rate',
+  cgst_amount: 'cgst_amount',
+  sgst_rate: 'sgst_rate',
+  sgst_amount: 'sgst_amount',
+  total_tax: 'total_tax',
+  tax_in_words: 'tax_in_words'
+};
+
+exports.Prisma.Invoice_bank_detailsScalarFieldEnum = {
+  id: 'id',
+  invoice_id: 'invoice_id',
+  account_holder_name: 'account_holder_name',
+  bank_name: 'bank_name',
+  account_number: 'account_number',
+  ifsc_code: 'ifsc_code',
+  branch: 'branch'
 };
 
 exports.Prisma.LabourScalarFieldEnum = {
@@ -957,6 +1038,12 @@ exports.Prisma.ModelName = {
   DieselInward: 'DieselInward',
   DieselStock: 'DieselStock',
   File: 'File',
+  invoice: 'invoice',
+  invoice_seller: 'invoice_seller',
+  invoice_buyer: 'invoice_buyer',
+  invoice_consignee: 'invoice_consignee',
+  invoice_tax: 'invoice_tax',
+  invoice_bank_details: 'invoice_bank_details',
   Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
   Machine: 'Machine',

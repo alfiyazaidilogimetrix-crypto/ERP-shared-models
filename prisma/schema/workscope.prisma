@@ -13,8 +13,8 @@ model WorkScopeItem {
     id           Int       @id @default(autoincrement())
     workscope_id Int
     workscope    WorkScope @relation(fields: [workscope_id], references: [id])
-    material_id  Int
-    material     Material  @relation(fields: [material_id], references: [id])
+    material_id  Int?
+    material     Material? @relation(fields: [material_id], references: [id])
     unit_id      Int
     unit         Unit      @relation(fields: [unit_id], references: [id])
     activity_id  Int
