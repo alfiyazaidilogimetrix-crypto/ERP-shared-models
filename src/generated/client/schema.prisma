@@ -363,6 +363,24 @@ model Chainage_consumption_ledger {
   @@map("chainage_consumption_ledger")
 }
 
+model company {
+  id         Int      @id @default(autoincrement())
+  name       String
+  address    String
+  phone      String[]
+  email      String?
+  gstin      String?
+  state      String?
+  state_code String?
+  pan        String?
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("companies")
+}
+
 model diesel_consumption {
   id                 Int      @id @default(autoincrement())
   machine_id         Int
@@ -471,7 +489,7 @@ model File {
 }
 
 model invoice {
-  id              Int       @id @default(autoincrement())
+  id              Int                   @id @default(autoincrement())
   invoice_number  String
   invoice_date    DateTime
   invoice_type    String
@@ -487,13 +505,14 @@ model invoice {
   round_off       Float?
   amount_in_words String?
   grn_id          Int
-  grn             GRN       @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-
-  seller       invoice_seller?
-  buyer        invoice_buyer?
-  consignee    invoice_consignee?
-  tax          invoice_tax?
-  bank_details invoice_bank_details?
+  grn             GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  vendor_id       Int
+  vendor          Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+  seller          invoice_seller?
+  buyer           invoice_buyer?
+  consignee       invoice_consignee?
+  tax             invoice_tax?
+  bank_details    invoice_bank_details?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -1103,6 +1122,7 @@ model User {
   dieselStocks       DieselStock[]
   dieselInwards      DieselInward[]
   dieselConsumptions diesel_consumption[]
+  companies          company[]
 
   @@map("users")
 }
@@ -1144,6 +1164,7 @@ model Vendor {
   created_at              DateTime                    @default(now())
   updated_at              DateTime                    @updatedAt
   subContractorWorkOrders sub_contractor_work_order[]
+  invoices                invoice[]
 
   @@map("vendor")
 }

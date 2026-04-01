@@ -29,6 +29,7 @@ model User {
     dieselStocks       DieselStock[]
     dieselInwards      DieselInward[]
     dieselConsumptions diesel_consumption[]
+    companies          company[]
 
     @@map("users")
 }

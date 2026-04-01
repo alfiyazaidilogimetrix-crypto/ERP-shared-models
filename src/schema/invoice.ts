@@ -1,110 +1,115 @@
 import { z } from 'zod';
 
-// Invoice Item Schema
-export const invoiceItemSchema = z.object({
+// Invoice Seller Snapshot Schema
+export const invoiceSellerSchema = z.object({
   id: z.number().int().positive().optional(),
-  invoiceId: z.number().int().positive(),
-  grn_id: z.number().int().positive(),
-  grn_material_receipt_id: z.number().int().positive(),
-  basicAmount: z.number().nullable().optional(),
-  taxableValue: z.number().nullable().optional(),
-  freightRatePerUnit: z.number().nullable().optional(),
-  unloadingRatePerUnit: z.number().nullable().optional(),
+  invoice_id: z.number().int().positive().optional(),
+  name: z.string().min(1),
+  address: z.string().min(1),
+  godown_address: z.string().nullable().optional(),
+  phone: z.array(z.string()).default([]),
+  email: z.string().email().nullable().optional(),
+  gstin: z.string().nullable().optional(),
+  state: z.string().nullable().optional(),
+  state_code: z.string().nullable().optional(),
+  udyog_aadhar: z.string().nullable().optional(),
+  pan: z.string().nullable().optional(),
 });
 
-export type InvoiceItem = z.infer<typeof invoiceItemSchema>;
+export type InvoiceSeller = z.infer<typeof invoiceSellerSchema>;
 
-// Tax Detail Schema
-export const taxDetailSchema = z.object({
+// Invoice Buyer Snapshot Schema
+export const invoiceBuyerSchema = z.object({
   id: z.number().int().positive().optional(),
-  cgstRate: z.number().nullable().optional(),
-  cgstAmount: z.number().nullable().optional(),
-  sgstRate: z.number().nullable().optional(),
-  sgstAmount: z.number().nullable().optional(),
-  igstRate: z.number().nullable().optional(),
-  igstAmount: z.number().nullable().optional(),
-  totalTax: z.number().nullable().optional(),
-  invoiceId: z.number().int().positive().nullable().optional(),
+  invoice_id: z.number().int().positive().optional(),
+  name: z.string().min(1),
+  address: z.string().nullable().optional(),
+  gstin: z.string().nullable().optional(),
+  state: z.string().nullable().optional(),
+  state_code: z.string().nullable().optional(),
 });
 
-export type TaxDetail = z.infer<typeof taxDetailSchema>;
+export type InvoiceBuyer = z.infer<typeof invoiceBuyerSchema>;
 
-// Invoice Amount Summary Schema
-export const invoiceAmountSummarySchema = z.object({
+// Invoice Consignee Snapshot Schema
+export const invoiceConsigneeSchema = z.object({
   id: z.number().int().positive().optional(),
-  goodsValue: z.number().nullable().optional(),
-  taxableValue: z.number().nullable().optional(),
-  freightAmount: z.number().nullable().optional(),
-  unloadingAmount: z.number().nullable().optional(),
-  roundOff: z.number().nullable().optional(),
-  totalTaxAmount: z.number().nullable().optional(),
-  totalInvoiceValue: z.number().nullable().optional(),
-  amountInWords: z.string().min(1),
-  invoiceId: z.number().int().positive().nullable().optional(),
+  invoice_id: z.number().int().positive().optional(),
+  name: z.string().min(1),
+  address: z.string().nullable().optional(),
+  gstin: z.string().nullable().optional(),
+  state: z.string().nullable().optional(),
+  state_code: z.string().nullable().optional(),
 });
 
-export type InvoiceAmountSummary = z.infer<typeof invoiceAmountSummarySchema>;
+export type InvoiceConsignee = z.infer<typeof invoiceConsigneeSchema>;
 
-// Transport Detail Schema
-export const transportDetailSchema = z.object({
+// Invoice Tax Snapshot Schema
+export const invoiceTaxSchema = z.object({
   id: z.number().int().positive().optional(),
-  transporterName: z.string().min(1),
-  transporterGstin: z.string().nullable().optional(),
-  vehicleNumber: z.string().nullable().optional(),
-  wagonNumber: z.string().nullable().optional(),
-  transportMode: z.string().min(1), // ROAD / RAIL
-  lrRrNo: z.string().nullable().optional(),
-  lrRrDate: z.date().nullable().optional(),
-  dispatchFrom: z.string().nullable().optional(),
-  destination: z.string().nullable().optional(),
-  distanceKm: z.number().int().nullable().optional(),
-  invoiceId: z.number().int().positive().nullable().optional(),
+  invoice_id: z.number().int().positive().optional(),
+  taxable_amount: z.number().nullable().optional(),
+  cgst_rate: z.number().nullable().optional(),
+  cgst_amount: z.number().nullable().optional(),
+  sgst_rate: z.number().nullable().optional(),
+  sgst_amount: z.number().nullable().optional(),
+  total_tax: z.number().nullable().optional(),
+  tax_in_words: z.string().nullable().optional(),
 });
 
-export type TransportDetail = z.infer<typeof transportDetailSchema>;
+export type InvoiceTax = z.infer<typeof invoiceTaxSchema>;
 
-// Invoice Audit Schema
-export const invoiceAuditSchema = z.object({
+// Invoice Bank Details Snapshot Schema
+export const invoiceBankDetailsSchema = z.object({
   id: z.number().int().positive().optional(),
-  preparedBy: z.string().nullable().optional(),
-  checkedBy: z.string().nullable().optional(),
-  authorizedBy: z.string().nullable().optional(),
-  declaration: z.string().nullable().optional(),
-  termsConditions: z.string().nullable().optional(),
-  invoiceId: z.number().int().positive().nullable().optional(),
+  invoice_id: z.number().int().positive().optional(),
+  account_holder_name: z.string().nullable().optional(),
+  bank_name: z.string().nullable().optional(),
+  account_number: z.string().nullable().optional(),
+  ifsc_code: z.string().nullable().optional(),
+  branch: z.string().nullable().optional(),
 });
 
-export type InvoiceAudit = z.infer<typeof invoiceAuditSchema>;
+export type InvoiceBankDetails = z.infer<typeof invoiceBankDetailsSchema>;
 
-// Invoice Schema
+// Base Invoice Schema
 export const invoiceSchema = z.object({
   id: z.number().int().positive().optional(),
-  invoiceNumber: z.string().min(1),
-  invoiceDate: z.date().or(z.string().pipe(z.coerce.date())),
-  invoiceType: z.string().min(1),
-  reverseCharge: z.boolean().default(false),
-  currency: z.string().default('INR'),
-  po_id: z.number().int().positive(),
-  sellerId: z.number().int().positive(),
-  consigneeId: z.number().int().positive().nullable().optional(),
-  taxDetailId: z.number().int().positive().nullable().optional(),
-  amountSummaryId: z.number().int().positive().nullable().optional(),
-  transportDetailId: z.number().int().positive().nullable().optional(),
-  auditDetailId: z.number().int().positive().nullable().optional(),
-  buyer: z.string().nullable().optional(),
-  invoiceAmountSummaryId: z.number().int().positive().nullable().optional(),
-  invoiceAuditId: z.number().int().positive().nullable().optional(),
-  userId: z.number().int().positive().nullable().optional(),
+  invoice_number: z.string().min(1),
+  invoice_date: z.date().or(z.string().pipe(z.coerce.date())),
+  invoice_type: z.string().min(1),
+  irn: z.string().nullable().optional(),
+  ack_no: z.string().nullable().optional(),
+  ack_date: z.date().or(z.string().pipe(z.coerce.date())).nullable().optional(),
+  eway_bill_no: z.string().nullable().optional(),
+  place_of_supply: z.string().nullable().optional(),
+  destination: z.string().nullable().optional(),
+  vehicle_number: z.string().nullable().optional(),
+  total_quantity: z.number().nullable().optional(),
+  total_amount: z.number().nullable().optional(),
+  round_off: z.number().nullable().optional(),
+  amount_in_words: z.string().nullable().optional(),
+  grn_id: z.number().int().positive(),
+  vendor_id: z.number().int().positive(),
 
-  // Nested relations (optional for create/read)
-  taxDetail: taxDetailSchema.optional(),
-  amountSummary: invoiceAmountSummarySchema.optional(),
-  transportDetail: transportDetailSchema.optional(),
-  auditDetail: invoiceAuditSchema.optional(),
-  items: z.array(invoiceItemSchema).optional(),
+  // Nested relations (snapshots)
+  seller: invoiceSellerSchema.optional(),
+  buyer: invoiceBuyerSchema.optional(),
+  consignee: invoiceConsigneeSchema.optional(),
+  tax: invoiceTaxSchema.optional(),
+  bank_details: invoiceBankDetailsSchema.optional(),
 
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
+  created_at: z.date().optional(),
+  updated_at: z.date().optional(),
 });
 
 export type Invoice = z.infer<typeof invoiceSchema>;
+
+// Create Invoice Schema
+export const createInvoiceSchema = invoiceSchema.omit({
+  id: true,
+  created_at: true,
+  updated_at: true,
+});
+
+export type CreateInvoice = z.infer<typeof createInvoiceSchema>;

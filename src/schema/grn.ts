@@ -9,9 +9,12 @@ export const grnMaterialReceiptSchema = z.object({
   ordered: z.number().int().nonnegative(),
   chainage: z.string().nullable().optional(),
   quality: z.string().nullable().optional(),
-  accepted: z.number().int().nonnegative(),
   rejected: z.number().int().nonnegative(),
   received: z.number().int().nonnegative(),
+  rate: z.number().int().nonnegative().optional().nullable(),
+  amount: z.number().int().nonnegative().optional().nullable(),
+  quantity: z.number().int().nonnegative().optional().nullable(),
+  hsn_no: z.string().optional().nullable(),
   created_at: z.date().optional(),
 });
 
@@ -44,6 +47,7 @@ export const grnSchema = z.object({
   created_by_id: z.number().int().positive().nullable().optional(),
   material_receipts: z.array(grnMaterialReceiptSchema).optional(),
   grnfiles: z.array(grnFileSchema).optional(),
+  invoices: z.array(z.any()).optional(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

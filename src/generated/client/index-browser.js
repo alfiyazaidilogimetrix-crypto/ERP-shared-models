@@ -297,6 +297,21 @@ exports.Prisma.Chainage_consumption_ledgerScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CompanyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  email: 'email',
+  gstin: 'gstin',
+  state: 'state',
+  state_code: 'state_code',
+  pan: 'pan',
+  user_id: 'user_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.Diesel_consumptionScalarFieldEnum = {
   id: 'id',
   machine_id: 'machine_id',
@@ -383,6 +398,7 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   round_off: 'round_off',
   amount_in_words: 'amount_in_words',
   grn_id: 'grn_id',
+  vendor_id: 'vendor_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -1033,6 +1049,7 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   project_category: 'project_category',
   Chainage_consumption_ledger: 'Chainage_consumption_ledger',
+  company: 'company',
   diesel_consumption: 'diesel_consumption',
   DieselSupplier: 'DieselSupplier',
   DieselInward: 'DieselInward',

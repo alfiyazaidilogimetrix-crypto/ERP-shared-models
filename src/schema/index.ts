@@ -8,6 +8,7 @@ import * as grn from './grn';
 import * as po from './po';
 import * as pr from './pr';
 import * as category from './category';
+import * as company from './company';
 import * as chainage from './chainage';
 import * as diesel from './diesel';
 import * as labour from './labour';
@@ -43,6 +44,7 @@ export * from './grn';
 export * from './po';
 export * from './pr';
 export * from './category';
+export * from './company';
 export * from './chainage';
 export * from './diesel';
 export * from './labour';
@@ -79,6 +81,7 @@ export const allModels = {
   ...po,
   ...pr,
   ...category,
+  ...company,
   ...chainage,
   ...diesel,
   ...labour,

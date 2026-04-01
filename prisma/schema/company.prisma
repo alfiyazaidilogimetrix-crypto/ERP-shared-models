@@ -1,0 +1,17 @@
+model company {
+    id         Int      @id @default(autoincrement())
+    name       String
+    address    String
+    phone      String[]
+    email      String?
+    gstin      String?
+    state      String?
+    state_code String?
+    pan        String?
+    user_id    Int
+    user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    @@map("companies")
+}

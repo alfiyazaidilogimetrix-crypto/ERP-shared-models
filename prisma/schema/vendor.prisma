@@ -35,6 +35,7 @@ model Vendor {
     created_at              DateTime                    @default(now())
     updated_at              DateTime                    @updatedAt
     subContractorWorkOrders sub_contractor_work_order[]
+    invoices                invoice[]
 
     @@map("vendor")
 }
