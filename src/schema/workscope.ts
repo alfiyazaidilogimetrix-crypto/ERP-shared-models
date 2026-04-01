@@ -10,7 +10,7 @@ export const workScopeSchema = z.object({
 export const workScopeItemSchema = z.object({
     id: z.number().int().positive().optional(),
     workscope_id: z.number().int().positive(),
-    material_id: z.number().int().positive(),
+    material_id: z.number().int().positive().optional().nullable(),
     unit_id: z.number().int().positive(),
     activity_id: z.number().int().positive(),
     category_id: z.number().int().positive(),
