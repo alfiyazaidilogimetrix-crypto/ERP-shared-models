@@ -83,6 +83,8 @@ model invoice_tax {
     cgst_amount    Float?
     sgst_rate      Float?
     sgst_amount    Float?
+    igst_rate      Float?
+    igst_amount    Float?
     total_tax      Float?
     tax_in_words   String?
 
