@@ -172,6 +172,11 @@ exports.Prisma.GRNScalarFieldEnum = {
   store_location: 'store_location',
   quality_check_completed: 'quality_check_completed',
   grn_remarks: 'grn_remarks',
+  total_amount: 'total_amount',
+  total_qty: 'total_qty',
+  total_rejected: 'total_rejected',
+  total_received: 'total_received',
+  grn_number: 'grn_number',
   created_by_id: 'created_by_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -446,6 +451,8 @@ exports.Prisma.Invoice_taxScalarFieldEnum = {
   cgst_amount: 'cgst_amount',
   sgst_rate: 'sgst_rate',
   sgst_amount: 'sgst_amount',
+  igst_rate: 'igst_rate',
+  igst_amount: 'igst_amount',
   total_tax: 'total_tax',
   tax_in_words: 'tax_in_words'
 };

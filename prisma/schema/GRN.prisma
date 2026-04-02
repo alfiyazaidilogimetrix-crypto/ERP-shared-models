@@ -22,17 +22,21 @@ model GRN {
 
     store_location String?
 
-    quality_check_completed Boolean @default(false)
+    quality_check_completed Boolean              @default(false)
     grn_remarks             String?
-
-    material_receipts GRNMaterialReceipt[]
-    purchase_order    PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
-    created_by_id     Int?
-    created_by        User?                @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
-    created_at        DateTime             @default(now())
-    updated_at        DateTime             @updatedAt
-    grnfiles          GRNFile[]
-    invoices          invoice[]
+    total_amount            Int?
+    total_qty               Int?
+    total_rejected          Int?
+    total_received          Int?
+    grn_number              String?
+    material_receipts       GRNMaterialReceipt[]
+    purchase_order          PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
+    created_by_id           Int?
+    created_by              User?                @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+    created_at              DateTime             @default(now())
+    updated_at              DateTime             @updatedAt
+    grnfiles                GRNFile[]
+    invoices                invoice[]
 
     @@index([po_id])
     @@map("grn")
