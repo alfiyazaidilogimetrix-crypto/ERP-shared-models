@@ -20,8 +20,11 @@ model GRN {
     received_date  DateTime
     received_time  String?
 
-    store_location String?
-
+    store_location          String?
+    address                 String?
+    district                String?
+    state                   String?
+    pincode                 String?
     quality_check_completed Boolean              @default(false)
     grn_remarks             String?
     total_amount            Int?

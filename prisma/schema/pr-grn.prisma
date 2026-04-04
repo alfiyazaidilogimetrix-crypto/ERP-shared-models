@@ -11,6 +11,7 @@ model PRGRN {
     status                  ReceiptStatus
     received_date           DateTime
     received_time           String?
+    store_location          String?
     quality_check_completed Boolean        @default(false)
     grn_remarks             String?
 
