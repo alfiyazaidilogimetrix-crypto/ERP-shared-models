@@ -690,6 +690,7 @@ exports.Prisma.StockScalarFieldEnum = {
   pincode: 'pincode',
   state: 'state',
   district: 'district',
+  address: 'address',
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   current_stock: 'current_stock',

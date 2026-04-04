@@ -1025,6 +1025,7 @@ model Stock {
   pincode                    String
   state                      String
   district                   String
+  address                    String?
   status                     StockStatus @default(IN_STOCK)
   minimum_threshold_quantity Int?
   current_stock              Int?

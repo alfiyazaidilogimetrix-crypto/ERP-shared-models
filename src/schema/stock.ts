@@ -8,6 +8,7 @@ export const stockSchema = z.object({
   pincode: z.string(),
   state: z.string(),
   district: z.string(),
+  address: z.string().optional(),
   status: stockStatusSchema.default('IN_STOCK'),
   minimum_threshold_quantity: z
     .number()
