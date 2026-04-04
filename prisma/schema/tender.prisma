@@ -1,7 +1,7 @@
 model tender {
     id         Int      @id @default(autoincrement())
     file_id    Int
-    file       File     @relation(fields: [file_id], references: [id])
+    file       File     @relation(fields: [file_id], references: [id], onDelete: Cascade)
     project_id Int?
     project    Project? @relation(fields: [project_id], references: [id])
     created_at DateTime @default(now())

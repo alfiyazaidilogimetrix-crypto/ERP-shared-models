@@ -1088,7 +1088,7 @@ model work_order_items {
 model tender {
   id         Int      @id @default(autoincrement())
   file_id    Int
-  file       File     @relation(fields: [file_id], references: [id])
+  file       File     @relation(fields: [file_id], references: [id], onDelete: Cascade)
   project_id Int?
   project    Project? @relation(fields: [project_id], references: [id])
   created_at DateTime @default(now())
@@ -1118,7 +1118,7 @@ model User {
   emailVerified     Boolean  @default(false)
   password          String
   fileId            Int?
-  profileImage      File?    @relation(fields: [fileId], references: [id])
+  profileImage      File?    @relation(fields: [fileId], references: [id], onDelete: SetNull)
   original_password String?
   mobileNumber      String?
   roleId            Int?

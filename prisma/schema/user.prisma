@@ -5,7 +5,7 @@ model User {
     emailVerified     Boolean  @default(false)
     password          String
     fileId            Int?
-    profileImage      File?    @relation(fields: [fileId], references: [id])
+    profileImage      File?    @relation(fields: [fileId], references: [id], onDelete: SetNull)
     original_password String?
     mobileNumber      String?
     roleId            Int?
