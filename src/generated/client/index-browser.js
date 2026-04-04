@@ -724,6 +724,14 @@ exports.Prisma.Work_order_itemsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.TenderScalarFieldEnum = {
+  id: 'id',
+  file_id: 'file_id',
+  project_id: 'project_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.UnitScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1090,6 +1098,7 @@ exports.Prisma.ModelName = {
   Stock: 'Stock',
   sub_contractor_work_order: 'sub_contractor_work_order',
   work_order_items: 'work_order_items',
+  tender: 'tender',
   Unit: 'Unit',
   User: 'User',
   Vendor: 'Vendor',

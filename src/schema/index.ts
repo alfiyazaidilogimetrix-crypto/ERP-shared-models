@@ -33,6 +33,8 @@ import * as sub_contractor_work_order from './sub_contractor_work_order';
 import * as project_type from './ProjectType';
 import * as project_category from './project_category';
 import * as work_order_items from './work_order_items';
+import * as tender from './tender';
+
 
 export * from './user';
 export * from './mail';
@@ -69,6 +71,8 @@ export * from './sub_contractor_work_order';
 export * from './ProjectType';
 export * from './project_category';
 export * from './work_order_items';
+export * from './tender';
+
 
 export const allModels = {
   ...user,
@@ -106,4 +110,5 @@ export const allModels = {
   ...project_type,
   ...project_category,
   ...work_order_items,
+  ...tender,
 };

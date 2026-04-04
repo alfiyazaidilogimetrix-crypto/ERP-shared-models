@@ -488,6 +488,7 @@ model File {
 
   prgrnfiles   PRGRNFile[]
   projectFiles ProjectFile[]
+  tenders      tender[]
 
   @@map("files")
 }
@@ -906,6 +907,7 @@ model Project {
   projectActivities       project_activity[]
   projectMaterials        project_material[]
   machines                Machine[]
+  tenders                 tender[]
 
   @@map("project")
 }
@@ -1081,6 +1083,18 @@ model work_order_items {
   updated_at           DateTime                  @updatedAt
 
   @@map("work_order_items")
+}
+
+model tender {
+  id         Int      @id @default(autoincrement())
+  file_id    Int
+  file       File     @relation(fields: [file_id], references: [id])
+  project_id Int?
+  project    Project? @relation(fields: [project_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("tender")
 }
 
 model Unit {

@@ -16,6 +16,7 @@ model File {
 
     prgrnfiles   PRGRNFile[]
     projectFiles ProjectFile[]
+    tenders      tender[]
 
     @@map("files")
 }
