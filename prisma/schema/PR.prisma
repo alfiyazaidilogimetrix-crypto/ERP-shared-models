@@ -61,9 +61,8 @@ model PRMaterialItem {
     is_approved      Boolean  @default(false)
     approved_qty     String?
     approval_remarks String?
-
-    pr       PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
-    material Material @relation(fields: [material_id], references: [id])
+    pr               PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+    material         Material @relation(fields: [material_id], references: [id])
 
     created_at DateTime @default(now())
 
