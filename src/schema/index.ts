@@ -9,9 +9,7 @@ import * as po from './po';
 import * as pr from './pr';
 import * as category from './category';
 import * as company from './company';
-import * as chainage from './chainage';
 import * as diesel from './diesel';
-import * as labour from './labour';
 import * as machine from './machine';
 import * as material from './material';
 import * as modules from './modules';
@@ -19,7 +17,6 @@ import * as permission from './permission';
 import * as role from './role';
 import * as unit from './unit';
 import * as vendor from './vendor';
-import * as vendor_supply_management from './vendor_supply_management';
 import * as enums from './enums';
 import * as location from './location';
 import * as invoice from './invoice';
@@ -34,6 +31,9 @@ import * as project_type from './ProjectType';
 import * as project_category from './project_category';
 import * as work_order_items from './work_order_items';
 import * as tender from './tender';
+import * as head_office from './head_office';
+import * as branch_office from './branch_office';
+import * as warehouse from './warehouse';
 
 
 export * from './user';
@@ -47,9 +47,7 @@ export * from './po';
 export * from './pr';
 export * from './category';
 export * from './company';
-export * from './chainage';
 export * from './diesel';
-export * from './labour';
 export * from './machine';
 export * from './material';
 export * from './modules';
@@ -57,7 +55,6 @@ export * from './permission';
 export * from './role';
 export * from './unit';
 export * from './vendor';
-export * from './vendor_supply_management';
 export * from './enums';
 export * from './location';
 export * from './invoice';
@@ -72,6 +69,9 @@ export * from './ProjectType';
 export * from './project_category';
 export * from './work_order_items';
 export * from './tender';
+export * from './head_office';
+export * from './branch_office';
+export * from './warehouse';
 
 
 export const allModels = {
@@ -86,9 +86,7 @@ export const allModels = {
   ...pr,
   ...category,
   ...company,
-  ...chainage,
   ...diesel,
-  ...labour,
   ...machine,
   ...material,
   ...modules,
@@ -96,7 +94,6 @@ export const allModels = {
   ...role,
   ...unit,
   ...vendor,
-  ...vendor_supply_management,
   ...enums,
   ...location,
   ...invoice,
@@ -111,4 +108,7 @@ export const allModels = {
   ...project_category,
   ...work_order_items,
   ...tender,
+  ...head_office,
+  ...branch_office,
+  ...warehouse,
 };

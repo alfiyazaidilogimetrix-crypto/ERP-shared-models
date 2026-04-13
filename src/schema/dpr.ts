@@ -57,6 +57,9 @@ export const dprSchema = z.object({
   project_id: z.number().int().positive(),
 
   submitted_by: z.number().int().positive(),
+  company_id: z.number().int().positive(),
+  head_office_id: z.number().int().positive(),
+  branch_office_id: z.number().int().positive(),
 
   entries: z.array(dprChainageSchema).min(1),
   created_at: z.date().optional(),

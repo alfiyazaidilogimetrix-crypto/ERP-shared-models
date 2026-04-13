@@ -19,6 +19,7 @@ model File {
     tenders                tender[]
     companyFiles           company_files[]
     dieselConsumptionFiles diesel_consumption_file[]
+    dieselInwardFiles      diesel_inward_file[]
 
     @@map("files")
 }

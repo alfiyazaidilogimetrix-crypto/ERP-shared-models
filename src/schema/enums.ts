@@ -27,8 +27,6 @@ export const transportModeSchema = z.enum([
   'SELF_PICKUP',
 ]);
 
-export const urgencyLevelSchema = z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']);
-
 // projectTypeSchema removed as it is now a model
 
 export const projectStatusSchema = z.enum([
@@ -111,7 +109,6 @@ export const paymentStatusSchema = z.enum([
 
 // Type exports
 export type PRStatus = z.infer<typeof prStatusSchema>;
-export type UrgencyLevel = z.infer<typeof urgencyLevelSchema>;
 export type PRType = z.infer<typeof prTypeSchema>;
 export type AttendanceStatus = z.infer<typeof attendanceStatusSchema>;
 export type ReceiptStatus = z.infer<typeof receiptStatusSchema>;

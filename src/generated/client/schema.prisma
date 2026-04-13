@@ -255,13 +255,6 @@ enum PRStatus {
   CLOSED
 }
 
-enum UrgencyLevel {
-  LOW
-  MEDIUM
-  HIGH
-  CRITICAL
-}
-
 enum PRType {
   INVENTORY
   PROCUREMENT
@@ -273,7 +266,6 @@ model PR {
   project_id       Int
   pr_code          String           @unique
   pr_type          PRType           @default(NONE)
-  urgency_level    UrgencyLevel
   status           PRStatus         @default(DRAFT)
   remarks          String?
   user_id          Int? // Created by
@@ -368,6 +360,8 @@ model BranchOffice {
   prgrns                       PRGRN[]
   dieselStocks                 DieselStock[]
   materialBoqs                 MaterialBoq[]
+  vendors                      Vendor[]
+  projects                     Project[]
 
   @@map("branch_office")
 }
@@ -430,6 +424,8 @@ model Company {
   prgrns                  PRGRN[]
   dieselStocks            DieselStock[]
   materialBoqs            MaterialBoq[]
+  vendors                 Vendor[]
+  projects                Project[]
 
   @@map("companies")
 }
@@ -539,21 +535,32 @@ model DieselInward {
   delivery_person_name String?
   vehicle_number       String?
   received_by          Int?
-  received             User?              @relation(fields: [received_by], references: [id])
+  received             User?                @relation(fields: [received_by], references: [id])
   received_at          DateTime?
-  status               DieselInwardStatus @default(PENDING)
+  status               DieselInwardStatus   @default(PENDING)
   invoiceNumber        String?
   remarks              String?
   company_id           Int
   head_office_id       Int
   branch_office_id     Int
-  company              Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice           HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice         BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
+  company              Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice           HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice         BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+  dieselInwardFiles    diesel_inward_file[]
 
   @@map("diesel_inward")
+}
+
+model diesel_inward_file {
+  id               Int          @id @default(autoincrement())
+  diesel_inward_id Int
+  diesel_inward    DieselInward @relation(fields: [diesel_inward_id], references: [id])
+  file_id          Int
+  file             File         @relation(fields: [file_id], references: [id])
+
+  @@map("diesel_inward_file")
 }
 
 model DieselStock {
@@ -597,6 +604,7 @@ model File {
   tenders                tender[]
   companyFiles           company_files[]
   dieselConsumptionFiles diesel_consumption_file[]
+  dieselInwardFiles      diesel_inward_file[]
 
   @@map("files")
 }
@@ -635,6 +643,8 @@ model HeadOffice {
   prgrns                       PRGRN[]
   dieselStocks                 DieselStock[]
   materialBoqs                 MaterialBoq[]
+  vendors                      Vendor[]
+  projects                     Project[]
 
   @@map("head_office")
 }
@@ -968,22 +978,24 @@ model Project {
   budget String?
   status ProjectStatus @default(PLANNED)
 
-  client          String?
-  description     String?
-  progress        Int? // 0–100 %
-  manager_id      Int?
-  project_manager User?               @relation(fields: [manager_id], references: [id])
-  district        String?
-  state           String?
-  pincode         String?
-  from_length     String?
-  to_length       String?
-  total_length    String?
-  total_chainage  String[]
-  ham_details     HAMSpecificDetails?
-  epc_details     EPCSpecificDetails?
-  bot_details     BOTSpecificDetails?
-  other_details   Json?
+  client           String?
+  description      String?
+  progress         Int? // 0–100 %
+  manager_id       Int?
+  project_manager  User?        @relation(fields: [manager_id], references: [id])
+  district         String?
+  state            String?
+  pincode          String?
+  from_length      String?
+  to_length        String?
+  total_length     String?
+  total_chainage   String[]
+  company_id       Int
+  head_office_id   Int
+  branch_office_id Int
+  company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -1003,49 +1015,6 @@ model Project {
   tenders                 tender[]
 
   @@map("project")
-}
-
-model HAMSpecificDetails {
-  id         Int @id @default(autoincrement())
-  project_id Int @unique
-
-  annuity_amount             String?
-  annuity_period             Int? // in years
-  construction_period        Int? // in months
-  maintenance_responsibility String?
-  progress                   Int? // 0–100 %
-
-  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-  @@map("ham_specific_details")
-}
-
-model EPCSpecificDetails {
-  id         Int @id @default(autoincrement())
-  project_id Int @unique
-
-  engineering_scope     String?
-  procurement_budget    String?
-  construction_timeline String?
-  performance_guarantee String?
-  progress              Int? // 0–100 %
-
-  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-  @@map("epc_specific_details")
-}
-
-model BOTSpecificDetails {
-  id                              Int     @id @default(autoincrement())
-  project_id                      Int     @unique
-  concession_period               Int? // in years
-  estimated_operating_cost        String? // per year
-  toll_revenue_collection_enabled Boolean @default(false)
-  transfer_condition              String?
-
-  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-  @@map("bot_specific_details")
 }
 
 model ProjectFile {
@@ -1227,14 +1196,14 @@ model User {
   mobileNumber      String?
   roleId            Int?
   role              Role?   @relation(fields: [roleId], references: [id])
-  company_id        Int
+  company_id        Int?
   head_office_id    Int?
   branch_office_id  Int?
 
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   provider           Provider             @default(credentials)
-  company            Company              @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+  company            Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
   headOffice         HeadOffice?          @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
   branchOffice       BranchOffice?        @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   prs_created_by     PR[]                 @relation("CreatedBy")
@@ -1276,9 +1245,14 @@ model Vendor {
   address            String
   registered_address String?
 
-  vendor_type VendorType?
-  status      VendorStatus @default(ACTIVE)
-
+  vendor_type      VendorType?
+  status           VendorStatus            @default(ACTIVE)
+  company_id       Int?
+  company          Company?                @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id   Int?
+  headOffice       HeadOffice?             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id Int?
+  branchOffice     BranchOffice?           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   bankDetails      VendorBankDetails?
   financialDetails VendorFinancialDetails?
   otherDetails     VendorOtherDetails?

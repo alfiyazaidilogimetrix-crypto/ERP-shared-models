@@ -21,9 +21,14 @@ model Vendor {
     address            String
     registered_address String?
 
-    vendor_type VendorType?
-    status      VendorStatus @default(ACTIVE)
-
+    vendor_type      VendorType?
+    status           VendorStatus            @default(ACTIVE)
+    company_id       Int?
+    company          Company?                @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    head_office_id   Int?
+    headOffice       HeadOffice?             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branch_office_id Int?
+    branchOffice     BranchOffice?           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     bankDetails      VendorBankDetails?
     financialDetails VendorFinancialDetails?
     otherDetails     VendorOtherDetails?

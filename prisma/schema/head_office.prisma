@@ -32,6 +32,8 @@ model HeadOffice {
     prgrns                       PRGRN[]
     dieselStocks                 DieselStock[]
     materialBoqs                 MaterialBoq[]
+    vendors                      Vendor[]
+    projects                     Project[]
 
     @@map("head_office")
 }

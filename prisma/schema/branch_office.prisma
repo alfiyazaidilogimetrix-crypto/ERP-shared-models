@@ -33,6 +33,8 @@ model BranchOffice {
     prgrns                       PRGRN[]
     dieselStocks                 DieselStock[]
     materialBoqs                 MaterialBoq[]
+    vendors                      Vendor[]
+    projects                     Project[]
 
     @@map("branch_office")
 }

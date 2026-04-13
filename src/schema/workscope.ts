@@ -3,6 +3,9 @@ import { z } from 'zod';
 export const workScopeSchema = z.object({
     id: z.number().int().positive().optional(),
     project_id: z.number().int().positive(),
+    company_id: z.number().int().positive(),
+    head_office_id: z.number().int().positive(),
+    branch_office_id: z.number().int().positive(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
 });
@@ -13,7 +16,6 @@ export const workScopeItemSchema = z.object({
     material_id: z.number().int().positive().optional().nullable(),
     unit_id: z.number().int().positive(),
     activity_id: z.number().int().positive(),
-    category_id: z.number().int().positive(),
     length: z.number().int().nullable().optional(),
     executed: z.number().nullable().optional(),
     quantity: z.number().nullable().optional(),

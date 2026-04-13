@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { prStatusSchema, urgencyLevelSchema, prTypeSchema } from './enums';
+import { prStatusSchema, prTypeSchema } from './enums';
 
 // Base schemas
 export const prSchema = z.object({
@@ -7,12 +7,14 @@ export const prSchema = z.object({
   project_id: z.number().int().positive(),
   pr_code: z.string().min(1),
   pr_type: prTypeSchema.default('NONE'),
-  urgency_level: urgencyLevelSchema,
   status: prStatusSchema.default('DRAFT'),
   remarks: z.string().nullable().optional(),
   user_id: z.number().int().positive().nullable().optional(),
   approved_by: z.number().int().positive().nullable().optional(),
   send_to: z.number().int().positive().nullable().optional(),
+  company_id: z.number().int().positive(),
+  head_office_id: z.number().int().positive(),
+  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

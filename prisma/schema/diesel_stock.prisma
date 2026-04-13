@@ -32,21 +32,32 @@ model DieselInward {
     delivery_person_name String?
     vehicle_number       String?
     received_by          Int?
-    received             User?              @relation(fields: [received_by], references: [id])
+    received             User?                @relation(fields: [received_by], references: [id])
     received_at          DateTime?
-    status               DieselInwardStatus @default(PENDING)
+    status               DieselInwardStatus   @default(PENDING)
     invoiceNumber        String?
     remarks              String?
     company_id           Int
     head_office_id       Int
     branch_office_id     Int
-    company              Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice           HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice         BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-    createdAt            DateTime           @default(now())
-    updatedAt            DateTime           @updatedAt
+    company              Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice           HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice         BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    createdAt            DateTime             @default(now())
+    updatedAt            DateTime             @updatedAt
+    dieselInwardFiles    diesel_inward_file[]
 
     @@map("diesel_inward")
+}
+
+model diesel_inward_file {
+    id               Int          @id @default(autoincrement())
+    diesel_inward_id Int
+    diesel_inward    DieselInward @relation(fields: [diesel_inward_id], references: [id])
+    file_id          Int
+    file             File         @relation(fields: [file_id], references: [id])
+
+    @@map("diesel_inward_file")
 }
 
 model DieselStock {

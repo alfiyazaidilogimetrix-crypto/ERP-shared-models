@@ -252,7 +252,6 @@ exports.Prisma.PRScalarFieldEnum = {
   project_id: 'project_id',
   pr_code: 'pr_code',
   pr_type: 'pr_type',
-  urgency_level: 'urgency_level',
   status: 'status',
   remarks: 'remarks',
   user_id: 'user_id',
@@ -413,6 +412,12 @@ exports.Prisma.DieselInwardScalarFieldEnum = {
   branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Diesel_inward_fileScalarFieldEnum = {
+  id: 'id',
+  diesel_inward_id: 'diesel_inward_id',
+  file_id: 'file_id'
 };
 
 exports.Prisma.DieselStockScalarFieldEnum = {
@@ -691,38 +696,11 @@ exports.Prisma.ProjectScalarFieldEnum = {
   to_length: 'to_length',
   total_length: 'total_length',
   total_chainage: 'total_chainage',
-  other_details: 'other_details',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
-};
-
-exports.Prisma.HAMSpecificDetailsScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  annuity_amount: 'annuity_amount',
-  annuity_period: 'annuity_period',
-  construction_period: 'construction_period',
-  maintenance_responsibility: 'maintenance_responsibility',
-  progress: 'progress'
-};
-
-exports.Prisma.EPCSpecificDetailsScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  engineering_scope: 'engineering_scope',
-  procurement_budget: 'procurement_budget',
-  construction_timeline: 'construction_timeline',
-  performance_guarantee: 'performance_guarantee',
-  progress: 'progress'
-};
-
-exports.Prisma.BOTSpecificDetailsScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  concession_period: 'concession_period',
-  estimated_operating_cost: 'estimated_operating_cost',
-  toll_revenue_collection_enabled: 'toll_revenue_collection_enabled',
-  transfer_condition: 'transfer_condition'
 };
 
 exports.Prisma.ProjectFileScalarFieldEnum = {
@@ -835,6 +813,9 @@ exports.Prisma.VendorScalarFieldEnum = {
   registered_address: 'registered_address',
   vendor_type: 'vendor_type',
   status: 'status',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -1004,13 +985,6 @@ exports.PRType = exports.$Enums.PRType = {
   NONE: 'NONE'
 };
 
-exports.UrgencyLevel = exports.$Enums.UrgencyLevel = {
-  LOW: 'LOW',
-  MEDIUM: 'MEDIUM',
-  HIGH: 'HIGH',
-  CRITICAL: 'CRITICAL'
-};
-
 exports.PRStatus = exports.$Enums.PRStatus = {
   DRAFT: 'DRAFT',
   SUBMITTED: 'SUBMITTED',
@@ -1095,6 +1069,7 @@ exports.Prisma.ModelName = {
   diesel_consumption_file: 'diesel_consumption_file',
   DieselSupplier: 'DieselSupplier',
   DieselInward: 'DieselInward',
+  diesel_inward_file: 'diesel_inward_file',
   DieselStock: 'DieselStock',
   File: 'File',
   HeadOffice: 'HeadOffice',
@@ -1116,9 +1091,6 @@ exports.Prisma.ModelName = {
   PRGRNMaterialReceipt: 'PRGRNMaterialReceipt',
   PRGRNFile: 'PRGRNFile',
   Project: 'Project',
-  HAMSpecificDetails: 'HAMSpecificDetails',
-  EPCSpecificDetails: 'EPCSpecificDetails',
-  BOTSpecificDetails: 'BOTSpecificDetails',
   ProjectFile: 'ProjectFile',
   ProjectType: 'ProjectType',
   Role: 'Role',

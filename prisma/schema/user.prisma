@@ -10,14 +10,14 @@ model User {
     mobileNumber      String?
     roleId            Int?
     role              Role?   @relation(fields: [roleId], references: [id])
-    company_id        Int
+    company_id        Int?
     head_office_id    Int?
     branch_office_id  Int?
 
     createdAt          DateTime             @default(now())
     updatedAt          DateTime             @updatedAt
     provider           Provider             @default(credentials)
-    company            Company              @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+    company            Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
     headOffice         HeadOffice?          @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
     branchOffice       BranchOffice?        @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     prs_created_by     PR[]                 @relation("CreatedBy")

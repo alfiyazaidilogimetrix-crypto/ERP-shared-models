@@ -89,6 +89,9 @@ export const invoiceSchema = z.object({
   total_amount: z.number().nullable().optional(),
   round_off: z.number().nullable().optional(),
   amount_in_words: z.string().nullable().optional(),
+  company_id: z.number().int().positive(),
+  head_office_id: z.number().int().positive(),
+  branch_office_id: z.number().int().positive(),
   grn_id: z.number().int().positive(),
   vendor_id: z.number().int().positive(),
 

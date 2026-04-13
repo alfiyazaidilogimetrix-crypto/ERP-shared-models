@@ -9,13 +9,6 @@ enum PRStatus {
     CLOSED
 }
 
-enum UrgencyLevel {
-    LOW
-    MEDIUM
-    HIGH
-    CRITICAL
-}
-
 enum PRType {
     INVENTORY
     PROCUREMENT
@@ -27,7 +20,6 @@ model PR {
     project_id       Int
     pr_code          String           @unique
     pr_type          PRType           @default(NONE)
-    urgency_level    UrgencyLevel
     status           PRStatus         @default(DRAFT)
     remarks          String?
     user_id          Int? // Created by

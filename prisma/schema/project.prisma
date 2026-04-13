@@ -18,22 +18,24 @@ model Project {
     budget String?
     status ProjectStatus @default(PLANNED)
 
-    client          String?
-    description     String?
-    progress        Int? // 0–100 %
-    manager_id      Int?
-    project_manager User?               @relation(fields: [manager_id], references: [id])
-    district        String?
-    state           String?
-    pincode         String?
-    from_length     String?
-    to_length       String?
-    total_length    String?
-    total_chainage  String[]
-    ham_details     HAMSpecificDetails?
-    epc_details     EPCSpecificDetails?
-    bot_details     BOTSpecificDetails?
-    other_details   Json?
+    client           String?
+    description      String?
+    progress         Int? // 0–100 %
+    manager_id       Int?
+    project_manager  User?        @relation(fields: [manager_id], references: [id])
+    district         String?
+    state            String?
+    pincode          String?
+    from_length      String?
+    to_length        String?
+    total_length     String?
+    total_chainage   String[]
+    company_id       Int
+    head_office_id   Int
+    branch_office_id Int
+    company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
@@ -53,49 +55,6 @@ model Project {
     tenders                 tender[]
 
     @@map("project")
-}
-
-model HAMSpecificDetails {
-    id         Int @id @default(autoincrement())
-    project_id Int @unique
-
-    annuity_amount             String?
-    annuity_period             Int? // in years
-    construction_period        Int? // in months
-    maintenance_responsibility String?
-    progress                   Int? // 0–100 %
-
-    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-    @@map("ham_specific_details")
-}
-
-model EPCSpecificDetails {
-    id         Int @id @default(autoincrement())
-    project_id Int @unique
-
-    engineering_scope     String?
-    procurement_budget    String?
-    construction_timeline String?
-    performance_guarantee String?
-    progress              Int? // 0–100 %
-
-    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-    @@map("epc_specific_details")
-}
-
-model BOTSpecificDetails {
-    id                              Int     @id @default(autoincrement())
-    project_id                      Int     @unique
-    concession_period               Int? // in years
-    estimated_operating_cost        String? // per year
-    toll_revenue_collection_enabled Boolean @default(false)
-    transfer_condition              String?
-
-    project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-    @@map("bot_specific_details")
 }
 
 model ProjectFile {
