@@ -1,10 +1,16 @@
 model WorkScope {
-    id             Int             @id @default(autoincrement())
-    project_id     Int
-    project        Project         @relation(fields: [project_id], references: [id])
-    createdAt      DateTime        @default(now())
-    updatedAt      DateTime        @updatedAt
-    workScopeItems WorkScopeItem[]
+    id               Int             @id @default(autoincrement())
+    project_id       Int
+    project          Project         @relation(fields: [project_id], references: [id])
+    company_id       Int
+    company          Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    head_office_id   Int
+    headOffice       HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branch_office_id Int
+    branchOffice     BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    createdAt        DateTime        @default(now())
+    updatedAt        DateTime        @updatedAt
+    workScopeItems   WorkScopeItem[]
 
     @@map("workscope")
 }

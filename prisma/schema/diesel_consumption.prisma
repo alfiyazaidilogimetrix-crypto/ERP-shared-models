@@ -1,20 +1,39 @@
 model diesel_consumption {
-    id                 Int      @id @default(autoincrement())
-    machine_id         Int
-    activity_id        Int
-    diesel_used_liters Int
-    hours_used         Int
-    operator_name      String
-    date               DateTime
-    issued_by          Int
-    remarks            String
-    project_id         Int
-    project            Project  @relation(fields: [project_id], references: [id])
-    machine            Machine  @relation(fields: [machine_id], references: [id])
-    activity           Activity @relation(fields: [activity_id], references: [id])
-    user               User     @relation(fields: [issued_by], references: [id])
-    created_at         DateTime @default(now())
-    updated_at         DateTime @updatedAt
+    id                     Int                       @id @default(autoincrement())
+    machine_id             Int
+    activity_id            Int
+    diesel_used_liters     Int
+    hours_used             Int
+    operator_name          String
+    date                   DateTime
+    issued_by              Int
+    remarks                String
+    project_id             Int
+    company_id             Int
+    head_office_id         Int
+    branch_office_id       Int
+    company                Company                   @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice             HeadOffice                @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice           BranchOffice              @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    project                Project                   @relation(fields: [project_id], references: [id])
+    machine                Machine                   @relation(fields: [machine_id], references: [id])
+    activity               Activity                  @relation(fields: [activity_id], references: [id])
+    user                   User                      @relation(fields: [issued_by], references: [id])
+    created_at             DateTime                  @default(now())
+    updated_at             DateTime                  @updatedAt
+    dieselConsumptionFiles diesel_consumption_file[]
 
     @@map("diesel_consumption")
+}
+
+model diesel_consumption_file {
+    id                    Int                @id @default(autoincrement())
+    diesel_consumption_id Int
+    file_id               Int
+    diesel_consumption    diesel_consumption @relation(fields: [diesel_consumption_id], references: [id], onDelete: Cascade)
+    file                  File               @relation(fields: [file_id], references: [id], onDelete: Cascade)
+    created_at            DateTime           @default(now())
+    updated_at            DateTime           @updatedAt
+
+    @@map("diesel_consumption_file")
 }

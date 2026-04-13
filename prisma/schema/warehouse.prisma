@@ -1,0 +1,21 @@
+model Warehouse {
+    id               Int            @id @default(autoincrement())
+    name             String
+    address          String
+    state            String
+    pincode          String
+    district         String
+    company_id       Int
+    company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    head_office_id   Int
+    headOffice       HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branch_office_id Int
+    branchOffice     BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
+    stocks           Stock[]
+    dieselStocks     DieselStock[]
+    dieselInwards    DieselInward[]
+
+    @@map("warehouses")
+}

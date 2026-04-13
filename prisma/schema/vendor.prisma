@@ -28,9 +28,7 @@ model Vendor {
     financialDetails VendorFinancialDetails?
     otherDetails     VendorOtherDetails?
     documents        VendorDocuments[]
-
-    supplies VendorSupplyManagement[]
-    pos      PO[]
+    pos              PO[]
 
     created_at              DateTime                    @default(now())
     updated_at              DateTime                    @updatedAt

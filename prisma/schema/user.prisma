@@ -1,35 +1,37 @@
 model User {
-    id                Int      @id @default(autoincrement())
+    id                Int     @id @default(autoincrement())
     name              String
-    email             String   @unique
-    emailVerified     Boolean  @default(false)
+    email             String  @unique
+    emailVerified     Boolean @default(false)
     password          String
     fileId            Int?
-    profileImage      File?    @relation(fields: [fileId], references: [id], onDelete: SetNull)
+    profileImage      File?   @relation(fields: [fileId], references: [id], onDelete: SetNull)
     original_password String?
     mobileNumber      String?
     roleId            Int?
-    role              Role?    @relation(fields: [roleId], references: [id])
-    createdAt         DateTime @default(now())
-    updatedAt         DateTime @updatedAt
-    provider          Provider @default(credentials)
-    dprs              DPR[]
-    prs_created_by    PR[]     @relation("CreatedBy")
+    role              Role?   @relation(fields: [roleId], references: [id])
+    company_id        Int
+    head_office_id    Int?
+    branch_office_id  Int?
 
-    prs_approved_by PR[] @relation("ApprovedBy")
-
-    projects Project[]
-
-    prs PR[] @relation("approvalUser")
-
-    prgrns PRGRN[]
-
+    createdAt          DateTime             @default(now())
+    updatedAt          DateTime             @updatedAt
+    provider           Provider             @default(credentials)
+    company            Company              @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice         HeadOffice?          @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice       BranchOffice?        @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    prs_created_by     PR[]                 @relation("CreatedBy")
+    prs_approved_by    PR[]                 @relation("ApprovedBy")
+    prs                PR[]                 @relation("approvalUser")
     grns               GRN[]
     stocks             Stock[]
+    dprs               DPR[]
+    prgrns             PRGRN[]
+    projects           Project[]
     dieselStocks       DieselStock[]
     dieselInwards      DieselInward[]
     dieselConsumptions diesel_consumption[]
-    companies          company[]
+    companies          Company[]
 
     @@map("users")
 }

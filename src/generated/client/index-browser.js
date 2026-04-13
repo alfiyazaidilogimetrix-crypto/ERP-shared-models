@@ -125,6 +125,9 @@ exports.Prisma.DPRScalarFieldEnum = {
   date: 'date',
   project_id: 'project_id',
   submitted_by: 'submitted_by',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -177,6 +180,9 @@ exports.Prisma.GRNScalarFieldEnum = {
   total_rejected: 'total_rejected',
   total_received: 'total_received',
   grn_number: 'grn_number',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_by_id: 'created_by_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -217,11 +223,15 @@ exports.Prisma.POScalarFieldEnum = {
   gst_percent: 'gst_percent',
   gst_amount: 'gst_amount',
   po_status: 'po_status',
+  po_type: 'po_type',
   payment_terms: 'payment_terms',
   delivery_terms: 'delivery_terms',
   shipping_address: 'shipping_address',
   billing_address: 'billing_address',
   remarks: 'remarks',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -248,6 +258,9 @@ exports.Prisma.PRScalarFieldEnum = {
   user_id: 'user_id',
   approved_by: 'approved_by',
   send_to: 'send_to',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -267,17 +280,28 @@ exports.Prisma.PRMaterialItemScalarFieldEnum = {
 exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  unit_id: 'unit_id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  unitId: 'unitId'
 };
 
-exports.Prisma.Project_activityScalarFieldEnum = {
+exports.Prisma.BranchOfficeScalarFieldEnum = {
   id: 'id',
-  project_id: 'project_id',
-  activity_id: 'activity_id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  office_name: 'office_name',
+  office_id: 'office_id',
+  address: 'address',
+  pincode: 'pincode',
+  state: 'state',
+  city: 'city',
+  phone_number: 'phone_number',
+  mail_id: 'mail_id',
+  office_incharge_name: 'office_incharge_name',
+  office_incharge_phone_number: 'office_incharge_phone_number',
+  office_incharge_mail_id: 'office_incharge_mail_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -294,25 +318,43 @@ exports.Prisma.Project_categoryScalarFieldEnum = {
   category_id: 'category_id'
 };
 
-exports.Prisma.Chainage_consumption_ledgerScalarFieldEnum = {
-  id: 'id',
-  chainage_data: 'chainage_data',
-  projectId: 'projectId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.CompanyScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  address: 'address',
-  phone: 'phone',
-  email: 'email',
-  gstin: 'gstin',
+  company_name: 'company_name',
+  pincode: 'pincode',
   state: 'state',
-  state_code: 'state_code',
-  pan: 'pan',
+  district: 'district',
+  address: 'address',
+  company_mail_id: 'company_mail_id',
+  company_phone_number: 'company_phone_number',
+  company_gst_number: 'company_gst_number',
+  business_type: 'business_type',
   user_id: 'user_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  owner_id: 'owner_id'
+};
+
+exports.Prisma.Owner_detailsScalarFieldEnum = {
+  id: 'id',
+  owner_name: 'owner_name',
+  owner_father_name: 'owner_father_name',
+  dob: 'dob',
+  pincode: 'pincode',
+  state: 'state',
+  district: 'district',
+  address: 'address',
+  owner_phone_number: 'owner_phone_number',
+  owner_mail_id: 'owner_mail_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Company_filesScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  file_id: 'file_id',
+  file_type: 'file_type',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -328,6 +370,17 @@ exports.Prisma.Diesel_consumptionScalarFieldEnum = {
   issued_by: 'issued_by',
   remarks: 'remarks',
   project_id: 'project_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Diesel_consumption_fileScalarFieldEnum = {
+  id: 'id',
+  diesel_consumption_id: 'diesel_consumption_id',
+  file_id: 'file_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -344,32 +397,33 @@ exports.Prisma.DieselSupplierScalarFieldEnum = {
 exports.Prisma.DieselInwardScalarFieldEnum = {
   id: 'id',
   supplier_id: 'supplier_id',
-  state: 'state',
-  district: 'district',
-  pincode: 'pincode',
+  store_location_id: 'store_location_id',
   quantity_litres: 'quantity_litres',
   rate_per_litre: 'rate_per_litre',
   total_amount: 'total_amount',
   delivery_person_name: 'delivery_person_name',
   vehicle_number: 'vehicle_number',
-  assigned_to: 'assigned_to',
   received_by: 'received_by',
   received_at: 'received_at',
   status: 'status',
   invoiceNumber: 'invoiceNumber',
   remarks: 'remarks',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.DieselStockScalarFieldEnum = {
   id: 'id',
-  state: 'state',
-  district: 'district',
-  pincode: 'pincode',
+  warehouse_id: 'warehouse_id',
   current_quantity_litres: 'current_quantity_litres',
   tank_capacity_litres: 'tank_capacity_litres',
   manager_id: 'manager_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -384,6 +438,24 @@ exports.Prisma.FileScalarFieldEnum = {
   fileContent: 'fileContent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HeadOfficeScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  office_name: 'office_name',
+  office_id: 'office_id',
+  address: 'address',
+  pincode: 'pincode',
+  state: 'state',
+  city: 'city',
+  phone_number: 'phone_number',
+  mail_id: 'mail_id',
+  office_incharge_name: 'office_incharge_name',
+  office_incharge_phone_number: 'office_incharge_phone_number',
+  office_incharge_mail_id: 'office_incharge_mail_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.InvoiceScalarFieldEnum = {
@@ -402,6 +474,9 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   total_amount: 'total_amount',
   round_off: 'round_off',
   amount_in_words: 'amount_in_words',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   grn_id: 'grn_id',
   vendor_id: 'vendor_id',
   created_at: 'created_at',
@@ -467,37 +542,17 @@ exports.Prisma.Invoice_bank_detailsScalarFieldEnum = {
   branch: 'branch'
 };
 
-exports.Prisma.LabourScalarFieldEnum = {
-  id: 'id',
-  labour_name: 'labour_name',
-  labour_code: 'labour_code',
-  labour_type: 'labour_type',
-  skill: 'skill',
-  phone_number: 'phone_number',
-  aadhar_number: 'aadhar_number',
-  address: 'address',
-  joining_date: 'joining_date',
-  status: 'status',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
 exports.Prisma.LabourAttendanceScalarFieldEnum = {
   id: 'id',
-  labour_id: 'labour_id',
   project_id: 'project_id',
   date: 'date',
-  check_in_time: 'check_in_time',
-  check_out_time: 'check_out_time',
-  total_working_hours: 'total_working_hours',
-  field_working_hours: 'field_working_hours',
-  overtime_hours: 'overtime_hours',
-  status: 'status',
-  chainage_from: 'chainage_from',
-  chainage_to: 'chainage_to',
-  remarks: 'remarks',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  team_name: 'team_name'
+};
+
+exports.Prisma.LabourAttendanceActivityScalarFieldEnum = {
+  id: 'id',
+  activity_id: 'activity_id',
+  labour_attendance_id: 'labour_attendance_id'
 };
 
 exports.Prisma.MachineScalarFieldEnum = {
@@ -509,6 +564,9 @@ exports.Prisma.MachineScalarFieldEnum = {
   purchase_cost: 'purchase_cost',
   machine_count: 'machine_count',
   project_id: 'project_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -522,18 +580,12 @@ exports.Prisma.MaterialScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.Project_materialScalarFieldEnum = {
-  id: 'id',
-  project_id: 'project_id',
-  material_id: 'material_id',
-  activity_id: 'activity_id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.MaterialBoqScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -544,7 +596,6 @@ exports.Prisma.MaterialBoqItemScalarFieldEnum = {
   item_no: 'item_no',
   material_id: 'material_id',
   unit_id: 'unit_id',
-  activity_id: 'activity_id',
   item_description: 'item_description',
   scope_quantity: 'scope_quantity',
   purchased_quantity: 'purchased_quantity',
@@ -573,7 +624,6 @@ exports.Prisma.PermissionScalarFieldEnum = {
 
 exports.Prisma.PRGRNScalarFieldEnum = {
   id: 'id',
-  pr_id: 'pr_id',
   gate_entry_number: 'gate_entry_number',
   vehicle_number: 'vehicle_number',
   driver_name: 'driver_name',
@@ -582,9 +632,18 @@ exports.Prisma.PRGRNScalarFieldEnum = {
   status: 'status',
   received_date: 'received_date',
   received_time: 'received_time',
-  store_location: 'store_location',
+  warehouse_id: 'warehouse_id',
   quality_check_completed: 'quality_check_completed',
   grn_remarks: 'grn_remarks',
+  total_amount: 'total_amount',
+  total_qty: 'total_qty',
+  total_rejected: 'total_rejected',
+  total_received: 'total_received',
+  grn_number: 'grn_number',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
+  pr_id: 'pr_id',
   created_by_id: 'created_by_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -597,9 +656,12 @@ exports.Prisma.PRGRNMaterialReceiptScalarFieldEnum = {
   ordered: 'ordered',
   chainage: 'chainage',
   quality: 'quality',
-  accepted: 'accepted',
   rejected: 'rejected',
   received: 'received',
+  rate: 'rate',
+  amount: 'amount',
+  quantity: 'quantity',
+  hsn_no: 'hsn_no',
   created_at: 'created_at'
 };
 
@@ -688,16 +750,16 @@ exports.Prisma.RoleScalarFieldEnum = {
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   material_id: 'material_id',
-  pincode: 'pincode',
-  state: 'state',
-  district: 'district',
-  address: 'address',
+  warehouse_id: 'warehouse_id',
   status: 'status',
   minimum_threshold_quantity: 'minimum_threshold_quantity',
   current_stock: 'current_stock',
   quantity: 'quantity',
   specifications: 'specifications',
   manager_id: 'manager_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -714,6 +776,9 @@ exports.Prisma.Sub_contractor_work_orderScalarFieldEnum = {
   work_order_amount: 'work_order_amount',
   meta_data: 'meta_data',
   payment_status: 'payment_status',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -751,6 +816,9 @@ exports.Prisma.UserScalarFieldEnum = {
   original_password: 'original_password',
   mobileNumber: 'mobileNumber',
   roleId: 'roleId',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   provider: 'provider'
@@ -830,39 +898,26 @@ exports.Prisma.VendorDocumentsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.VendorSupplyManagementScalarFieldEnum = {
+exports.Prisma.WarehouseScalarFieldEnum = {
   id: 'id',
-  vendor_id: 'vendor_id',
-  supply_type: 'supply_type',
-  po_id: 'po_id',
-  amount: 'amount',
-  payment_terms: 'payment_terms',
-  status: 'status',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.DirectSupplyConfigurationScalarFieldEnum = {
-  id: 'id',
-  supply_id: 'supply_id',
-  project_id: 'project_id',
-  chainage_location: 'chainage_location',
-  delivery_location: 'delivery_location',
-  fob_destination: 'fob_destination'
-};
-
-exports.Prisma.InventorySupplyConfigurationScalarFieldEnum = {
-  id: 'id',
-  supply_id: 'supply_id',
-  warehouse_location: 'warehouse_location',
-  expected_delivery_date: 'expected_delivery_date',
-  batch_number: 'batch_number',
-  quality_check_status: 'quality_check_status'
+  name: 'name',
+  address: 'address',
+  state: 'state',
+  pincode: 'pincode',
+  district: 'district',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.WorkScopeScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -884,10 +939,6 @@ exports.Prisma.WorkScopeItemScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullableJsonNullValueInput = {
@@ -942,6 +993,11 @@ exports.POStatus = exports.$Enums.POStatus = {
   CLOSED: 'CLOSED'
 };
 
+exports.POType = exports.$Enums.POType = {
+  ON_SITE: 'ON_SITE',
+  INVENTORY: 'INVENTORY'
+};
+
 exports.PRType = exports.$Enums.PRType = {
   INVENTORY: 'INVENTORY',
   PROCUREMENT: 'PROCUREMENT',
@@ -970,25 +1026,6 @@ exports.DieselInwardStatus = exports.$Enums.DieselInwardStatus = {
   PENDING: 'PENDING',
   RECEIVED: 'RECEIVED',
   CANCELLED: 'CANCELLED'
-};
-
-exports.LabourType = exports.$Enums.LabourType = {
-  DIRECT: 'DIRECT',
-  CONTRACT: 'CONTRACT'
-};
-
-exports.LabourStatus = exports.$Enums.LabourStatus = {
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-  LEFT: 'LEFT',
-  BLACKLISTED: 'BLACKLISTED'
-};
-
-exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
-  PRESENT: 'PRESENT',
-  ABSENT: 'ABSENT',
-  HALF_DAY: 'HALF_DAY',
-  ON_LEAVE: 'ON_LEAVE'
 };
 
 exports.ProjectStatus = exports.$Enums.ProjectStatus = {
@@ -1036,20 +1073,6 @@ exports.VendorStatus = exports.$Enums.VendorStatus = {
   SUSPENDED: 'SUSPENDED'
 };
 
-exports.SupplyType = exports.$Enums.SupplyType = {
-  TO_INVENTORY: 'TO_INVENTORY',
-  DIRECT_TO_SITE: 'DIRECT_TO_SITE'
-};
-
-exports.SupplyStatus = exports.$Enums.SupplyStatus = {
-  PENDING: 'PENDING',
-  APPROVED: 'APPROVED',
-  IN_TRANSIT: 'IN_TRANSIT',
-  PARTIALLY_RECEIVED: 'PARTIALLY_RECEIVED',
-  RECEIVED: 'RECEIVED',
-  REJECTED: 'REJECTED'
-};
-
 exports.Prisma.ModelName = {
   DPR: 'DPR',
   DPRChainage: 'DPRChainage',
@@ -1062,27 +1085,29 @@ exports.Prisma.ModelName = {
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
   Activity: 'Activity',
-  project_activity: 'project_activity',
+  BranchOffice: 'BranchOffice',
   Category: 'Category',
   project_category: 'project_category',
-  Chainage_consumption_ledger: 'Chainage_consumption_ledger',
-  company: 'company',
+  Company: 'Company',
+  owner_details: 'owner_details',
+  company_files: 'company_files',
   diesel_consumption: 'diesel_consumption',
+  diesel_consumption_file: 'diesel_consumption_file',
   DieselSupplier: 'DieselSupplier',
   DieselInward: 'DieselInward',
   DieselStock: 'DieselStock',
   File: 'File',
+  HeadOffice: 'HeadOffice',
   invoice: 'invoice',
   invoice_seller: 'invoice_seller',
   invoice_buyer: 'invoice_buyer',
   invoice_consignee: 'invoice_consignee',
   invoice_tax: 'invoice_tax',
   invoice_bank_details: 'invoice_bank_details',
-  Labour: 'Labour',
   LabourAttendance: 'LabourAttendance',
+  LabourAttendanceActivity: 'LabourAttendanceActivity',
   Machine: 'Machine',
   Material: 'Material',
-  project_material: 'project_material',
   MaterialBoq: 'MaterialBoq',
   MaterialBoqItem: 'MaterialBoqItem',
   Module: 'Module',
@@ -1108,9 +1133,7 @@ exports.Prisma.ModelName = {
   VendorFinancialDetails: 'VendorFinancialDetails',
   VendorOtherDetails: 'VendorOtherDetails',
   VendorDocuments: 'VendorDocuments',
-  VendorSupplyManagement: 'VendorSupplyManagement',
-  DirectSupplyConfiguration: 'DirectSupplyConfiguration',
-  InventorySupplyConfiguration: 'InventorySupplyConfiguration',
+  Warehouse: 'Warehouse',
   WorkScope: 'WorkScope',
   WorkScopeItem: 'WorkScopeItem'
 };

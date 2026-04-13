@@ -22,6 +22,12 @@ model sub_contractor_work_order {
     work_order_amount      String?
     meta_data              Json?
     payment_status         payment_status     @default(PENDING)
+    company_id             Int
+    company                Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    head_office_id         Int
+    headOffice             HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branch_office_id       Int
+    branchOffice           BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     project                Project            @relation(fields: [project_id], references: [id])
     vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
     material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])

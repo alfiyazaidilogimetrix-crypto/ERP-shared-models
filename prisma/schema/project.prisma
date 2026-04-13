@@ -37,12 +37,9 @@ model Project {
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-
-    directSupplyConfigurations DirectSupplyConfiguration[]
-    chainageConsumptionLedgers Chainage_consumption_ledger[]
-    prs                        PR[]
-    pos                        PO[]
-    dprs                       DPR[]
+    prs        PR[]
+    pos        PO[]
+    dprs       DPR[]
 
     labourAttendances LabourAttendance[]
 
@@ -52,8 +49,6 @@ model Project {
     subContractorWorkOrders sub_contractor_work_order[]
     projectCategories       project_category[]
     dieselConsumptions      diesel_consumption[]
-    projectActivities       project_activity[]
-    projectMaterials        project_material[]
     machines                Machine[]
     tenders                 tender[]
 

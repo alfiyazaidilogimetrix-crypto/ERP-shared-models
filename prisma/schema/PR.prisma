@@ -1,12 +1,12 @@
 enum PRStatus {
-    DRAFT // PR created but not submitted
-    SUBMITTED // PR submitted by requester
-    INVENTORY_CHECK // Inventory manager checking availability
-    PARTIAL_AVAILABLE // Some items available, some not
-    PROCUREMENT_REQUIRED // At least one item not available → procurement needed
-    APPROVED // Approved for issue / purchase
+    DRAFT
+    SUBMITTED
+    INVENTORY_CHECK
+    PARTIAL_AVAILABLE
+    PROCUREMENT_REQUIRED
+    APPROVED
     REJECTED
-    CLOSED // Fully issued (after stock / purchase)
+    CLOSED
 }
 
 enum UrgencyLevel {
@@ -17,34 +17,37 @@ enum UrgencyLevel {
 }
 
 enum PRType {
-    INVENTORY // Material issued directly from stock
-    PROCUREMENT // Material not available → purchase required
-    NONE // Default value
+    INVENTORY
+    PROCUREMENT
+    NONE
 }
 
 model PR {
-    id            Int          @id @default(autoincrement())
-    project_id    Int
-    pr_code       String       @unique
-    pr_type       PRType       @default(NONE)
-    urgency_level UrgencyLevel
-    status        PRStatus     @default(DRAFT)
-
-    remarks String?
-
-    user_id       Int? // Created by
-    approved_by   Int? // Approver (User ID)
-    send_to       Int?
-    user          User? @relation("CreatedBy", fields: [user_id], references: [id])
-    approval_user User? @relation("approvalUser", fields: [send_to], references: [id])
-    approvedUser  User? @relation("ApprovedBy", fields: [approved_by], references: [id])
-
-    material_items PRMaterialItem[]
-    project        Project          @relation(fields: [project_id], references: [id])
-    created_at     DateTime         @default(now())
-    updated_at     DateTime         @updatedAt
-    pos            PO[]
-    prgrns         PRGRN[]
+    id               Int              @id @default(autoincrement())
+    project_id       Int
+    pr_code          String           @unique
+    pr_type          PRType           @default(NONE)
+    urgency_level    UrgencyLevel
+    status           PRStatus         @default(DRAFT)
+    remarks          String?
+    user_id          Int? // Created by
+    approved_by      Int? // Approver (User ID)
+    send_to          Int?
+    user             User?            @relation("CreatedBy", fields: [user_id], references: [id])
+    approval_user    User?            @relation("approvalUser", fields: [send_to], references: [id])
+    approvedUser     User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
+    company_id       Int
+    company          Company          @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    head_office_id   Int
+    headOffice       HeadOffice       @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branch_office_id Int
+    branchOffice     BranchOffice     @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    material_items   PRMaterialItem[]
+    project          Project          @relation(fields: [project_id], references: [id])
+    created_at       DateTime         @default(now())
+    updated_at       DateTime         @updatedAt
+    pos              PO[]
+    prgrns           PRGRN[]
 
     @@index([project_id])
     @@index([user_id])

@@ -1,28 +1,34 @@
 model invoice {
-    id              Int                   @id @default(autoincrement())
-    invoice_number  String
-    invoice_date    DateTime
-    invoice_type    String
-    irn             String?
-    ack_no          String?
-    ack_date        DateTime?
-    eway_bill_no    String?
-    place_of_supply String?
-    destination     String?
-    vehicle_number  String?
-    total_quantity  Float?
-    total_amount    Float?
-    round_off       Float?
-    amount_in_words String?
-    grn_id          Int
-    grn             GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-    vendor_id       Int
-    vendor          Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-    seller          invoice_seller?
-    buyer           invoice_buyer?
-    consignee       invoice_consignee?
-    tax             invoice_tax?
-    bank_details    invoice_bank_details?
+    id               Int                   @id @default(autoincrement())
+    invoice_number   String
+    invoice_date     DateTime
+    invoice_type     String
+    irn              String?
+    ack_no           String?
+    ack_date         DateTime?
+    eway_bill_no     String?
+    place_of_supply  String?
+    destination      String?
+    vehicle_number   String?
+    total_quantity   Float?
+    total_amount     Float?
+    round_off        Float?
+    amount_in_words  String?
+    company_id       Int
+    head_office_id   Int
+    branch_office_id Int
+    company          Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice       HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice     BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    grn_id           Int
+    grn              GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+    vendor_id        Int
+    vendor           Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+    seller           invoice_seller?
+    buyer            invoice_buyer?
+    consignee        invoice_consignee?
+    tax              invoice_tax?
+    bank_details     invoice_bank_details?
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

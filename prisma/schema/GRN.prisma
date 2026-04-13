@@ -28,6 +28,12 @@ model GRN {
     total_rejected          Int?
     total_received          Int?
     grn_number              String?
+    company_id              Int
+    head_office_id          Int
+    branch_office_id        Int
+    company                 Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice              HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice            BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     material_receipts       GRNMaterialReceipt[]
     purchase_order          PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
     created_by_id           Int?

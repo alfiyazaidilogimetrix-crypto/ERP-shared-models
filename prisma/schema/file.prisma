@@ -14,9 +14,11 @@ model File {
     grnfiles        GRNFile[]
     vendorDocuments VendorDocuments[]
 
-    prgrnfiles   PRGRNFile[]
-    projectFiles ProjectFile[]
-    tenders      tender[]
+    prgrnfiles             PRGRNFile[]
+    projectFiles           ProjectFile[]
+    tenders                tender[]
+    companyFiles           company_files[]
+    dieselConsumptionFiles diesel_consumption_file[]
 
     @@map("files")
 }

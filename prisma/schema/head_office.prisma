@@ -1,0 +1,37 @@
+model HeadOffice {
+    id                           Int                         @id @default(autoincrement())
+    company_id                   Int
+    company                      Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    office_name                  String
+    office_id                    String
+    address                      String
+    pincode                      String
+    state                        String
+    city                         String
+    phone_number                 String
+    mail_id                      String
+    office_incharge_name         String?
+    office_incharge_phone_number String?
+    office_incharge_mail_id      String?
+    created_at                   DateTime                    @default(now())
+    updated_at                   DateTime                    @updatedAt
+    branchOffices                BranchOffice[]
+    users                        User[]
+    workScopes                   WorkScope[]
+    subContractorWorkOrders      sub_contractor_work_order[]
+    warehouses                   Warehouse[]
+    stocks                       Stock[]
+    prs                          PR[]
+    pos                          PO[]
+    dieselConsumptions           diesel_consumption[]
+    dieselInwards                DieselInward[]
+    dprs                         DPR[]
+    grns                         GRN[]
+    invoices                     invoice[]
+    machines                     Machine[]
+    prgrns                       PRGRN[]
+    dieselStocks                 DieselStock[]
+    materialBoqs                 MaterialBoq[]
+
+    @@map("head_office")
+}

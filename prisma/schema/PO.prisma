@@ -15,41 +15,44 @@ enum TransportMode {
     SELF_PICKUP
 }
 
+enum POType {
+    ON_SITE
+    INVENTORY
+}
+
 model PO {
     id Int @id @default(autoincrement())
 
-    pr_id      Int
-    project_id Int
-    vendor_id  Int
-
-    po_code                String    @unique
-    po_date                DateTime  @default(now())
+    pr_id                  Int
+    project_id             Int
+    vendor_id              Int
+    po_code                String         @unique
+    po_date                DateTime       @default(now())
     expected_delivery_date DateTime?
-
-    transport_mode TransportMode?
-
-    total_amount String
-    gst_percent  String?
-    gst_amount   String?
-
-    po_status POStatus @default(DRAFT)
-
-    payment_terms  String?
-    delivery_terms String?
-
-    shipping_address String?
-    billing_address  String?
-
-    remarks String?
-
-    order_items             POOrderItem[]
-    pr                      PR                       @relation(fields: [pr_id], references: [id])
-    project                 Project                  @relation(fields: [project_id], references: [id])
-    vendor                  Vendor                   @relation(fields: [vendor_id], references: [id])
-    created_at              DateTime                 @default(now())
-    updated_at              DateTime                 @updatedAt
-    grns                    GRN[]
-    vendorSupplyManagements VendorSupplyManagement[]
+    transport_mode         TransportMode?
+    total_amount           String
+    gst_percent            String?
+    gst_amount             String?
+    po_status              POStatus       @default(DRAFT)
+    po_type                POType         @default(INVENTORY)
+    payment_terms          String?
+    delivery_terms         String?
+    shipping_address       String?
+    billing_address        String?
+    remarks                String?
+    company_id             Int
+    head_office_id         Int
+    branch_office_id       Int
+    company                Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice             HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice           BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    grns                   GRN[]
+    order_items            POOrderItem[]
+    pr                     PR             @relation(fields: [pr_id], references: [id])
+    project                Project        @relation(fields: [project_id], references: [id])
+    vendor                 Vendor         @relation(fields: [vendor_id], references: [id])
+    created_at             DateTime       @default(now())
+    updated_at             DateTime       @updatedAt
 
     @@index([pr_id])
     @@index([project_id])
@@ -62,16 +65,13 @@ model POOrderItem {
 
     po_id       Int
     material_id Int
-
-    quantity String
-    rate     String
-    amount   String
-    hsn_no   String?
-
-    po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
-    material Material @relation(fields: [material_id], references: [id])
-
-    created_at DateTime @default(now())
+    quantity    String
+    rate        String
+    amount      String
+    hsn_no      String?
+    po          PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
+    material    Material @relation(fields: [material_id], references: [id])
+    created_at  DateTime @default(now())
 
     @@map("po_order_items")
 }

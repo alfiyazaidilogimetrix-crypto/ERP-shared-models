@@ -1,17 +1,70 @@
-model company {
+model Company {
+    id                      Int                         @id @default(autoincrement())
+    company_name            String
+    pincode                 String
+    state                   String
+    district                String
+    address                 String
+    company_mail_id         String
+    company_phone_number    String
+    company_gst_number      String
+    business_type           String
+    user_id                 Int
+    user                    User                        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    created_at              DateTime                    @default(now())
+    updated_at              DateTime                    @updatedAt
+    owner_id                Int?
+    ownerDetails            owner_details?              @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+    companyFiles            company_files[]
+    headOffices             HeadOffice[]
+    branchOffices           BranchOffice[]
+    users                   User[]                      @relation(name: "company_users")
+    workScopes              WorkScope[]
+    subContractorWorkOrders sub_contractor_work_order[]
+    warehouses              Warehouse[]
+    stocks                  Stock[]
+    prs                     PR[]
+    pos                     PO[]
+    dieselConsumptions      diesel_consumption[]
+    dieselInwards           DieselInward[]
+    dprs                    DPR[]
+    grns                    GRN[]
+    invoices                invoice[]
+    machines                Machine[]
+    prgrns                  PRGRN[]
+    dieselStocks            DieselStock[]
+    materialBoqs            MaterialBoq[]
+
+    @@map("companies")
+}
+
+model owner_details {
+    id                 Int       @id @default(autoincrement())
+    owner_name         String
+    owner_father_name  String
+    dob                DateTime
+    pincode            String
+    state              String
+    district           String
+    address            String
+    owner_phone_number String
+    owner_mail_id      String
+    created_at         DateTime  @default(now())
+    updated_at         DateTime  @updatedAt
+    companies          Company[]
+
+    @@map("owner_details")
+}
+
+model company_files {
     id         Int      @id @default(autoincrement())
-    name       String
-    address    String
-    phone      String[]
-    email      String?
-    gstin      String?
-    state      String?
-    state_code String?
-    pan        String?
-    user_id    Int
-    user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    company_id Int
+    company    Company  @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    file_id    Int
+    file       File     @relation(fields: [file_id], references: [id], onDelete: Cascade)
+    file_type  String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 
-    @@map("companies")
+    @@map("company_files")
 }

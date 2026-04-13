@@ -8,9 +8,15 @@ enum Site_type {
 model DPR {
   id Int @id @default(autoincrement())
 
-  date         DateTime
-  project_id   Int
-  submitted_by Int
+  date             DateTime
+  project_id       Int
+  submitted_by     Int
+  company_id       Int
+  head_office_id   Int
+  branch_office_id Int
+  company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
   project Project       @relation(fields: [project_id], references: [id], onDelete: Cascade)
   user    User          @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
@@ -106,6 +112,12 @@ model GRN {
   total_rejected          Int?
   total_received          Int?
   grn_number              String?
+  company_id              Int
+  head_office_id          Int
+  branch_office_id        Int
+  company                 Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice              HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice            BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   material_receipts       GRNMaterialReceipt[]
   purchase_order          PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
   created_by_id           Int?
@@ -171,41 +183,44 @@ enum TransportMode {
   SELF_PICKUP
 }
 
+enum POType {
+  ON_SITE
+  INVENTORY
+}
+
 model PO {
   id Int @id @default(autoincrement())
 
-  pr_id      Int
-  project_id Int
-  vendor_id  Int
-
-  po_code                String    @unique
-  po_date                DateTime  @default(now())
+  pr_id                  Int
+  project_id             Int
+  vendor_id              Int
+  po_code                String         @unique
+  po_date                DateTime       @default(now())
   expected_delivery_date DateTime?
-
-  transport_mode TransportMode?
-
-  total_amount String
-  gst_percent  String?
-  gst_amount   String?
-
-  po_status POStatus @default(DRAFT)
-
-  payment_terms  String?
-  delivery_terms String?
-
-  shipping_address String?
-  billing_address  String?
-
-  remarks String?
-
-  order_items             POOrderItem[]
-  pr                      PR                       @relation(fields: [pr_id], references: [id])
-  project                 Project                  @relation(fields: [project_id], references: [id])
-  vendor                  Vendor                   @relation(fields: [vendor_id], references: [id])
-  created_at              DateTime                 @default(now())
-  updated_at              DateTime                 @updatedAt
-  grns                    GRN[]
-  vendorSupplyManagements VendorSupplyManagement[]
+  transport_mode         TransportMode?
+  total_amount           String
+  gst_percent            String?
+  gst_amount             String?
+  po_status              POStatus       @default(DRAFT)
+  po_type                POType         @default(INVENTORY)
+  payment_terms          String?
+  delivery_terms         String?
+  shipping_address       String?
+  billing_address        String?
+  remarks                String?
+  company_id             Int
+  head_office_id         Int
+  branch_office_id       Int
+  company                Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice             HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice           BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  grns                   GRN[]
+  order_items            POOrderItem[]
+  pr                     PR             @relation(fields: [pr_id], references: [id])
+  project                Project        @relation(fields: [project_id], references: [id])
+  vendor                 Vendor         @relation(fields: [vendor_id], references: [id])
+  created_at             DateTime       @default(now())
+  updated_at             DateTime       @updatedAt
 
   @@index([pr_id])
   @@index([project_id])
@@ -218,29 +233,26 @@ model POOrderItem {
 
   po_id       Int
   material_id Int
-
-  quantity String
-  rate     String
-  amount   String
-  hsn_no   String?
-
-  po       PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
-  material Material @relation(fields: [material_id], references: [id])
-
-  created_at DateTime @default(now())
+  quantity    String
+  rate        String
+  amount      String
+  hsn_no      String?
+  po          PO       @relation(fields: [po_id], references: [id], onDelete: Cascade)
+  material    Material @relation(fields: [material_id], references: [id])
+  created_at  DateTime @default(now())
 
   @@map("po_order_items")
 }
 
 enum PRStatus {
-  DRAFT // PR created but not submitted
-  SUBMITTED // PR submitted by requester
-  INVENTORY_CHECK // Inventory manager checking availability
-  PARTIAL_AVAILABLE // Some items available, some not
-  PROCUREMENT_REQUIRED // At least one item not available → procurement needed
-  APPROVED // Approved for issue / purchase
+  DRAFT
+  SUBMITTED
+  INVENTORY_CHECK
+  PARTIAL_AVAILABLE
+  PROCUREMENT_REQUIRED
+  APPROVED
   REJECTED
-  CLOSED // Fully issued (after stock / purchase)
+  CLOSED
 }
 
 enum UrgencyLevel {
@@ -251,34 +263,37 @@ enum UrgencyLevel {
 }
 
 enum PRType {
-  INVENTORY // Material issued directly from stock
-  PROCUREMENT // Material not available → purchase required
-  NONE // Default value
+  INVENTORY
+  PROCUREMENT
+  NONE
 }
 
 model PR {
-  id            Int          @id @default(autoincrement())
-  project_id    Int
-  pr_code       String       @unique
-  pr_type       PRType       @default(NONE)
-  urgency_level UrgencyLevel
-  status        PRStatus     @default(DRAFT)
-
-  remarks String?
-
-  user_id       Int? // Created by
-  approved_by   Int? // Approver (User ID)
-  send_to       Int?
-  user          User? @relation("CreatedBy", fields: [user_id], references: [id])
-  approval_user User? @relation("approvalUser", fields: [send_to], references: [id])
-  approvedUser  User? @relation("ApprovedBy", fields: [approved_by], references: [id])
-
-  material_items PRMaterialItem[]
-  project        Project          @relation(fields: [project_id], references: [id])
-  created_at     DateTime         @default(now())
-  updated_at     DateTime         @updatedAt
-  pos            PO[]
-  prgrns         PRGRN[]
+  id               Int              @id @default(autoincrement())
+  project_id       Int
+  pr_code          String           @unique
+  pr_type          PRType           @default(NONE)
+  urgency_level    UrgencyLevel
+  status           PRStatus         @default(DRAFT)
+  remarks          String?
+  user_id          Int? // Created by
+  approved_by      Int? // Approver (User ID)
+  send_to          Int?
+  user             User?            @relation("CreatedBy", fields: [user_id], references: [id])
+  approval_user    User?            @relation("approvalUser", fields: [send_to], references: [id])
+  approvedUser     User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
+  company_id       Int
+  company          Company          @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id   Int
+  headOffice       HeadOffice       @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id Int
+  branchOffice     BranchOffice     @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  material_items   PRMaterialItem[]
+  project          Project          @relation(fields: [project_id], references: [id])
+  created_at       DateTime         @default(now())
+  updated_at       DateTime         @updatedAt
+  pos              PO[]
+  prgrns           PRGRN[]
 
   @@index([project_id])
   @@index([user_id])
@@ -295,9 +310,8 @@ model PRMaterialItem {
   is_approved      Boolean  @default(false)
   approved_qty     String?
   approval_remarks String?
-
-  pr       PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
-  material Material @relation(fields: [material_id], references: [id])
+  pr               PR       @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+  material         Material @relation(fields: [material_id], references: [id])
 
   created_at DateTime @default(now())
 
@@ -305,32 +319,57 @@ model PRMaterialItem {
 }
 
 model Activity {
-  id                 Int                  @id @default(autoincrement())
-  name               String
-  unit_id            Int
-  unit               Unit                 @relation(fields: [unit_id], references: [id])
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  dprchainages       DPRChainage[]
-  materialBoqItems   MaterialBoqItem[]
-  workScopeItems     WorkScopeItem[]
-  dieselConsumptions diesel_consumption[]
-  projectActivities  project_activity[]
-  projectMaterials   project_material[]
+  id                         Int                        @id @default(autoincrement())
+  name                       String
+  createdAt                  DateTime                   @default(now())
+  updatedAt                  DateTime                   @updatedAt
+  dprchainages               DPRChainage[]
+  workScopeItems             WorkScopeItem[]
+  dieselConsumptions         diesel_consumption[]
+  unit                       Unit?                      @relation(fields: [unitId], references: [id])
+  unitId                     Int?
+  labourAttendanceActivities LabourAttendanceActivity[]
 
   @@map("activities")
 }
 
-model project_activity {
-  id          Int      @id @default(autoincrement())
-  project_id  Int
-  activity_id Int
-  activity    Activity @relation(fields: [activity_id], references: [id])
-  project     Project  @relation(fields: [project_id], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model BranchOffice {
+  id                           Int                         @id @default(autoincrement())
+  company_id                   Int
+  company                      Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id               Int
+  headOffice                   HeadOffice                  @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  office_name                  String
+  office_id                    String
+  address                      String
+  pincode                      String
+  state                        String
+  city                         String
+  phone_number                 String
+  mail_id                      String
+  office_incharge_name         String?
+  office_incharge_phone_number String?
+  office_incharge_mail_id      String?
+  created_at                   DateTime                    @default(now())
+  updated_at                   DateTime                    @updatedAt
+  users                        User[]
+  workScopes                   WorkScope[]
+  subContractorWorkOrders      sub_contractor_work_order[]
+  warehouses                   Warehouse[]
+  stocks                       Stock[]
+  prs                          PR[]
+  pos                          PO[]
+  dieselConsumptions           diesel_consumption[]
+  dieselInwards                DieselInward[]
+  dprs                         DPR[]
+  grns                         GRN[]
+  invoices                     invoice[]
+  machines                     Machine[]
+  prgrns                       PRGRN[]
+  dieselStocks                 DieselStock[]
+  materialBoqs                 MaterialBoq[]
 
-  @@map("project_activities")
+  @@map("branch_office")
 }
 
 model Category {
@@ -355,54 +394,115 @@ model project_category {
   @@map("project_category")
 }
 
-model Chainage_consumption_ledger {
-  id            Int      @id @default(autoincrement())
-  chainage_data Json
-  projectId     Int
-  project       Project  @relation(fields: [projectId], references: [id])
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@map("chainage_consumption_ledger")
-}
-
-model company {
-  id         Int      @id @default(autoincrement())
-  name       String
-  address    String
-  phone      String[]
-  email      String?
-  gstin      String?
-  state      String?
-  state_code String?
-  pan        String?
-  user_id    Int
-  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+model Company {
+  id                      Int                         @id @default(autoincrement())
+  company_name            String
+  pincode                 String
+  state                   String
+  district                String
+  address                 String
+  company_mail_id         String
+  company_phone_number    String
+  company_gst_number      String
+  business_type           String
+  user_id                 Int
+  user                    User                        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  created_at              DateTime                    @default(now())
+  updated_at              DateTime                    @updatedAt
+  owner_id                Int?
+  ownerDetails            owner_details?              @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+  companyFiles            company_files[]
+  headOffices             HeadOffice[]
+  branchOffices           BranchOffice[]
+  users                   User[]                      @relation(name: "company_users")
+  workScopes              WorkScope[]
+  subContractorWorkOrders sub_contractor_work_order[]
+  warehouses              Warehouse[]
+  stocks                  Stock[]
+  prs                     PR[]
+  pos                     PO[]
+  dieselConsumptions      diesel_consumption[]
+  dieselInwards           DieselInward[]
+  dprs                    DPR[]
+  grns                    GRN[]
+  invoices                invoice[]
+  machines                Machine[]
+  prgrns                  PRGRN[]
+  dieselStocks            DieselStock[]
+  materialBoqs            MaterialBoq[]
 
   @@map("companies")
 }
 
+model owner_details {
+  id                 Int       @id @default(autoincrement())
+  owner_name         String
+  owner_father_name  String
+  dob                DateTime
+  pincode            String
+  state              String
+  district           String
+  address            String
+  owner_phone_number String
+  owner_mail_id      String
+  created_at         DateTime  @default(now())
+  updated_at         DateTime  @updatedAt
+  companies          Company[]
+
+  @@map("owner_details")
+}
+
+model company_files {
+  id         Int      @id @default(autoincrement())
+  company_id Int
+  company    Company  @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  file_id    Int
+  file       File     @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  file_type  String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("company_files")
+}
+
 model diesel_consumption {
-  id                 Int      @id @default(autoincrement())
-  machine_id         Int
-  activity_id        Int
-  diesel_used_liters Int
-  hours_used         Int
-  operator_name      String
-  date               DateTime
-  issued_by          Int
-  remarks            String
-  project_id         Int
-  project            Project  @relation(fields: [project_id], references: [id])
-  machine            Machine  @relation(fields: [machine_id], references: [id])
-  activity           Activity @relation(fields: [activity_id], references: [id])
-  user               User     @relation(fields: [issued_by], references: [id])
-  created_at         DateTime @default(now())
-  updated_at         DateTime @updatedAt
+  id                     Int                       @id @default(autoincrement())
+  machine_id             Int
+  activity_id            Int
+  diesel_used_liters     Int
+  hours_used             Int
+  operator_name          String
+  date                   DateTime
+  issued_by              Int
+  remarks                String
+  project_id             Int
+  company_id             Int
+  head_office_id         Int
+  branch_office_id       Int
+  company                Company                   @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice             HeadOffice                @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice           BranchOffice              @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  project                Project                   @relation(fields: [project_id], references: [id])
+  machine                Machine                   @relation(fields: [machine_id], references: [id])
+  activity               Activity                  @relation(fields: [activity_id], references: [id])
+  user                   User                      @relation(fields: [issued_by], references: [id])
+  created_at             DateTime                  @default(now())
+  updated_at             DateTime                  @updatedAt
+  dieselConsumptionFiles diesel_consumption_file[]
 
   @@map("diesel_consumption")
+}
+
+model diesel_consumption_file {
+  id                    Int                @id @default(autoincrement())
+  diesel_consumption_id Int
+  file_id               Int
+  diesel_consumption    diesel_consumption @relation(fields: [diesel_consumption_id], references: [id], onDelete: Cascade)
+  file                  File               @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  created_at            DateTime           @default(now())
+  updated_at            DateTime           @updatedAt
+
+  @@map("diesel_consumption_file")
 }
 
 model DieselSupplier {
@@ -428,43 +528,50 @@ enum DieselInwardStatus {
 model DieselInward {
   id Int @id @default(autoincrement())
 
-  supplier_id     Int
-  supplier        DieselSupplier @relation(fields: [supplier_id], references: [id])
-  state           String
-  district        String
-  pincode         String
-  quantity_litres Float
-  rate_per_litre  Float
-  total_amount    Float
+  supplier_id       Int
+  supplier          DieselSupplier @relation(fields: [supplier_id], references: [id])
+  store_location_id Int?
+  store_location    Warehouse?     @relation(fields: [store_location_id], references: [id])
+  quantity_litres   Float
+  rate_per_litre    Float
+  total_amount      Float
 
   delivery_person_name String?
   vehicle_number       String?
-  assigned_to          Int
-  assigned             User               @relation(fields: [assigned_to], references: [id])
-  received_by          String?
+  received_by          Int?
+  received             User?              @relation(fields: [received_by], references: [id])
   received_at          DateTime?
   status               DieselInwardStatus @default(PENDING)
   invoiceNumber        String?
   remarks              String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  company_id           Int
+  head_office_id       Int
+  branch_office_id     Int
+  company              Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice           HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice         BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
 
   @@map("diesel_inward")
 }
 
 model DieselStock {
-  id                      Int    @id @default(autoincrement())
-  state                   String
-  district                String
-  pincode                 String
+  id                      Int          @id @default(autoincrement())
+  warehouse_id            Int
+  warehouse               Warehouse    @relation(fields: [warehouse_id], references: [id])
   current_quantity_litres Float
   tank_capacity_litres    Float?
   manager_id              Int
-  manager                 User   @relation(fields: [manager_id], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  manager                 User         @relation(fields: [manager_id], references: [id])
+  company_id              Int
+  head_office_id          Int
+  branch_office_id        Int
+  company                 Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice              HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice            BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
 
   @@map("diesel_stock")
 }
@@ -485,38 +592,84 @@ model File {
   grnfiles        GRNFile[]
   vendorDocuments VendorDocuments[]
 
-  prgrnfiles   PRGRNFile[]
-  projectFiles ProjectFile[]
-  tenders      tender[]
+  prgrnfiles             PRGRNFile[]
+  projectFiles           ProjectFile[]
+  tenders                tender[]
+  companyFiles           company_files[]
+  dieselConsumptionFiles diesel_consumption_file[]
 
   @@map("files")
 }
 
+model HeadOffice {
+  id                           Int                         @id @default(autoincrement())
+  company_id                   Int
+  company                      Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  office_name                  String
+  office_id                    String
+  address                      String
+  pincode                      String
+  state                        String
+  city                         String
+  phone_number                 String
+  mail_id                      String
+  office_incharge_name         String?
+  office_incharge_phone_number String?
+  office_incharge_mail_id      String?
+  created_at                   DateTime                    @default(now())
+  updated_at                   DateTime                    @updatedAt
+  branchOffices                BranchOffice[]
+  users                        User[]
+  workScopes                   WorkScope[]
+  subContractorWorkOrders      sub_contractor_work_order[]
+  warehouses                   Warehouse[]
+  stocks                       Stock[]
+  prs                          PR[]
+  pos                          PO[]
+  dieselConsumptions           diesel_consumption[]
+  dieselInwards                DieselInward[]
+  dprs                         DPR[]
+  grns                         GRN[]
+  invoices                     invoice[]
+  machines                     Machine[]
+  prgrns                       PRGRN[]
+  dieselStocks                 DieselStock[]
+  materialBoqs                 MaterialBoq[]
+
+  @@map("head_office")
+}
+
 model invoice {
-  id              Int                   @id @default(autoincrement())
-  invoice_number  String
-  invoice_date    DateTime
-  invoice_type    String
-  irn             String?
-  ack_no          String?
-  ack_date        DateTime?
-  eway_bill_no    String?
-  place_of_supply String?
-  destination     String?
-  vehicle_number  String?
-  total_quantity  Float?
-  total_amount    Float?
-  round_off       Float?
-  amount_in_words String?
-  grn_id          Int
-  grn             GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-  vendor_id       Int
-  vendor          Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-  seller          invoice_seller?
-  buyer           invoice_buyer?
-  consignee       invoice_consignee?
-  tax             invoice_tax?
-  bank_details    invoice_bank_details?
+  id               Int                   @id @default(autoincrement())
+  invoice_number   String
+  invoice_date     DateTime
+  invoice_type     String
+  irn              String?
+  ack_no           String?
+  ack_date         DateTime?
+  eway_bill_no     String?
+  place_of_supply  String?
+  destination      String?
+  vehicle_number   String?
+  total_quantity   Float?
+  total_amount     Float?
+  round_off        Float?
+  amount_in_words  String?
+  company_id       Int
+  head_office_id   Int
+  branch_office_id Int
+  company          Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice       HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice     BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  grn_id           Int
+  grn              GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  vendor_id        Int
+  vendor           Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+  seller           invoice_seller?
+  buyer            invoice_buyer?
+  consignee        invoice_consignee?
+  tax              invoice_tax?
+  bank_details     invoice_bank_details?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -598,81 +751,25 @@ model invoice_bank_details {
   @@map("invoice_bank_details")
 }
 
-enum LabourStatus {
-  ACTIVE
-  INACTIVE
-  LEFT
-  BLACKLISTED
-}
-
-enum LabourType {
-  DIRECT
-  CONTRACT
-}
-
-model Labour {
-  id Int @id @default(autoincrement())
-
-  labour_name String
-  labour_code String @unique
-
-  labour_type LabourType
-  skill       String
-
-  phone_number  String?
-  aadhar_number String? @unique
-  address       String?
-
-  joining_date DateTime?
-  status       LabourStatus @default(ACTIVE)
-
-  created_at        DateTime           @default(now())
-  updated_at        DateTime           @updatedAt
-  labourAttendances LabourAttendance[]
-
-  @@index([labour_type])
-  @@index([status])
-  @@map("labours")
-}
-
-enum AttendanceStatus {
-  PRESENT
-  ABSENT
-  HALF_DAY
-  ON_LEAVE
-}
-
 model LabourAttendance {
-  id String @id @default(uuid())
+  id                         Int                        @id @default(autoincrement())
+  project_id                 Int
+  date                       DateTime
+  team_name                  String
+  project                    Project                    @relation(fields: [project_id], references: [id])
+  labourAttendanceActivities LabourAttendanceActivity[]
 
-  labour_id  Int
-  project_id Int
-
-  date           DateTime  @db.Date
-  check_in_time  DateTime?
-  check_out_time DateTime?
-
-  total_working_hours Float?
-  field_working_hours Float? // actual hours worked on site
-  overtime_hours      Float?
-
-  status AttendanceStatus
-
-  chainage_from String?
-  chainage_to   String?
-
-  remarks String?
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  // Relations (optional but recommended)
-  labour  Labour  @relation(fields: [labour_id], references: [id])
-  project Project @relation(fields: [project_id], references: [id])
-
-  @@index([labour_id, date])
-  @@index([project_id])
   @@map("labour_attendance")
+}
+
+model LabourAttendanceActivity {
+  id                   String           @id @default(uuid())
+  activity_id          Int
+  activity             Activity         @relation(fields: [activity_id], references: [id])
+  labour_attendance_id Int
+  labour_attendance    LabourAttendance @relation(fields: [labour_attendance_id], references: [id])
+
+  @@map("labour_attendance_activity")
 }
 
 model Machine {
@@ -685,6 +782,12 @@ model Machine {
   machine_count      Int
   project_id         Int
   project            Project              @relation(fields: [project_id], references: [id])
+  company_id         Int
+  head_office_id     Int
+  branch_office_id   Int
+  company            Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice         HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice       BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   created_at         DateTime             @default(now())
   updated_at         DateTime             @updatedAt
   dieselConsumptions diesel_consumption[]
@@ -708,49 +811,37 @@ model Material {
   dprchainages          DPRChainage[]
   materialBoqItems      MaterialBoqItem[]
   workScopeItems        WorkScopeItem[]
-  projectMaterials      project_material[]
 
   @@map("materials")
-}
-
-model project_material {
-  id          Int      @id @default(autoincrement())
-  project_id  Int
-  material_id Int
-  activity_id Int
-  activity    Activity @relation(fields: [activity_id], references: [id])
-  material    Material @relation(fields: [material_id], references: [id])
-  project     Project  @relation(fields: [project_id], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@map("project_materials")
 }
 
 model MaterialBoq {
   id                      Int                         @id @default(autoincrement())
   project_id              Int
-  project                 Project                     @relation(fields: [project_id], references: [id])
+  company_id              Int
+  head_office_id          Int
+  branch_office_id        Int
   createdAt               DateTime                    @default(now())
   updatedAt               DateTime                    @updatedAt
   materialBoqItems        MaterialBoqItem[]
   subContractorWorkOrders sub_contractor_work_order[]
+  project                 Project                     @relation(fields: [project_id], references: [id])
+  company                 Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice              HeadOffice                  @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice            BranchOffice                @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
   @@map("material_boq")
 }
 
 model MaterialBoqItem {
-  id              Int         @id @default(autoincrement())
-  material_boq_id Int
-  material_boq    MaterialBoq @relation(fields: [material_boq_id], references: [id])
-  item_no         String?
-
+  id                 Int                @id @default(autoincrement())
+  material_boq_id    Int
+  material_boq       MaterialBoq        @relation(fields: [material_boq_id], references: [id])
+  item_no            String?
   material_id        Int?
   material           Material?          @relation(fields: [material_id], references: [id])
   unit_id            Int
   unit               Unit               @relation(fields: [unit_id], references: [id])
-  activity_id        Int
-  activity           Activity           @relation(fields: [activity_id], references: [id])
   item_description   String?
   scope_quantity     Float?
   purchased_quantity Float?
@@ -789,46 +880,54 @@ model Permission {
 }
 
 model PRGRN {
-  id Int @id @default(autoincrement())
-
-  pr_id             Int
-  gate_entry_number String?
-  vehicle_number    String?
-  driver_name       String?
-  driver_contact    String?
-
+  id                      Int                    @id @default(autoincrement())
+  gate_entry_number       String?
+  vehicle_number          String?
+  driver_name             String?
+  driver_contact          String?
   transport_mode          TransportMode?
   status                  ReceiptStatus
   received_date           DateTime
   received_time           String?
-  store_location          String?
-  quality_check_completed Boolean        @default(false)
+  warehouse_id            Int?
+  quality_check_completed Boolean                @default(false)
   grn_remarks             String?
+  total_amount            Int?
+  total_qty               Int?
+  total_rejected          Int?
+  total_received          Int?
+  grn_number              String?
+  company_id              Int
+  head_office_id          Int
+  branch_office_id        Int
+  pr_id                   Int
+  created_by_id           Int?
+  company                 Company                @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice              HeadOffice             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice            BranchOffice           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  material_receipts       PRGRNMaterialReceipt[]
+  purchase_order          PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
+  grnfiles                PRGRNFile[]
+  created_by              User?                  @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
+  created_at              DateTime               @default(now())
+  updated_at              DateTime               @updatedAt
 
-  material_receipts PRGRNMaterialReceipt[]
-  purchase_request  PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
-  created_by_id     Int?
-  created_by        User?                  @relation(fields: [created_by_id], references: [id], onDelete: Cascade)
-
-  created_at DateTime    @default(now())
-  updated_at DateTime    @updatedAt
-  grnfiles   PRGRNFile[]
-
-  @@index([pr_id])
   @@map("pr_grns")
 }
 
 model PRGRNMaterialReceipt {
-  id Int @id @default(autoincrement())
-
+  id          Int      @id @default(autoincrement())
   grn_id      Int
   material_id Int
   ordered     Int
   chainage    String?
-  quality     String?
-  accepted    Int
+  quality     String? // Good / Damaged / Failed Test etc.
   rejected    Int
   received    Int
+  rate        Int?
+  amount      Int?
+  quantity    Int?
+  hsn_no      String?
   grn         PRGRN    @relation(fields: [grn_id], references: [id], onDelete: Cascade)
   material    Material @relation(fields: [material_id], references: [id])
 
@@ -842,9 +941,8 @@ model PRGRNFile {
 
   grn_id  Int
   file_id Int
-
-  grn  PRGRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-  file File  @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  grn     PRGRN @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  file    File  @relation(fields: [file_id], references: [id], onDelete: Cascade)
 
   @@unique([grn_id, file_id])
   @@map("pr_grn_files")
@@ -889,12 +987,9 @@ model Project {
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-
-  directSupplyConfigurations DirectSupplyConfiguration[]
-  chainageConsumptionLedgers Chainage_consumption_ledger[]
-  prs                        PR[]
-  pos                        PO[]
-  dprs                       DPR[]
+  prs        PR[]
+  pos        PO[]
+  dprs       DPR[]
 
   labourAttendances LabourAttendance[]
 
@@ -904,8 +999,6 @@ model Project {
   subContractorWorkOrders sub_contractor_work_order[]
   projectCategories       project_category[]
   dieselConsumptions      diesel_consumption[]
-  projectActivities       project_activity[]
-  projectMaterials        project_material[]
   machines                Machine[]
   tenders                 tender[]
 
@@ -1020,22 +1113,26 @@ enum StockStatus {
 }
 
 model Stock {
-  id                         Int         @id @default(autoincrement())
+  id                         Int          @id @default(autoincrement())
   material_id                Int
-  pincode                    String
-  state                      String
-  district                   String
-  address                    String?
-  status                     StockStatus @default(IN_STOCK)
+  warehouse_id               Int
+  warehouse                  Warehouse    @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
+  status                     StockStatus  @default(IN_STOCK)
   minimum_threshold_quantity Int?
   current_stock              Int?
   quantity                   Int?
   specifications             String?
   manager_id                 Int
-  inventory_manager          User        @relation(fields: [manager_id], references: [id])
-  createdAt                  DateTime    @default(now())
-  updatedAt                  DateTime    @updatedAt
-  material                   Material?   @relation(fields: [material_id], references: [id])
+  inventory_manager          User         @relation(fields: [manager_id], references: [id])
+  company_id                 Int
+  company                    Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id             Int
+  headOffice                 HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id           Int
+  branchOffice               BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt                  DateTime     @default(now())
+  updatedAt                  DateTime     @updatedAt
+  material                   Material?    @relation(fields: [material_id], references: [id])
 
   @@map("stock")
 }
@@ -1064,6 +1161,12 @@ model sub_contractor_work_order {
   work_order_amount      String?
   meta_data              Json?
   payment_status         payment_status     @default(PENDING)
+  company_id             Int
+  company                Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id         Int
+  headOffice             HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id       Int
+  branchOffice           BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   project                Project            @relation(fields: [project_id], references: [id])
   vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
   material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
@@ -1113,37 +1216,39 @@ model Unit {
 }
 
 model User {
-  id                Int      @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   name              String
-  email             String   @unique
-  emailVerified     Boolean  @default(false)
+  email             String  @unique
+  emailVerified     Boolean @default(false)
   password          String
   fileId            Int?
-  profileImage      File?    @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  profileImage      File?   @relation(fields: [fileId], references: [id], onDelete: SetNull)
   original_password String?
   mobileNumber      String?
   roleId            Int?
-  role              Role?    @relation(fields: [roleId], references: [id])
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  provider          Provider @default(credentials)
-  dprs              DPR[]
-  prs_created_by    PR[]     @relation("CreatedBy")
+  role              Role?   @relation(fields: [roleId], references: [id])
+  company_id        Int
+  head_office_id    Int?
+  branch_office_id  Int?
 
-  prs_approved_by PR[] @relation("ApprovedBy")
-
-  projects Project[]
-
-  prs PR[] @relation("approvalUser")
-
-  prgrns PRGRN[]
-
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  provider           Provider             @default(credentials)
+  company            Company              @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice         HeadOffice?          @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice       BranchOffice?        @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  prs_created_by     PR[]                 @relation("CreatedBy")
+  prs_approved_by    PR[]                 @relation("ApprovedBy")
+  prs                PR[]                 @relation("approvalUser")
   grns               GRN[]
   stocks             Stock[]
+  dprs               DPR[]
+  prgrns             PRGRN[]
+  projects           Project[]
   dieselStocks       DieselStock[]
   dieselInwards      DieselInward[]
   dieselConsumptions diesel_consumption[]
-  companies          company[]
+  companies          Company[]
 
   @@map("users")
 }
@@ -1178,9 +1283,7 @@ model Vendor {
   financialDetails VendorFinancialDetails?
   otherDetails     VendorOtherDetails?
   documents        VendorDocuments[]
-
-  supplies VendorSupplyManagement[]
-  pos      PO[]
+  pos              PO[]
 
   created_at              DateTime                    @default(now())
   updated_at              DateTime                    @updatedAt
@@ -1276,74 +1379,41 @@ model VendorDocuments {
   @@map("vendor_documents")
 }
 
-enum SupplyStatus {
-  PENDING // PO created, supply not started
-  APPROVED // Approved for dispatch
-  IN_TRANSIT // Vendor dispatched material
-  PARTIALLY_RECEIVED
-  RECEIVED // Fully received
-  REJECTED
-}
+model Warehouse {
+  id               Int            @id @default(autoincrement())
+  name             String
+  address          String
+  state            String
+  pincode          String
+  district         String
+  company_id       Int
+  company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id   Int
+  headOffice       HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id Int
+  branchOffice     BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  stocks           Stock[]
+  dieselStocks     DieselStock[]
+  dieselInwards    DieselInward[]
 
-enum SupplyType {
-  TO_INVENTORY
-  DIRECT_TO_SITE
-}
-
-model VendorSupplyManagement {
-  id Int @id @default(autoincrement())
-
-  vendor_id               Int
-  supply_type             SupplyType
-  po_id                   Int?
-  amount                  String
-  payment_terms           String?
-  status                  SupplyStatus                  @default(PENDING)
-  direct_supply_config    DirectSupplyConfiguration?
-  inventory_supply_config InventorySupplyConfiguration?
-  vendor                  Vendor                        @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-  po                      PO?                           @relation(fields: [po_id], references: [id], onDelete: Cascade)
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@map("vendor_supply_management")
-}
-
-model DirectSupplyConfiguration {
-  id                Int     @id @default(autoincrement())
-  supply_id         Int     @unique
-  project_id        Int
-  chainage_location String?
-  delivery_location String?
-  fob_destination   String?
-
-  supply  VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
-  project Project                @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-  @@map("direct_supply_configuration")
-}
-
-model InventorySupplyConfiguration {
-  id                     Int       @id @default(autoincrement())
-  supply_id              Int       @unique
-  warehouse_location     String?
-  expected_delivery_date DateTime?
-  batch_number           String?
-  quality_check_status   String? // Accepted / Rejected / Pending
-
-  supply VendorSupplyManagement @relation(fields: [supply_id], references: [id], onDelete: Cascade)
-
-  @@map("inventory_supply_configuration")
+  @@map("warehouses")
 }
 
 model WorkScope {
-  id             Int             @id @default(autoincrement())
-  project_id     Int
-  project        Project         @relation(fields: [project_id], references: [id])
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  workScopeItems WorkScopeItem[]
+  id               Int             @id @default(autoincrement())
+  project_id       Int
+  project          Project         @relation(fields: [project_id], references: [id])
+  company_id       Int
+  company          Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  head_office_id   Int
+  headOffice       HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branch_office_id Int
+  branchOffice     BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  workScopeItems   WorkScopeItem[]
 
   @@map("workscope")
 }

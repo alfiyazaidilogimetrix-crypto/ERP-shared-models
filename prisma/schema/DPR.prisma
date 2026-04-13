@@ -8,9 +8,15 @@ enum Site_type {
 model DPR {
     id Int @id @default(autoincrement())
 
-    date         DateTime
-    project_id   Int
-    submitted_by Int
+    date             DateTime
+    project_id       Int
+    submitted_by     Int
+    company_id       Int
+    head_office_id   Int
+    branch_office_id Int
+    company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
     project Project       @relation(fields: [project_id], references: [id], onDelete: Cascade)
     user    User          @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
