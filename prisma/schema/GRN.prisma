@@ -20,7 +20,6 @@ model GRN {
     received_date  DateTime
     received_time  String?
 
-    store_location          String?
     quality_check_completed Boolean              @default(false)
     grn_remarks             String?
     total_amount            Int?
@@ -28,6 +27,8 @@ model GRN {
     total_rejected          Int?
     total_received          Int?
     grn_number              String?
+    warehouse_id            Int?
+    warehouse               Warehouse?           @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
     company_id              Int
     head_office_id          Int
     branch_office_id        Int

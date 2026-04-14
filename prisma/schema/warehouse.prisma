@@ -16,6 +16,7 @@ model Warehouse {
     stocks           Stock[]
     dieselStocks     DieselStock[]
     dieselInwards    DieselInward[]
+    grns             GRN[]
 
     @@map("warehouses")
 }
