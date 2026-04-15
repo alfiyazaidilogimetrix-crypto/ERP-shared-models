@@ -9,6 +9,8 @@ model Company {
     company_phone_number    String
     company_gst_number      String
     business_type           String
+    file_id                 Int?
+    company_logo            File?                       @relation(fields: [file_id], references: [id], onDelete: Cascade)
     user_id                 Int
     user                    User                        @relation(fields: [user_id], references: [id], onDelete: Cascade)
     created_at              DateTime                    @default(now())

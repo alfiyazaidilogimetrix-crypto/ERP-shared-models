@@ -17,7 +17,6 @@ model BranchOffice {
     office_incharge_mail_id      String?
     created_at                   DateTime                    @default(now())
     updated_at                   DateTime                    @updatedAt
-    users                        User[]
     workScopes                   WorkScope[]
     subContractorWorkOrders      sub_contractor_work_order[]
     warehouses                   Warehouse[]
@@ -35,6 +34,7 @@ model BranchOffice {
     materialBoqs                 MaterialBoq[]
     vendors                      Vendor[]
     projects                     Project[]
+    userBranchOffices            userBranchOffice[]
 
     @@map("branch_office")
 }

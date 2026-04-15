@@ -20,6 +20,7 @@ model File {
     companyFiles           company_files[]
     dieselConsumptionFiles diesel_consumption_file[]
     dieselInwardFiles      diesel_inward_file[]
+    companies              Company[]
 
     @@map("files")
 }

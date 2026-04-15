@@ -328,6 +328,7 @@ exports.Prisma.CompanyScalarFieldEnum = {
   company_phone_number: 'company_phone_number',
   company_gst_number: 'company_gst_number',
   business_type: 'business_type',
+  file_id: 'file_id',
   user_id: 'user_id',
   created_at: 'created_at',
   updated_at: 'updated_at',
@@ -795,11 +796,21 @@ exports.Prisma.UserScalarFieldEnum = {
   mobileNumber: 'mobileNumber',
   roleId: 'roleId',
   company_id: 'company_id',
-  head_office_id: 'head_office_id',
-  branch_office_id: 'branch_office_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   provider: 'provider'
+};
+
+exports.Prisma.UserHeadOfficeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  headOfficeId: 'headOfficeId'
+};
+
+exports.Prisma.UserBranchOfficeScalarFieldEnum = {
+  id: 'id',
+  userHeadOfficeId: 'userHeadOfficeId',
+  branchOfficeId: 'branchOfficeId'
 };
 
 exports.Prisma.VendorScalarFieldEnum = {
@@ -1140,6 +1151,8 @@ exports.Prisma.ModelName = {
   tender: 'tender',
   Unit: 'Unit',
   User: 'User',
+  userHeadOffice: 'userHeadOffice',
+  userBranchOffice: 'userBranchOffice',
   Vendor: 'Vendor',
   VendorBankDetails: 'VendorBankDetails',
   VendorFinancialDetails: 'VendorFinancialDetails',
