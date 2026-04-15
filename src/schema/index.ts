@@ -18,7 +18,6 @@ import * as role from './role';
 import * as unit from './unit';
 import * as vendor from './vendor';
 import * as enums from './enums';
-import * as location from './location';
 import * as invoice from './invoice';
 import * as activity from './activity';
 import * as labour_attendance from './labour_attendance';
@@ -56,7 +55,6 @@ export * from './role';
 export * from './unit';
 export * from './vendor';
 export * from './enums';
-export * from './location';
 export * from './invoice';
 export * from './activity';
 export * from './labour_attendance';
@@ -95,7 +93,6 @@ export const allModels = {
   ...unit,
   ...vendor,
   ...enums,
-  ...location,
   ...invoice,
   ...activity,
   ...labour_attendance,

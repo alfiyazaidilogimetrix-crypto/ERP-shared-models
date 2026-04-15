@@ -1,22 +1,23 @@
 model Machine {
-    id                 Int                  @id @default(autoincrement())
-    name               String
-    type               String
-    is_owned           Boolean              @default(false)
-    rent_per_hour      String?
-    purchase_cost      String?
-    machine_count      Int
-    project_id         Int
-    project            Project              @relation(fields: [project_id], references: [id])
-    company_id         Int
-    head_office_id     Int
-    branch_office_id   Int
-    company            Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice         HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice       BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-    created_at         DateTime             @default(now())
-    updated_at         DateTime             @updatedAt
-    dieselConsumptions diesel_consumption[]
+    id                   Int                   @id @default(autoincrement())
+    name                 String
+    type                 String
+    is_owned             Boolean               @default(false)
+    rent_per_hour        String?
+    purchase_cost        String?
+    machine_count        Int
+    project_id           Int
+    project              Project               @relation(fields: [project_id], references: [id])
+    company_id           Int
+    head_office_id       Int
+    branch_office_id     Int
+    company              Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice           HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice         BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    created_at           DateTime              @default(now())
+    updated_at           DateTime              @updatedAt
+    dieselConsumptions   diesel_consumption[]
+    machineryAllocations MachineryAllocation[]
 
     @@map("machines")
 }

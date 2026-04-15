@@ -17,7 +17,6 @@ export * from './schema/role';
 export * from './schema/unit';
 export * from './schema/vendor';
 export * from './schema/enums';
-export * from './schema/location';
 export * from './schema/invoice';
 export * from './schema/activity';
 export * from './schema/stock';

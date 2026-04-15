@@ -906,13 +906,45 @@ exports.Prisma.WorkScopeScalarFieldEnum = {
 exports.Prisma.WorkScopeItemScalarFieldEnum = {
   id: 'id',
   workscope_id: 'workscope_id',
-  material_id: 'material_id',
-  unit_id: 'unit_id',
   activity_id: 'activity_id',
-  length: 'length',
-  executed: 'executed',
   quantity: 'quantity',
-  balanced: 'balanced',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  start_date: 'start_date',
+  end_date: 'end_date'
+};
+
+exports.Prisma.WorkscopeMaterialScalarFieldEnum = {
+  id: 'id',
+  workscope_item_id: 'workscope_item_id',
+  material_id: 'material_id',
+  quantity: 'quantity',
+  unit_id: 'unit_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LabourAllocationScalarFieldEnum = {
+  id: 'id',
+  workscope_item_id: 'workscope_item_id',
+  labour_type: 'labour_type',
+  count: 'count',
+  days: 'days',
+  rate_per_day: 'rate_per_day',
+  total_cost: 'total_cost',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MachineryAllocationScalarFieldEnum = {
+  id: 'id',
+  workscope_item_id: 'workscope_item_id',
+  machine_id: 'machine_id',
+  count: 'count',
+  hours: 'hours',
+  rate_per_hour: 'rate_per_hour',
+  total_cost: 'total_cost',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -1047,6 +1079,14 @@ exports.VendorStatus = exports.$Enums.VendorStatus = {
   SUSPENDED: 'SUSPENDED'
 };
 
+exports.WorkScopeStatus = exports.$Enums.WorkScopeStatus = {
+  PENDING: 'PENDING',
+  CONFIGURED: 'CONFIGURED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  ON_HOLD: 'ON_HOLD'
+};
+
 exports.Prisma.ModelName = {
   DPR: 'DPR',
   DPRChainage: 'DPRChainage',
@@ -1107,7 +1147,10 @@ exports.Prisma.ModelName = {
   VendorDocuments: 'VendorDocuments',
   Warehouse: 'Warehouse',
   WorkScope: 'WorkScope',
-  WorkScopeItem: 'WorkScopeItem'
+  WorkScopeItem: 'WorkScopeItem',
+  WorkscopeMaterial: 'WorkscopeMaterial',
+  LabourAllocation: 'LabourAllocation',
+  MachineryAllocation: 'MachineryAllocation'
 };
 
 /**

@@ -16,21 +16,79 @@ model WorkScope {
 }
 
 model WorkScopeItem {
-    id           Int       @id @default(autoincrement())
-    workscope_id Int
-    workscope    WorkScope @relation(fields: [workscope_id], references: [id])
-    material_id  Int?
-    material     Material? @relation(fields: [material_id], references: [id])
-    unit_id      Int
-    unit         Unit      @relation(fields: [unit_id], references: [id])
-    activity_id  Int
-    activity     Activity  @relation(fields: [activity_id], references: [id])
-    length       Int?
-    executed     Float?
-    quantity     Float?
-    balanced     Float?
-    createdAt    DateTime  @default(now())
-    updatedAt    DateTime  @updatedAt
+    id                   Int                   @id @default(autoincrement())
+    workscope_id         Int
+    workscope            WorkScope             @relation(fields: [workscope_id], references: [id], onDelete: Cascade)
+    activity_id          Int
+    activity             Activity              @relation(fields: [activity_id], references: [id])
+    quantity             Float?
+    status               WorkScopeStatus       @default(PENDING)
+    createdAt            DateTime              @default(now())
+    updatedAt            DateTime              @updatedAt
+    start_date           DateTime
+    end_date             DateTime
+    // Relations
+    WorkscopeMaterials   WorkscopeMaterial[]
+    labourAllocations    LabourAllocation[]
+    machineryAllocations MachineryAllocation[]
 
     @@map("workscope_item")
+}
+
+// Material consumption for each activity
+model WorkscopeMaterial {
+    id                Int           @id @default(autoincrement())
+    workscope_item_id Int
+    workscopeItem     WorkScopeItem @relation(fields: [workscope_item_id], references: [id], onDelete: Cascade)
+    material_id       Int
+    material          Material      @relation(fields: [material_id], references: [id])
+    quantity          Float?
+    unit_id           Int
+    unit              Unit          @relation(fields: [unit_id], references: [id])
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+
+    @@map("material_consumption")
+}
+
+// Labour allocation for each activity
+model LabourAllocation {
+    id                Int           @id @default(autoincrement())
+    workscope_item_id Int
+    workscopeItem     WorkScopeItem @relation(fields: [workscope_item_id], references: [id], onDelete: Cascade)
+    labour_type       String?
+    count             Int?
+    days              Int?
+    rate_per_day      Float?
+    total_cost        Float?
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+
+    @@map("labour_allocation")
+}
+
+// Machinery allocation for each activity
+model MachineryAllocation {
+    id                Int           @id @default(autoincrement())
+    workscope_item_id Int
+    workscopeItem     WorkScopeItem @relation(fields: [workscope_item_id], references: [id], onDelete: Cascade)
+    machine_id        Int
+    machine           Machine       @relation(fields: [machine_id], references: [id])
+    count             Int?
+    hours             Float?
+    rate_per_hour     Float?
+    total_cost        Float?
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+
+    @@map("machinery_allocation")
+}
+
+// Enum for WorkScope Item Status
+enum WorkScopeStatus {
+    PENDING
+    CONFIGURED
+    IN_PROGRESS
+    COMPLETED
+    ON_HOLD
 }
