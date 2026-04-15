@@ -56,11 +56,11 @@ model DPRChainage {
   unit_id Int
   unit    Unit @relation(fields: [unit_id], references: [id], onDelete: Cascade)
 
-  quantity         Int?
-  plan_quantity    Int?
+  quantity         Float?
+  plan_quantity    Float?
   work_description String?
-  boq_rate         Int?
-  amount           Int?
+  boq_rate         Float?
+  amount           Float?
 
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt

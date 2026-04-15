@@ -26,20 +26,20 @@ export const dprChainageSchema = z.object({
 
   number: z.number().int().nullable().optional(),
 
-  length: z.number().int().nullable().optional(),
+  length: z.number().nullable().optional(),
 
-  width: z.number().int().nullable().optional(),
+  width: z.number().nullable().optional(),
 
-  depth: z.number().int().nullable().optional(),
+  depth: z.number().nullable().optional(),
 
   unit_id: z.number().int().positive().optional(),
 
-  quantity: z.number().int().nullable().optional(),
+  quantity: z.number().nullable().optional(),
 
-  plan_quantity: z.number().int().nullable().optional(),
+  plan_quantity: z.number().nullable().optional(),
   work_description: z.string().nullable().optional(),
-  boq_rate: z.number().int().nullable().optional(),
-  amount: z.number().int().nullable().optional(),
+  boq_rate: z.number().nullable().optional(),
+  amount: z.number().nullable().optional(),
   dprfiles: z.array(dprFileSchema).optional(),
 
   created_at: z.date().optional(),
