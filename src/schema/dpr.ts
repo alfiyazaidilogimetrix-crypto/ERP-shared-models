@@ -24,12 +24,9 @@ export const dprChainageSchema = z.object({
   activity_id: z.number().int().positive().optional(),
   material_id: z.number().int().positive().nullable().optional(),
 
-  number: z.number().int().nullable().optional(),
-
+  number: z.number().nullable().optional(),
   length: z.number().nullable().optional(),
-
   width: z.number().nullable().optional(),
-
   depth: z.number().nullable().optional(),
 
   unit_id: z.number().int().positive().optional(),

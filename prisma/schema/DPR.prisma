@@ -48,10 +48,10 @@ model DPRChainage {
     material_id Int?
     material    Material? @relation(fields: [material_id], references: [id], onDelete: Cascade)
 
-    number Int?
-    length Int?
-    width  Int?
-    depth  Int?
+    number Float?
+    length Float?
+    width  Float?
+    depth  Float?
 
     unit_id Int
     unit    Unit @relation(fields: [unit_id], references: [id], onDelete: Cascade)
