@@ -27,8 +27,8 @@ export const workScopeItemSchema = z.object({
     activity_id: z.number().int().positive(),
     quantity: z.number().nullable().optional(),
     status: WorkScopeStatusEnum.default('PENDING'),
-    start_date: z.date(),
-    end_date: z.date(),
+    start_date: z.date().optional().nullable(),
+    end_date: z.date().optional().nullable(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
 });

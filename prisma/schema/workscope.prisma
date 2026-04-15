@@ -25,8 +25,8 @@ model WorkScopeItem {
     status               WorkScopeStatus       @default(PENDING)
     createdAt            DateTime              @default(now())
     updatedAt            DateTime              @updatedAt
-    start_date           DateTime
-    end_date             DateTime
+    start_date           DateTime?
+    end_date             DateTime?
     // Relations
     WorkscopeMaterials   WorkscopeMaterial[]
     labourAllocations    LabourAllocation[]
