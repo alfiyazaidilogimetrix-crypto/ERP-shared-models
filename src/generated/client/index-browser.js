@@ -944,6 +944,7 @@ exports.Prisma.WorkscopeMaterialScalarFieldEnum = {
   workscope_item_id: 'workscope_item_id',
   material_id: 'material_id',
   quantity: 'quantity',
+  planned_quantity: 'planned_quantity',
   unit_id: 'unit_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

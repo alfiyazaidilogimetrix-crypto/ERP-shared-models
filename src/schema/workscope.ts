@@ -41,6 +41,7 @@ export const workscopeMaterialSchema = z.object({
     workscope_item_id: z.number().int().positive(),
     material_id: z.number().int().positive(),
     quantity: z.number().nullable().optional(),
+    planned_quantity: z.number().nullable().optional(),
     unit_id: z.number().int().positive(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
