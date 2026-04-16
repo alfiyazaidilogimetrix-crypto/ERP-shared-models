@@ -552,11 +552,22 @@ exports.Prisma.LabourAttendanceScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
   date: 'date',
-  team_name: 'team_name'
+  team_name: 'team_name',
+  company_id: 'company_id',
+  head_office_id: 'head_office_id',
+  branch_office_id: 'branch_office_id'
 };
 
 exports.Prisma.LabourAttendanceActivityScalarFieldEnum = {
   id: 'id',
+  no_of_labour: 'no_of_labour',
+  per_labour_cost: 'per_labour_cost',
+  total_working_hours: 'total_working_hours',
+  total_labour_cost: 'total_labour_cost',
+  overtime_cost_per_hour: 'overtime_cost_per_hour',
+  overtime_hours: 'overtime_hours',
+  total_overtime_cost: 'total_overtime_cost',
+  total_cost: 'total_cost',
   activity_id: 'activity_id',
   labour_attendance_id: 'labour_attendance_id'
 };

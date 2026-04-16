@@ -35,6 +35,7 @@ model BranchOffice {
     vendors                      Vendor[]
     projects                     Project[]
     userBranchOffices            userBranchOffice[]
+    labourAttendances            LabourAttendance[]
 
     @@map("branch_office")
 }

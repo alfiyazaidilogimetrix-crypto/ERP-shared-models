@@ -38,6 +38,7 @@ model Company {
     materialBoqs            MaterialBoq[]
     vendors                 Vendor[]
     projects                Project[]
+    labourAttendances       LabourAttendance[]
 
     @@map("companies")
 }

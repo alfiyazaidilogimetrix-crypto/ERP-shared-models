@@ -3,6 +3,12 @@ model LabourAttendance {
     project_id                 Int
     date                       DateTime
     team_name                  String
+    company_id                 Int
+    head_office_id             Int
+    branch_office_id           Int
+    company                    Company                    @relation(fields: [company_id], references: [id])
+    headOffice                 HeadOffice                 @relation(fields: [head_office_id], references: [id])
+    branchOffice               BranchOffice               @relation(fields: [branch_office_id], references: [id])
     project                    Project                    @relation(fields: [project_id], references: [id])
     labourAttendanceActivities LabourAttendanceActivity[]
 
@@ -10,11 +16,19 @@ model LabourAttendance {
 }
 
 model LabourAttendanceActivity {
-    id                   String           @id @default(uuid())
-    activity_id          Int
-    activity             Activity         @relation(fields: [activity_id], references: [id])
-    labour_attendance_id Int
-    labour_attendance    LabourAttendance @relation(fields: [labour_attendance_id], references: [id])
+    id                     String           @id @default(uuid())
+    no_of_labour           Int?
+    per_labour_cost        Float?
+    total_working_hours    Int?
+    total_labour_cost      Float?
+    overtime_cost_per_hour Float?
+    overtime_hours         Int?
+    total_overtime_cost    Float?
+    total_cost             Float?
+    activity_id            Int
+    activity               Activity         @relation(fields: [activity_id], references: [id])
+    labour_attendance_id   Int
+    labour_attendance      LabourAttendance @relation(fields: [labour_attendance_id], references: [id])
 
     @@map("labour_attendance_activity")
 }
