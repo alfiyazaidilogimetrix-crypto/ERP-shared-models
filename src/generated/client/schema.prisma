@@ -1422,6 +1422,8 @@ model WorkScopeItem {
   activity_id          Int
   activity             Activity              @relation(fields: [activity_id], references: [id])
   quantity             Float?
+  executed_quantity    Float?
+  balanced_quantity    Float?
   status               WorkScopeStatus       @default(PENDING)
   createdAt            DateTime              @default(now())
   updatedAt            DateTime              @updatedAt

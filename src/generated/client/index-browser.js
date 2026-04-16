@@ -919,6 +919,8 @@ exports.Prisma.WorkScopeItemScalarFieldEnum = {
   workscope_id: 'workscope_id',
   activity_id: 'activity_id',
   quantity: 'quantity',
+  executed_quantity: 'executed_quantity',
+  balanced_quantity: 'balanced_quantity',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
