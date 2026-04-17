@@ -921,7 +921,6 @@ model PRGRN {
   status                  ReceiptStatus
   received_date           DateTime
   received_time           String?
-  warehouse_id            Int?
   quality_check_completed Boolean                @default(false)
   grn_remarks             String?
   total_amount            Int?
@@ -962,8 +961,7 @@ model PRGRNMaterialReceipt {
   hsn_no      String?
   grn         PRGRN    @relation(fields: [grn_id], references: [id], onDelete: Cascade)
   material    Material @relation(fields: [material_id], references: [id])
-
-  created_at DateTime @default(now())
+  created_at  DateTime @default(now())
 
   @@map("pr_grn_material_receipt")
 }
@@ -1207,35 +1205,36 @@ model Unit {
 }
 
 model User {
-  id                 Int                  @id @default(autoincrement())
-  name               String
-  email              String               @unique
-  emailVerified      Boolean              @default(false)
-  password           String
-  fileId             Int?
-  profileImage       File?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
-  original_password  String?
-  mobileNumber       String?
-  roleId             Int?
-  role               Role?                @relation(fields: [roleId], references: [id])
-  company_id         Int?
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  provider           Provider             @default(credentials)
-  company            Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
-  prs_created_by     PR[]                 @relation("CreatedBy")
-  prs_approved_by    PR[]                 @relation("ApprovedBy")
-  prs                PR[]                 @relation("approvalUser")
-  grns               GRN[]
-  stocks             Stock[]
-  dprs               DPR[]
-  prgrns             PRGRN[]
-  projects           Project[]
-  dieselStocks       DieselStock[]
-  dieselInwards      DieselInward[]
-  dieselConsumptions diesel_consumption[]
-  companies          Company[]
-  userHeadOffices    userHeadOffice[]
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  email               String               @unique
+  emailVerified       Boolean              @default(false)
+  password            String
+  fileId              Int?
+  profileImage        File?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  original_password   String?
+  mobileNumber        String?
+  roleId              Int?
+  role                Role?                @relation(fields: [roleId], references: [id])
+  company_id          Int?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  provider            Provider             @default(credentials)
+  company             Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+  prs_created_by      PR[]                 @relation("CreatedBy")
+  prs_approved_by     PR[]                 @relation("ApprovedBy")
+  prs                 PR[]                 @relation("approvalUser")
+  grns                GRN[]
+  stocks              Stock[]
+  dprs                DPR[]
+  prgrns              PRGRN[]
+  projects            Project[]
+  dieselStocks        DieselStock[]
+  dieselInwards       DieselInward[]
+  dieselConsumptions  diesel_consumption[]
+  companies           Company[]
+  userHeadOffices     userHeadOffice[]
+  warehousesAsManager Warehouse[]          @relation("Inventory Manager")
 
   @@map("users")
 }
@@ -1399,6 +1398,8 @@ model Warehouse {
   state            String
   pincode          String
   district         String
+  manager_id       Int?
+  manager          User?          @relation("Inventory Manager", fields: [manager_id], references: [id], onDelete: Cascade)
   company_id       Int
   company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
   head_office_id   Int

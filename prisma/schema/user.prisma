@@ -1,53 +1,55 @@
 model User {
-    id                Int     @id @default(autoincrement())
-    name              String
-    email             String  @unique
-    emailVerified     Boolean @default(false)
-    password          String
-    fileId            Int?
-    profileImage      File?   @relation(fields: [fileId], references: [id], onDelete: SetNull)
-    original_password String?
-    mobileNumber      String?
-    roleId            Int?
-    role              Role?   @relation(fields: [roleId], references: [id])
-    company_id        Int?
-    createdAt          DateTime             @default(now())
-    updatedAt          DateTime             @updatedAt
-    provider           Provider             @default(credentials)
-    company            Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
-    prs_created_by     PR[]                 @relation("CreatedBy")
-    prs_approved_by    PR[]                 @relation("ApprovedBy")
-    prs                PR[]                 @relation("approvalUser")
-    grns               GRN[]
-    stocks             Stock[]
-    dprs               DPR[]
-    prgrns             PRGRN[]
-    projects           Project[]
-    dieselStocks       DieselStock[]
-    dieselInwards      DieselInward[]
-    dieselConsumptions diesel_consumption[]
-    companies          Company[]
-    userHeadOffices userHeadOffice[]
+    id                  Int                  @id @default(autoincrement())
+    name                String
+    email               String               @unique
+    emailVerified       Boolean              @default(false)
+    password            String
+    fileId              Int?
+    profileImage        File?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
+    original_password   String?
+    mobileNumber        String?
+    roleId              Int?
+    role                Role?                @relation(fields: [roleId], references: [id])
+    company_id          Int?
+    createdAt           DateTime             @default(now())
+    updatedAt           DateTime             @updatedAt
+    provider            Provider             @default(credentials)
+    company             Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+    prs_created_by      PR[]                 @relation("CreatedBy")
+    prs_approved_by     PR[]                 @relation("ApprovedBy")
+    prs                 PR[]                 @relation("approvalUser")
+    grns                GRN[]
+    stocks              Stock[]
+    dprs                DPR[]
+    prgrns              PRGRN[]
+    projects            Project[]
+    dieselStocks        DieselStock[]
+    dieselInwards       DieselInward[]
+    dieselConsumptions  diesel_consumption[]
+    companies           Company[]
+    userHeadOffices     userHeadOffice[]
+    warehousesAsManager Warehouse[]          @relation("Inventory Manager")
 
     @@map("users")
 }
 
 model userHeadOffice {
-    id Int @id @default(autoincrement())
-    userId Int
-    headOfficeId Int
-    userbranchoffice  userBranchOffice[]
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-    headOffice HeadOffice @relation(fields: [headOfficeId], references: [id], onDelete: Cascade)
+    id               Int                @id @default(autoincrement())
+    userId           Int
+    headOfficeId     Int
+    userbranchoffice userBranchOffice[]
+    user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+    headOffice       HeadOffice         @relation(fields: [headOfficeId], references: [id], onDelete: Cascade)
+
     @@map("user_head_office")
 }
 
 model userBranchOffice {
-    id Int @id @default(autoincrement())
+    id               Int            @id @default(autoincrement())
     userHeadOfficeId Int
-    branchOfficeId Int
-    userHeadOffice userHeadOffice @relation(fields: [userHeadOfficeId], references: [id], onDelete: Cascade)
-    branchOffice BranchOffice @relation(fields: [branchOfficeId], references: [id], onDelete: Cascade)
+    branchOfficeId   Int
+    userHeadOffice   userHeadOffice @relation(fields: [userHeadOfficeId], references: [id], onDelete: Cascade)
+    branchOffice     BranchOffice   @relation(fields: [branchOfficeId], references: [id], onDelete: Cascade)
+
     @@map("user_branch_office")
-    
 }

@@ -41,7 +41,6 @@ export const prgrnSchema = z.object({
   status: receiptStatusSchema,
   received_date: z.date().or(z.string().pipe(z.coerce.date())),
   received_time: z.string().nullable().optional(),
-  warehouse_id: z.number().int().positive().nullable().optional(),
   quality_check_completed: z.boolean().default(false),
   grn_remarks: z.string().nullable().optional(),
   total_amount: z.number().int().nonnegative().optional().nullable(),
