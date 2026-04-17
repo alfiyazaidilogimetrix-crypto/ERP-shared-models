@@ -29,5 +29,6 @@ model Stock {
     updatedAt                  DateTime     @updatedAt
     material                   Material?    @relation(fields: [material_id], references: [id])
 
+    @@unique([material_id, warehouse_id, manager_id])
     @@map("stock")
 }
