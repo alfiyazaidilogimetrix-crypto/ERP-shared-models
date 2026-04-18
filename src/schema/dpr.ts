@@ -8,6 +8,19 @@ export const dprFileSchema = z.object({
 });
 
 export type DPRFile = z.infer<typeof dprFileSchema>;
+
+export const dprMaterialConsumptionSchema = z.object({
+  id: z.number().int().positive().optional(),
+  dpr_chainage_id: z.number().int().positive().optional(),
+  workscope_material_id: z.number().int().positive(),
+  quantity: z.number().nullable().optional(),
+  planned_quantity: z.number().nullable().optional(),
+  created_at: z.date().or(z.string().pipe(z.coerce.date())).optional(),
+  updated_at: z.date().or(z.string().pipe(z.coerce.date())).optional(),
+});
+
+export type DPRMaterialConsumption = z.infer<typeof dprMaterialConsumptionSchema>;
+
 // DPR Chainage Entry Schema
 export const dprChainageSchema = z.object({
   id: z.number().int().positive().optional(),
@@ -34,10 +47,12 @@ export const dprChainageSchema = z.object({
   quantity: z.number().nullable().optional(),
 
   plan_quantity: z.number().nullable().optional(),
+  difference: z.number().nullable().optional(),
   work_description: z.string().nullable().optional(),
   boq_rate: z.number().nullable().optional(),
   amount: z.number().nullable().optional(),
-  dprfiles: z.array(dprFileSchema).optional(),
+  images: z.array(dprFileSchema).optional(),
+  dprMaterialConsumptions: z.array(dprMaterialConsumptionSchema).optional(),
 
   created_at: z.date().optional(),
 

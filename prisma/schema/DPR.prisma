@@ -38,7 +38,7 @@ model DPRChainage {
 
     site          Site_type? @default(NONE)
     chainage_from String?
-    chainge_to    String?
+    chainage_to    String?
     category_id   Int?
     category      Category?  @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
@@ -58,13 +58,15 @@ model DPRChainage {
 
     quantity         Float?
     plan_quantity    Float?
+    difference       Float?
     work_description String?
     boq_rate         Float?
     amount           Float?
 
-    created_at DateTime  @default(now())
-    updated_at DateTime  @updatedAt
-    images     DPRFile[]
+    created_at              DateTime                 @default(now())
+    updated_at              DateTime                 @updatedAt
+    images                  DPRFile[]
+    dprMaterialConsumptions DPRMaterialConsumption[]
 
     @@index([dpr_id])
     @@map("dpr_chainages")
@@ -80,4 +82,18 @@ model DPRFile {
 
     @@unique([dpr_id, file_id])
     @@map("dpr_files")
+}
+
+model DPRMaterialConsumption {
+    id                    Int               @id @default(autoincrement())
+    dpr_chainage_id       Int
+    dprChainage           DPRChainage       @relation(fields: [dpr_chainage_id], references: [id], onDelete: Cascade)
+    workscope_material_id Int
+    workscopeMaterial     WorkscopeMaterial @relation(fields: [workscope_material_id], references: [id], onDelete: Cascade)
+    quantity              Float?
+    planned_quantity      Float?
+    created_at            DateTime          @default(now())
+    updated_at            DateTime          @updatedAt
+
+    @@map("dpr_material_consumption")
 }

@@ -137,7 +137,7 @@ exports.Prisma.DPRChainageScalarFieldEnum = {
   dpr_id: 'dpr_id',
   site: 'site',
   chainage_from: 'chainage_from',
-  chainge_to: 'chainge_to',
+  chainage_to: 'chainage_to',
   category_id: 'category_id',
   activity_id: 'activity_id',
   material_id: 'material_id',
@@ -148,6 +148,7 @@ exports.Prisma.DPRChainageScalarFieldEnum = {
   unit_id: 'unit_id',
   quantity: 'quantity',
   plan_quantity: 'plan_quantity',
+  difference: 'difference',
   work_description: 'work_description',
   boq_rate: 'boq_rate',
   amount: 'amount',
@@ -159,6 +160,16 @@ exports.Prisma.DPRFileScalarFieldEnum = {
   id: 'id',
   dpr_id: 'dpr_id',
   file_id: 'file_id'
+};
+
+exports.Prisma.DPRMaterialConsumptionScalarFieldEnum = {
+  id: 'id',
+  dpr_chainage_id: 'dpr_chainage_id',
+  workscope_material_id: 'workscope_material_id',
+  quantity: 'quantity',
+  planned_quantity: 'planned_quantity',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.GRNScalarFieldEnum = {
@@ -950,7 +961,6 @@ exports.Prisma.WorkscopeMaterialScalarFieldEnum = {
   workscope_item_id: 'workscope_item_id',
   material_id: 'material_id',
   quantity: 'quantity',
-  planned_quantity: 'planned_quantity',
   unit_id: 'unit_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1122,6 +1132,7 @@ exports.Prisma.ModelName = {
   DPR: 'DPR',
   DPRChainage: 'DPRChainage',
   DPRFile: 'DPRFile',
+  DPRMaterialConsumption: 'DPRMaterialConsumption',
   GRN: 'GRN',
   GRNMaterialReceipt: 'GRNMaterialReceipt',
   GRNFile: 'GRNFile',
