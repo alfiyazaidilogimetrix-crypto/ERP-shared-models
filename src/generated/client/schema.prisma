@@ -838,11 +838,11 @@ model Material {
   prmaterialItems       PRMaterialItem[]
   poorderItems          POOrderItem[]
   grnmaterialReceipts   GRNMaterialReceipt[]
-  stocks                Stock[]
   prgrnmaterialReceipts PRGRNMaterialReceipt[]
   dprchainages          DPRChainage[]
   materialBoqItems      MaterialBoqItem[]
   workscopeMaterials    WorkscopeMaterial[]
+  stockMaterials        stockMaterial[]
 
   @@map("materials")
 }
@@ -1102,29 +1102,39 @@ enum StockStatus {
 }
 
 model Stock {
-  id                         Int          @id @default(autoincrement())
+  id                Int             @id @default(autoincrement())
+  warehouse_id      Int
+  warehouse         Warehouse       @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
+  manager_id        Int
+  inventory_manager User            @relation(fields: [manager_id], references: [id])
+  company_id        Int
+  head_office_id    Int
+  branch_office_id  Int
+  company           Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  headOffice        HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+  branchOffice      BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  stockMaterials    stockMaterial[]
+
+  @@map("stock")
+}
+
+model stockMaterial {
+  id                         Int         @id @default(autoincrement())
+  stock_id                   Int
   material_id                Int
-  warehouse_id               Int
-  warehouse                  Warehouse    @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
-  status                     StockStatus  @default(IN_STOCK)
+  quantity                   Float?
   minimum_threshold_quantity Int?
   current_stock              Int?
-  quantity                   Int?
   specifications             String?
-  manager_id                 Int
-  inventory_manager          User         @relation(fields: [manager_id], references: [id])
-  company_id                 Int
-  company                    Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id             Int
-  headOffice                 HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id           Int
-  branchOffice               BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  createdAt                  DateTime     @default(now())
-  updatedAt                  DateTime     @updatedAt
-  material                   Material?    @relation(fields: [material_id], references: [id])
+  status                     StockStatus @default(IN_STOCK)
+  stock                      Stock       @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+  material                   Material    @relation(fields: [material_id], references: [id], onDelete: Cascade)
+  createdAt                  DateTime    @default(now())
+  updatedAt                  DateTime    @updatedAt
 
-  @@unique([material_id, warehouse_id, manager_id])
-  @@map("stock")
+  @@map("stock_material")
 }
 
 enum work_order_status {
@@ -1206,36 +1216,35 @@ model Unit {
 }
 
 model User {
-  id                  Int                  @id @default(autoincrement())
-  name                String
-  email               String               @unique
-  emailVerified       Boolean              @default(false)
-  password            String
-  fileId              Int?
-  profileImage        File?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
-  original_password   String?
-  mobileNumber        String?
-  roleId              Int?
-  role                Role?                @relation(fields: [roleId], references: [id])
-  company_id          Int?
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  provider            Provider             @default(credentials)
-  company             Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
-  prs_created_by      PR[]                 @relation("CreatedBy")
-  prs_approved_by     PR[]                 @relation("ApprovedBy")
-  prs                 PR[]                 @relation("approvalUser")
-  grns                GRN[]
-  stocks              Stock[]
-  dprs                DPR[]
-  prgrns              PRGRN[]
-  projects            Project[]
-  dieselStocks        DieselStock[]
-  dieselInwards       DieselInward[]
-  dieselConsumptions  diesel_consumption[]
-  companies           Company[]
-  userHeadOffices     userHeadOffice[]
-  warehousesAsManager Warehouse[]          @relation("Inventory Manager")
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  email              String               @unique
+  emailVerified      Boolean              @default(false)
+  password           String
+  fileId             Int?
+  profileImage       File?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  original_password  String?
+  mobileNumber       String?
+  roleId             Int?
+  role               Role?                @relation(fields: [roleId], references: [id])
+  company_id         Int?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  provider           Provider             @default(credentials)
+  company            Company?             @relation(name: "company_users", fields: [company_id], references: [id], onDelete: Cascade)
+  prs_created_by     PR[]                 @relation("CreatedBy")
+  prs_approved_by    PR[]                 @relation("ApprovedBy")
+  prs                PR[]                 @relation("approvalUser")
+  grns               GRN[]
+  stocks             Stock[]
+  dprs               DPR[]
+  prgrns             PRGRN[]
+  projects           Project[]
+  dieselStocks       DieselStock[]
+  dieselInwards      DieselInward[]
+  dieselConsumptions diesel_consumption[]
+  companies          Company[]
+  userHeadOffices    userHeadOffice[]
 
   @@map("users")
 }
@@ -1399,8 +1408,6 @@ model Warehouse {
   state            String
   pincode          String
   district         String
-  manager_id       Int?
-  manager          User?          @relation("Inventory Manager", fields: [manager_id], references: [id], onDelete: Cascade)
   company_id       Int
   company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
   head_office_id   Int

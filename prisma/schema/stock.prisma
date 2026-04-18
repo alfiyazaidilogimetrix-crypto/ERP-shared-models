@@ -8,27 +8,37 @@ enum StockStatus {
 }
 
 model Stock {
-    id                         Int          @id @default(autoincrement())
+    id                Int             @id @default(autoincrement())
+    warehouse_id      Int
+    warehouse         Warehouse       @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
+    manager_id        Int
+    inventory_manager User            @relation(fields: [manager_id], references: [id])
+    company_id        Int
+    head_office_id    Int
+    branch_office_id  Int
+    company           Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+    headOffice        HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
+    branchOffice      BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+    createdAt         DateTime        @default(now())
+    updatedAt         DateTime        @updatedAt
+    stockMaterials    stockMaterial[]
+
+    @@map("stock")
+}
+
+model stockMaterial {
+    id                         Int         @id @default(autoincrement())
+    stock_id                   Int
     material_id                Int
-    warehouse_id               Int
-    warehouse                  Warehouse    @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
-    status                     StockStatus  @default(IN_STOCK)
+    quantity                   Float?
     minimum_threshold_quantity Int?
     current_stock              Int?
-    quantity                   Int?
     specifications             String?
-    manager_id                 Int
-    inventory_manager          User         @relation(fields: [manager_id], references: [id])
-    company_id                 Int
-    company                    Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    head_office_id             Int
-    headOffice                 HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branch_office_id           Int
-    branchOffice               BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-    createdAt                  DateTime     @default(now())
-    updatedAt                  DateTime     @updatedAt
-    material                   Material?    @relation(fields: [material_id], references: [id])
+    status                     StockStatus @default(IN_STOCK)
+    stock                      Stock       @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    material                   Material    @relation(fields: [material_id], references: [id], onDelete: Cascade)
+    createdAt                  DateTime    @default(now())
+    updatedAt                  DateTime    @updatedAt
 
-    @@unique([material_id, warehouse_id, manager_id])
-    @@map("stock")
+    @@map("stock_material")
 }

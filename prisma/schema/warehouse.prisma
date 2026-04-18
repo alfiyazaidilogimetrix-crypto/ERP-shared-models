@@ -5,8 +5,6 @@ model Warehouse {
     state            String
     pincode          String
     district         String
-    manager_id       Int?
-    manager          User?          @relation("Inventory Manager", fields: [manager_id], references: [id], onDelete: Cascade)
     company_id       Int
     company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
     head_office_id   Int

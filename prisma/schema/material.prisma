@@ -9,11 +9,11 @@ model Material {
     prmaterialItems       PRMaterialItem[]
     poorderItems          POOrderItem[]
     grnmaterialReceipts   GRNMaterialReceipt[]
-    stocks                Stock[]
     prgrnmaterialReceipts PRGRNMaterialReceipt[]
     dprchainages          DPRChainage[]
     materialBoqItems      MaterialBoqItem[]
     workscopeMaterials    WorkscopeMaterial[]
+    stockMaterials        stockMaterial[]
 
     @@map("materials")
 }

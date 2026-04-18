@@ -738,17 +738,24 @@ exports.Prisma.RoleScalarFieldEnum = {
 
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
-  material_id: 'material_id',
   warehouse_id: 'warehouse_id',
-  status: 'status',
-  minimum_threshold_quantity: 'minimum_threshold_quantity',
-  current_stock: 'current_stock',
-  quantity: 'quantity',
-  specifications: 'specifications',
   manager_id: 'manager_id',
   company_id: 'company_id',
   head_office_id: 'head_office_id',
   branch_office_id: 'branch_office_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StockMaterialScalarFieldEnum = {
+  id: 'id',
+  stock_id: 'stock_id',
+  material_id: 'material_id',
+  quantity: 'quantity',
+  minimum_threshold_quantity: 'minimum_threshold_quantity',
+  current_stock: 'current_stock',
+  specifications: 'specifications',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -907,7 +914,6 @@ exports.Prisma.WarehouseScalarFieldEnum = {
   state: 'state',
   pincode: 'pincode',
   district: 'district',
-  manager_id: 'manager_id',
   company_id: 'company_id',
   head_office_id: 'head_office_id',
   branch_office_id: 'branch_office_id',
@@ -1160,6 +1166,7 @@ exports.Prisma.ModelName = {
   ProjectType: 'ProjectType',
   Role: 'Role',
   Stock: 'Stock',
+  stockMaterial: 'stockMaterial',
   sub_contractor_work_order: 'sub_contractor_work_order',
   work_order_items: 'work_order_items',
   tender: 'tender',

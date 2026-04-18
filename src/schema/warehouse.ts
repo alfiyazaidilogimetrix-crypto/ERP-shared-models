@@ -7,7 +7,6 @@ export const warehouseSchema = z.object({
   state: z.string().min(1, "State is required"),
   pincode: z.string().min(1, "Pincode is required"),
   district: z.string().min(1, "District is required"),
-  manager_id: z.number().int().positive().optional(),
   company_id: z.number().int().positive(),
   head_office_id: z.number().int().positive(),
   branch_office_id: z.number().int().positive(),
