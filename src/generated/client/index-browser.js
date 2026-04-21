@@ -687,7 +687,7 @@ exports.Prisma.RoleScalarFieldEnum = {
 exports.Prisma.StockScalarFieldEnum = {
   id: 'id',
   warehouse_id: 'warehouse_id',
-  manager_id: 'manager_id',
+  project_id: 'project_id',
   company_id: 'company_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -5,7 +5,7 @@ import { stockStatusSchema, stockTransactionTypeSchema } from './enums';
 export const stockSchema = z.object({
   id: z.number().int().positive().optional(),
   warehouse_id: z.number().int().positive(),
-  manager_id: z.number().int().positive(),
+  project_id: z.number().int().positive(),
   company_id: z.number().int().positive(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),

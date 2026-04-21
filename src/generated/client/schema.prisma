@@ -912,6 +912,7 @@ model Project {
   dieselConsumptions      diesel_consumption[]
   machines                Machine[]
   tenders                 tender[]
+  stocks                  Stock[]
 
   @@map("project")
 }
@@ -987,16 +988,16 @@ enum StockTransactionType {
 }
 
 model Stock {
-  id                Int             @id @default(autoincrement())
-  warehouse_id      Int
-  warehouse         Warehouse       @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
-  manager_id        Int
-  inventory_manager User            @relation(fields: [manager_id], references: [id])
-  company_id        Int
-  company           Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @updatedAt
-  stockMaterials    stockMaterial[]
+  id             Int             @id @default(autoincrement())
+  warehouse_id   Int
+  warehouse      Warehouse       @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
+  project_id     Int?
+  project        Project?        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  company_id     Int
+  company        Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  stockMaterials stockMaterial[]
 
   @@map("stock")
 }
@@ -1129,7 +1130,6 @@ model User {
   prs_approved_by    PR[]                 @relation("ApprovedBy")
   prs                PR[]                 @relation("approvalUser")
   grns               GRN[]
-  stocks             Stock[]
   dprs               DPR[]
   prgrns             PRGRN[]
   projects           Project[]

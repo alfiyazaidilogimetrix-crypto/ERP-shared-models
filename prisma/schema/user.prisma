@@ -19,7 +19,6 @@ model User {
     prs_approved_by    PR[]                 @relation("ApprovedBy")
     prs                PR[]                 @relation("approvalUser")
     grns               GRN[]
-    stocks             Stock[]
     dprs               DPR[]
     prgrns             PRGRN[]
     projects           Project[]
