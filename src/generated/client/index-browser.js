@@ -166,6 +166,7 @@ exports.Prisma.DPRMaterialConsumptionScalarFieldEnum = {
   workscope_material_id: 'workscope_material_id',
   quantity: 'quantity',
   planned_quantity: 'planned_quantity',
+  is_stock_deducted: 'is_stock_deducted',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };

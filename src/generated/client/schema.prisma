@@ -88,6 +88,7 @@ model DPRMaterialConsumption {
   workscopeMaterial     WorkscopeMaterial @relation(fields: [workscope_material_id], references: [id], onDelete: Cascade)
   quantity              Float?
   planned_quantity      Float?
+  is_stock_deducted     Boolean           @default(false)
   created_at            DateTime          @default(now())
   updated_at            DateTime          @updatedAt
 
