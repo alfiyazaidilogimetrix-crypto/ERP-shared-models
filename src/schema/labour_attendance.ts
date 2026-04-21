@@ -22,8 +22,6 @@ export const labourAttendanceSchema = z.object({
   date: z.date().or(z.string().pipe(z.coerce.date())),
   team_name: z.string(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   labourAttendanceActivities: z.array(labourAttendanceActivitySchema).optional(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),

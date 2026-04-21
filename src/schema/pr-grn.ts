@@ -49,8 +49,6 @@ export const prgrnSchema = z.object({
   total_received: z.number().int().nonnegative().optional().nullable(),
   grn_number: z.string().optional().nullable(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_by_id: z.number().int().positive().nullable().optional(),
   material_receipts: z.array(prgrnMaterialReceiptSchema).optional(),
   grnfiles: z.array(prgrnFileSchema).optional(),

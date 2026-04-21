@@ -13,8 +13,6 @@ export const prSchema = z.object({
   approved_by: z.number().int().positive().nullable().optional(),
   send_to: z.number().int().positive().nullable().optional(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

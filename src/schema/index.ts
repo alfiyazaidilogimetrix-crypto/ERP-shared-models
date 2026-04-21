@@ -30,8 +30,6 @@ import * as project_type from './ProjectType';
 import * as project_category from './project_category';
 import * as work_order_items from './work_order_items';
 import * as tender from './tender';
-import * as head_office from './head_office';
-import * as branch_office from './branch_office';
 import * as warehouse from './warehouse';
 
 
@@ -67,8 +65,6 @@ export * from './ProjectType';
 export * from './project_category';
 export * from './work_order_items';
 export * from './tender';
-export * from './head_office';
-export * from './branch_office';
 export * from './warehouse';
 
 
@@ -105,7 +101,5 @@ export const allModels = {
   ...project_category,
   ...work_order_items,
   ...tender,
-  ...head_office,
-  ...branch_office,
   ...warehouse,
 };

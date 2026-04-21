@@ -14,8 +14,6 @@ export const vendorSchema = z.object({
   vendor_type: vendorTypeSchema.nullable().optional(),
   status: vendorStatusSchema.default('ACTIVE'),
   company_id: z.number().int().nullable().optional(),
-  head_office_id: z.number().int().nullable().optional(),
-  branch_office_id: z.number().int().nullable().optional(),
 
   created_at: z.date().optional(),
   updated_at: z.date().optional(),

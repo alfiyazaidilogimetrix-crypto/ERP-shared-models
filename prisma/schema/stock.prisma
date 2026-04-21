@@ -14,11 +14,7 @@ model Stock {
     manager_id        Int
     inventory_manager User            @relation(fields: [manager_id], references: [id])
     company_id        Int
-    head_office_id    Int
-    branch_office_id  Int
     company           Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice        HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice      BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     createdAt         DateTime        @default(now())
     updatedAt         DateTime        @updatedAt
     stockMaterials    stockMaterial[]

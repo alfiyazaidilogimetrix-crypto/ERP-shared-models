@@ -31,11 +31,7 @@ model Project {
     total_length     String?
     total_chainage   String[]
     company_id       Int
-    head_office_id   Int
-    branch_office_id Int
     company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

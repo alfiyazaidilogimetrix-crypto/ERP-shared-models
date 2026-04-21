@@ -4,11 +4,7 @@ model LabourAttendance {
     date                       DateTime
     team_name                  String
     company_id                 Int
-    head_office_id             Int
-    branch_office_id           Int
     company                    Company                    @relation(fields: [company_id], references: [id])
-    headOffice                 HeadOffice                 @relation(fields: [head_office_id], references: [id])
-    branchOffice               BranchOffice               @relation(fields: [branch_office_id], references: [id])
     project                    Project                    @relation(fields: [project_id], references: [id])
     labourAttendanceActivities LabourAttendanceActivity[]
 

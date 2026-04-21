@@ -27,28 +27,6 @@ model User {
     dieselInwards      DieselInward[]
     dieselConsumptions diesel_consumption[]
     companies          Company[]
-    userHeadOffices    userHeadOffice[]
 
     @@map("users")
-}
-
-model userHeadOffice {
-    id               Int                @id @default(autoincrement())
-    userId           Int
-    headOfficeId     Int
-    userbranchoffice userBranchOffice[]
-    user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-    headOffice       HeadOffice         @relation(fields: [headOfficeId], references: [id], onDelete: Cascade)
-
-    @@map("user_head_office")
-}
-
-model userBranchOffice {
-    id               Int            @id @default(autoincrement())
-    userHeadOfficeId Int
-    branchOfficeId   Int
-    userHeadOffice   userHeadOffice @relation(fields: [userHeadOfficeId], references: [id], onDelete: Cascade)
-    branchOffice     BranchOffice   @relation(fields: [branchOfficeId], references: [id], onDelete: Cascade)
-
-    @@map("user_branch_office")
 }

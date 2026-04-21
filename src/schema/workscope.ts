@@ -14,8 +14,6 @@ export const workScopeSchema = z.object({
     id: z.number().int().positive().optional(),
     project_id: z.number().int().positive(),
     company_id: z.number().int().positive(),
-    head_office_id: z.number().int().positive(),
-    branch_office_id: z.number().int().positive(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
 });

@@ -41,11 +41,7 @@ model PO {
     billing_address        String?
     remarks                String?
     company_id             Int
-    head_office_id         Int
-    branch_office_id       Int
     company                Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice             HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice           BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     grns                   GRN[]
     order_items            POOrderItem[]
     pr                     PR             @relation(fields: [pr_id], references: [id])

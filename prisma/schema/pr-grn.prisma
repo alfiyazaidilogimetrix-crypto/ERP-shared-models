@@ -16,13 +16,9 @@ model PRGRN {
     total_received          Int?
     grn_number              String?
     company_id              Int
-    head_office_id          Int
-    branch_office_id        Int
     pr_id                   Int
     created_by_id           Int?
     company                 Company                @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice              HeadOffice             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice            BranchOffice           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     material_receipts       PRGRNMaterialReceipt[]
     purchase_order          PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
     grnfiles                PRGRNFile[]

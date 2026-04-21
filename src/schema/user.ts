@@ -17,22 +17,6 @@ export const userSchema = z.object({
   provider: providerSchema.default("credentials"),
 });
 
-export const userHeadOfficeSchema = z.object({
-  id: z.number().int().positive().optional(),
-  userId: z.number().int().positive(),
-  headOfficeId: z.number().int().positive(),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-});
-
-export const userBranchOfficeSchema = z.object({
-  id: z.number().int().positive().optional(),
-  userHeadOfficeId: z.number().int().positive(),
-  branchOfficeId: z.number().int().positive(),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-});
-
 export const userRegisterSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -48,6 +32,4 @@ export const userLoginSchema = z.object({
 export type User = z.infer<typeof userSchema>;
 export type UserRegister = z.infer<typeof userRegisterSchema>;
 export type UserLogin = z.infer<typeof userLoginSchema>;
-export type UserHeadOffice = z.infer<typeof userHeadOfficeSchema>;
-export type UserBranchOffice = z.infer<typeof userBranchOfficeSchema>;
 

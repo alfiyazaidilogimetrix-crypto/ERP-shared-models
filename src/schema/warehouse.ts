@@ -8,8 +8,6 @@ export const warehouseSchema = z.object({
   pincode: z.string().min(1, "Pincode is required"),
   district: z.string().min(1, "District is required"),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 });

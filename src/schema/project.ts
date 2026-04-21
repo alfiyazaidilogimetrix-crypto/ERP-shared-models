@@ -22,8 +22,6 @@ export const projectSchema = z.object({
   total_length: z.string().nullable().optional(),
   total_chainage: z.array(z.string()).optional(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
   projectCategories: z.array(z.any()).optional(),

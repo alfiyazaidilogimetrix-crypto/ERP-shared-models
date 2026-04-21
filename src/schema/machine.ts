@@ -10,8 +10,6 @@ export const machineSchema = z.object({
   project_id: z.number().int().positive(),
   machine_count: z.number().int().positive().default(1),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

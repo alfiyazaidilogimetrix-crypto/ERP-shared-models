@@ -13,8 +13,6 @@ export const dieselConsumptionSchema = z.object({
   remarks: z.string().optional(),
   project_id: z.number().int().positive(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });
@@ -55,8 +53,6 @@ export const dieselInwardSchema = z.object({
   invoiceNumber: z.string().nullable().optional(),
   remarks: z.string().nullable().optional(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
   dieselInwardFiles: z.array(dieselInwardFileSchema).optional(),
@@ -69,8 +65,6 @@ export const dieselStockSchema = z.object({
   tank_capacity_litres: z.number().nonnegative().nullable().optional(),
   manager_id: z.number().int().positive(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 });

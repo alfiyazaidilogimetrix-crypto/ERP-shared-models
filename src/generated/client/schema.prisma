@@ -8,15 +8,11 @@ enum Site_type {
 model DPR {
   id Int @id @default(autoincrement())
 
-  date             DateTime
-  project_id       Int
-  submitted_by     Int
-  company_id       Int
-  head_office_id   Int
-  branch_office_id Int
-  company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  date         DateTime
+  project_id   Int
+  submitted_by Int
+  company_id   Int
+  company      Company  @relation(fields: [company_id], references: [id], onDelete: Cascade)
 
   project Project       @relation(fields: [project_id], references: [id], onDelete: Cascade)
   user    User          @relation(fields: [submitted_by], references: [id], onDelete: Cascade)
@@ -130,11 +126,7 @@ model GRN {
   warehouse_id            Int?
   warehouse               Warehouse?           @relation(fields: [warehouse_id], references: [id], onDelete: Cascade)
   company_id              Int
-  head_office_id          Int
-  branch_office_id        Int
   company                 Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice              HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice            BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   material_receipts       GRNMaterialReceipt[]
   purchase_order          PO                   @relation(fields: [po_id], references: [id], onDelete: Cascade)
   created_by_id           Int?
@@ -226,11 +218,7 @@ model PO {
   billing_address        String?
   remarks                String?
   company_id             Int
-  head_office_id         Int
-  branch_office_id       Int
   company                Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice             HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice           BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   grns                   GRN[]
   order_items            POOrderItem[]
   pr                     PR             @relation(fields: [pr_id], references: [id])
@@ -279,30 +267,26 @@ enum PRType {
 }
 
 model PR {
-  id               Int              @id @default(autoincrement())
-  project_id       Int
-  pr_code          String           @unique
-  pr_type          PRType           @default(NONE)
-  status           PRStatus         @default(DRAFT)
-  remarks          String?
-  user_id          Int? // Created by
-  approved_by      Int? // Approver (User ID)
-  send_to          Int?
-  user             User?            @relation("CreatedBy", fields: [user_id], references: [id])
-  approval_user    User?            @relation("approvalUser", fields: [send_to], references: [id])
-  approvedUser     User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
-  company_id       Int
-  company          Company          @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id   Int
-  headOffice       HeadOffice       @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id Int
-  branchOffice     BranchOffice     @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  material_items   PRMaterialItem[]
-  project          Project          @relation(fields: [project_id], references: [id])
-  created_at       DateTime         @default(now())
-  updated_at       DateTime         @updatedAt
-  pos              PO[]
-  prgrns           PRGRN[]
+  id             Int              @id @default(autoincrement())
+  project_id     Int
+  pr_code        String           @unique
+  pr_type        PRType           @default(NONE)
+  status         PRStatus         @default(DRAFT)
+  remarks        String?
+  user_id        Int? // Created by
+  approved_by    Int? // Approver (User ID)
+  send_to        Int?
+  user           User?            @relation("CreatedBy", fields: [user_id], references: [id])
+  approval_user  User?            @relation("approvalUser", fields: [send_to], references: [id])
+  approvedUser   User?            @relation("ApprovedBy", fields: [approved_by], references: [id])
+  company_id     Int
+  company        Company          @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  material_items PRMaterialItem[]
+  project        Project          @relation(fields: [project_id], references: [id])
+  created_at     DateTime         @default(now())
+  updated_at     DateTime         @updatedAt
+  pos            PO[]
+  prgrns         PRGRN[]
 
   @@index([project_id])
   @@index([user_id])
@@ -340,48 +324,6 @@ model Activity {
   labourAttendanceActivities LabourAttendanceActivity[]
 
   @@map("activities")
-}
-
-model BranchOffice {
-  id                           Int                         @id @default(autoincrement())
-  company_id                   Int
-  company                      Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id               Int
-  headOffice                   HeadOffice                  @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  office_name                  String
-  office_id                    String
-  address                      String
-  pincode                      String
-  state                        String
-  city                         String
-  phone_number                 String
-  mail_id                      String
-  office_incharge_name         String?
-  office_incharge_phone_number String?
-  office_incharge_mail_id      String?
-  created_at                   DateTime                    @default(now())
-  updated_at                   DateTime                    @updatedAt
-  workScopes                   WorkScope[]
-  subContractorWorkOrders      sub_contractor_work_order[]
-  warehouses                   Warehouse[]
-  stocks                       Stock[]
-  prs                          PR[]
-  pos                          PO[]
-  dieselConsumptions           diesel_consumption[]
-  dieselInwards                DieselInward[]
-  dprs                         DPR[]
-  grns                         GRN[]
-  invoices                     invoice[]
-  machines                     Machine[]
-  prgrns                       PRGRN[]
-  dieselStocks                 DieselStock[]
-  materialBoqs                 MaterialBoq[]
-  vendors                      Vendor[]
-  projects                     Project[]
-  userBranchOffices            userBranchOffice[]
-  labourAttendances            LabourAttendance[]
-
-  @@map("branch_office")
 }
 
 model Category {
@@ -426,8 +368,6 @@ model Company {
   owner_id                Int?
   ownerDetails            owner_details?              @relation(fields: [owner_id], references: [id], onDelete: Cascade)
   companyFiles            company_files[]
-  headOffices             HeadOffice[]
-  branchOffices           BranchOffice[]
   users                   User[]                      @relation(name: "company_users")
   workScopes              WorkScope[]
   subContractorWorkOrders sub_contractor_work_order[]
@@ -494,11 +434,7 @@ model diesel_consumption {
   remarks                String
   project_id             Int
   company_id             Int
-  head_office_id         Int
-  branch_office_id       Int
   company                Company                   @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice             HeadOffice                @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice           BranchOffice              @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   project                Project                   @relation(fields: [project_id], references: [id])
   machine                Machine                   @relation(fields: [machine_id], references: [id])
   activity               Activity                  @relation(fields: [activity_id], references: [id])
@@ -562,11 +498,7 @@ model DieselInward {
   invoiceNumber        String?
   remarks              String?
   company_id           Int
-  head_office_id       Int
-  branch_office_id     Int
   company              Company              @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice           HeadOffice           @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice         BranchOffice         @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   createdAt            DateTime             @default(now())
   updatedAt            DateTime             @updatedAt
   dieselInwardFiles    diesel_inward_file[]
@@ -585,21 +517,17 @@ model diesel_inward_file {
 }
 
 model DieselStock {
-  id                      Int          @id @default(autoincrement())
+  id                      Int       @id @default(autoincrement())
   warehouse_id            Int
-  warehouse               Warehouse    @relation(fields: [warehouse_id], references: [id])
+  warehouse               Warehouse @relation(fields: [warehouse_id], references: [id])
   current_quantity_litres Float
   tank_capacity_litres    Float?
   manager_id              Int
-  manager                 User         @relation(fields: [manager_id], references: [id])
+  manager                 User      @relation(fields: [manager_id], references: [id])
   company_id              Int
-  head_office_id          Int
-  branch_office_id        Int
-  company                 Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice              HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice            BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  createdAt               DateTime     @default(now())
-  updatedAt               DateTime     @updatedAt
+  company                 Company   @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
 
   @@map("diesel_stock")
 }
@@ -631,78 +559,33 @@ model File {
   @@map("files")
 }
 
-model HeadOffice {
-  id                           Int                         @id @default(autoincrement())
-  company_id                   Int
-  company                      Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  office_name                  String
-  office_id                    String
-  address                      String
-  pincode                      String
-  state                        String
-  city                         String
-  phone_number                 String
-  mail_id                      String
-  office_incharge_name         String?
-  office_incharge_phone_number String?
-  office_incharge_mail_id      String?
-  created_at                   DateTime                    @default(now())
-  updated_at                   DateTime                    @updatedAt
-  branchOffices                BranchOffice[]
-  workScopes                   WorkScope[]
-  subContractorWorkOrders      sub_contractor_work_order[]
-  warehouses                   Warehouse[]
-  stocks                       Stock[]
-  prs                          PR[]
-  pos                          PO[]
-  dieselConsumptions           diesel_consumption[]
-  dieselInwards                DieselInward[]
-  dprs                         DPR[]
-  grns                         GRN[]
-  invoices                     invoice[]
-  machines                     Machine[]
-  prgrns                       PRGRN[]
-  dieselStocks                 DieselStock[]
-  materialBoqs                 MaterialBoq[]
-  vendors                      Vendor[]
-  projects                     Project[]
-  userHeadOffices              userHeadOffice[]
-  labourAttendances            LabourAttendance[]
-
-  @@map("head_office")
-}
-
 model invoice {
-  id               Int                   @id @default(autoincrement())
-  invoice_number   String
-  invoice_date     DateTime
-  invoice_type     String
-  irn              String?
-  ack_no           String?
-  ack_date         DateTime?
-  eway_bill_no     String?
-  place_of_supply  String?
-  destination      String?
-  vehicle_number   String?
-  total_quantity   Float?
-  total_amount     Float?
-  round_off        Float?
-  amount_in_words  String?
-  company_id       Int
-  head_office_id   Int
-  branch_office_id Int
-  company          Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice       HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice     BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  grn_id           Int
-  grn              GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
-  vendor_id        Int
-  vendor           Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
-  seller           invoice_seller?
-  buyer            invoice_buyer?
-  consignee        invoice_consignee?
-  tax              invoice_tax?
-  bank_details     invoice_bank_details?
+  id              Int                   @id @default(autoincrement())
+  invoice_number  String
+  invoice_date    DateTime
+  invoice_type    String
+  irn             String?
+  ack_no          String?
+  ack_date        DateTime?
+  eway_bill_no    String?
+  place_of_supply String?
+  destination     String?
+  vehicle_number  String?
+  total_quantity  Float?
+  total_amount    Float?
+  round_off       Float?
+  amount_in_words String?
+  company_id      Int
+  company         Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  grn_id          Int
+  grn             GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
+  vendor_id       Int
+  vendor          Vendor                @relation(fields: [vendor_id], references: [id], onDelete: Cascade)
+  seller          invoice_seller?
+  buyer           invoice_buyer?
+  consignee       invoice_consignee?
+  tax             invoice_tax?
+  bank_details    invoice_bank_details?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -790,11 +673,7 @@ model LabourAttendance {
   date                       DateTime
   team_name                  String
   company_id                 Int
-  head_office_id             Int
-  branch_office_id           Int
   company                    Company                    @relation(fields: [company_id], references: [id])
-  headOffice                 HeadOffice                 @relation(fields: [head_office_id], references: [id])
-  branchOffice               BranchOffice               @relation(fields: [branch_office_id], references: [id])
   project                    Project                    @relation(fields: [project_id], references: [id])
   labourAttendanceActivities LabourAttendanceActivity[]
 
@@ -830,11 +709,7 @@ model Machine {
   project_id           Int
   project              Project               @relation(fields: [project_id], references: [id])
   company_id           Int
-  head_office_id       Int
-  branch_office_id     Int
   company              Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice           HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice         BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   created_at           DateTime              @default(now())
   updated_at           DateTime              @updatedAt
   dieselConsumptions   diesel_consumption[]
@@ -867,16 +742,12 @@ model MaterialBoq {
   id                      Int                         @id @default(autoincrement())
   project_id              Int
   company_id              Int
-  head_office_id          Int
-  branch_office_id        Int
   createdAt               DateTime                    @default(now())
   updatedAt               DateTime                    @updatedAt
   materialBoqItems        MaterialBoqItem[]
   subContractorWorkOrders sub_contractor_work_order[]
   project                 Project                     @relation(fields: [project_id], references: [id])
   company                 Company                     @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice              HeadOffice                  @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice            BranchOffice                @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
 
   @@map("material_boq")
 }
@@ -945,13 +816,9 @@ model PRGRN {
   total_received          Int?
   grn_number              String?
   company_id              Int
-  head_office_id          Int
-  branch_office_id        Int
   pr_id                   Int
   created_by_id           Int?
   company                 Company                @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice              HeadOffice             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice            BranchOffice           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   material_receipts       PRGRNMaterialReceipt[]
   purchase_order          PR                     @relation(fields: [pr_id], references: [id], onDelete: Cascade)
   grnfiles                PRGRNFile[]
@@ -1014,24 +881,20 @@ model Project {
   budget String?
   status ProjectStatus @default(PLANNED)
 
-  client           String?
-  description      String?
-  progress         Int? // 0–100 %
-  manager_id       Int?
-  project_manager  User?        @relation(fields: [manager_id], references: [id])
-  district         String?
-  state            String?
-  pincode          String?
-  from_length      String?
-  to_length        String?
-  total_length     String?
-  total_chainage   String[]
-  company_id       Int
-  head_office_id   Int
-  branch_office_id Int
-  company          Company      @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice       HeadOffice   @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice     BranchOffice @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
+  client          String?
+  description     String?
+  progress        Int? // 0–100 %
+  manager_id      Int?
+  project_manager User?    @relation(fields: [manager_id], references: [id])
+  district        String?
+  state           String?
+  pincode         String?
+  from_length     String?
+  to_length       String?
+  total_length    String?
+  total_chainage  String[]
+  company_id      Int
+  company         Company  @relation(fields: [company_id], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -1124,11 +987,7 @@ model Stock {
   manager_id        Int
   inventory_manager User            @relation(fields: [manager_id], references: [id])
   company_id        Int
-  head_office_id    Int
-  branch_office_id  Int
   company           Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  headOffice        HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branchOffice      BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   stockMaterials    stockMaterial[]
@@ -1179,10 +1038,6 @@ model sub_contractor_work_order {
   payment_status         payment_status     @default(PENDING)
   company_id             Int
   company                Company            @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id         Int
-  headOffice             HeadOffice         @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id       Int
-  branchOffice           BranchOffice       @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   project                Project            @relation(fields: [project_id], references: [id])
   vendor                 Vendor             @relation(fields: [vendor_id], references: [id])
   material_boq           MaterialBoq        @relation(fields: [materia_boq_id], references: [id])
@@ -1260,30 +1115,8 @@ model User {
   dieselInwards      DieselInward[]
   dieselConsumptions diesel_consumption[]
   companies          Company[]
-  userHeadOffices    userHeadOffice[]
 
   @@map("users")
-}
-
-model userHeadOffice {
-  id               Int                @id @default(autoincrement())
-  userId           Int
-  headOfficeId     Int
-  userbranchoffice userBranchOffice[]
-  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  headOffice       HeadOffice         @relation(fields: [headOfficeId], references: [id], onDelete: Cascade)
-
-  @@map("user_head_office")
-}
-
-model userBranchOffice {
-  id               Int            @id @default(autoincrement())
-  userHeadOfficeId Int
-  branchOfficeId   Int
-  userHeadOffice   userHeadOffice @relation(fields: [userHeadOfficeId], references: [id], onDelete: Cascade)
-  branchOffice     BranchOffice   @relation(fields: [branchOfficeId], references: [id], onDelete: Cascade)
-
-  @@map("user_branch_office")
 }
 
 enum VendorStatus {
@@ -1313,10 +1146,6 @@ model Vendor {
   status           VendorStatus            @default(ACTIVE)
   company_id       Int?
   company          Company?                @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id   Int?
-  headOffice       HeadOffice?             @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id Int?
-  branchOffice     BranchOffice?           @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
   bankDetails      VendorBankDetails?
   financialDetails VendorFinancialDetails?
   otherDetails     VendorOtherDetails?
@@ -1418,41 +1247,33 @@ model VendorDocuments {
 }
 
 model Warehouse {
-  id               Int            @id @default(autoincrement())
-  name             String
-  address          String
-  state            String
-  pincode          String
-  district         String
-  company_id       Int
-  company          Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id   Int
-  headOffice       HeadOffice     @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id Int
-  branchOffice     BranchOffice   @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  stocks           Stock[]
-  dieselStocks     DieselStock[]
-  dieselInwards    DieselInward[]
-  grns             GRN[]
+  id            Int            @id @default(autoincrement())
+  name          String
+  address       String
+  state         String
+  pincode       String
+  district      String
+  company_id    Int
+  company       Company        @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  stocks        Stock[]
+  dieselStocks  DieselStock[]
+  dieselInwards DieselInward[]
+  grns          GRN[]
 
   @@map("warehouses")
 }
 
 model WorkScope {
-  id               Int             @id @default(autoincrement())
-  project_id       Int
-  project          Project         @relation(fields: [project_id], references: [id])
-  company_id       Int
-  company          Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  head_office_id   Int
-  headOffice       HeadOffice      @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-  branch_office_id Int
-  branchOffice     BranchOffice    @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
-  workScopeItems   WorkScopeItem[]
+  id             Int             @id @default(autoincrement())
+  project_id     Int
+  project        Project         @relation(fields: [project_id], references: [id])
+  company_id     Int
+  company        Company         @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  workScopeItems WorkScopeItem[]
 
   @@map("workscope")
 }

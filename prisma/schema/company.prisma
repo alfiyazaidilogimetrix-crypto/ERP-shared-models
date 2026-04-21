@@ -18,8 +18,6 @@ model Company {
     owner_id                Int?
     ownerDetails            owner_details?              @relation(fields: [owner_id], references: [id], onDelete: Cascade)
     companyFiles            company_files[]
-    headOffices             HeadOffice[]
-    branchOffices           BranchOffice[]
     users                   User[]                      @relation(name: "company_users")
     workScopes              WorkScope[]
     subContractorWorkOrders sub_contractor_work_order[]

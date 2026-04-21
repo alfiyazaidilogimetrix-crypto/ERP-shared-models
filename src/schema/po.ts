@@ -26,8 +26,6 @@ export const poBaseSchema = z.object({
   billing_address: z.string().nullable().optional(),
   remarks: z.string().nullable().optional(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
 });

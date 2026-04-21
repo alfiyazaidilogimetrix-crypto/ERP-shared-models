@@ -15,8 +15,6 @@ export const subContractorWorkOrderBaseSchema = z.object({
   payment_status: paymentStatusSchema.default('PENDING'),
   meta_data: z.any().nullable().optional(),
   company_id: z.number().int().positive(),
-  head_office_id: z.number().int().positive(),
-  branch_office_id: z.number().int().positive(),
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
   workOrderItems: z.array(z.any()).optional(),

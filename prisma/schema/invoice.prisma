@@ -15,11 +15,7 @@ model invoice {
     round_off        Float?
     amount_in_words  String?
     company_id       Int
-    head_office_id   Int
-    branch_office_id Int
     company          Company               @relation(fields: [company_id], references: [id], onDelete: Cascade)
-    headOffice       HeadOffice            @relation(fields: [head_office_id], references: [id], onDelete: Cascade)
-    branchOffice     BranchOffice          @relation(fields: [branch_office_id], references: [id], onDelete: Cascade)
     grn_id           Int
     grn              GRN                   @relation(fields: [grn_id], references: [id], onDelete: Cascade)
     vendor_id        Int
