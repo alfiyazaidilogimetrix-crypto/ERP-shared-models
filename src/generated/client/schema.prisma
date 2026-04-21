@@ -980,6 +980,12 @@ enum StockStatus {
   DISPOSED
 }
 
+enum StockTransactionType {
+  IN
+  OUT
+  ADJUST
+}
+
 model Stock {
   id                Int             @id @default(autoincrement())
   warehouse_id      Int
@@ -996,20 +1002,36 @@ model Stock {
 }
 
 model stockMaterial {
-  id                         Int         @id @default(autoincrement())
+  id                         Int                @id @default(autoincrement())
   stock_id                   Int
   material_id                Int
   quantity                   Float?
   minimum_threshold_quantity Int?
   current_stock              Int?
   specifications             String?
-  status                     StockStatus @default(IN_STOCK)
-  stock                      Stock       @relation(fields: [stock_id], references: [id], onDelete: Cascade)
-  material                   Material    @relation(fields: [material_id], references: [id], onDelete: Cascade)
-  createdAt                  DateTime    @default(now())
-  updatedAt                  DateTime    @updatedAt
+  status                     StockStatus        @default(IN_STOCK)
+  stock                      Stock              @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+  material                   Material           @relation(fields: [material_id], references: [id], onDelete: Cascade)
+  createdAt                  DateTime           @default(now())
+  updatedAt                  DateTime           @updatedAt
+  stockTransactions          StockTransaction[]
 
   @@map("stock_material")
+}
+
+model StockTransaction {
+  id                Int                  @id @default(autoincrement())
+  stock_material_id Int
+  quantity          Float
+  type              StockTransactionType
+  previous_stock    Float?
+  new_stock         Float?
+  current_stock     Float?
+  createdAt         DateTime             @default(now())
+
+  stockMaterial stockMaterial @relation(fields: [stock_material_id], references: [id], onDelete: Cascade)
+
+  @@map("stock_transaction")
 }
 
 enum work_order_status {

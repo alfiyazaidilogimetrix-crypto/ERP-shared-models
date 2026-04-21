@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { stockStatusSchema } from './enums';
+import { stockStatusSchema, stockTransactionTypeSchema } from './enums';
 
 // Base schemas
 export const stockSchema = z.object({
@@ -29,5 +29,17 @@ export const stockMaterialSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
+export const stockTransactionSchema = z.object({
+  id: z.number().int().positive().optional(),
+  stock_material_id: z.number().int().positive(),
+  quantity: z.number().nonnegative(),
+  type: stockTransactionTypeSchema,
+  previous_stock: z.number().nullable().optional(),
+  new_stock: z.number().nullable().optional(),
+  current_stock: z.number().nullable().optional(),
+  createdAt: z.date().optional(),
+});
+
 export type Stock = z.infer<typeof stockSchema>;
 export type StockMaterial = z.infer<typeof stockMaterialSchema>;
+export type StockTransaction = z.infer<typeof stockTransactionSchema>;

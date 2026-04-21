@@ -100,6 +100,8 @@ export const supplyTypeSchema = z.enum(['TO_INVENTORY', 'DIRECT_TO_SITE']);
 export const siteTypeSchema = z.enum(['LHS', 'RHS', 'BHS']);
 
 // Work Order enums
+export const stockTransactionTypeSchema = z.enum(['IN', 'OUT', 'ADJUST']);
+
 export const workOrderStatusSchema = z.enum(['PENDING', 'APPROVED', 'REJECTED']);
 export const paymentStatusSchema = z.enum([
   'PENDING',
@@ -128,3 +130,4 @@ export type ProjectStatus = z.infer<typeof projectStatusSchema>;
 export type Provider = z.infer<typeof providerSchema>;
 export type WorkOrderStatus = z.infer<typeof workOrderStatusSchema>;
 export type PaymentStatus = z.infer<typeof paymentStatusSchema>;
+export type StockTransactionType = z.infer<typeof stockTransactionTypeSchema>;

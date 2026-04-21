@@ -706,6 +706,17 @@ exports.Prisma.StockMaterialScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.StockTransactionScalarFieldEnum = {
+  id: 'id',
+  stock_material_id: 'stock_material_id',
+  quantity: 'quantity',
+  type: 'type',
+  previous_stock: 'previous_stock',
+  new_stock: 'new_stock',
+  current_stock: 'current_stock',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.Sub_contractor_work_orderScalarFieldEnum = {
   id: 'id',
   project_id: 'project_id',
@@ -1007,6 +1018,12 @@ exports.StockStatus = exports.$Enums.StockStatus = {
   DISPOSED: 'DISPOSED'
 };
 
+exports.StockTransactionType = exports.$Enums.StockTransactionType = {
+  IN: 'IN',
+  OUT: 'OUT',
+  ADJUST: 'ADJUST'
+};
+
 exports.work_order_status = exports.$Enums.work_order_status = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -1091,6 +1108,7 @@ exports.Prisma.ModelName = {
   Role: 'Role',
   Stock: 'Stock',
   stockMaterial: 'stockMaterial',
+  StockTransaction: 'StockTransaction',
   sub_contractor_work_order: 'sub_contractor_work_order',
   work_order_items: 'work_order_items',
   tender: 'tender',
