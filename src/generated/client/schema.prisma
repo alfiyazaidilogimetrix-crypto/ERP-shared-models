@@ -1319,8 +1319,24 @@ model WorkScopeItem {
   WorkscopeMaterials   WorkscopeMaterial[]
   labourAllocations    LabourAllocation[]
   machineryAllocations MachineryAllocation[]
+  workScopeChainages   workScopeChainage[]
 
   @@map("workscope_item")
+}
+
+model workScopeChainage {
+  id                Int           @id @default(autoincrement())
+  workscope_item_id Int
+  workscopeItem     WorkScopeItem @relation(fields: [workscope_item_id], references: [id], onDelete: Cascade)
+  chainage_from     String?
+  chainage_to       String?
+  scope_quantity    Float?
+  executed_quantity Float?
+  balanced_quantity Float?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@map("workscope_chainage")
 }
 
 // Material consumption for each activity

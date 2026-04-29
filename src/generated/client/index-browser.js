@@ -883,6 +883,18 @@ exports.Prisma.WorkScopeItemScalarFieldEnum = {
   end_date: 'end_date'
 };
 
+exports.Prisma.WorkScopeChainageScalarFieldEnum = {
+  id: 'id',
+  workscope_item_id: 'workscope_item_id',
+  chainage_from: 'chainage_from',
+  chainage_to: 'chainage_to',
+  scope_quantity: 'scope_quantity',
+  executed_quantity: 'executed_quantity',
+  balanced_quantity: 'balanced_quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.WorkscopeMaterialScalarFieldEnum = {
   id: 'id',
   workscope_item_id: 'workscope_item_id',
@@ -1123,6 +1135,7 @@ exports.Prisma.ModelName = {
   Warehouse: 'Warehouse',
   WorkScope: 'WorkScope',
   WorkScopeItem: 'WorkScopeItem',
+  workScopeChainage: 'workScopeChainage',
   WorkscopeMaterial: 'WorkscopeMaterial',
   LabourAllocation: 'LabourAllocation',
   MachineryAllocation: 'MachineryAllocation'

@@ -70,10 +70,24 @@ export const machineryAllocationSchema = z.object({
     updatedAt: z.date().optional(),
 });
 
+// workScopeChainage schema
+export const workScopeChainageSchema = z.object({
+    id: z.number().int().positive().optional(),
+    workscope_item_id: z.number().int().positive(),
+    chainage_from: z.string().nullable().optional(),
+    chainage_to: z.string().nullable().optional(),
+    scope_quantity: z.number().nullable().optional(),
+    executed_quantity: z.number().nullable().optional(),
+    balanced_quantity: z.number().nullable().optional(),
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+});
+
 // Types
 export type WorkScope = z.infer<typeof workScopeSchema>;
 export type WorkScopeItem = z.infer<typeof workScopeItemSchema>;
 export type WorkscopeMaterial = z.infer<typeof workscopeMaterialSchema>;
 export type LabourAllocation = z.infer<typeof labourAllocationSchema>;
 export type MachineryAllocation = z.infer<typeof machineryAllocationSchema>;
+export type WorkScopeChainage = z.infer<typeof workScopeChainageSchema>;
 export type WorkScopeStatus = z.infer<typeof WorkScopeStatusEnum>;
