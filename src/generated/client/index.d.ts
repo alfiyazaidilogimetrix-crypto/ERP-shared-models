@@ -74,6 +74,51 @@ export type PRMaterialItem = $Result.DefaultSelection<Prisma.$PRMaterialItemPayl
  */
 export type Activity = $Result.DefaultSelection<Prisma.$ActivityPayload>
 /**
+ * Model AIConversation
+ * 
+ */
+export type AIConversation = $Result.DefaultSelection<Prisma.$AIConversationPayload>
+/**
+ * Model AIMessage
+ * 
+ */
+export type AIMessage = $Result.DefaultSelection<Prisma.$AIMessagePayload>
+/**
+ * Model AIFeedback
+ * 
+ */
+export type AIFeedback = $Result.DefaultSelection<Prisma.$AIFeedbackPayload>
+/**
+ * Model AIDocument
+ * 
+ */
+export type AIDocument = $Result.DefaultSelection<Prisma.$AIDocumentPayload>
+/**
+ * Model AIDocumentChunk
+ * 
+ */
+export type AIDocumentChunk = $Result.DefaultSelection<Prisma.$AIDocumentChunkPayload>
+/**
+ * Model AIAlert
+ * 
+ */
+export type AIAlert = $Result.DefaultSelection<Prisma.$AIAlertPayload>
+/**
+ * Model AIPrediction
+ * 
+ */
+export type AIPrediction = $Result.DefaultSelection<Prisma.$AIPredictionPayload>
+/**
+ * Model AIActionLog
+ * 
+ */
+export type AIActionLog = $Result.DefaultSelection<Prisma.$AIActionLogPayload>
+/**
+ * Model AIModelUsage
+ * 
+ */
+export type AIModelUsage = $Result.DefaultSelection<Prisma.$AIModelUsagePayload>
+/**
  * Model Category
  * 
  */
@@ -418,6 +463,38 @@ export const PRType: {
 export type PRType = (typeof PRType)[keyof typeof PRType]
 
 
+export const AIAlertSeverity: {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+};
+
+export type AIAlertSeverity = (typeof AIAlertSeverity)[keyof typeof AIAlertSeverity]
+
+
+export const AIAlertStatus: {
+  OPEN: 'OPEN',
+  IN_REVIEW: 'IN_REVIEW',
+  RESOLVED: 'RESOLVED',
+  DISMISSED: 'DISMISSED'
+};
+
+export type AIAlertStatus = (typeof AIAlertStatus)[keyof typeof AIAlertStatus]
+
+
+export const AIActionStatus: {
+  DRAFTED: 'DRAFTED',
+  PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
+  CONFIRMED: 'CONFIRMED',
+  EXECUTED: 'EXECUTED',
+  REJECTED: 'REJECTED',
+  FAILED: 'FAILED'
+};
+
+export type AIActionStatus = (typeof AIActionStatus)[keyof typeof AIActionStatus]
+
+
 export const DieselInwardStatus: {
   PENDING: 'PENDING',
   RECEIVED: 'RECEIVED',
@@ -541,6 +618,18 @@ export const PRStatus: typeof $Enums.PRStatus
 export type PRType = $Enums.PRType
 
 export const PRType: typeof $Enums.PRType
+
+export type AIAlertSeverity = $Enums.AIAlertSeverity
+
+export const AIAlertSeverity: typeof $Enums.AIAlertSeverity
+
+export type AIAlertStatus = $Enums.AIAlertStatus
+
+export const AIAlertStatus: typeof $Enums.AIAlertStatus
+
+export type AIActionStatus = $Enums.AIActionStatus
+
+export const AIActionStatus: typeof $Enums.AIActionStatus
 
 export type DieselInwardStatus = $Enums.DieselInwardStatus
 
@@ -818,6 +907,96 @@ export class PrismaClient<
     * ```
     */
   get activity(): Prisma.ActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIConversation`: Exposes CRUD operations for the **AIConversation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIConversations
+    * const aIConversations = await prisma.aIConversation.findMany()
+    * ```
+    */
+  get aIConversation(): Prisma.AIConversationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIMessage`: Exposes CRUD operations for the **AIMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIMessages
+    * const aIMessages = await prisma.aIMessage.findMany()
+    * ```
+    */
+  get aIMessage(): Prisma.AIMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIFeedback`: Exposes CRUD operations for the **AIFeedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIFeedbacks
+    * const aIFeedbacks = await prisma.aIFeedback.findMany()
+    * ```
+    */
+  get aIFeedback(): Prisma.AIFeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIDocument`: Exposes CRUD operations for the **AIDocument** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIDocuments
+    * const aIDocuments = await prisma.aIDocument.findMany()
+    * ```
+    */
+  get aIDocument(): Prisma.AIDocumentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIDocumentChunk`: Exposes CRUD operations for the **AIDocumentChunk** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIDocumentChunks
+    * const aIDocumentChunks = await prisma.aIDocumentChunk.findMany()
+    * ```
+    */
+  get aIDocumentChunk(): Prisma.AIDocumentChunkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIAlert`: Exposes CRUD operations for the **AIAlert** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIAlerts
+    * const aIAlerts = await prisma.aIAlert.findMany()
+    * ```
+    */
+  get aIAlert(): Prisma.AIAlertDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIPrediction`: Exposes CRUD operations for the **AIPrediction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIPredictions
+    * const aIPredictions = await prisma.aIPrediction.findMany()
+    * ```
+    */
+  get aIPrediction(): Prisma.AIPredictionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIActionLog`: Exposes CRUD operations for the **AIActionLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIActionLogs
+    * const aIActionLogs = await prisma.aIActionLog.findMany()
+    * ```
+    */
+  get aIActionLog(): Prisma.AIActionLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIModelUsage`: Exposes CRUD operations for the **AIModelUsage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIModelUsages
+    * const aIModelUsages = await prisma.aIModelUsage.findMany()
+    * ```
+    */
+  get aIModelUsage(): Prisma.AIModelUsageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
@@ -1794,6 +1973,15 @@ export namespace Prisma {
     PR: 'PR',
     PRMaterialItem: 'PRMaterialItem',
     Activity: 'Activity',
+    AIConversation: 'AIConversation',
+    AIMessage: 'AIMessage',
+    AIFeedback: 'AIFeedback',
+    AIDocument: 'AIDocument',
+    AIDocumentChunk: 'AIDocumentChunk',
+    AIAlert: 'AIAlert',
+    AIPrediction: 'AIPrediction',
+    AIActionLog: 'AIActionLog',
+    AIModelUsage: 'AIModelUsage',
     Category: 'Category',
     project_category: 'project_category',
     Company: 'Company',
@@ -1862,7 +2050,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "dPR" | "dPRChainage" | "dPRFile" | "dPRMaterialConsumption" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "activity" | "category" | "project_category" | "company" | "owner_details" | "company_files" | "diesel_consumption" | "diesel_consumption_file" | "dieselSupplier" | "dieselInward" | "diesel_inward_file" | "dieselStock" | "file" | "invoice" | "invoice_seller" | "invoice_buyer" | "invoice_consignee" | "invoice_tax" | "invoice_bank_details" | "labourAttendance" | "labourAttendanceActivity" | "machine" | "material" | "materialBoq" | "materialBoqItem" | "module" | "permission" | "pRGRN" | "pRGRNMaterialReceipt" | "pRGRNFile" | "project" | "projectFile" | "projectType" | "role" | "stock" | "stockMaterial" | "stockTransaction" | "sub_contractor_work_order" | "work_order_items" | "tender" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "warehouse" | "workScope" | "workScopeItem" | "workScopeChainage" | "workscopeMaterial" | "labourAllocation" | "machineryAllocation"
+      modelProps: "dPR" | "dPRChainage" | "dPRFile" | "dPRMaterialConsumption" | "gRN" | "gRNMaterialReceipt" | "gRNFile" | "pO" | "pOOrderItem" | "pR" | "pRMaterialItem" | "activity" | "aIConversation" | "aIMessage" | "aIFeedback" | "aIDocument" | "aIDocumentChunk" | "aIAlert" | "aIPrediction" | "aIActionLog" | "aIModelUsage" | "category" | "project_category" | "company" | "owner_details" | "company_files" | "diesel_consumption" | "diesel_consumption_file" | "dieselSupplier" | "dieselInward" | "diesel_inward_file" | "dieselStock" | "file" | "invoice" | "invoice_seller" | "invoice_buyer" | "invoice_consignee" | "invoice_tax" | "invoice_bank_details" | "labourAttendance" | "labourAttendanceActivity" | "machine" | "material" | "materialBoq" | "materialBoqItem" | "module" | "permission" | "pRGRN" | "pRGRNMaterialReceipt" | "pRGRNFile" | "project" | "projectFile" | "projectType" | "role" | "stock" | "stockMaterial" | "stockTransaction" | "sub_contractor_work_order" | "work_order_items" | "tender" | "unit" | "user" | "vendor" | "vendorBankDetails" | "vendorFinancialDetails" | "vendorOtherDetails" | "vendorDocuments" | "warehouse" | "workScope" | "workScopeItem" | "workScopeChainage" | "workscopeMaterial" | "labourAllocation" | "machineryAllocation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2751,6 +2939,672 @@ export namespace Prisma {
           count: {
             args: Prisma.ActivityCountArgs<ExtArgs>
             result: $Utils.Optional<ActivityCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIConversation: {
+        payload: Prisma.$AIConversationPayload<ExtArgs>
+        fields: Prisma.AIConversationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIConversationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIConversationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          findFirst: {
+            args: Prisma.AIConversationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIConversationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          findMany: {
+            args: Prisma.AIConversationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>[]
+          }
+          create: {
+            args: Prisma.AIConversationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          createMany: {
+            args: Prisma.AIConversationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIConversationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>[]
+          }
+          delete: {
+            args: Prisma.AIConversationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          update: {
+            args: Prisma.AIConversationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIConversationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIConversationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIConversationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIConversationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIConversationPayload>
+          }
+          aggregate: {
+            args: Prisma.AIConversationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIConversation>
+          }
+          groupBy: {
+            args: Prisma.AIConversationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIConversationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIConversationCountArgs<ExtArgs>
+            result: $Utils.Optional<AIConversationCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIMessage: {
+        payload: Prisma.$AIMessagePayload<ExtArgs>
+        fields: Prisma.AIMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.AIMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          findMany: {
+            args: Prisma.AIMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          create: {
+            args: Prisma.AIMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          createMany: {
+            args: Prisma.AIMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.AIMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          update: {
+            args: Prisma.AIMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AIMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIMessageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          upsert: {
+            args: Prisma.AIMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.AIMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIMessage>
+          }
+          groupBy: {
+            args: Prisma.AIMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<AIMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIFeedback: {
+        payload: Prisma.$AIFeedbackPayload<ExtArgs>
+        fields: Prisma.AIFeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIFeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIFeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.AIFeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIFeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.AIFeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.AIFeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.AIFeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIFeedbackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>[]
+          }
+          delete: {
+            args: Prisma.AIFeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          update: {
+            args: Prisma.AIFeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIFeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIFeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIFeedbackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIFeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIFeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.AIFeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIFeedback>
+          }
+          groupBy: {
+            args: Prisma.AIFeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIFeedbackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIFeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<AIFeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIDocument: {
+        payload: Prisma.$AIDocumentPayload<ExtArgs>
+        fields: Prisma.AIDocumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIDocumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIDocumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          findFirst: {
+            args: Prisma.AIDocumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIDocumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          findMany: {
+            args: Prisma.AIDocumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>[]
+          }
+          create: {
+            args: Prisma.AIDocumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          createMany: {
+            args: Prisma.AIDocumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIDocumentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>[]
+          }
+          delete: {
+            args: Prisma.AIDocumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          update: {
+            args: Prisma.AIDocumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIDocumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIDocumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIDocumentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIDocumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentPayload>
+          }
+          aggregate: {
+            args: Prisma.AIDocumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIDocument>
+          }
+          groupBy: {
+            args: Prisma.AIDocumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIDocumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIDocumentCountArgs<ExtArgs>
+            result: $Utils.Optional<AIDocumentCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIDocumentChunk: {
+        payload: Prisma.$AIDocumentChunkPayload<ExtArgs>
+        fields: Prisma.AIDocumentChunkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIDocumentChunkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIDocumentChunkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          findFirst: {
+            args: Prisma.AIDocumentChunkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIDocumentChunkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          findMany: {
+            args: Prisma.AIDocumentChunkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>[]
+          }
+          create: {
+            args: Prisma.AIDocumentChunkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          createMany: {
+            args: Prisma.AIDocumentChunkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIDocumentChunkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>[]
+          }
+          delete: {
+            args: Prisma.AIDocumentChunkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          update: {
+            args: Prisma.AIDocumentChunkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIDocumentChunkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIDocumentChunkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIDocumentChunkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIDocumentChunkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIDocumentChunkPayload>
+          }
+          aggregate: {
+            args: Prisma.AIDocumentChunkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIDocumentChunk>
+          }
+          groupBy: {
+            args: Prisma.AIDocumentChunkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIDocumentChunkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIDocumentChunkCountArgs<ExtArgs>
+            result: $Utils.Optional<AIDocumentChunkCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIAlert: {
+        payload: Prisma.$AIAlertPayload<ExtArgs>
+        fields: Prisma.AIAlertFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIAlertFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIAlertFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          findFirst: {
+            args: Prisma.AIAlertFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIAlertFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          findMany: {
+            args: Prisma.AIAlertFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>[]
+          }
+          create: {
+            args: Prisma.AIAlertCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          createMany: {
+            args: Prisma.AIAlertCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIAlertCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>[]
+          }
+          delete: {
+            args: Prisma.AIAlertDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          update: {
+            args: Prisma.AIAlertUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIAlertDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIAlertUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIAlertUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIAlertUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIAlertPayload>
+          }
+          aggregate: {
+            args: Prisma.AIAlertAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIAlert>
+          }
+          groupBy: {
+            args: Prisma.AIAlertGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIAlertGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIAlertCountArgs<ExtArgs>
+            result: $Utils.Optional<AIAlertCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIPrediction: {
+        payload: Prisma.$AIPredictionPayload<ExtArgs>
+        fields: Prisma.AIPredictionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIPredictionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIPredictionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          findFirst: {
+            args: Prisma.AIPredictionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIPredictionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          findMany: {
+            args: Prisma.AIPredictionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>[]
+          }
+          create: {
+            args: Prisma.AIPredictionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          createMany: {
+            args: Prisma.AIPredictionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIPredictionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>[]
+          }
+          delete: {
+            args: Prisma.AIPredictionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          update: {
+            args: Prisma.AIPredictionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIPredictionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIPredictionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIPredictionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIPredictionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPredictionPayload>
+          }
+          aggregate: {
+            args: Prisma.AIPredictionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIPrediction>
+          }
+          groupBy: {
+            args: Prisma.AIPredictionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIPredictionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIPredictionCountArgs<ExtArgs>
+            result: $Utils.Optional<AIPredictionCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIActionLog: {
+        payload: Prisma.$AIActionLogPayload<ExtArgs>
+        fields: Prisma.AIActionLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIActionLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIActionLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          findFirst: {
+            args: Prisma.AIActionLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIActionLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          findMany: {
+            args: Prisma.AIActionLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>[]
+          }
+          create: {
+            args: Prisma.AIActionLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          createMany: {
+            args: Prisma.AIActionLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIActionLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>[]
+          }
+          delete: {
+            args: Prisma.AIActionLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          update: {
+            args: Prisma.AIActionLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIActionLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIActionLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIActionLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.AIActionLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIActionLogPayload>
+          }
+          aggregate: {
+            args: Prisma.AIActionLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIActionLog>
+          }
+          groupBy: {
+            args: Prisma.AIActionLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIActionLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIActionLogCountArgs<ExtArgs>
+            result: $Utils.Optional<AIActionLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIModelUsage: {
+        payload: Prisma.$AIModelUsagePayload<ExtArgs>
+        fields: Prisma.AIModelUsageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIModelUsageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIModelUsageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          findFirst: {
+            args: Prisma.AIModelUsageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIModelUsageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          findMany: {
+            args: Prisma.AIModelUsageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>[]
+          }
+          create: {
+            args: Prisma.AIModelUsageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          createMany: {
+            args: Prisma.AIModelUsageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIModelUsageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>[]
+          }
+          delete: {
+            args: Prisma.AIModelUsageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          update: {
+            args: Prisma.AIModelUsageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AIModelUsageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIModelUsageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIModelUsageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>[]
+          }
+          upsert: {
+            args: Prisma.AIModelUsageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIModelUsagePayload>
+          }
+          aggregate: {
+            args: Prisma.AIModelUsageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIModelUsage>
+          }
+          groupBy: {
+            args: Prisma.AIModelUsageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIModelUsageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIModelUsageCountArgs<ExtArgs>
+            result: $Utils.Optional<AIModelUsageCountAggregateOutputType> | number
           }
         }
       }
@@ -6796,6 +7650,15 @@ export namespace Prisma {
     pR?: PROmit
     pRMaterialItem?: PRMaterialItemOmit
     activity?: ActivityOmit
+    aIConversation?: AIConversationOmit
+    aIMessage?: AIMessageOmit
+    aIFeedback?: AIFeedbackOmit
+    aIDocument?: AIDocumentOmit
+    aIDocumentChunk?: AIDocumentChunkOmit
+    aIAlert?: AIAlertOmit
+    aIPrediction?: AIPredictionOmit
+    aIActionLog?: AIActionLogOmit
+    aIModelUsage?: AIModelUsageOmit
     category?: CategoryOmit
     project_category?: project_categoryOmit
     company?: CompanyOmit
@@ -7188,6 +8051,99 @@ export namespace Prisma {
    */
   export type ActivityCountOutputTypeCountLabourAttendanceActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LabourAttendanceActivityWhereInput
+  }
+
+
+  /**
+   * Count Type AIConversationCountOutputType
+   */
+
+  export type AIConversationCountOutputType = {
+    messages: number
+  }
+
+  export type AIConversationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | AIConversationCountOutputTypeCountMessagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AIConversationCountOutputType without action
+   */
+  export type AIConversationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversationCountOutputType
+     */
+    select?: AIConversationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AIConversationCountOutputType without action
+   */
+  export type AIConversationCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIMessageWhereInput
+  }
+
+
+  /**
+   * Count Type AIMessageCountOutputType
+   */
+
+  export type AIMessageCountOutputType = {
+    feedbacks: number
+  }
+
+  export type AIMessageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    feedbacks?: boolean | AIMessageCountOutputTypeCountFeedbacksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AIMessageCountOutputType without action
+   */
+  export type AIMessageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessageCountOutputType
+     */
+    select?: AIMessageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AIMessageCountOutputType without action
+   */
+  export type AIMessageCountOutputTypeCountFeedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIFeedbackWhereInput
+  }
+
+
+  /**
+   * Count Type AIDocumentCountOutputType
+   */
+
+  export type AIDocumentCountOutputType = {
+    chunks: number
+  }
+
+  export type AIDocumentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chunks?: boolean | AIDocumentCountOutputTypeCountChunksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AIDocumentCountOutputType without action
+   */
+  export type AIDocumentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentCountOutputType
+     */
+    select?: AIDocumentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AIDocumentCountOutputType without action
+   */
+  export type AIDocumentCountOutputTypeCountChunksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIDocumentChunkWhereInput
   }
 
 
@@ -23773,6 +24729,10371 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ActivityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIConversation
+   */
+
+  export type AggregateAIConversation = {
+    _count: AIConversationCountAggregateOutputType | null
+    _avg: AIConversationAvgAggregateOutputType | null
+    _sum: AIConversationSumAggregateOutputType | null
+    _min: AIConversationMinAggregateOutputType | null
+    _max: AIConversationMaxAggregateOutputType | null
+  }
+
+  export type AIConversationAvgAggregateOutputType = {
+    user_id: number | null
+    company_id: number | null
+    project_id: number | null
+  }
+
+  export type AIConversationSumAggregateOutputType = {
+    user_id: number | null
+    company_id: number | null
+    project_id: number | null
+  }
+
+  export type AIConversationMinAggregateOutputType = {
+    id: string | null
+    user_id: number | null
+    company_id: number | null
+    project_id: number | null
+    title: string | null
+    module: string | null
+    language: string | null
+    is_archived: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIConversationMaxAggregateOutputType = {
+    id: string | null
+    user_id: number | null
+    company_id: number | null
+    project_id: number | null
+    title: string | null
+    module: string | null
+    language: string | null
+    is_archived: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIConversationCountAggregateOutputType = {
+    id: number
+    user_id: number
+    company_id: number
+    project_id: number
+    title: number
+    module: number
+    language: number
+    is_archived: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AIConversationAvgAggregateInputType = {
+    user_id?: true
+    company_id?: true
+    project_id?: true
+  }
+
+  export type AIConversationSumAggregateInputType = {
+    user_id?: true
+    company_id?: true
+    project_id?: true
+  }
+
+  export type AIConversationMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    company_id?: true
+    project_id?: true
+    title?: true
+    module?: true
+    language?: true
+    is_archived?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIConversationMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    company_id?: true
+    project_id?: true
+    title?: true
+    module?: true
+    language?: true
+    is_archived?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIConversationCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    company_id?: true
+    project_id?: true
+    title?: true
+    module?: true
+    language?: true
+    is_archived?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AIConversationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIConversation to aggregate.
+     */
+    where?: AIConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIConversations to fetch.
+     */
+    orderBy?: AIConversationOrderByWithRelationInput | AIConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIConversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIConversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIConversations
+    **/
+    _count?: true | AIConversationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIConversationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIConversationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIConversationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIConversationMaxAggregateInputType
+  }
+
+  export type GetAIConversationAggregateType<T extends AIConversationAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIConversation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIConversation[P]>
+      : GetScalarType<T[P], AggregateAIConversation[P]>
+  }
+
+
+
+
+  export type AIConversationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIConversationWhereInput
+    orderBy?: AIConversationOrderByWithAggregationInput | AIConversationOrderByWithAggregationInput[]
+    by: AIConversationScalarFieldEnum[] | AIConversationScalarFieldEnum
+    having?: AIConversationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIConversationCountAggregateInputType | true
+    _avg?: AIConversationAvgAggregateInputType
+    _sum?: AIConversationSumAggregateInputType
+    _min?: AIConversationMinAggregateInputType
+    _max?: AIConversationMaxAggregateInputType
+  }
+
+  export type AIConversationGroupByOutputType = {
+    id: string
+    user_id: number
+    company_id: number
+    project_id: number | null
+    title: string
+    module: string | null
+    language: string | null
+    is_archived: boolean
+    created_at: Date
+    updated_at: Date
+    _count: AIConversationCountAggregateOutputType | null
+    _avg: AIConversationAvgAggregateOutputType | null
+    _sum: AIConversationSumAggregateOutputType | null
+    _min: AIConversationMinAggregateOutputType | null
+    _max: AIConversationMaxAggregateOutputType | null
+  }
+
+  type GetAIConversationGroupByPayload<T extends AIConversationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIConversationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIConversationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIConversationGroupByOutputType[P]>
+            : GetScalarType<T[P], AIConversationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIConversationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    title?: boolean
+    module?: boolean
+    language?: boolean
+    is_archived?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    messages?: boolean | AIConversation$messagesArgs<ExtArgs>
+    _count?: boolean | AIConversationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIConversation"]>
+
+  export type AIConversationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    title?: boolean
+    module?: boolean
+    language?: boolean
+    is_archived?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIConversation"]>
+
+  export type AIConversationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    title?: boolean
+    module?: boolean
+    language?: boolean
+    is_archived?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIConversation"]>
+
+  export type AIConversationSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    title?: boolean
+    module?: boolean
+    language?: boolean
+    is_archived?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type AIConversationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "company_id" | "project_id" | "title" | "module" | "language" | "is_archived" | "created_at" | "updated_at", ExtArgs["result"]["aIConversation"]>
+  export type AIConversationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | AIConversation$messagesArgs<ExtArgs>
+    _count?: boolean | AIConversationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AIConversationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AIConversationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AIConversationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIConversation"
+    objects: {
+      messages: Prisma.$AIMessagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: number
+      company_id: number
+      project_id: number | null
+      title: string
+      module: string | null
+      language: string | null
+      is_archived: boolean
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["aIConversation"]>
+    composites: {}
+  }
+
+  type AIConversationGetPayload<S extends boolean | null | undefined | AIConversationDefaultArgs> = $Result.GetResult<Prisma.$AIConversationPayload, S>
+
+  type AIConversationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIConversationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIConversationCountAggregateInputType | true
+    }
+
+  export interface AIConversationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIConversation'], meta: { name: 'AIConversation' } }
+    /**
+     * Find zero or one AIConversation that matches the filter.
+     * @param {AIConversationFindUniqueArgs} args - Arguments to find a AIConversation
+     * @example
+     * // Get one AIConversation
+     * const aIConversation = await prisma.aIConversation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIConversationFindUniqueArgs>(args: SelectSubset<T, AIConversationFindUniqueArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIConversation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIConversationFindUniqueOrThrowArgs} args - Arguments to find a AIConversation
+     * @example
+     * // Get one AIConversation
+     * const aIConversation = await prisma.aIConversation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIConversationFindUniqueOrThrowArgs>(args: SelectSubset<T, AIConversationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIConversation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationFindFirstArgs} args - Arguments to find a AIConversation
+     * @example
+     * // Get one AIConversation
+     * const aIConversation = await prisma.aIConversation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIConversationFindFirstArgs>(args?: SelectSubset<T, AIConversationFindFirstArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIConversation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationFindFirstOrThrowArgs} args - Arguments to find a AIConversation
+     * @example
+     * // Get one AIConversation
+     * const aIConversation = await prisma.aIConversation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIConversationFindFirstOrThrowArgs>(args?: SelectSubset<T, AIConversationFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIConversations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIConversations
+     * const aIConversations = await prisma.aIConversation.findMany()
+     * 
+     * // Get first 10 AIConversations
+     * const aIConversations = await prisma.aIConversation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIConversationWithIdOnly = await prisma.aIConversation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIConversationFindManyArgs>(args?: SelectSubset<T, AIConversationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIConversation.
+     * @param {AIConversationCreateArgs} args - Arguments to create a AIConversation.
+     * @example
+     * // Create one AIConversation
+     * const AIConversation = await prisma.aIConversation.create({
+     *   data: {
+     *     // ... data to create a AIConversation
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIConversationCreateArgs>(args: SelectSubset<T, AIConversationCreateArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIConversations.
+     * @param {AIConversationCreateManyArgs} args - Arguments to create many AIConversations.
+     * @example
+     * // Create many AIConversations
+     * const aIConversation = await prisma.aIConversation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIConversationCreateManyArgs>(args?: SelectSubset<T, AIConversationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIConversations and returns the data saved in the database.
+     * @param {AIConversationCreateManyAndReturnArgs} args - Arguments to create many AIConversations.
+     * @example
+     * // Create many AIConversations
+     * const aIConversation = await prisma.aIConversation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIConversations and only return the `id`
+     * const aIConversationWithIdOnly = await prisma.aIConversation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIConversationCreateManyAndReturnArgs>(args?: SelectSubset<T, AIConversationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIConversation.
+     * @param {AIConversationDeleteArgs} args - Arguments to delete one AIConversation.
+     * @example
+     * // Delete one AIConversation
+     * const AIConversation = await prisma.aIConversation.delete({
+     *   where: {
+     *     // ... filter to delete one AIConversation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIConversationDeleteArgs>(args: SelectSubset<T, AIConversationDeleteArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIConversation.
+     * @param {AIConversationUpdateArgs} args - Arguments to update one AIConversation.
+     * @example
+     * // Update one AIConversation
+     * const aIConversation = await prisma.aIConversation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIConversationUpdateArgs>(args: SelectSubset<T, AIConversationUpdateArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIConversations.
+     * @param {AIConversationDeleteManyArgs} args - Arguments to filter AIConversations to delete.
+     * @example
+     * // Delete a few AIConversations
+     * const { count } = await prisma.aIConversation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIConversationDeleteManyArgs>(args?: SelectSubset<T, AIConversationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIConversations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIConversations
+     * const aIConversation = await prisma.aIConversation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIConversationUpdateManyArgs>(args: SelectSubset<T, AIConversationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIConversations and returns the data updated in the database.
+     * @param {AIConversationUpdateManyAndReturnArgs} args - Arguments to update many AIConversations.
+     * @example
+     * // Update many AIConversations
+     * const aIConversation = await prisma.aIConversation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIConversations and only return the `id`
+     * const aIConversationWithIdOnly = await prisma.aIConversation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIConversationUpdateManyAndReturnArgs>(args: SelectSubset<T, AIConversationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIConversation.
+     * @param {AIConversationUpsertArgs} args - Arguments to update or create a AIConversation.
+     * @example
+     * // Update or create a AIConversation
+     * const aIConversation = await prisma.aIConversation.upsert({
+     *   create: {
+     *     // ... data to create a AIConversation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIConversation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIConversationUpsertArgs>(args: SelectSubset<T, AIConversationUpsertArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIConversations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationCountArgs} args - Arguments to filter AIConversations to count.
+     * @example
+     * // Count the number of AIConversations
+     * const count = await prisma.aIConversation.count({
+     *   where: {
+     *     // ... the filter for the AIConversations we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIConversationCountArgs>(
+      args?: Subset<T, AIConversationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIConversationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIConversation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIConversationAggregateArgs>(args: Subset<T, AIConversationAggregateArgs>): Prisma.PrismaPromise<GetAIConversationAggregateType<T>>
+
+    /**
+     * Group by AIConversation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIConversationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIConversationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIConversationGroupByArgs['orderBy'] }
+        : { orderBy?: AIConversationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIConversationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIConversationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIConversation model
+   */
+  readonly fields: AIConversationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIConversation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIConversationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    messages<T extends AIConversation$messagesArgs<ExtArgs> = {}>(args?: Subset<T, AIConversation$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIConversation model
+   */
+  interface AIConversationFieldRefs {
+    readonly id: FieldRef<"AIConversation", 'String'>
+    readonly user_id: FieldRef<"AIConversation", 'Int'>
+    readonly company_id: FieldRef<"AIConversation", 'Int'>
+    readonly project_id: FieldRef<"AIConversation", 'Int'>
+    readonly title: FieldRef<"AIConversation", 'String'>
+    readonly module: FieldRef<"AIConversation", 'String'>
+    readonly language: FieldRef<"AIConversation", 'String'>
+    readonly is_archived: FieldRef<"AIConversation", 'Boolean'>
+    readonly created_at: FieldRef<"AIConversation", 'DateTime'>
+    readonly updated_at: FieldRef<"AIConversation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIConversation findUnique
+   */
+  export type AIConversationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIConversation to fetch.
+     */
+    where: AIConversationWhereUniqueInput
+  }
+
+  /**
+   * AIConversation findUniqueOrThrow
+   */
+  export type AIConversationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIConversation to fetch.
+     */
+    where: AIConversationWhereUniqueInput
+  }
+
+  /**
+   * AIConversation findFirst
+   */
+  export type AIConversationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIConversation to fetch.
+     */
+    where?: AIConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIConversations to fetch.
+     */
+    orderBy?: AIConversationOrderByWithRelationInput | AIConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIConversations.
+     */
+    cursor?: AIConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIConversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIConversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIConversations.
+     */
+    distinct?: AIConversationScalarFieldEnum | AIConversationScalarFieldEnum[]
+  }
+
+  /**
+   * AIConversation findFirstOrThrow
+   */
+  export type AIConversationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIConversation to fetch.
+     */
+    where?: AIConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIConversations to fetch.
+     */
+    orderBy?: AIConversationOrderByWithRelationInput | AIConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIConversations.
+     */
+    cursor?: AIConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIConversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIConversations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIConversations.
+     */
+    distinct?: AIConversationScalarFieldEnum | AIConversationScalarFieldEnum[]
+  }
+
+  /**
+   * AIConversation findMany
+   */
+  export type AIConversationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIConversations to fetch.
+     */
+    where?: AIConversationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIConversations to fetch.
+     */
+    orderBy?: AIConversationOrderByWithRelationInput | AIConversationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIConversations.
+     */
+    cursor?: AIConversationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIConversations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIConversations.
+     */
+    skip?: number
+    distinct?: AIConversationScalarFieldEnum | AIConversationScalarFieldEnum[]
+  }
+
+  /**
+   * AIConversation create
+   */
+  export type AIConversationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIConversation.
+     */
+    data: XOR<AIConversationCreateInput, AIConversationUncheckedCreateInput>
+  }
+
+  /**
+   * AIConversation createMany
+   */
+  export type AIConversationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIConversations.
+     */
+    data: AIConversationCreateManyInput | AIConversationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIConversation createManyAndReturn
+   */
+  export type AIConversationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIConversations.
+     */
+    data: AIConversationCreateManyInput | AIConversationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIConversation update
+   */
+  export type AIConversationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIConversation.
+     */
+    data: XOR<AIConversationUpdateInput, AIConversationUncheckedUpdateInput>
+    /**
+     * Choose, which AIConversation to update.
+     */
+    where: AIConversationWhereUniqueInput
+  }
+
+  /**
+   * AIConversation updateMany
+   */
+  export type AIConversationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIConversations.
+     */
+    data: XOR<AIConversationUpdateManyMutationInput, AIConversationUncheckedUpdateManyInput>
+    /**
+     * Filter which AIConversations to update
+     */
+    where?: AIConversationWhereInput
+    /**
+     * Limit how many AIConversations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIConversation updateManyAndReturn
+   */
+  export type AIConversationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * The data used to update AIConversations.
+     */
+    data: XOR<AIConversationUpdateManyMutationInput, AIConversationUncheckedUpdateManyInput>
+    /**
+     * Filter which AIConversations to update
+     */
+    where?: AIConversationWhereInput
+    /**
+     * Limit how many AIConversations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIConversation upsert
+   */
+  export type AIConversationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIConversation to update in case it exists.
+     */
+    where: AIConversationWhereUniqueInput
+    /**
+     * In case the AIConversation found by the `where` argument doesn't exist, create a new AIConversation with this data.
+     */
+    create: XOR<AIConversationCreateInput, AIConversationUncheckedCreateInput>
+    /**
+     * In case the AIConversation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIConversationUpdateInput, AIConversationUncheckedUpdateInput>
+  }
+
+  /**
+   * AIConversation delete
+   */
+  export type AIConversationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+    /**
+     * Filter which AIConversation to delete.
+     */
+    where: AIConversationWhereUniqueInput
+  }
+
+  /**
+   * AIConversation deleteMany
+   */
+  export type AIConversationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIConversations to delete
+     */
+    where?: AIConversationWhereInput
+    /**
+     * Limit how many AIConversations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIConversation.messages
+   */
+  export type AIConversation$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    where?: AIMessageWhereInput
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    cursor?: AIMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIConversation without action
+   */
+  export type AIConversationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIConversation
+     */
+    select?: AIConversationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIConversation
+     */
+    omit?: AIConversationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIConversationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIMessage
+   */
+
+  export type AggregateAIMessage = {
+    _count: AIMessageCountAggregateOutputType | null
+    _min: AIMessageMinAggregateOutputType | null
+    _max: AIMessageMaxAggregateOutputType | null
+  }
+
+  export type AIMessageMinAggregateOutputType = {
+    id: string | null
+    conversation_id: string | null
+    sender: string | null
+    content: string | null
+    rich_payload: string | null
+    references: string | null
+    actions: string | null
+    language: string | null
+    created_at: Date | null
+  }
+
+  export type AIMessageMaxAggregateOutputType = {
+    id: string | null
+    conversation_id: string | null
+    sender: string | null
+    content: string | null
+    rich_payload: string | null
+    references: string | null
+    actions: string | null
+    language: string | null
+    created_at: Date | null
+  }
+
+  export type AIMessageCountAggregateOutputType = {
+    id: number
+    conversation_id: number
+    sender: number
+    content: number
+    rich_payload: number
+    references: number
+    actions: number
+    language: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type AIMessageMinAggregateInputType = {
+    id?: true
+    conversation_id?: true
+    sender?: true
+    content?: true
+    rich_payload?: true
+    references?: true
+    actions?: true
+    language?: true
+    created_at?: true
+  }
+
+  export type AIMessageMaxAggregateInputType = {
+    id?: true
+    conversation_id?: true
+    sender?: true
+    content?: true
+    rich_payload?: true
+    references?: true
+    actions?: true
+    language?: true
+    created_at?: true
+  }
+
+  export type AIMessageCountAggregateInputType = {
+    id?: true
+    conversation_id?: true
+    sender?: true
+    content?: true
+    rich_payload?: true
+    references?: true
+    actions?: true
+    language?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type AIMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIMessage to aggregate.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIMessages
+    **/
+    _count?: true | AIMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIMessageMaxAggregateInputType
+  }
+
+  export type GetAIMessageAggregateType<T extends AIMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIMessage[P]>
+      : GetScalarType<T[P], AggregateAIMessage[P]>
+  }
+
+
+
+
+  export type AIMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIMessageWhereInput
+    orderBy?: AIMessageOrderByWithAggregationInput | AIMessageOrderByWithAggregationInput[]
+    by: AIMessageScalarFieldEnum[] | AIMessageScalarFieldEnum
+    having?: AIMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIMessageCountAggregateInputType | true
+    _min?: AIMessageMinAggregateInputType
+    _max?: AIMessageMaxAggregateInputType
+  }
+
+  export type AIMessageGroupByOutputType = {
+    id: string
+    conversation_id: string
+    sender: string
+    content: string
+    rich_payload: string | null
+    references: string | null
+    actions: string | null
+    language: string | null
+    created_at: Date
+    _count: AIMessageCountAggregateOutputType | null
+    _min: AIMessageMinAggregateOutputType | null
+    _max: AIMessageMaxAggregateOutputType | null
+  }
+
+  type GetAIMessageGroupByPayload<T extends AIMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], AIMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversation_id?: boolean
+    sender?: boolean
+    content?: boolean
+    rich_payload?: boolean
+    references?: boolean
+    actions?: boolean
+    language?: boolean
+    created_at?: boolean
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+    feedbacks?: boolean | AIMessage$feedbacksArgs<ExtArgs>
+    _count?: boolean | AIMessageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversation_id?: boolean
+    sender?: boolean
+    content?: boolean
+    rich_payload?: boolean
+    references?: boolean
+    actions?: boolean
+    language?: boolean
+    created_at?: boolean
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conversation_id?: boolean
+    sender?: boolean
+    content?: boolean
+    rich_payload?: boolean
+    references?: boolean
+    actions?: boolean
+    language?: boolean
+    created_at?: boolean
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectScalar = {
+    id?: boolean
+    conversation_id?: boolean
+    sender?: boolean
+    content?: boolean
+    rich_payload?: boolean
+    references?: boolean
+    actions?: boolean
+    language?: boolean
+    created_at?: boolean
+  }
+
+  export type AIMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "conversation_id" | "sender" | "content" | "rich_payload" | "references" | "actions" | "language" | "created_at", ExtArgs["result"]["aIMessage"]>
+  export type AIMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+    feedbacks?: boolean | AIMessage$feedbacksArgs<ExtArgs>
+    _count?: boolean | AIMessageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AIMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+  }
+  export type AIMessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversation?: boolean | AIConversationDefaultArgs<ExtArgs>
+  }
+
+  export type $AIMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIMessage"
+    objects: {
+      conversation: Prisma.$AIConversationPayload<ExtArgs>
+      feedbacks: Prisma.$AIFeedbackPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      conversation_id: string
+      sender: string
+      content: string
+      rich_payload: string | null
+      references: string | null
+      actions: string | null
+      language: string | null
+      created_at: Date
+    }, ExtArgs["result"]["aIMessage"]>
+    composites: {}
+  }
+
+  type AIMessageGetPayload<S extends boolean | null | undefined | AIMessageDefaultArgs> = $Result.GetResult<Prisma.$AIMessagePayload, S>
+
+  type AIMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIMessageCountAggregateInputType | true
+    }
+
+  export interface AIMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIMessage'], meta: { name: 'AIMessage' } }
+    /**
+     * Find zero or one AIMessage that matches the filter.
+     * @param {AIMessageFindUniqueArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIMessageFindUniqueArgs>(args: SelectSubset<T, AIMessageFindUniqueArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIMessageFindUniqueOrThrowArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, AIMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindFirstArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIMessageFindFirstArgs>(args?: SelectSubset<T, AIMessageFindFirstArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindFirstOrThrowArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, AIMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIMessages
+     * const aIMessages = await prisma.aIMessage.findMany()
+     * 
+     * // Get first 10 AIMessages
+     * const aIMessages = await prisma.aIMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIMessageFindManyArgs>(args?: SelectSubset<T, AIMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIMessage.
+     * @param {AIMessageCreateArgs} args - Arguments to create a AIMessage.
+     * @example
+     * // Create one AIMessage
+     * const AIMessage = await prisma.aIMessage.create({
+     *   data: {
+     *     // ... data to create a AIMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIMessageCreateArgs>(args: SelectSubset<T, AIMessageCreateArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIMessages.
+     * @param {AIMessageCreateManyArgs} args - Arguments to create many AIMessages.
+     * @example
+     * // Create many AIMessages
+     * const aIMessage = await prisma.aIMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIMessageCreateManyArgs>(args?: SelectSubset<T, AIMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIMessages and returns the data saved in the database.
+     * @param {AIMessageCreateManyAndReturnArgs} args - Arguments to create many AIMessages.
+     * @example
+     * // Create many AIMessages
+     * const aIMessage = await prisma.aIMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIMessages and only return the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, AIMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIMessage.
+     * @param {AIMessageDeleteArgs} args - Arguments to delete one AIMessage.
+     * @example
+     * // Delete one AIMessage
+     * const AIMessage = await prisma.aIMessage.delete({
+     *   where: {
+     *     // ... filter to delete one AIMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIMessageDeleteArgs>(args: SelectSubset<T, AIMessageDeleteArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIMessage.
+     * @param {AIMessageUpdateArgs} args - Arguments to update one AIMessage.
+     * @example
+     * // Update one AIMessage
+     * const aIMessage = await prisma.aIMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIMessageUpdateArgs>(args: SelectSubset<T, AIMessageUpdateArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIMessages.
+     * @param {AIMessageDeleteManyArgs} args - Arguments to filter AIMessages to delete.
+     * @example
+     * // Delete a few AIMessages
+     * const { count } = await prisma.aIMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIMessageDeleteManyArgs>(args?: SelectSubset<T, AIMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIMessages
+     * const aIMessage = await prisma.aIMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIMessageUpdateManyArgs>(args: SelectSubset<T, AIMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIMessages and returns the data updated in the database.
+     * @param {AIMessageUpdateManyAndReturnArgs} args - Arguments to update many AIMessages.
+     * @example
+     * // Update many AIMessages
+     * const aIMessage = await prisma.aIMessage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIMessages and only return the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIMessageUpdateManyAndReturnArgs>(args: SelectSubset<T, AIMessageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIMessage.
+     * @param {AIMessageUpsertArgs} args - Arguments to update or create a AIMessage.
+     * @example
+     * // Update or create a AIMessage
+     * const aIMessage = await prisma.aIMessage.upsert({
+     *   create: {
+     *     // ... data to create a AIMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIMessageUpsertArgs>(args: SelectSubset<T, AIMessageUpsertArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageCountArgs} args - Arguments to filter AIMessages to count.
+     * @example
+     * // Count the number of AIMessages
+     * const count = await prisma.aIMessage.count({
+     *   where: {
+     *     // ... the filter for the AIMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIMessageCountArgs>(
+      args?: Subset<T, AIMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIMessageAggregateArgs>(args: Subset<T, AIMessageAggregateArgs>): Prisma.PrismaPromise<GetAIMessageAggregateType<T>>
+
+    /**
+     * Group by AIMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIMessageGroupByArgs['orderBy'] }
+        : { orderBy?: AIMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIMessage model
+   */
+  readonly fields: AIMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    conversation<T extends AIConversationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AIConversationDefaultArgs<ExtArgs>>): Prisma__AIConversationClient<$Result.GetResult<Prisma.$AIConversationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    feedbacks<T extends AIMessage$feedbacksArgs<ExtArgs> = {}>(args?: Subset<T, AIMessage$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIMessage model
+   */
+  interface AIMessageFieldRefs {
+    readonly id: FieldRef<"AIMessage", 'String'>
+    readonly conversation_id: FieldRef<"AIMessage", 'String'>
+    readonly sender: FieldRef<"AIMessage", 'String'>
+    readonly content: FieldRef<"AIMessage", 'String'>
+    readonly rich_payload: FieldRef<"AIMessage", 'String'>
+    readonly references: FieldRef<"AIMessage", 'String'>
+    readonly actions: FieldRef<"AIMessage", 'String'>
+    readonly language: FieldRef<"AIMessage", 'String'>
+    readonly created_at: FieldRef<"AIMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIMessage findUnique
+   */
+  export type AIMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage findUniqueOrThrow
+   */
+  export type AIMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage findFirst
+   */
+  export type AIMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIMessages.
+     */
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage findFirstOrThrow
+   */
+  export type AIMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIMessages.
+     */
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage findMany
+   */
+  export type AIMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessages to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage create
+   */
+  export type AIMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIMessage.
+     */
+    data: XOR<AIMessageCreateInput, AIMessageUncheckedCreateInput>
+  }
+
+  /**
+   * AIMessage createMany
+   */
+  export type AIMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIMessages.
+     */
+    data: AIMessageCreateManyInput | AIMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIMessage createManyAndReturn
+   */
+  export type AIMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIMessages.
+     */
+    data: AIMessageCreateManyInput | AIMessageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIMessage update
+   */
+  export type AIMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIMessage.
+     */
+    data: XOR<AIMessageUpdateInput, AIMessageUncheckedUpdateInput>
+    /**
+     * Choose, which AIMessage to update.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage updateMany
+   */
+  export type AIMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIMessages.
+     */
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIMessages to update
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIMessage updateManyAndReturn
+   */
+  export type AIMessageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * The data used to update AIMessages.
+     */
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIMessages to update
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIMessage upsert
+   */
+  export type AIMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIMessage to update in case it exists.
+     */
+    where: AIMessageWhereUniqueInput
+    /**
+     * In case the AIMessage found by the `where` argument doesn't exist, create a new AIMessage with this data.
+     */
+    create: XOR<AIMessageCreateInput, AIMessageUncheckedCreateInput>
+    /**
+     * In case the AIMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIMessageUpdateInput, AIMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * AIMessage delete
+   */
+  export type AIMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter which AIMessage to delete.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage deleteMany
+   */
+  export type AIMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIMessages to delete
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIMessage.feedbacks
+   */
+  export type AIMessage$feedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    where?: AIFeedbackWhereInput
+    orderBy?: AIFeedbackOrderByWithRelationInput | AIFeedbackOrderByWithRelationInput[]
+    cursor?: AIFeedbackWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIFeedbackScalarFieldEnum | AIFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage without action
+   */
+  export type AIMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIFeedback
+   */
+
+  export type AggregateAIFeedback = {
+    _count: AIFeedbackCountAggregateOutputType | null
+    _avg: AIFeedbackAvgAggregateOutputType | null
+    _sum: AIFeedbackSumAggregateOutputType | null
+    _min: AIFeedbackMinAggregateOutputType | null
+    _max: AIFeedbackMaxAggregateOutputType | null
+  }
+
+  export type AIFeedbackAvgAggregateOutputType = {
+    user_id: number | null
+    rating: number | null
+  }
+
+  export type AIFeedbackSumAggregateOutputType = {
+    user_id: number | null
+    rating: number | null
+  }
+
+  export type AIFeedbackMinAggregateOutputType = {
+    id: string | null
+    message_id: string | null
+    user_id: number | null
+    rating: number | null
+    comment: string | null
+    created_at: Date | null
+  }
+
+  export type AIFeedbackMaxAggregateOutputType = {
+    id: string | null
+    message_id: string | null
+    user_id: number | null
+    rating: number | null
+    comment: string | null
+    created_at: Date | null
+  }
+
+  export type AIFeedbackCountAggregateOutputType = {
+    id: number
+    message_id: number
+    user_id: number
+    rating: number
+    comment: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type AIFeedbackAvgAggregateInputType = {
+    user_id?: true
+    rating?: true
+  }
+
+  export type AIFeedbackSumAggregateInputType = {
+    user_id?: true
+    rating?: true
+  }
+
+  export type AIFeedbackMinAggregateInputType = {
+    id?: true
+    message_id?: true
+    user_id?: true
+    rating?: true
+    comment?: true
+    created_at?: true
+  }
+
+  export type AIFeedbackMaxAggregateInputType = {
+    id?: true
+    message_id?: true
+    user_id?: true
+    rating?: true
+    comment?: true
+    created_at?: true
+  }
+
+  export type AIFeedbackCountAggregateInputType = {
+    id?: true
+    message_id?: true
+    user_id?: true
+    rating?: true
+    comment?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type AIFeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIFeedback to aggregate.
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIFeedbacks to fetch.
+     */
+    orderBy?: AIFeedbackOrderByWithRelationInput | AIFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIFeedbacks
+    **/
+    _count?: true | AIFeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIFeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIFeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIFeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIFeedbackMaxAggregateInputType
+  }
+
+  export type GetAIFeedbackAggregateType<T extends AIFeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIFeedback[P]>
+      : GetScalarType<T[P], AggregateAIFeedback[P]>
+  }
+
+
+
+
+  export type AIFeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIFeedbackWhereInput
+    orderBy?: AIFeedbackOrderByWithAggregationInput | AIFeedbackOrderByWithAggregationInput[]
+    by: AIFeedbackScalarFieldEnum[] | AIFeedbackScalarFieldEnum
+    having?: AIFeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIFeedbackCountAggregateInputType | true
+    _avg?: AIFeedbackAvgAggregateInputType
+    _sum?: AIFeedbackSumAggregateInputType
+    _min?: AIFeedbackMinAggregateInputType
+    _max?: AIFeedbackMaxAggregateInputType
+  }
+
+  export type AIFeedbackGroupByOutputType = {
+    id: string
+    message_id: string
+    user_id: number
+    rating: number
+    comment: string | null
+    created_at: Date
+    _count: AIFeedbackCountAggregateOutputType | null
+    _avg: AIFeedbackAvgAggregateOutputType | null
+    _sum: AIFeedbackSumAggregateOutputType | null
+    _min: AIFeedbackMinAggregateOutputType | null
+    _max: AIFeedbackMaxAggregateOutputType | null
+  }
+
+  type GetAIFeedbackGroupByPayload<T extends AIFeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIFeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIFeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIFeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], AIFeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIFeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message_id?: boolean
+    user_id?: boolean
+    rating?: boolean
+    comment?: boolean
+    created_at?: boolean
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIFeedback"]>
+
+  export type AIFeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message_id?: boolean
+    user_id?: boolean
+    rating?: boolean
+    comment?: boolean
+    created_at?: boolean
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIFeedback"]>
+
+  export type AIFeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message_id?: boolean
+    user_id?: boolean
+    rating?: boolean
+    comment?: boolean
+    created_at?: boolean
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIFeedback"]>
+
+  export type AIFeedbackSelectScalar = {
+    id?: boolean
+    message_id?: boolean
+    user_id?: boolean
+    rating?: boolean
+    comment?: boolean
+    created_at?: boolean
+  }
+
+  export type AIFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message_id" | "user_id" | "rating" | "comment" | "created_at", ExtArgs["result"]["aIFeedback"]>
+  export type AIFeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }
+  export type AIFeedbackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }
+  export type AIFeedbackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    message?: boolean | AIMessageDefaultArgs<ExtArgs>
+  }
+
+  export type $AIFeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIFeedback"
+    objects: {
+      message: Prisma.$AIMessagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      message_id: string
+      user_id: number
+      rating: number
+      comment: string | null
+      created_at: Date
+    }, ExtArgs["result"]["aIFeedback"]>
+    composites: {}
+  }
+
+  type AIFeedbackGetPayload<S extends boolean | null | undefined | AIFeedbackDefaultArgs> = $Result.GetResult<Prisma.$AIFeedbackPayload, S>
+
+  type AIFeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIFeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIFeedbackCountAggregateInputType | true
+    }
+
+  export interface AIFeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIFeedback'], meta: { name: 'AIFeedback' } }
+    /**
+     * Find zero or one AIFeedback that matches the filter.
+     * @param {AIFeedbackFindUniqueArgs} args - Arguments to find a AIFeedback
+     * @example
+     * // Get one AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIFeedbackFindUniqueArgs>(args: SelectSubset<T, AIFeedbackFindUniqueArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIFeedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIFeedbackFindUniqueOrThrowArgs} args - Arguments to find a AIFeedback
+     * @example
+     * // Get one AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIFeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, AIFeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIFeedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackFindFirstArgs} args - Arguments to find a AIFeedback
+     * @example
+     * // Get one AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIFeedbackFindFirstArgs>(args?: SelectSubset<T, AIFeedbackFindFirstArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIFeedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackFindFirstOrThrowArgs} args - Arguments to find a AIFeedback
+     * @example
+     * // Get one AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIFeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, AIFeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIFeedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIFeedbacks
+     * const aIFeedbacks = await prisma.aIFeedback.findMany()
+     * 
+     * // Get first 10 AIFeedbacks
+     * const aIFeedbacks = await prisma.aIFeedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIFeedbackWithIdOnly = await prisma.aIFeedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIFeedbackFindManyArgs>(args?: SelectSubset<T, AIFeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIFeedback.
+     * @param {AIFeedbackCreateArgs} args - Arguments to create a AIFeedback.
+     * @example
+     * // Create one AIFeedback
+     * const AIFeedback = await prisma.aIFeedback.create({
+     *   data: {
+     *     // ... data to create a AIFeedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIFeedbackCreateArgs>(args: SelectSubset<T, AIFeedbackCreateArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIFeedbacks.
+     * @param {AIFeedbackCreateManyArgs} args - Arguments to create many AIFeedbacks.
+     * @example
+     * // Create many AIFeedbacks
+     * const aIFeedback = await prisma.aIFeedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIFeedbackCreateManyArgs>(args?: SelectSubset<T, AIFeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIFeedbacks and returns the data saved in the database.
+     * @param {AIFeedbackCreateManyAndReturnArgs} args - Arguments to create many AIFeedbacks.
+     * @example
+     * // Create many AIFeedbacks
+     * const aIFeedback = await prisma.aIFeedback.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIFeedbacks and only return the `id`
+     * const aIFeedbackWithIdOnly = await prisma.aIFeedback.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIFeedbackCreateManyAndReturnArgs>(args?: SelectSubset<T, AIFeedbackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIFeedback.
+     * @param {AIFeedbackDeleteArgs} args - Arguments to delete one AIFeedback.
+     * @example
+     * // Delete one AIFeedback
+     * const AIFeedback = await prisma.aIFeedback.delete({
+     *   where: {
+     *     // ... filter to delete one AIFeedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIFeedbackDeleteArgs>(args: SelectSubset<T, AIFeedbackDeleteArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIFeedback.
+     * @param {AIFeedbackUpdateArgs} args - Arguments to update one AIFeedback.
+     * @example
+     * // Update one AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIFeedbackUpdateArgs>(args: SelectSubset<T, AIFeedbackUpdateArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIFeedbacks.
+     * @param {AIFeedbackDeleteManyArgs} args - Arguments to filter AIFeedbacks to delete.
+     * @example
+     * // Delete a few AIFeedbacks
+     * const { count } = await prisma.aIFeedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIFeedbackDeleteManyArgs>(args?: SelectSubset<T, AIFeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIFeedbacks
+     * const aIFeedback = await prisma.aIFeedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIFeedbackUpdateManyArgs>(args: SelectSubset<T, AIFeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIFeedbacks and returns the data updated in the database.
+     * @param {AIFeedbackUpdateManyAndReturnArgs} args - Arguments to update many AIFeedbacks.
+     * @example
+     * // Update many AIFeedbacks
+     * const aIFeedback = await prisma.aIFeedback.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIFeedbacks and only return the `id`
+     * const aIFeedbackWithIdOnly = await prisma.aIFeedback.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIFeedbackUpdateManyAndReturnArgs>(args: SelectSubset<T, AIFeedbackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIFeedback.
+     * @param {AIFeedbackUpsertArgs} args - Arguments to update or create a AIFeedback.
+     * @example
+     * // Update or create a AIFeedback
+     * const aIFeedback = await prisma.aIFeedback.upsert({
+     *   create: {
+     *     // ... data to create a AIFeedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIFeedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIFeedbackUpsertArgs>(args: SelectSubset<T, AIFeedbackUpsertArgs<ExtArgs>>): Prisma__AIFeedbackClient<$Result.GetResult<Prisma.$AIFeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIFeedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackCountArgs} args - Arguments to filter AIFeedbacks to count.
+     * @example
+     * // Count the number of AIFeedbacks
+     * const count = await prisma.aIFeedback.count({
+     *   where: {
+     *     // ... the filter for the AIFeedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIFeedbackCountArgs>(
+      args?: Subset<T, AIFeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIFeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIFeedbackAggregateArgs>(args: Subset<T, AIFeedbackAggregateArgs>): Prisma.PrismaPromise<GetAIFeedbackAggregateType<T>>
+
+    /**
+     * Group by AIFeedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIFeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIFeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIFeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: AIFeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIFeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIFeedback model
+   */
+  readonly fields: AIFeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIFeedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIFeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    message<T extends AIMessageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AIMessageDefaultArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIFeedback model
+   */
+  interface AIFeedbackFieldRefs {
+    readonly id: FieldRef<"AIFeedback", 'String'>
+    readonly message_id: FieldRef<"AIFeedback", 'String'>
+    readonly user_id: FieldRef<"AIFeedback", 'Int'>
+    readonly rating: FieldRef<"AIFeedback", 'Int'>
+    readonly comment: FieldRef<"AIFeedback", 'String'>
+    readonly created_at: FieldRef<"AIFeedback", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIFeedback findUnique
+   */
+  export type AIFeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which AIFeedback to fetch.
+     */
+    where: AIFeedbackWhereUniqueInput
+  }
+
+  /**
+   * AIFeedback findUniqueOrThrow
+   */
+  export type AIFeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which AIFeedback to fetch.
+     */
+    where: AIFeedbackWhereUniqueInput
+  }
+
+  /**
+   * AIFeedback findFirst
+   */
+  export type AIFeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which AIFeedback to fetch.
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIFeedbacks to fetch.
+     */
+    orderBy?: AIFeedbackOrderByWithRelationInput | AIFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIFeedbacks.
+     */
+    cursor?: AIFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIFeedbacks.
+     */
+    distinct?: AIFeedbackScalarFieldEnum | AIFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * AIFeedback findFirstOrThrow
+   */
+  export type AIFeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which AIFeedback to fetch.
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIFeedbacks to fetch.
+     */
+    orderBy?: AIFeedbackOrderByWithRelationInput | AIFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIFeedbacks.
+     */
+    cursor?: AIFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIFeedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIFeedbacks.
+     */
+    distinct?: AIFeedbackScalarFieldEnum | AIFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * AIFeedback findMany
+   */
+  export type AIFeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which AIFeedbacks to fetch.
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIFeedbacks to fetch.
+     */
+    orderBy?: AIFeedbackOrderByWithRelationInput | AIFeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIFeedbacks.
+     */
+    cursor?: AIFeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIFeedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIFeedbacks.
+     */
+    skip?: number
+    distinct?: AIFeedbackScalarFieldEnum | AIFeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * AIFeedback create
+   */
+  export type AIFeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIFeedback.
+     */
+    data: XOR<AIFeedbackCreateInput, AIFeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * AIFeedback createMany
+   */
+  export type AIFeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIFeedbacks.
+     */
+    data: AIFeedbackCreateManyInput | AIFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIFeedback createManyAndReturn
+   */
+  export type AIFeedbackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIFeedbacks.
+     */
+    data: AIFeedbackCreateManyInput | AIFeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIFeedback update
+   */
+  export type AIFeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIFeedback.
+     */
+    data: XOR<AIFeedbackUpdateInput, AIFeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which AIFeedback to update.
+     */
+    where: AIFeedbackWhereUniqueInput
+  }
+
+  /**
+   * AIFeedback updateMany
+   */
+  export type AIFeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIFeedbacks.
+     */
+    data: XOR<AIFeedbackUpdateManyMutationInput, AIFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which AIFeedbacks to update
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * Limit how many AIFeedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIFeedback updateManyAndReturn
+   */
+  export type AIFeedbackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to update AIFeedbacks.
+     */
+    data: XOR<AIFeedbackUpdateManyMutationInput, AIFeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which AIFeedbacks to update
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * Limit how many AIFeedbacks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIFeedback upsert
+   */
+  export type AIFeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIFeedback to update in case it exists.
+     */
+    where: AIFeedbackWhereUniqueInput
+    /**
+     * In case the AIFeedback found by the `where` argument doesn't exist, create a new AIFeedback with this data.
+     */
+    create: XOR<AIFeedbackCreateInput, AIFeedbackUncheckedCreateInput>
+    /**
+     * In case the AIFeedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIFeedbackUpdateInput, AIFeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * AIFeedback delete
+   */
+  export type AIFeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+    /**
+     * Filter which AIFeedback to delete.
+     */
+    where: AIFeedbackWhereUniqueInput
+  }
+
+  /**
+   * AIFeedback deleteMany
+   */
+  export type AIFeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIFeedbacks to delete
+     */
+    where?: AIFeedbackWhereInput
+    /**
+     * Limit how many AIFeedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIFeedback without action
+   */
+  export type AIFeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIFeedback
+     */
+    select?: AIFeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIFeedback
+     */
+    omit?: AIFeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIFeedbackInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIDocument
+   */
+
+  export type AggregateAIDocument = {
+    _count: AIDocumentCountAggregateOutputType | null
+    _avg: AIDocumentAvgAggregateOutputType | null
+    _sum: AIDocumentSumAggregateOutputType | null
+    _min: AIDocumentMinAggregateOutputType | null
+    _max: AIDocumentMaxAggregateOutputType | null
+  }
+
+  export type AIDocumentAvgAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    file_size: number | null
+  }
+
+  export type AIDocumentSumAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    file_size: number | null
+  }
+
+  export type AIDocumentMinAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    file_name: string | null
+    file_path: string | null
+    file_type: string | null
+    file_size: number | null
+    document_type: string | null
+    summary: string | null
+    metadata: string | null
+    status: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIDocumentMaxAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    file_name: string | null
+    file_path: string | null
+    file_type: string | null
+    file_size: number | null
+    document_type: string | null
+    summary: string | null
+    metadata: string | null
+    status: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIDocumentCountAggregateOutputType = {
+    id: number
+    company_id: number
+    project_id: number
+    user_id: number
+    file_name: number
+    file_path: number
+    file_type: number
+    file_size: number
+    document_type: number
+    summary: number
+    metadata: number
+    status: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AIDocumentAvgAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    file_size?: true
+  }
+
+  export type AIDocumentSumAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    file_size?: true
+  }
+
+  export type AIDocumentMinAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    file_name?: true
+    file_path?: true
+    file_type?: true
+    file_size?: true
+    document_type?: true
+    summary?: true
+    metadata?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIDocumentMaxAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    file_name?: true
+    file_path?: true
+    file_type?: true
+    file_size?: true
+    document_type?: true
+    summary?: true
+    metadata?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIDocumentCountAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    file_name?: true
+    file_path?: true
+    file_type?: true
+    file_size?: true
+    document_type?: true
+    summary?: true
+    metadata?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AIDocumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDocument to aggregate.
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocuments to fetch.
+     */
+    orderBy?: AIDocumentOrderByWithRelationInput | AIDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIDocuments
+    **/
+    _count?: true | AIDocumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIDocumentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIDocumentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIDocumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIDocumentMaxAggregateInputType
+  }
+
+  export type GetAIDocumentAggregateType<T extends AIDocumentAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIDocument]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIDocument[P]>
+      : GetScalarType<T[P], AggregateAIDocument[P]>
+  }
+
+
+
+
+  export type AIDocumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIDocumentWhereInput
+    orderBy?: AIDocumentOrderByWithAggregationInput | AIDocumentOrderByWithAggregationInput[]
+    by: AIDocumentScalarFieldEnum[] | AIDocumentScalarFieldEnum
+    having?: AIDocumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIDocumentCountAggregateInputType | true
+    _avg?: AIDocumentAvgAggregateInputType
+    _sum?: AIDocumentSumAggregateInputType
+    _min?: AIDocumentMinAggregateInputType
+    _max?: AIDocumentMaxAggregateInputType
+  }
+
+  export type AIDocumentGroupByOutputType = {
+    id: string
+    company_id: number
+    project_id: number | null
+    user_id: number
+    file_name: string
+    file_path: string | null
+    file_type: string
+    file_size: number | null
+    document_type: string
+    summary: string | null
+    metadata: string | null
+    status: string
+    created_at: Date
+    updated_at: Date
+    _count: AIDocumentCountAggregateOutputType | null
+    _avg: AIDocumentAvgAggregateOutputType | null
+    _sum: AIDocumentSumAggregateOutputType | null
+    _min: AIDocumentMinAggregateOutputType | null
+    _max: AIDocumentMaxAggregateOutputType | null
+  }
+
+  type GetAIDocumentGroupByPayload<T extends AIDocumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIDocumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIDocumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIDocumentGroupByOutputType[P]>
+            : GetScalarType<T[P], AIDocumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIDocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    file_name?: boolean
+    file_path?: boolean
+    file_type?: boolean
+    file_size?: boolean
+    document_type?: boolean
+    summary?: boolean
+    metadata?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    chunks?: boolean | AIDocument$chunksArgs<ExtArgs>
+    _count?: boolean | AIDocumentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIDocument"]>
+
+  export type AIDocumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    file_name?: boolean
+    file_path?: boolean
+    file_type?: boolean
+    file_size?: boolean
+    document_type?: boolean
+    summary?: boolean
+    metadata?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIDocument"]>
+
+  export type AIDocumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    file_name?: boolean
+    file_path?: boolean
+    file_type?: boolean
+    file_size?: boolean
+    document_type?: boolean
+    summary?: boolean
+    metadata?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIDocument"]>
+
+  export type AIDocumentSelectScalar = {
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    file_name?: boolean
+    file_path?: boolean
+    file_type?: boolean
+    file_size?: boolean
+    document_type?: boolean
+    summary?: boolean
+    metadata?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type AIDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "project_id" | "user_id" | "file_name" | "file_path" | "file_type" | "file_size" | "document_type" | "summary" | "metadata" | "status" | "created_at" | "updated_at", ExtArgs["result"]["aIDocument"]>
+  export type AIDocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chunks?: boolean | AIDocument$chunksArgs<ExtArgs>
+    _count?: boolean | AIDocumentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AIDocumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AIDocumentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AIDocumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIDocument"
+    objects: {
+      chunks: Prisma.$AIDocumentChunkPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company_id: number
+      project_id: number | null
+      user_id: number
+      file_name: string
+      file_path: string | null
+      file_type: string
+      file_size: number | null
+      document_type: string
+      summary: string | null
+      metadata: string | null
+      status: string
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["aIDocument"]>
+    composites: {}
+  }
+
+  type AIDocumentGetPayload<S extends boolean | null | undefined | AIDocumentDefaultArgs> = $Result.GetResult<Prisma.$AIDocumentPayload, S>
+
+  type AIDocumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIDocumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIDocumentCountAggregateInputType | true
+    }
+
+  export interface AIDocumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIDocument'], meta: { name: 'AIDocument' } }
+    /**
+     * Find zero or one AIDocument that matches the filter.
+     * @param {AIDocumentFindUniqueArgs} args - Arguments to find a AIDocument
+     * @example
+     * // Get one AIDocument
+     * const aIDocument = await prisma.aIDocument.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIDocumentFindUniqueArgs>(args: SelectSubset<T, AIDocumentFindUniqueArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIDocument that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIDocumentFindUniqueOrThrowArgs} args - Arguments to find a AIDocument
+     * @example
+     * // Get one AIDocument
+     * const aIDocument = await prisma.aIDocument.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIDocumentFindUniqueOrThrowArgs>(args: SelectSubset<T, AIDocumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDocument that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentFindFirstArgs} args - Arguments to find a AIDocument
+     * @example
+     * // Get one AIDocument
+     * const aIDocument = await prisma.aIDocument.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIDocumentFindFirstArgs>(args?: SelectSubset<T, AIDocumentFindFirstArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDocument that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentFindFirstOrThrowArgs} args - Arguments to find a AIDocument
+     * @example
+     * // Get one AIDocument
+     * const aIDocument = await prisma.aIDocument.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIDocumentFindFirstOrThrowArgs>(args?: SelectSubset<T, AIDocumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIDocuments
+     * const aIDocuments = await prisma.aIDocument.findMany()
+     * 
+     * // Get first 10 AIDocuments
+     * const aIDocuments = await prisma.aIDocument.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIDocumentWithIdOnly = await prisma.aIDocument.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIDocumentFindManyArgs>(args?: SelectSubset<T, AIDocumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIDocument.
+     * @param {AIDocumentCreateArgs} args - Arguments to create a AIDocument.
+     * @example
+     * // Create one AIDocument
+     * const AIDocument = await prisma.aIDocument.create({
+     *   data: {
+     *     // ... data to create a AIDocument
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIDocumentCreateArgs>(args: SelectSubset<T, AIDocumentCreateArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIDocuments.
+     * @param {AIDocumentCreateManyArgs} args - Arguments to create many AIDocuments.
+     * @example
+     * // Create many AIDocuments
+     * const aIDocument = await prisma.aIDocument.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIDocumentCreateManyArgs>(args?: SelectSubset<T, AIDocumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIDocuments and returns the data saved in the database.
+     * @param {AIDocumentCreateManyAndReturnArgs} args - Arguments to create many AIDocuments.
+     * @example
+     * // Create many AIDocuments
+     * const aIDocument = await prisma.aIDocument.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIDocuments and only return the `id`
+     * const aIDocumentWithIdOnly = await prisma.aIDocument.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIDocumentCreateManyAndReturnArgs>(args?: SelectSubset<T, AIDocumentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIDocument.
+     * @param {AIDocumentDeleteArgs} args - Arguments to delete one AIDocument.
+     * @example
+     * // Delete one AIDocument
+     * const AIDocument = await prisma.aIDocument.delete({
+     *   where: {
+     *     // ... filter to delete one AIDocument
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIDocumentDeleteArgs>(args: SelectSubset<T, AIDocumentDeleteArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIDocument.
+     * @param {AIDocumentUpdateArgs} args - Arguments to update one AIDocument.
+     * @example
+     * // Update one AIDocument
+     * const aIDocument = await prisma.aIDocument.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIDocumentUpdateArgs>(args: SelectSubset<T, AIDocumentUpdateArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIDocuments.
+     * @param {AIDocumentDeleteManyArgs} args - Arguments to filter AIDocuments to delete.
+     * @example
+     * // Delete a few AIDocuments
+     * const { count } = await prisma.aIDocument.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIDocumentDeleteManyArgs>(args?: SelectSubset<T, AIDocumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIDocuments
+     * const aIDocument = await prisma.aIDocument.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIDocumentUpdateManyArgs>(args: SelectSubset<T, AIDocumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIDocuments and returns the data updated in the database.
+     * @param {AIDocumentUpdateManyAndReturnArgs} args - Arguments to update many AIDocuments.
+     * @example
+     * // Update many AIDocuments
+     * const aIDocument = await prisma.aIDocument.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIDocuments and only return the `id`
+     * const aIDocumentWithIdOnly = await prisma.aIDocument.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIDocumentUpdateManyAndReturnArgs>(args: SelectSubset<T, AIDocumentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIDocument.
+     * @param {AIDocumentUpsertArgs} args - Arguments to update or create a AIDocument.
+     * @example
+     * // Update or create a AIDocument
+     * const aIDocument = await prisma.aIDocument.upsert({
+     *   create: {
+     *     // ... data to create a AIDocument
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIDocument we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIDocumentUpsertArgs>(args: SelectSubset<T, AIDocumentUpsertArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentCountArgs} args - Arguments to filter AIDocuments to count.
+     * @example
+     * // Count the number of AIDocuments
+     * const count = await prisma.aIDocument.count({
+     *   where: {
+     *     // ... the filter for the AIDocuments we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIDocumentCountArgs>(
+      args?: Subset<T, AIDocumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIDocumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIDocumentAggregateArgs>(args: Subset<T, AIDocumentAggregateArgs>): Prisma.PrismaPromise<GetAIDocumentAggregateType<T>>
+
+    /**
+     * Group by AIDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIDocumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIDocumentGroupByArgs['orderBy'] }
+        : { orderBy?: AIDocumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIDocumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIDocumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIDocument model
+   */
+  readonly fields: AIDocumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIDocument.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIDocumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    chunks<T extends AIDocument$chunksArgs<ExtArgs> = {}>(args?: Subset<T, AIDocument$chunksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIDocument model
+   */
+  interface AIDocumentFieldRefs {
+    readonly id: FieldRef<"AIDocument", 'String'>
+    readonly company_id: FieldRef<"AIDocument", 'Int'>
+    readonly project_id: FieldRef<"AIDocument", 'Int'>
+    readonly user_id: FieldRef<"AIDocument", 'Int'>
+    readonly file_name: FieldRef<"AIDocument", 'String'>
+    readonly file_path: FieldRef<"AIDocument", 'String'>
+    readonly file_type: FieldRef<"AIDocument", 'String'>
+    readonly file_size: FieldRef<"AIDocument", 'Int'>
+    readonly document_type: FieldRef<"AIDocument", 'String'>
+    readonly summary: FieldRef<"AIDocument", 'String'>
+    readonly metadata: FieldRef<"AIDocument", 'String'>
+    readonly status: FieldRef<"AIDocument", 'String'>
+    readonly created_at: FieldRef<"AIDocument", 'DateTime'>
+    readonly updated_at: FieldRef<"AIDocument", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIDocument findUnique
+   */
+  export type AIDocumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocument to fetch.
+     */
+    where: AIDocumentWhereUniqueInput
+  }
+
+  /**
+   * AIDocument findUniqueOrThrow
+   */
+  export type AIDocumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocument to fetch.
+     */
+    where: AIDocumentWhereUniqueInput
+  }
+
+  /**
+   * AIDocument findFirst
+   */
+  export type AIDocumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocument to fetch.
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocuments to fetch.
+     */
+    orderBy?: AIDocumentOrderByWithRelationInput | AIDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDocuments.
+     */
+    cursor?: AIDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDocuments.
+     */
+    distinct?: AIDocumentScalarFieldEnum | AIDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocument findFirstOrThrow
+   */
+  export type AIDocumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocument to fetch.
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocuments to fetch.
+     */
+    orderBy?: AIDocumentOrderByWithRelationInput | AIDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDocuments.
+     */
+    cursor?: AIDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDocuments.
+     */
+    distinct?: AIDocumentScalarFieldEnum | AIDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocument findMany
+   */
+  export type AIDocumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocuments to fetch.
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocuments to fetch.
+     */
+    orderBy?: AIDocumentOrderByWithRelationInput | AIDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIDocuments.
+     */
+    cursor?: AIDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocuments.
+     */
+    skip?: number
+    distinct?: AIDocumentScalarFieldEnum | AIDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocument create
+   */
+  export type AIDocumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIDocument.
+     */
+    data: XOR<AIDocumentCreateInput, AIDocumentUncheckedCreateInput>
+  }
+
+  /**
+   * AIDocument createMany
+   */
+  export type AIDocumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIDocuments.
+     */
+    data: AIDocumentCreateManyInput | AIDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIDocument createManyAndReturn
+   */
+  export type AIDocumentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIDocuments.
+     */
+    data: AIDocumentCreateManyInput | AIDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIDocument update
+   */
+  export type AIDocumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIDocument.
+     */
+    data: XOR<AIDocumentUpdateInput, AIDocumentUncheckedUpdateInput>
+    /**
+     * Choose, which AIDocument to update.
+     */
+    where: AIDocumentWhereUniqueInput
+  }
+
+  /**
+   * AIDocument updateMany
+   */
+  export type AIDocumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIDocuments.
+     */
+    data: XOR<AIDocumentUpdateManyMutationInput, AIDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which AIDocuments to update
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * Limit how many AIDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDocument updateManyAndReturn
+   */
+  export type AIDocumentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to update AIDocuments.
+     */
+    data: XOR<AIDocumentUpdateManyMutationInput, AIDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which AIDocuments to update
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * Limit how many AIDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDocument upsert
+   */
+  export type AIDocumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIDocument to update in case it exists.
+     */
+    where: AIDocumentWhereUniqueInput
+    /**
+     * In case the AIDocument found by the `where` argument doesn't exist, create a new AIDocument with this data.
+     */
+    create: XOR<AIDocumentCreateInput, AIDocumentUncheckedCreateInput>
+    /**
+     * In case the AIDocument was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIDocumentUpdateInput, AIDocumentUncheckedUpdateInput>
+  }
+
+  /**
+   * AIDocument delete
+   */
+  export type AIDocumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+    /**
+     * Filter which AIDocument to delete.
+     */
+    where: AIDocumentWhereUniqueInput
+  }
+
+  /**
+   * AIDocument deleteMany
+   */
+  export type AIDocumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDocuments to delete
+     */
+    where?: AIDocumentWhereInput
+    /**
+     * Limit how many AIDocuments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDocument.chunks
+   */
+  export type AIDocument$chunksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    where?: AIDocumentChunkWhereInput
+    orderBy?: AIDocumentChunkOrderByWithRelationInput | AIDocumentChunkOrderByWithRelationInput[]
+    cursor?: AIDocumentChunkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIDocumentChunkScalarFieldEnum | AIDocumentChunkScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocument without action
+   */
+  export type AIDocumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocument
+     */
+    select?: AIDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocument
+     */
+    omit?: AIDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIDocumentChunk
+   */
+
+  export type AggregateAIDocumentChunk = {
+    _count: AIDocumentChunkCountAggregateOutputType | null
+    _avg: AIDocumentChunkAvgAggregateOutputType | null
+    _sum: AIDocumentChunkSumAggregateOutputType | null
+    _min: AIDocumentChunkMinAggregateOutputType | null
+    _max: AIDocumentChunkMaxAggregateOutputType | null
+  }
+
+  export type AIDocumentChunkAvgAggregateOutputType = {
+    chunk_index: number | null
+    page_number: number | null
+  }
+
+  export type AIDocumentChunkSumAggregateOutputType = {
+    chunk_index: number | null
+    page_number: number | null
+  }
+
+  export type AIDocumentChunkMinAggregateOutputType = {
+    id: string | null
+    document_id: string | null
+    chunk_index: number | null
+    content: string | null
+    page_number: number | null
+    metadata: string | null
+    created_at: Date | null
+  }
+
+  export type AIDocumentChunkMaxAggregateOutputType = {
+    id: string | null
+    document_id: string | null
+    chunk_index: number | null
+    content: string | null
+    page_number: number | null
+    metadata: string | null
+    created_at: Date | null
+  }
+
+  export type AIDocumentChunkCountAggregateOutputType = {
+    id: number
+    document_id: number
+    chunk_index: number
+    content: number
+    page_number: number
+    metadata: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type AIDocumentChunkAvgAggregateInputType = {
+    chunk_index?: true
+    page_number?: true
+  }
+
+  export type AIDocumentChunkSumAggregateInputType = {
+    chunk_index?: true
+    page_number?: true
+  }
+
+  export type AIDocumentChunkMinAggregateInputType = {
+    id?: true
+    document_id?: true
+    chunk_index?: true
+    content?: true
+    page_number?: true
+    metadata?: true
+    created_at?: true
+  }
+
+  export type AIDocumentChunkMaxAggregateInputType = {
+    id?: true
+    document_id?: true
+    chunk_index?: true
+    content?: true
+    page_number?: true
+    metadata?: true
+    created_at?: true
+  }
+
+  export type AIDocumentChunkCountAggregateInputType = {
+    id?: true
+    document_id?: true
+    chunk_index?: true
+    content?: true
+    page_number?: true
+    metadata?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type AIDocumentChunkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDocumentChunk to aggregate.
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocumentChunks to fetch.
+     */
+    orderBy?: AIDocumentChunkOrderByWithRelationInput | AIDocumentChunkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIDocumentChunkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocumentChunks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocumentChunks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIDocumentChunks
+    **/
+    _count?: true | AIDocumentChunkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIDocumentChunkAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIDocumentChunkSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIDocumentChunkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIDocumentChunkMaxAggregateInputType
+  }
+
+  export type GetAIDocumentChunkAggregateType<T extends AIDocumentChunkAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIDocumentChunk]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIDocumentChunk[P]>
+      : GetScalarType<T[P], AggregateAIDocumentChunk[P]>
+  }
+
+
+
+
+  export type AIDocumentChunkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIDocumentChunkWhereInput
+    orderBy?: AIDocumentChunkOrderByWithAggregationInput | AIDocumentChunkOrderByWithAggregationInput[]
+    by: AIDocumentChunkScalarFieldEnum[] | AIDocumentChunkScalarFieldEnum
+    having?: AIDocumentChunkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIDocumentChunkCountAggregateInputType | true
+    _avg?: AIDocumentChunkAvgAggregateInputType
+    _sum?: AIDocumentChunkSumAggregateInputType
+    _min?: AIDocumentChunkMinAggregateInputType
+    _max?: AIDocumentChunkMaxAggregateInputType
+  }
+
+  export type AIDocumentChunkGroupByOutputType = {
+    id: string
+    document_id: string
+    chunk_index: number
+    content: string
+    page_number: number | null
+    metadata: string | null
+    created_at: Date
+    _count: AIDocumentChunkCountAggregateOutputType | null
+    _avg: AIDocumentChunkAvgAggregateOutputType | null
+    _sum: AIDocumentChunkSumAggregateOutputType | null
+    _min: AIDocumentChunkMinAggregateOutputType | null
+    _max: AIDocumentChunkMaxAggregateOutputType | null
+  }
+
+  type GetAIDocumentChunkGroupByPayload<T extends AIDocumentChunkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIDocumentChunkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIDocumentChunkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIDocumentChunkGroupByOutputType[P]>
+            : GetScalarType<T[P], AIDocumentChunkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIDocumentChunkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    document_id?: boolean
+    chunk_index?: boolean
+    content?: boolean
+    page_number?: boolean
+    metadata?: boolean
+    created_at?: boolean
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIDocumentChunk"]>
+
+  export type AIDocumentChunkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    document_id?: boolean
+    chunk_index?: boolean
+    content?: boolean
+    page_number?: boolean
+    metadata?: boolean
+    created_at?: boolean
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIDocumentChunk"]>
+
+  export type AIDocumentChunkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    document_id?: boolean
+    chunk_index?: boolean
+    content?: boolean
+    page_number?: boolean
+    metadata?: boolean
+    created_at?: boolean
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIDocumentChunk"]>
+
+  export type AIDocumentChunkSelectScalar = {
+    id?: boolean
+    document_id?: boolean
+    chunk_index?: boolean
+    content?: boolean
+    page_number?: boolean
+    metadata?: boolean
+    created_at?: boolean
+  }
+
+  export type AIDocumentChunkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "document_id" | "chunk_index" | "content" | "page_number" | "metadata" | "created_at", ExtArgs["result"]["aIDocumentChunk"]>
+  export type AIDocumentChunkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }
+  export type AIDocumentChunkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }
+  export type AIDocumentChunkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    document?: boolean | AIDocumentDefaultArgs<ExtArgs>
+  }
+
+  export type $AIDocumentChunkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIDocumentChunk"
+    objects: {
+      document: Prisma.$AIDocumentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      document_id: string
+      chunk_index: number
+      content: string
+      page_number: number | null
+      metadata: string | null
+      created_at: Date
+    }, ExtArgs["result"]["aIDocumentChunk"]>
+    composites: {}
+  }
+
+  type AIDocumentChunkGetPayload<S extends boolean | null | undefined | AIDocumentChunkDefaultArgs> = $Result.GetResult<Prisma.$AIDocumentChunkPayload, S>
+
+  type AIDocumentChunkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIDocumentChunkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIDocumentChunkCountAggregateInputType | true
+    }
+
+  export interface AIDocumentChunkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIDocumentChunk'], meta: { name: 'AIDocumentChunk' } }
+    /**
+     * Find zero or one AIDocumentChunk that matches the filter.
+     * @param {AIDocumentChunkFindUniqueArgs} args - Arguments to find a AIDocumentChunk
+     * @example
+     * // Get one AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIDocumentChunkFindUniqueArgs>(args: SelectSubset<T, AIDocumentChunkFindUniqueArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIDocumentChunk that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIDocumentChunkFindUniqueOrThrowArgs} args - Arguments to find a AIDocumentChunk
+     * @example
+     * // Get one AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIDocumentChunkFindUniqueOrThrowArgs>(args: SelectSubset<T, AIDocumentChunkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDocumentChunk that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkFindFirstArgs} args - Arguments to find a AIDocumentChunk
+     * @example
+     * // Get one AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIDocumentChunkFindFirstArgs>(args?: SelectSubset<T, AIDocumentChunkFindFirstArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIDocumentChunk that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkFindFirstOrThrowArgs} args - Arguments to find a AIDocumentChunk
+     * @example
+     * // Get one AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIDocumentChunkFindFirstOrThrowArgs>(args?: SelectSubset<T, AIDocumentChunkFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIDocumentChunks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIDocumentChunks
+     * const aIDocumentChunks = await prisma.aIDocumentChunk.findMany()
+     * 
+     * // Get first 10 AIDocumentChunks
+     * const aIDocumentChunks = await prisma.aIDocumentChunk.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIDocumentChunkWithIdOnly = await prisma.aIDocumentChunk.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIDocumentChunkFindManyArgs>(args?: SelectSubset<T, AIDocumentChunkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIDocumentChunk.
+     * @param {AIDocumentChunkCreateArgs} args - Arguments to create a AIDocumentChunk.
+     * @example
+     * // Create one AIDocumentChunk
+     * const AIDocumentChunk = await prisma.aIDocumentChunk.create({
+     *   data: {
+     *     // ... data to create a AIDocumentChunk
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIDocumentChunkCreateArgs>(args: SelectSubset<T, AIDocumentChunkCreateArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIDocumentChunks.
+     * @param {AIDocumentChunkCreateManyArgs} args - Arguments to create many AIDocumentChunks.
+     * @example
+     * // Create many AIDocumentChunks
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIDocumentChunkCreateManyArgs>(args?: SelectSubset<T, AIDocumentChunkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIDocumentChunks and returns the data saved in the database.
+     * @param {AIDocumentChunkCreateManyAndReturnArgs} args - Arguments to create many AIDocumentChunks.
+     * @example
+     * // Create many AIDocumentChunks
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIDocumentChunks and only return the `id`
+     * const aIDocumentChunkWithIdOnly = await prisma.aIDocumentChunk.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIDocumentChunkCreateManyAndReturnArgs>(args?: SelectSubset<T, AIDocumentChunkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIDocumentChunk.
+     * @param {AIDocumentChunkDeleteArgs} args - Arguments to delete one AIDocumentChunk.
+     * @example
+     * // Delete one AIDocumentChunk
+     * const AIDocumentChunk = await prisma.aIDocumentChunk.delete({
+     *   where: {
+     *     // ... filter to delete one AIDocumentChunk
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIDocumentChunkDeleteArgs>(args: SelectSubset<T, AIDocumentChunkDeleteArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIDocumentChunk.
+     * @param {AIDocumentChunkUpdateArgs} args - Arguments to update one AIDocumentChunk.
+     * @example
+     * // Update one AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIDocumentChunkUpdateArgs>(args: SelectSubset<T, AIDocumentChunkUpdateArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIDocumentChunks.
+     * @param {AIDocumentChunkDeleteManyArgs} args - Arguments to filter AIDocumentChunks to delete.
+     * @example
+     * // Delete a few AIDocumentChunks
+     * const { count } = await prisma.aIDocumentChunk.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIDocumentChunkDeleteManyArgs>(args?: SelectSubset<T, AIDocumentChunkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIDocumentChunks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIDocumentChunks
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIDocumentChunkUpdateManyArgs>(args: SelectSubset<T, AIDocumentChunkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIDocumentChunks and returns the data updated in the database.
+     * @param {AIDocumentChunkUpdateManyAndReturnArgs} args - Arguments to update many AIDocumentChunks.
+     * @example
+     * // Update many AIDocumentChunks
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIDocumentChunks and only return the `id`
+     * const aIDocumentChunkWithIdOnly = await prisma.aIDocumentChunk.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIDocumentChunkUpdateManyAndReturnArgs>(args: SelectSubset<T, AIDocumentChunkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIDocumentChunk.
+     * @param {AIDocumentChunkUpsertArgs} args - Arguments to update or create a AIDocumentChunk.
+     * @example
+     * // Update or create a AIDocumentChunk
+     * const aIDocumentChunk = await prisma.aIDocumentChunk.upsert({
+     *   create: {
+     *     // ... data to create a AIDocumentChunk
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIDocumentChunk we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIDocumentChunkUpsertArgs>(args: SelectSubset<T, AIDocumentChunkUpsertArgs<ExtArgs>>): Prisma__AIDocumentChunkClient<$Result.GetResult<Prisma.$AIDocumentChunkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIDocumentChunks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkCountArgs} args - Arguments to filter AIDocumentChunks to count.
+     * @example
+     * // Count the number of AIDocumentChunks
+     * const count = await prisma.aIDocumentChunk.count({
+     *   where: {
+     *     // ... the filter for the AIDocumentChunks we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIDocumentChunkCountArgs>(
+      args?: Subset<T, AIDocumentChunkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIDocumentChunkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIDocumentChunk.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIDocumentChunkAggregateArgs>(args: Subset<T, AIDocumentChunkAggregateArgs>): Prisma.PrismaPromise<GetAIDocumentChunkAggregateType<T>>
+
+    /**
+     * Group by AIDocumentChunk.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIDocumentChunkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIDocumentChunkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIDocumentChunkGroupByArgs['orderBy'] }
+        : { orderBy?: AIDocumentChunkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIDocumentChunkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIDocumentChunkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIDocumentChunk model
+   */
+  readonly fields: AIDocumentChunkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIDocumentChunk.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIDocumentChunkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    document<T extends AIDocumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AIDocumentDefaultArgs<ExtArgs>>): Prisma__AIDocumentClient<$Result.GetResult<Prisma.$AIDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIDocumentChunk model
+   */
+  interface AIDocumentChunkFieldRefs {
+    readonly id: FieldRef<"AIDocumentChunk", 'String'>
+    readonly document_id: FieldRef<"AIDocumentChunk", 'String'>
+    readonly chunk_index: FieldRef<"AIDocumentChunk", 'Int'>
+    readonly content: FieldRef<"AIDocumentChunk", 'String'>
+    readonly page_number: FieldRef<"AIDocumentChunk", 'Int'>
+    readonly metadata: FieldRef<"AIDocumentChunk", 'String'>
+    readonly created_at: FieldRef<"AIDocumentChunk", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIDocumentChunk findUnique
+   */
+  export type AIDocumentChunkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocumentChunk to fetch.
+     */
+    where: AIDocumentChunkWhereUniqueInput
+  }
+
+  /**
+   * AIDocumentChunk findUniqueOrThrow
+   */
+  export type AIDocumentChunkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocumentChunk to fetch.
+     */
+    where: AIDocumentChunkWhereUniqueInput
+  }
+
+  /**
+   * AIDocumentChunk findFirst
+   */
+  export type AIDocumentChunkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocumentChunk to fetch.
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocumentChunks to fetch.
+     */
+    orderBy?: AIDocumentChunkOrderByWithRelationInput | AIDocumentChunkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDocumentChunks.
+     */
+    cursor?: AIDocumentChunkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocumentChunks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocumentChunks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDocumentChunks.
+     */
+    distinct?: AIDocumentChunkScalarFieldEnum | AIDocumentChunkScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocumentChunk findFirstOrThrow
+   */
+  export type AIDocumentChunkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocumentChunk to fetch.
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocumentChunks to fetch.
+     */
+    orderBy?: AIDocumentChunkOrderByWithRelationInput | AIDocumentChunkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIDocumentChunks.
+     */
+    cursor?: AIDocumentChunkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocumentChunks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocumentChunks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIDocumentChunks.
+     */
+    distinct?: AIDocumentChunkScalarFieldEnum | AIDocumentChunkScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocumentChunk findMany
+   */
+  export type AIDocumentChunkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter, which AIDocumentChunks to fetch.
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIDocumentChunks to fetch.
+     */
+    orderBy?: AIDocumentChunkOrderByWithRelationInput | AIDocumentChunkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIDocumentChunks.
+     */
+    cursor?: AIDocumentChunkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIDocumentChunks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIDocumentChunks.
+     */
+    skip?: number
+    distinct?: AIDocumentChunkScalarFieldEnum | AIDocumentChunkScalarFieldEnum[]
+  }
+
+  /**
+   * AIDocumentChunk create
+   */
+  export type AIDocumentChunkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIDocumentChunk.
+     */
+    data: XOR<AIDocumentChunkCreateInput, AIDocumentChunkUncheckedCreateInput>
+  }
+
+  /**
+   * AIDocumentChunk createMany
+   */
+  export type AIDocumentChunkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIDocumentChunks.
+     */
+    data: AIDocumentChunkCreateManyInput | AIDocumentChunkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIDocumentChunk createManyAndReturn
+   */
+  export type AIDocumentChunkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIDocumentChunks.
+     */
+    data: AIDocumentChunkCreateManyInput | AIDocumentChunkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIDocumentChunk update
+   */
+  export type AIDocumentChunkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIDocumentChunk.
+     */
+    data: XOR<AIDocumentChunkUpdateInput, AIDocumentChunkUncheckedUpdateInput>
+    /**
+     * Choose, which AIDocumentChunk to update.
+     */
+    where: AIDocumentChunkWhereUniqueInput
+  }
+
+  /**
+   * AIDocumentChunk updateMany
+   */
+  export type AIDocumentChunkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIDocumentChunks.
+     */
+    data: XOR<AIDocumentChunkUpdateManyMutationInput, AIDocumentChunkUncheckedUpdateManyInput>
+    /**
+     * Filter which AIDocumentChunks to update
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * Limit how many AIDocumentChunks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDocumentChunk updateManyAndReturn
+   */
+  export type AIDocumentChunkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * The data used to update AIDocumentChunks.
+     */
+    data: XOR<AIDocumentChunkUpdateManyMutationInput, AIDocumentChunkUncheckedUpdateManyInput>
+    /**
+     * Filter which AIDocumentChunks to update
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * Limit how many AIDocumentChunks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIDocumentChunk upsert
+   */
+  export type AIDocumentChunkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIDocumentChunk to update in case it exists.
+     */
+    where: AIDocumentChunkWhereUniqueInput
+    /**
+     * In case the AIDocumentChunk found by the `where` argument doesn't exist, create a new AIDocumentChunk with this data.
+     */
+    create: XOR<AIDocumentChunkCreateInput, AIDocumentChunkUncheckedCreateInput>
+    /**
+     * In case the AIDocumentChunk was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIDocumentChunkUpdateInput, AIDocumentChunkUncheckedUpdateInput>
+  }
+
+  /**
+   * AIDocumentChunk delete
+   */
+  export type AIDocumentChunkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+    /**
+     * Filter which AIDocumentChunk to delete.
+     */
+    where: AIDocumentChunkWhereUniqueInput
+  }
+
+  /**
+   * AIDocumentChunk deleteMany
+   */
+  export type AIDocumentChunkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIDocumentChunks to delete
+     */
+    where?: AIDocumentChunkWhereInput
+    /**
+     * Limit how many AIDocumentChunks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIDocumentChunk without action
+   */
+  export type AIDocumentChunkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIDocumentChunk
+     */
+    select?: AIDocumentChunkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIDocumentChunk
+     */
+    omit?: AIDocumentChunkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIDocumentChunkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIAlert
+   */
+
+  export type AggregateAIAlert = {
+    _count: AIAlertCountAggregateOutputType | null
+    _avg: AIAlertAvgAggregateOutputType | null
+    _sum: AIAlertSumAggregateOutputType | null
+    _min: AIAlertMinAggregateOutputType | null
+    _max: AIAlertMaxAggregateOutputType | null
+  }
+
+  export type AIAlertAvgAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    assigned_to: number | null
+  }
+
+  export type AIAlertSumAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    assigned_to: number | null
+  }
+
+  export type AIAlertMinAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    module: string | null
+    severity: $Enums.AIAlertSeverity | null
+    title: string | null
+    description: string | null
+    supporting_records: string | null
+    recommended_action: string | null
+    status: $Enums.AIAlertStatus | null
+    assigned_to: number | null
+    reviewer_notes: string | null
+    detection_date: Date | null
+    resolved_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIAlertMaxAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    module: string | null
+    severity: $Enums.AIAlertSeverity | null
+    title: string | null
+    description: string | null
+    supporting_records: string | null
+    recommended_action: string | null
+    status: $Enums.AIAlertStatus | null
+    assigned_to: number | null
+    reviewer_notes: string | null
+    detection_date: Date | null
+    resolved_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIAlertCountAggregateOutputType = {
+    id: number
+    company_id: number
+    project_id: number
+    module: number
+    severity: number
+    title: number
+    description: number
+    supporting_records: number
+    recommended_action: number
+    status: number
+    assigned_to: number
+    reviewer_notes: number
+    detection_date: number
+    resolved_at: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AIAlertAvgAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    assigned_to?: true
+  }
+
+  export type AIAlertSumAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    assigned_to?: true
+  }
+
+  export type AIAlertMinAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    module?: true
+    severity?: true
+    title?: true
+    description?: true
+    supporting_records?: true
+    recommended_action?: true
+    status?: true
+    assigned_to?: true
+    reviewer_notes?: true
+    detection_date?: true
+    resolved_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIAlertMaxAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    module?: true
+    severity?: true
+    title?: true
+    description?: true
+    supporting_records?: true
+    recommended_action?: true
+    status?: true
+    assigned_to?: true
+    reviewer_notes?: true
+    detection_date?: true
+    resolved_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIAlertCountAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    module?: true
+    severity?: true
+    title?: true
+    description?: true
+    supporting_records?: true
+    recommended_action?: true
+    status?: true
+    assigned_to?: true
+    reviewer_notes?: true
+    detection_date?: true
+    resolved_at?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AIAlertAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIAlert to aggregate.
+     */
+    where?: AIAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIAlerts to fetch.
+     */
+    orderBy?: AIAlertOrderByWithRelationInput | AIAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIAlerts
+    **/
+    _count?: true | AIAlertCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIAlertAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIAlertSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIAlertMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIAlertMaxAggregateInputType
+  }
+
+  export type GetAIAlertAggregateType<T extends AIAlertAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIAlert]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIAlert[P]>
+      : GetScalarType<T[P], AggregateAIAlert[P]>
+  }
+
+
+
+
+  export type AIAlertGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIAlertWhereInput
+    orderBy?: AIAlertOrderByWithAggregationInput | AIAlertOrderByWithAggregationInput[]
+    by: AIAlertScalarFieldEnum[] | AIAlertScalarFieldEnum
+    having?: AIAlertScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIAlertCountAggregateInputType | true
+    _avg?: AIAlertAvgAggregateInputType
+    _sum?: AIAlertSumAggregateInputType
+    _min?: AIAlertMinAggregateInputType
+    _max?: AIAlertMaxAggregateInputType
+  }
+
+  export type AIAlertGroupByOutputType = {
+    id: string
+    company_id: number
+    project_id: number | null
+    module: string
+    severity: $Enums.AIAlertSeverity
+    title: string
+    description: string
+    supporting_records: string | null
+    recommended_action: string | null
+    status: $Enums.AIAlertStatus
+    assigned_to: number | null
+    reviewer_notes: string | null
+    detection_date: Date
+    resolved_at: Date | null
+    created_at: Date
+    updated_at: Date
+    _count: AIAlertCountAggregateOutputType | null
+    _avg: AIAlertAvgAggregateOutputType | null
+    _sum: AIAlertSumAggregateOutputType | null
+    _min: AIAlertMinAggregateOutputType | null
+    _max: AIAlertMaxAggregateOutputType | null
+  }
+
+  type GetAIAlertGroupByPayload<T extends AIAlertGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIAlertGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIAlertGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIAlertGroupByOutputType[P]>
+            : GetScalarType<T[P], AIAlertGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIAlertSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    module?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    supporting_records?: boolean
+    recommended_action?: boolean
+    status?: boolean
+    assigned_to?: boolean
+    reviewer_notes?: boolean
+    detection_date?: boolean
+    resolved_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIAlert"]>
+
+  export type AIAlertSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    module?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    supporting_records?: boolean
+    recommended_action?: boolean
+    status?: boolean
+    assigned_to?: boolean
+    reviewer_notes?: boolean
+    detection_date?: boolean
+    resolved_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIAlert"]>
+
+  export type AIAlertSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    module?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    supporting_records?: boolean
+    recommended_action?: boolean
+    status?: boolean
+    assigned_to?: boolean
+    reviewer_notes?: boolean
+    detection_date?: boolean
+    resolved_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIAlert"]>
+
+  export type AIAlertSelectScalar = {
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    module?: boolean
+    severity?: boolean
+    title?: boolean
+    description?: boolean
+    supporting_records?: boolean
+    recommended_action?: boolean
+    status?: boolean
+    assigned_to?: boolean
+    reviewer_notes?: boolean
+    detection_date?: boolean
+    resolved_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type AIAlertOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "project_id" | "module" | "severity" | "title" | "description" | "supporting_records" | "recommended_action" | "status" | "assigned_to" | "reviewer_notes" | "detection_date" | "resolved_at" | "created_at" | "updated_at", ExtArgs["result"]["aIAlert"]>
+
+  export type $AIAlertPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIAlert"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company_id: number
+      project_id: number | null
+      module: string
+      severity: $Enums.AIAlertSeverity
+      title: string
+      description: string
+      supporting_records: string | null
+      recommended_action: string | null
+      status: $Enums.AIAlertStatus
+      assigned_to: number | null
+      reviewer_notes: string | null
+      detection_date: Date
+      resolved_at: Date | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["aIAlert"]>
+    composites: {}
+  }
+
+  type AIAlertGetPayload<S extends boolean | null | undefined | AIAlertDefaultArgs> = $Result.GetResult<Prisma.$AIAlertPayload, S>
+
+  type AIAlertCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIAlertFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIAlertCountAggregateInputType | true
+    }
+
+  export interface AIAlertDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIAlert'], meta: { name: 'AIAlert' } }
+    /**
+     * Find zero or one AIAlert that matches the filter.
+     * @param {AIAlertFindUniqueArgs} args - Arguments to find a AIAlert
+     * @example
+     * // Get one AIAlert
+     * const aIAlert = await prisma.aIAlert.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIAlertFindUniqueArgs>(args: SelectSubset<T, AIAlertFindUniqueArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIAlert that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIAlertFindUniqueOrThrowArgs} args - Arguments to find a AIAlert
+     * @example
+     * // Get one AIAlert
+     * const aIAlert = await prisma.aIAlert.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIAlertFindUniqueOrThrowArgs>(args: SelectSubset<T, AIAlertFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIAlert that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertFindFirstArgs} args - Arguments to find a AIAlert
+     * @example
+     * // Get one AIAlert
+     * const aIAlert = await prisma.aIAlert.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIAlertFindFirstArgs>(args?: SelectSubset<T, AIAlertFindFirstArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIAlert that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertFindFirstOrThrowArgs} args - Arguments to find a AIAlert
+     * @example
+     * // Get one AIAlert
+     * const aIAlert = await prisma.aIAlert.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIAlertFindFirstOrThrowArgs>(args?: SelectSubset<T, AIAlertFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIAlerts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIAlerts
+     * const aIAlerts = await prisma.aIAlert.findMany()
+     * 
+     * // Get first 10 AIAlerts
+     * const aIAlerts = await prisma.aIAlert.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIAlertWithIdOnly = await prisma.aIAlert.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIAlertFindManyArgs>(args?: SelectSubset<T, AIAlertFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIAlert.
+     * @param {AIAlertCreateArgs} args - Arguments to create a AIAlert.
+     * @example
+     * // Create one AIAlert
+     * const AIAlert = await prisma.aIAlert.create({
+     *   data: {
+     *     // ... data to create a AIAlert
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIAlertCreateArgs>(args: SelectSubset<T, AIAlertCreateArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIAlerts.
+     * @param {AIAlertCreateManyArgs} args - Arguments to create many AIAlerts.
+     * @example
+     * // Create many AIAlerts
+     * const aIAlert = await prisma.aIAlert.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIAlertCreateManyArgs>(args?: SelectSubset<T, AIAlertCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIAlerts and returns the data saved in the database.
+     * @param {AIAlertCreateManyAndReturnArgs} args - Arguments to create many AIAlerts.
+     * @example
+     * // Create many AIAlerts
+     * const aIAlert = await prisma.aIAlert.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIAlerts and only return the `id`
+     * const aIAlertWithIdOnly = await prisma.aIAlert.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIAlertCreateManyAndReturnArgs>(args?: SelectSubset<T, AIAlertCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIAlert.
+     * @param {AIAlertDeleteArgs} args - Arguments to delete one AIAlert.
+     * @example
+     * // Delete one AIAlert
+     * const AIAlert = await prisma.aIAlert.delete({
+     *   where: {
+     *     // ... filter to delete one AIAlert
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIAlertDeleteArgs>(args: SelectSubset<T, AIAlertDeleteArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIAlert.
+     * @param {AIAlertUpdateArgs} args - Arguments to update one AIAlert.
+     * @example
+     * // Update one AIAlert
+     * const aIAlert = await prisma.aIAlert.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIAlertUpdateArgs>(args: SelectSubset<T, AIAlertUpdateArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIAlerts.
+     * @param {AIAlertDeleteManyArgs} args - Arguments to filter AIAlerts to delete.
+     * @example
+     * // Delete a few AIAlerts
+     * const { count } = await prisma.aIAlert.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIAlertDeleteManyArgs>(args?: SelectSubset<T, AIAlertDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIAlerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIAlerts
+     * const aIAlert = await prisma.aIAlert.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIAlertUpdateManyArgs>(args: SelectSubset<T, AIAlertUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIAlerts and returns the data updated in the database.
+     * @param {AIAlertUpdateManyAndReturnArgs} args - Arguments to update many AIAlerts.
+     * @example
+     * // Update many AIAlerts
+     * const aIAlert = await prisma.aIAlert.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIAlerts and only return the `id`
+     * const aIAlertWithIdOnly = await prisma.aIAlert.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIAlertUpdateManyAndReturnArgs>(args: SelectSubset<T, AIAlertUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIAlert.
+     * @param {AIAlertUpsertArgs} args - Arguments to update or create a AIAlert.
+     * @example
+     * // Update or create a AIAlert
+     * const aIAlert = await prisma.aIAlert.upsert({
+     *   create: {
+     *     // ... data to create a AIAlert
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIAlert we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIAlertUpsertArgs>(args: SelectSubset<T, AIAlertUpsertArgs<ExtArgs>>): Prisma__AIAlertClient<$Result.GetResult<Prisma.$AIAlertPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIAlerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertCountArgs} args - Arguments to filter AIAlerts to count.
+     * @example
+     * // Count the number of AIAlerts
+     * const count = await prisma.aIAlert.count({
+     *   where: {
+     *     // ... the filter for the AIAlerts we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIAlertCountArgs>(
+      args?: Subset<T, AIAlertCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIAlertCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIAlert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIAlertAggregateArgs>(args: Subset<T, AIAlertAggregateArgs>): Prisma.PrismaPromise<GetAIAlertAggregateType<T>>
+
+    /**
+     * Group by AIAlert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIAlertGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIAlertGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIAlertGroupByArgs['orderBy'] }
+        : { orderBy?: AIAlertGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIAlertGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIAlertGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIAlert model
+   */
+  readonly fields: AIAlertFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIAlert.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIAlertClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIAlert model
+   */
+  interface AIAlertFieldRefs {
+    readonly id: FieldRef<"AIAlert", 'String'>
+    readonly company_id: FieldRef<"AIAlert", 'Int'>
+    readonly project_id: FieldRef<"AIAlert", 'Int'>
+    readonly module: FieldRef<"AIAlert", 'String'>
+    readonly severity: FieldRef<"AIAlert", 'AIAlertSeverity'>
+    readonly title: FieldRef<"AIAlert", 'String'>
+    readonly description: FieldRef<"AIAlert", 'String'>
+    readonly supporting_records: FieldRef<"AIAlert", 'String'>
+    readonly recommended_action: FieldRef<"AIAlert", 'String'>
+    readonly status: FieldRef<"AIAlert", 'AIAlertStatus'>
+    readonly assigned_to: FieldRef<"AIAlert", 'Int'>
+    readonly reviewer_notes: FieldRef<"AIAlert", 'String'>
+    readonly detection_date: FieldRef<"AIAlert", 'DateTime'>
+    readonly resolved_at: FieldRef<"AIAlert", 'DateTime'>
+    readonly created_at: FieldRef<"AIAlert", 'DateTime'>
+    readonly updated_at: FieldRef<"AIAlert", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIAlert findUnique
+   */
+  export type AIAlertFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter, which AIAlert to fetch.
+     */
+    where: AIAlertWhereUniqueInput
+  }
+
+  /**
+   * AIAlert findUniqueOrThrow
+   */
+  export type AIAlertFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter, which AIAlert to fetch.
+     */
+    where: AIAlertWhereUniqueInput
+  }
+
+  /**
+   * AIAlert findFirst
+   */
+  export type AIAlertFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter, which AIAlert to fetch.
+     */
+    where?: AIAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIAlerts to fetch.
+     */
+    orderBy?: AIAlertOrderByWithRelationInput | AIAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIAlerts.
+     */
+    cursor?: AIAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIAlerts.
+     */
+    distinct?: AIAlertScalarFieldEnum | AIAlertScalarFieldEnum[]
+  }
+
+  /**
+   * AIAlert findFirstOrThrow
+   */
+  export type AIAlertFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter, which AIAlert to fetch.
+     */
+    where?: AIAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIAlerts to fetch.
+     */
+    orderBy?: AIAlertOrderByWithRelationInput | AIAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIAlerts.
+     */
+    cursor?: AIAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIAlerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIAlerts.
+     */
+    distinct?: AIAlertScalarFieldEnum | AIAlertScalarFieldEnum[]
+  }
+
+  /**
+   * AIAlert findMany
+   */
+  export type AIAlertFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter, which AIAlerts to fetch.
+     */
+    where?: AIAlertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIAlerts to fetch.
+     */
+    orderBy?: AIAlertOrderByWithRelationInput | AIAlertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIAlerts.
+     */
+    cursor?: AIAlertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIAlerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIAlerts.
+     */
+    skip?: number
+    distinct?: AIAlertScalarFieldEnum | AIAlertScalarFieldEnum[]
+  }
+
+  /**
+   * AIAlert create
+   */
+  export type AIAlertCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AIAlert.
+     */
+    data: XOR<AIAlertCreateInput, AIAlertUncheckedCreateInput>
+  }
+
+  /**
+   * AIAlert createMany
+   */
+  export type AIAlertCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIAlerts.
+     */
+    data: AIAlertCreateManyInput | AIAlertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIAlert createManyAndReturn
+   */
+  export type AIAlertCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIAlerts.
+     */
+    data: AIAlertCreateManyInput | AIAlertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIAlert update
+   */
+  export type AIAlertUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AIAlert.
+     */
+    data: XOR<AIAlertUpdateInput, AIAlertUncheckedUpdateInput>
+    /**
+     * Choose, which AIAlert to update.
+     */
+    where: AIAlertWhereUniqueInput
+  }
+
+  /**
+   * AIAlert updateMany
+   */
+  export type AIAlertUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIAlerts.
+     */
+    data: XOR<AIAlertUpdateManyMutationInput, AIAlertUncheckedUpdateManyInput>
+    /**
+     * Filter which AIAlerts to update
+     */
+    where?: AIAlertWhereInput
+    /**
+     * Limit how many AIAlerts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIAlert updateManyAndReturn
+   */
+  export type AIAlertUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * The data used to update AIAlerts.
+     */
+    data: XOR<AIAlertUpdateManyMutationInput, AIAlertUncheckedUpdateManyInput>
+    /**
+     * Filter which AIAlerts to update
+     */
+    where?: AIAlertWhereInput
+    /**
+     * Limit how many AIAlerts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIAlert upsert
+   */
+  export type AIAlertUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AIAlert to update in case it exists.
+     */
+    where: AIAlertWhereUniqueInput
+    /**
+     * In case the AIAlert found by the `where` argument doesn't exist, create a new AIAlert with this data.
+     */
+    create: XOR<AIAlertCreateInput, AIAlertUncheckedCreateInput>
+    /**
+     * In case the AIAlert was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIAlertUpdateInput, AIAlertUncheckedUpdateInput>
+  }
+
+  /**
+   * AIAlert delete
+   */
+  export type AIAlertDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+    /**
+     * Filter which AIAlert to delete.
+     */
+    where: AIAlertWhereUniqueInput
+  }
+
+  /**
+   * AIAlert deleteMany
+   */
+  export type AIAlertDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIAlerts to delete
+     */
+    where?: AIAlertWhereInput
+    /**
+     * Limit how many AIAlerts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIAlert without action
+   */
+  export type AIAlertDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIAlert
+     */
+    select?: AIAlertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIAlert
+     */
+    omit?: AIAlertOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIPrediction
+   */
+
+  export type AggregateAIPrediction = {
+    _count: AIPredictionCountAggregateOutputType | null
+    _avg: AIPredictionAvgAggregateOutputType | null
+    _sum: AIPredictionSumAggregateOutputType | null
+    _min: AIPredictionMinAggregateOutputType | null
+    _max: AIPredictionMaxAggregateOutputType | null
+  }
+
+  export type AIPredictionAvgAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    confidence_score: number | null
+    data_points_count: number | null
+  }
+
+  export type AIPredictionSumAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    confidence_score: number | null
+    data_points_count: number | null
+  }
+
+  export type AIPredictionMinAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    prediction_type: string | null
+    target_entity: string | null
+    forecast_data: string | null
+    confidence_score: number | null
+    assumptions: string | null
+    data_points_count: number | null
+    valid_until: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIPredictionMaxAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    prediction_type: string | null
+    target_entity: string | null
+    forecast_data: string | null
+    confidence_score: number | null
+    assumptions: string | null
+    data_points_count: number | null
+    valid_until: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIPredictionCountAggregateOutputType = {
+    id: number
+    company_id: number
+    project_id: number
+    prediction_type: number
+    target_entity: number
+    forecast_data: number
+    confidence_score: number
+    assumptions: number
+    data_points_count: number
+    valid_until: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AIPredictionAvgAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    confidence_score?: true
+    data_points_count?: true
+  }
+
+  export type AIPredictionSumAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    confidence_score?: true
+    data_points_count?: true
+  }
+
+  export type AIPredictionMinAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    prediction_type?: true
+    target_entity?: true
+    forecast_data?: true
+    confidence_score?: true
+    assumptions?: true
+    data_points_count?: true
+    valid_until?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIPredictionMaxAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    prediction_type?: true
+    target_entity?: true
+    forecast_data?: true
+    confidence_score?: true
+    assumptions?: true
+    data_points_count?: true
+    valid_until?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIPredictionCountAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    prediction_type?: true
+    target_entity?: true
+    forecast_data?: true
+    confidence_score?: true
+    assumptions?: true
+    data_points_count?: true
+    valid_until?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AIPredictionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPrediction to aggregate.
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPredictions to fetch.
+     */
+    orderBy?: AIPredictionOrderByWithRelationInput | AIPredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIPredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIPredictions
+    **/
+    _count?: true | AIPredictionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIPredictionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIPredictionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIPredictionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIPredictionMaxAggregateInputType
+  }
+
+  export type GetAIPredictionAggregateType<T extends AIPredictionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIPrediction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIPrediction[P]>
+      : GetScalarType<T[P], AggregateAIPrediction[P]>
+  }
+
+
+
+
+  export type AIPredictionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPredictionWhereInput
+    orderBy?: AIPredictionOrderByWithAggregationInput | AIPredictionOrderByWithAggregationInput[]
+    by: AIPredictionScalarFieldEnum[] | AIPredictionScalarFieldEnum
+    having?: AIPredictionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIPredictionCountAggregateInputType | true
+    _avg?: AIPredictionAvgAggregateInputType
+    _sum?: AIPredictionSumAggregateInputType
+    _min?: AIPredictionMinAggregateInputType
+    _max?: AIPredictionMaxAggregateInputType
+  }
+
+  export type AIPredictionGroupByOutputType = {
+    id: string
+    company_id: number
+    project_id: number | null
+    prediction_type: string
+    target_entity: string
+    forecast_data: string
+    confidence_score: number
+    assumptions: string | null
+    data_points_count: number
+    valid_until: Date | null
+    created_at: Date
+    updated_at: Date
+    _count: AIPredictionCountAggregateOutputType | null
+    _avg: AIPredictionAvgAggregateOutputType | null
+    _sum: AIPredictionSumAggregateOutputType | null
+    _min: AIPredictionMinAggregateOutputType | null
+    _max: AIPredictionMaxAggregateOutputType | null
+  }
+
+  type GetAIPredictionGroupByPayload<T extends AIPredictionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIPredictionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIPredictionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIPredictionGroupByOutputType[P]>
+            : GetScalarType<T[P], AIPredictionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIPredictionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    prediction_type?: boolean
+    target_entity?: boolean
+    forecast_data?: boolean
+    confidence_score?: boolean
+    assumptions?: boolean
+    data_points_count?: boolean
+    valid_until?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIPrediction"]>
+
+  export type AIPredictionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    prediction_type?: boolean
+    target_entity?: boolean
+    forecast_data?: boolean
+    confidence_score?: boolean
+    assumptions?: boolean
+    data_points_count?: boolean
+    valid_until?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIPrediction"]>
+
+  export type AIPredictionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    prediction_type?: boolean
+    target_entity?: boolean
+    forecast_data?: boolean
+    confidence_score?: boolean
+    assumptions?: boolean
+    data_points_count?: boolean
+    valid_until?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIPrediction"]>
+
+  export type AIPredictionSelectScalar = {
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    prediction_type?: boolean
+    target_entity?: boolean
+    forecast_data?: boolean
+    confidence_score?: boolean
+    assumptions?: boolean
+    data_points_count?: boolean
+    valid_until?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type AIPredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "project_id" | "prediction_type" | "target_entity" | "forecast_data" | "confidence_score" | "assumptions" | "data_points_count" | "valid_until" | "created_at" | "updated_at", ExtArgs["result"]["aIPrediction"]>
+
+  export type $AIPredictionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIPrediction"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company_id: number
+      project_id: number | null
+      prediction_type: string
+      target_entity: string
+      forecast_data: string
+      confidence_score: number
+      assumptions: string | null
+      data_points_count: number
+      valid_until: Date | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["aIPrediction"]>
+    composites: {}
+  }
+
+  type AIPredictionGetPayload<S extends boolean | null | undefined | AIPredictionDefaultArgs> = $Result.GetResult<Prisma.$AIPredictionPayload, S>
+
+  type AIPredictionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIPredictionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIPredictionCountAggregateInputType | true
+    }
+
+  export interface AIPredictionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIPrediction'], meta: { name: 'AIPrediction' } }
+    /**
+     * Find zero or one AIPrediction that matches the filter.
+     * @param {AIPredictionFindUniqueArgs} args - Arguments to find a AIPrediction
+     * @example
+     * // Get one AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIPredictionFindUniqueArgs>(args: SelectSubset<T, AIPredictionFindUniqueArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIPrediction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIPredictionFindUniqueOrThrowArgs} args - Arguments to find a AIPrediction
+     * @example
+     * // Get one AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIPredictionFindUniqueOrThrowArgs>(args: SelectSubset<T, AIPredictionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPrediction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionFindFirstArgs} args - Arguments to find a AIPrediction
+     * @example
+     * // Get one AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIPredictionFindFirstArgs>(args?: SelectSubset<T, AIPredictionFindFirstArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPrediction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionFindFirstOrThrowArgs} args - Arguments to find a AIPrediction
+     * @example
+     * // Get one AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIPredictionFindFirstOrThrowArgs>(args?: SelectSubset<T, AIPredictionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIPredictions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIPredictions
+     * const aIPredictions = await prisma.aIPrediction.findMany()
+     * 
+     * // Get first 10 AIPredictions
+     * const aIPredictions = await prisma.aIPrediction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIPredictionWithIdOnly = await prisma.aIPrediction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIPredictionFindManyArgs>(args?: SelectSubset<T, AIPredictionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIPrediction.
+     * @param {AIPredictionCreateArgs} args - Arguments to create a AIPrediction.
+     * @example
+     * // Create one AIPrediction
+     * const AIPrediction = await prisma.aIPrediction.create({
+     *   data: {
+     *     // ... data to create a AIPrediction
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIPredictionCreateArgs>(args: SelectSubset<T, AIPredictionCreateArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIPredictions.
+     * @param {AIPredictionCreateManyArgs} args - Arguments to create many AIPredictions.
+     * @example
+     * // Create many AIPredictions
+     * const aIPrediction = await prisma.aIPrediction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIPredictionCreateManyArgs>(args?: SelectSubset<T, AIPredictionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIPredictions and returns the data saved in the database.
+     * @param {AIPredictionCreateManyAndReturnArgs} args - Arguments to create many AIPredictions.
+     * @example
+     * // Create many AIPredictions
+     * const aIPrediction = await prisma.aIPrediction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIPredictions and only return the `id`
+     * const aIPredictionWithIdOnly = await prisma.aIPrediction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIPredictionCreateManyAndReturnArgs>(args?: SelectSubset<T, AIPredictionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIPrediction.
+     * @param {AIPredictionDeleteArgs} args - Arguments to delete one AIPrediction.
+     * @example
+     * // Delete one AIPrediction
+     * const AIPrediction = await prisma.aIPrediction.delete({
+     *   where: {
+     *     // ... filter to delete one AIPrediction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIPredictionDeleteArgs>(args: SelectSubset<T, AIPredictionDeleteArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIPrediction.
+     * @param {AIPredictionUpdateArgs} args - Arguments to update one AIPrediction.
+     * @example
+     * // Update one AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIPredictionUpdateArgs>(args: SelectSubset<T, AIPredictionUpdateArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIPredictions.
+     * @param {AIPredictionDeleteManyArgs} args - Arguments to filter AIPredictions to delete.
+     * @example
+     * // Delete a few AIPredictions
+     * const { count } = await prisma.aIPrediction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIPredictionDeleteManyArgs>(args?: SelectSubset<T, AIPredictionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIPredictions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIPredictions
+     * const aIPrediction = await prisma.aIPrediction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIPredictionUpdateManyArgs>(args: SelectSubset<T, AIPredictionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIPredictions and returns the data updated in the database.
+     * @param {AIPredictionUpdateManyAndReturnArgs} args - Arguments to update many AIPredictions.
+     * @example
+     * // Update many AIPredictions
+     * const aIPrediction = await prisma.aIPrediction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIPredictions and only return the `id`
+     * const aIPredictionWithIdOnly = await prisma.aIPrediction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIPredictionUpdateManyAndReturnArgs>(args: SelectSubset<T, AIPredictionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIPrediction.
+     * @param {AIPredictionUpsertArgs} args - Arguments to update or create a AIPrediction.
+     * @example
+     * // Update or create a AIPrediction
+     * const aIPrediction = await prisma.aIPrediction.upsert({
+     *   create: {
+     *     // ... data to create a AIPrediction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIPrediction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIPredictionUpsertArgs>(args: SelectSubset<T, AIPredictionUpsertArgs<ExtArgs>>): Prisma__AIPredictionClient<$Result.GetResult<Prisma.$AIPredictionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIPredictions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionCountArgs} args - Arguments to filter AIPredictions to count.
+     * @example
+     * // Count the number of AIPredictions
+     * const count = await prisma.aIPrediction.count({
+     *   where: {
+     *     // ... the filter for the AIPredictions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIPredictionCountArgs>(
+      args?: Subset<T, AIPredictionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIPredictionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIPrediction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIPredictionAggregateArgs>(args: Subset<T, AIPredictionAggregateArgs>): Prisma.PrismaPromise<GetAIPredictionAggregateType<T>>
+
+    /**
+     * Group by AIPrediction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPredictionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIPredictionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIPredictionGroupByArgs['orderBy'] }
+        : { orderBy?: AIPredictionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIPredictionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIPredictionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIPrediction model
+   */
+  readonly fields: AIPredictionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIPrediction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIPredictionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIPrediction model
+   */
+  interface AIPredictionFieldRefs {
+    readonly id: FieldRef<"AIPrediction", 'String'>
+    readonly company_id: FieldRef<"AIPrediction", 'Int'>
+    readonly project_id: FieldRef<"AIPrediction", 'Int'>
+    readonly prediction_type: FieldRef<"AIPrediction", 'String'>
+    readonly target_entity: FieldRef<"AIPrediction", 'String'>
+    readonly forecast_data: FieldRef<"AIPrediction", 'String'>
+    readonly confidence_score: FieldRef<"AIPrediction", 'Float'>
+    readonly assumptions: FieldRef<"AIPrediction", 'String'>
+    readonly data_points_count: FieldRef<"AIPrediction", 'Int'>
+    readonly valid_until: FieldRef<"AIPrediction", 'DateTime'>
+    readonly created_at: FieldRef<"AIPrediction", 'DateTime'>
+    readonly updated_at: FieldRef<"AIPrediction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIPrediction findUnique
+   */
+  export type AIPredictionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which AIPrediction to fetch.
+     */
+    where: AIPredictionWhereUniqueInput
+  }
+
+  /**
+   * AIPrediction findUniqueOrThrow
+   */
+  export type AIPredictionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which AIPrediction to fetch.
+     */
+    where: AIPredictionWhereUniqueInput
+  }
+
+  /**
+   * AIPrediction findFirst
+   */
+  export type AIPredictionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which AIPrediction to fetch.
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPredictions to fetch.
+     */
+    orderBy?: AIPredictionOrderByWithRelationInput | AIPredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPredictions.
+     */
+    cursor?: AIPredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPredictions.
+     */
+    distinct?: AIPredictionScalarFieldEnum | AIPredictionScalarFieldEnum[]
+  }
+
+  /**
+   * AIPrediction findFirstOrThrow
+   */
+  export type AIPredictionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which AIPrediction to fetch.
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPredictions to fetch.
+     */
+    orderBy?: AIPredictionOrderByWithRelationInput | AIPredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPredictions.
+     */
+    cursor?: AIPredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPredictions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPredictions.
+     */
+    distinct?: AIPredictionScalarFieldEnum | AIPredictionScalarFieldEnum[]
+  }
+
+  /**
+   * AIPrediction findMany
+   */
+  export type AIPredictionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter, which AIPredictions to fetch.
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPredictions to fetch.
+     */
+    orderBy?: AIPredictionOrderByWithRelationInput | AIPredictionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIPredictions.
+     */
+    cursor?: AIPredictionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPredictions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPredictions.
+     */
+    skip?: number
+    distinct?: AIPredictionScalarFieldEnum | AIPredictionScalarFieldEnum[]
+  }
+
+  /**
+   * AIPrediction create
+   */
+  export type AIPredictionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AIPrediction.
+     */
+    data: XOR<AIPredictionCreateInput, AIPredictionUncheckedCreateInput>
+  }
+
+  /**
+   * AIPrediction createMany
+   */
+  export type AIPredictionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIPredictions.
+     */
+    data: AIPredictionCreateManyInput | AIPredictionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIPrediction createManyAndReturn
+   */
+  export type AIPredictionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIPredictions.
+     */
+    data: AIPredictionCreateManyInput | AIPredictionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIPrediction update
+   */
+  export type AIPredictionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AIPrediction.
+     */
+    data: XOR<AIPredictionUpdateInput, AIPredictionUncheckedUpdateInput>
+    /**
+     * Choose, which AIPrediction to update.
+     */
+    where: AIPredictionWhereUniqueInput
+  }
+
+  /**
+   * AIPrediction updateMany
+   */
+  export type AIPredictionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIPredictions.
+     */
+    data: XOR<AIPredictionUpdateManyMutationInput, AIPredictionUncheckedUpdateManyInput>
+    /**
+     * Filter which AIPredictions to update
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * Limit how many AIPredictions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPrediction updateManyAndReturn
+   */
+  export type AIPredictionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * The data used to update AIPredictions.
+     */
+    data: XOR<AIPredictionUpdateManyMutationInput, AIPredictionUncheckedUpdateManyInput>
+    /**
+     * Filter which AIPredictions to update
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * Limit how many AIPredictions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPrediction upsert
+   */
+  export type AIPredictionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AIPrediction to update in case it exists.
+     */
+    where: AIPredictionWhereUniqueInput
+    /**
+     * In case the AIPrediction found by the `where` argument doesn't exist, create a new AIPrediction with this data.
+     */
+    create: XOR<AIPredictionCreateInput, AIPredictionUncheckedCreateInput>
+    /**
+     * In case the AIPrediction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIPredictionUpdateInput, AIPredictionUncheckedUpdateInput>
+  }
+
+  /**
+   * AIPrediction delete
+   */
+  export type AIPredictionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+    /**
+     * Filter which AIPrediction to delete.
+     */
+    where: AIPredictionWhereUniqueInput
+  }
+
+  /**
+   * AIPrediction deleteMany
+   */
+  export type AIPredictionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPredictions to delete
+     */
+    where?: AIPredictionWhereInput
+    /**
+     * Limit how many AIPredictions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPrediction without action
+   */
+  export type AIPredictionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPrediction
+     */
+    select?: AIPredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPrediction
+     */
+    omit?: AIPredictionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIActionLog
+   */
+
+  export type AggregateAIActionLog = {
+    _count: AIActionLogCountAggregateOutputType | null
+    _avg: AIActionLogAvgAggregateOutputType | null
+    _sum: AIActionLogSumAggregateOutputType | null
+    _min: AIActionLogMinAggregateOutputType | null
+    _max: AIActionLogMaxAggregateOutputType | null
+  }
+
+  export type AIActionLogAvgAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    approved_by: number | null
+  }
+
+  export type AIActionLogSumAggregateOutputType = {
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    approved_by: number | null
+  }
+
+  export type AIActionLogMinAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    action_type: string | null
+    action_payload: string | null
+    status: $Enums.AIActionStatus | null
+    execution_result: string | null
+    approved_by: number | null
+    confirmed_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIActionLogMaxAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    project_id: number | null
+    user_id: number | null
+    action_type: string | null
+    action_payload: string | null
+    status: $Enums.AIActionStatus | null
+    execution_result: string | null
+    approved_by: number | null
+    confirmed_at: Date | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AIActionLogCountAggregateOutputType = {
+    id: number
+    company_id: number
+    project_id: number
+    user_id: number
+    action_type: number
+    action_payload: number
+    status: number
+    execution_result: number
+    approved_by: number
+    confirmed_at: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AIActionLogAvgAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    approved_by?: true
+  }
+
+  export type AIActionLogSumAggregateInputType = {
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    approved_by?: true
+  }
+
+  export type AIActionLogMinAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    action_type?: true
+    action_payload?: true
+    status?: true
+    execution_result?: true
+    approved_by?: true
+    confirmed_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIActionLogMaxAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    action_type?: true
+    action_payload?: true
+    status?: true
+    execution_result?: true
+    approved_by?: true
+    confirmed_at?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AIActionLogCountAggregateInputType = {
+    id?: true
+    company_id?: true
+    project_id?: true
+    user_id?: true
+    action_type?: true
+    action_payload?: true
+    status?: true
+    execution_result?: true
+    approved_by?: true
+    confirmed_at?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AIActionLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIActionLog to aggregate.
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIActionLogs to fetch.
+     */
+    orderBy?: AIActionLogOrderByWithRelationInput | AIActionLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIActionLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIActionLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIActionLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIActionLogs
+    **/
+    _count?: true | AIActionLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIActionLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIActionLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIActionLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIActionLogMaxAggregateInputType
+  }
+
+  export type GetAIActionLogAggregateType<T extends AIActionLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIActionLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIActionLog[P]>
+      : GetScalarType<T[P], AggregateAIActionLog[P]>
+  }
+
+
+
+
+  export type AIActionLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIActionLogWhereInput
+    orderBy?: AIActionLogOrderByWithAggregationInput | AIActionLogOrderByWithAggregationInput[]
+    by: AIActionLogScalarFieldEnum[] | AIActionLogScalarFieldEnum
+    having?: AIActionLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIActionLogCountAggregateInputType | true
+    _avg?: AIActionLogAvgAggregateInputType
+    _sum?: AIActionLogSumAggregateInputType
+    _min?: AIActionLogMinAggregateInputType
+    _max?: AIActionLogMaxAggregateInputType
+  }
+
+  export type AIActionLogGroupByOutputType = {
+    id: string
+    company_id: number
+    project_id: number | null
+    user_id: number
+    action_type: string
+    action_payload: string
+    status: $Enums.AIActionStatus
+    execution_result: string | null
+    approved_by: number | null
+    confirmed_at: Date | null
+    created_at: Date
+    updated_at: Date
+    _count: AIActionLogCountAggregateOutputType | null
+    _avg: AIActionLogAvgAggregateOutputType | null
+    _sum: AIActionLogSumAggregateOutputType | null
+    _min: AIActionLogMinAggregateOutputType | null
+    _max: AIActionLogMaxAggregateOutputType | null
+  }
+
+  type GetAIActionLogGroupByPayload<T extends AIActionLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIActionLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIActionLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIActionLogGroupByOutputType[P]>
+            : GetScalarType<T[P], AIActionLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIActionLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    action_type?: boolean
+    action_payload?: boolean
+    status?: boolean
+    execution_result?: boolean
+    approved_by?: boolean
+    confirmed_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIActionLog"]>
+
+  export type AIActionLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    action_type?: boolean
+    action_payload?: boolean
+    status?: boolean
+    execution_result?: boolean
+    approved_by?: boolean
+    confirmed_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIActionLog"]>
+
+  export type AIActionLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    action_type?: boolean
+    action_payload?: boolean
+    status?: boolean
+    execution_result?: boolean
+    approved_by?: boolean
+    confirmed_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["aIActionLog"]>
+
+  export type AIActionLogSelectScalar = {
+    id?: boolean
+    company_id?: boolean
+    project_id?: boolean
+    user_id?: boolean
+    action_type?: boolean
+    action_payload?: boolean
+    status?: boolean
+    execution_result?: boolean
+    approved_by?: boolean
+    confirmed_at?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type AIActionLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "project_id" | "user_id" | "action_type" | "action_payload" | "status" | "execution_result" | "approved_by" | "confirmed_at" | "created_at" | "updated_at", ExtArgs["result"]["aIActionLog"]>
+
+  export type $AIActionLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIActionLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company_id: number
+      project_id: number | null
+      user_id: number
+      action_type: string
+      action_payload: string
+      status: $Enums.AIActionStatus
+      execution_result: string | null
+      approved_by: number | null
+      confirmed_at: Date | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["aIActionLog"]>
+    composites: {}
+  }
+
+  type AIActionLogGetPayload<S extends boolean | null | undefined | AIActionLogDefaultArgs> = $Result.GetResult<Prisma.$AIActionLogPayload, S>
+
+  type AIActionLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIActionLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIActionLogCountAggregateInputType | true
+    }
+
+  export interface AIActionLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIActionLog'], meta: { name: 'AIActionLog' } }
+    /**
+     * Find zero or one AIActionLog that matches the filter.
+     * @param {AIActionLogFindUniqueArgs} args - Arguments to find a AIActionLog
+     * @example
+     * // Get one AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIActionLogFindUniqueArgs>(args: SelectSubset<T, AIActionLogFindUniqueArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIActionLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIActionLogFindUniqueOrThrowArgs} args - Arguments to find a AIActionLog
+     * @example
+     * // Get one AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIActionLogFindUniqueOrThrowArgs>(args: SelectSubset<T, AIActionLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIActionLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogFindFirstArgs} args - Arguments to find a AIActionLog
+     * @example
+     * // Get one AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIActionLogFindFirstArgs>(args?: SelectSubset<T, AIActionLogFindFirstArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIActionLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogFindFirstOrThrowArgs} args - Arguments to find a AIActionLog
+     * @example
+     * // Get one AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIActionLogFindFirstOrThrowArgs>(args?: SelectSubset<T, AIActionLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIActionLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIActionLogs
+     * const aIActionLogs = await prisma.aIActionLog.findMany()
+     * 
+     * // Get first 10 AIActionLogs
+     * const aIActionLogs = await prisma.aIActionLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIActionLogWithIdOnly = await prisma.aIActionLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIActionLogFindManyArgs>(args?: SelectSubset<T, AIActionLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIActionLog.
+     * @param {AIActionLogCreateArgs} args - Arguments to create a AIActionLog.
+     * @example
+     * // Create one AIActionLog
+     * const AIActionLog = await prisma.aIActionLog.create({
+     *   data: {
+     *     // ... data to create a AIActionLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIActionLogCreateArgs>(args: SelectSubset<T, AIActionLogCreateArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIActionLogs.
+     * @param {AIActionLogCreateManyArgs} args - Arguments to create many AIActionLogs.
+     * @example
+     * // Create many AIActionLogs
+     * const aIActionLog = await prisma.aIActionLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIActionLogCreateManyArgs>(args?: SelectSubset<T, AIActionLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIActionLogs and returns the data saved in the database.
+     * @param {AIActionLogCreateManyAndReturnArgs} args - Arguments to create many AIActionLogs.
+     * @example
+     * // Create many AIActionLogs
+     * const aIActionLog = await prisma.aIActionLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIActionLogs and only return the `id`
+     * const aIActionLogWithIdOnly = await prisma.aIActionLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIActionLogCreateManyAndReturnArgs>(args?: SelectSubset<T, AIActionLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIActionLog.
+     * @param {AIActionLogDeleteArgs} args - Arguments to delete one AIActionLog.
+     * @example
+     * // Delete one AIActionLog
+     * const AIActionLog = await prisma.aIActionLog.delete({
+     *   where: {
+     *     // ... filter to delete one AIActionLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIActionLogDeleteArgs>(args: SelectSubset<T, AIActionLogDeleteArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIActionLog.
+     * @param {AIActionLogUpdateArgs} args - Arguments to update one AIActionLog.
+     * @example
+     * // Update one AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIActionLogUpdateArgs>(args: SelectSubset<T, AIActionLogUpdateArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIActionLogs.
+     * @param {AIActionLogDeleteManyArgs} args - Arguments to filter AIActionLogs to delete.
+     * @example
+     * // Delete a few AIActionLogs
+     * const { count } = await prisma.aIActionLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIActionLogDeleteManyArgs>(args?: SelectSubset<T, AIActionLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIActionLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIActionLogs
+     * const aIActionLog = await prisma.aIActionLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIActionLogUpdateManyArgs>(args: SelectSubset<T, AIActionLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIActionLogs and returns the data updated in the database.
+     * @param {AIActionLogUpdateManyAndReturnArgs} args - Arguments to update many AIActionLogs.
+     * @example
+     * // Update many AIActionLogs
+     * const aIActionLog = await prisma.aIActionLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIActionLogs and only return the `id`
+     * const aIActionLogWithIdOnly = await prisma.aIActionLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIActionLogUpdateManyAndReturnArgs>(args: SelectSubset<T, AIActionLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIActionLog.
+     * @param {AIActionLogUpsertArgs} args - Arguments to update or create a AIActionLog.
+     * @example
+     * // Update or create a AIActionLog
+     * const aIActionLog = await prisma.aIActionLog.upsert({
+     *   create: {
+     *     // ... data to create a AIActionLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIActionLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIActionLogUpsertArgs>(args: SelectSubset<T, AIActionLogUpsertArgs<ExtArgs>>): Prisma__AIActionLogClient<$Result.GetResult<Prisma.$AIActionLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIActionLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogCountArgs} args - Arguments to filter AIActionLogs to count.
+     * @example
+     * // Count the number of AIActionLogs
+     * const count = await prisma.aIActionLog.count({
+     *   where: {
+     *     // ... the filter for the AIActionLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIActionLogCountArgs>(
+      args?: Subset<T, AIActionLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIActionLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIActionLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIActionLogAggregateArgs>(args: Subset<T, AIActionLogAggregateArgs>): Prisma.PrismaPromise<GetAIActionLogAggregateType<T>>
+
+    /**
+     * Group by AIActionLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIActionLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIActionLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIActionLogGroupByArgs['orderBy'] }
+        : { orderBy?: AIActionLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIActionLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIActionLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIActionLog model
+   */
+  readonly fields: AIActionLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIActionLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIActionLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIActionLog model
+   */
+  interface AIActionLogFieldRefs {
+    readonly id: FieldRef<"AIActionLog", 'String'>
+    readonly company_id: FieldRef<"AIActionLog", 'Int'>
+    readonly project_id: FieldRef<"AIActionLog", 'Int'>
+    readonly user_id: FieldRef<"AIActionLog", 'Int'>
+    readonly action_type: FieldRef<"AIActionLog", 'String'>
+    readonly action_payload: FieldRef<"AIActionLog", 'String'>
+    readonly status: FieldRef<"AIActionLog", 'AIActionStatus'>
+    readonly execution_result: FieldRef<"AIActionLog", 'String'>
+    readonly approved_by: FieldRef<"AIActionLog", 'Int'>
+    readonly confirmed_at: FieldRef<"AIActionLog", 'DateTime'>
+    readonly created_at: FieldRef<"AIActionLog", 'DateTime'>
+    readonly updated_at: FieldRef<"AIActionLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIActionLog findUnique
+   */
+  export type AIActionLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AIActionLog to fetch.
+     */
+    where: AIActionLogWhereUniqueInput
+  }
+
+  /**
+   * AIActionLog findUniqueOrThrow
+   */
+  export type AIActionLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AIActionLog to fetch.
+     */
+    where: AIActionLogWhereUniqueInput
+  }
+
+  /**
+   * AIActionLog findFirst
+   */
+  export type AIActionLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AIActionLog to fetch.
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIActionLogs to fetch.
+     */
+    orderBy?: AIActionLogOrderByWithRelationInput | AIActionLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIActionLogs.
+     */
+    cursor?: AIActionLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIActionLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIActionLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIActionLogs.
+     */
+    distinct?: AIActionLogScalarFieldEnum | AIActionLogScalarFieldEnum[]
+  }
+
+  /**
+   * AIActionLog findFirstOrThrow
+   */
+  export type AIActionLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AIActionLog to fetch.
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIActionLogs to fetch.
+     */
+    orderBy?: AIActionLogOrderByWithRelationInput | AIActionLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIActionLogs.
+     */
+    cursor?: AIActionLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIActionLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIActionLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIActionLogs.
+     */
+    distinct?: AIActionLogScalarFieldEnum | AIActionLogScalarFieldEnum[]
+  }
+
+  /**
+   * AIActionLog findMany
+   */
+  export type AIActionLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AIActionLogs to fetch.
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIActionLogs to fetch.
+     */
+    orderBy?: AIActionLogOrderByWithRelationInput | AIActionLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIActionLogs.
+     */
+    cursor?: AIActionLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIActionLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIActionLogs.
+     */
+    skip?: number
+    distinct?: AIActionLogScalarFieldEnum | AIActionLogScalarFieldEnum[]
+  }
+
+  /**
+   * AIActionLog create
+   */
+  export type AIActionLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AIActionLog.
+     */
+    data: XOR<AIActionLogCreateInput, AIActionLogUncheckedCreateInput>
+  }
+
+  /**
+   * AIActionLog createMany
+   */
+  export type AIActionLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIActionLogs.
+     */
+    data: AIActionLogCreateManyInput | AIActionLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIActionLog createManyAndReturn
+   */
+  export type AIActionLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIActionLogs.
+     */
+    data: AIActionLogCreateManyInput | AIActionLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIActionLog update
+   */
+  export type AIActionLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AIActionLog.
+     */
+    data: XOR<AIActionLogUpdateInput, AIActionLogUncheckedUpdateInput>
+    /**
+     * Choose, which AIActionLog to update.
+     */
+    where: AIActionLogWhereUniqueInput
+  }
+
+  /**
+   * AIActionLog updateMany
+   */
+  export type AIActionLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIActionLogs.
+     */
+    data: XOR<AIActionLogUpdateManyMutationInput, AIActionLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AIActionLogs to update
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * Limit how many AIActionLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIActionLog updateManyAndReturn
+   */
+  export type AIActionLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * The data used to update AIActionLogs.
+     */
+    data: XOR<AIActionLogUpdateManyMutationInput, AIActionLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AIActionLogs to update
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * Limit how many AIActionLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIActionLog upsert
+   */
+  export type AIActionLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AIActionLog to update in case it exists.
+     */
+    where: AIActionLogWhereUniqueInput
+    /**
+     * In case the AIActionLog found by the `where` argument doesn't exist, create a new AIActionLog with this data.
+     */
+    create: XOR<AIActionLogCreateInput, AIActionLogUncheckedCreateInput>
+    /**
+     * In case the AIActionLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIActionLogUpdateInput, AIActionLogUncheckedUpdateInput>
+  }
+
+  /**
+   * AIActionLog delete
+   */
+  export type AIActionLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+    /**
+     * Filter which AIActionLog to delete.
+     */
+    where: AIActionLogWhereUniqueInput
+  }
+
+  /**
+   * AIActionLog deleteMany
+   */
+  export type AIActionLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIActionLogs to delete
+     */
+    where?: AIActionLogWhereInput
+    /**
+     * Limit how many AIActionLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIActionLog without action
+   */
+  export type AIActionLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIActionLog
+     */
+    select?: AIActionLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIActionLog
+     */
+    omit?: AIActionLogOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIModelUsage
+   */
+
+  export type AggregateAIModelUsage = {
+    _count: AIModelUsageCountAggregateOutputType | null
+    _avg: AIModelUsageAvgAggregateOutputType | null
+    _sum: AIModelUsageSumAggregateOutputType | null
+    _min: AIModelUsageMinAggregateOutputType | null
+    _max: AIModelUsageMaxAggregateOutputType | null
+  }
+
+  export type AIModelUsageAvgAggregateOutputType = {
+    company_id: number | null
+    user_id: number | null
+    prompt_tokens: number | null
+    completion_tokens: number | null
+    total_tokens: number | null
+    latency_ms: number | null
+  }
+
+  export type AIModelUsageSumAggregateOutputType = {
+    company_id: number | null
+    user_id: number | null
+    prompt_tokens: number | null
+    completion_tokens: number | null
+    total_tokens: number | null
+    latency_ms: number | null
+  }
+
+  export type AIModelUsageMinAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    user_id: number | null
+    feature: string | null
+    provider: string | null
+    model_name: string | null
+    prompt_tokens: number | null
+    completion_tokens: number | null
+    total_tokens: number | null
+    latency_ms: number | null
+    status: string | null
+    created_at: Date | null
+  }
+
+  export type AIModelUsageMaxAggregateOutputType = {
+    id: string | null
+    company_id: number | null
+    user_id: number | null
+    feature: string | null
+    provider: string | null
+    model_name: string | null
+    prompt_tokens: number | null
+    completion_tokens: number | null
+    total_tokens: number | null
+    latency_ms: number | null
+    status: string | null
+    created_at: Date | null
+  }
+
+  export type AIModelUsageCountAggregateOutputType = {
+    id: number
+    company_id: number
+    user_id: number
+    feature: number
+    provider: number
+    model_name: number
+    prompt_tokens: number
+    completion_tokens: number
+    total_tokens: number
+    latency_ms: number
+    status: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type AIModelUsageAvgAggregateInputType = {
+    company_id?: true
+    user_id?: true
+    prompt_tokens?: true
+    completion_tokens?: true
+    total_tokens?: true
+    latency_ms?: true
+  }
+
+  export type AIModelUsageSumAggregateInputType = {
+    company_id?: true
+    user_id?: true
+    prompt_tokens?: true
+    completion_tokens?: true
+    total_tokens?: true
+    latency_ms?: true
+  }
+
+  export type AIModelUsageMinAggregateInputType = {
+    id?: true
+    company_id?: true
+    user_id?: true
+    feature?: true
+    provider?: true
+    model_name?: true
+    prompt_tokens?: true
+    completion_tokens?: true
+    total_tokens?: true
+    latency_ms?: true
+    status?: true
+    created_at?: true
+  }
+
+  export type AIModelUsageMaxAggregateInputType = {
+    id?: true
+    company_id?: true
+    user_id?: true
+    feature?: true
+    provider?: true
+    model_name?: true
+    prompt_tokens?: true
+    completion_tokens?: true
+    total_tokens?: true
+    latency_ms?: true
+    status?: true
+    created_at?: true
+  }
+
+  export type AIModelUsageCountAggregateInputType = {
+    id?: true
+    company_id?: true
+    user_id?: true
+    feature?: true
+    provider?: true
+    model_name?: true
+    prompt_tokens?: true
+    completion_tokens?: true
+    total_tokens?: true
+    latency_ms?: true
+    status?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type AIModelUsageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIModelUsage to aggregate.
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIModelUsages to fetch.
+     */
+    orderBy?: AIModelUsageOrderByWithRelationInput | AIModelUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIModelUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIModelUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIModelUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIModelUsages
+    **/
+    _count?: true | AIModelUsageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIModelUsageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIModelUsageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIModelUsageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIModelUsageMaxAggregateInputType
+  }
+
+  export type GetAIModelUsageAggregateType<T extends AIModelUsageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIModelUsage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIModelUsage[P]>
+      : GetScalarType<T[P], AggregateAIModelUsage[P]>
+  }
+
+
+
+
+  export type AIModelUsageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIModelUsageWhereInput
+    orderBy?: AIModelUsageOrderByWithAggregationInput | AIModelUsageOrderByWithAggregationInput[]
+    by: AIModelUsageScalarFieldEnum[] | AIModelUsageScalarFieldEnum
+    having?: AIModelUsageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIModelUsageCountAggregateInputType | true
+    _avg?: AIModelUsageAvgAggregateInputType
+    _sum?: AIModelUsageSumAggregateInputType
+    _min?: AIModelUsageMinAggregateInputType
+    _max?: AIModelUsageMaxAggregateInputType
+  }
+
+  export type AIModelUsageGroupByOutputType = {
+    id: string
+    company_id: number | null
+    user_id: number | null
+    feature: string
+    provider: string
+    model_name: string
+    prompt_tokens: number
+    completion_tokens: number
+    total_tokens: number
+    latency_ms: number
+    status: string
+    created_at: Date
+    _count: AIModelUsageCountAggregateOutputType | null
+    _avg: AIModelUsageAvgAggregateOutputType | null
+    _sum: AIModelUsageSumAggregateOutputType | null
+    _min: AIModelUsageMinAggregateOutputType | null
+    _max: AIModelUsageMaxAggregateOutputType | null
+  }
+
+  type GetAIModelUsageGroupByPayload<T extends AIModelUsageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIModelUsageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIModelUsageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIModelUsageGroupByOutputType[P]>
+            : GetScalarType<T[P], AIModelUsageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIModelUsageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    user_id?: boolean
+    feature?: boolean
+    provider?: boolean
+    model_name?: boolean
+    prompt_tokens?: boolean
+    completion_tokens?: boolean
+    total_tokens?: boolean
+    latency_ms?: boolean
+    status?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["aIModelUsage"]>
+
+  export type AIModelUsageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    user_id?: boolean
+    feature?: boolean
+    provider?: boolean
+    model_name?: boolean
+    prompt_tokens?: boolean
+    completion_tokens?: boolean
+    total_tokens?: boolean
+    latency_ms?: boolean
+    status?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["aIModelUsage"]>
+
+  export type AIModelUsageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    company_id?: boolean
+    user_id?: boolean
+    feature?: boolean
+    provider?: boolean
+    model_name?: boolean
+    prompt_tokens?: boolean
+    completion_tokens?: boolean
+    total_tokens?: boolean
+    latency_ms?: boolean
+    status?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["aIModelUsage"]>
+
+  export type AIModelUsageSelectScalar = {
+    id?: boolean
+    company_id?: boolean
+    user_id?: boolean
+    feature?: boolean
+    provider?: boolean
+    model_name?: boolean
+    prompt_tokens?: boolean
+    completion_tokens?: boolean
+    total_tokens?: boolean
+    latency_ms?: boolean
+    status?: boolean
+    created_at?: boolean
+  }
+
+  export type AIModelUsageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "user_id" | "feature" | "provider" | "model_name" | "prompt_tokens" | "completion_tokens" | "total_tokens" | "latency_ms" | "status" | "created_at", ExtArgs["result"]["aIModelUsage"]>
+
+  export type $AIModelUsagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIModelUsage"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      company_id: number | null
+      user_id: number | null
+      feature: string
+      provider: string
+      model_name: string
+      prompt_tokens: number
+      completion_tokens: number
+      total_tokens: number
+      latency_ms: number
+      status: string
+      created_at: Date
+    }, ExtArgs["result"]["aIModelUsage"]>
+    composites: {}
+  }
+
+  type AIModelUsageGetPayload<S extends boolean | null | undefined | AIModelUsageDefaultArgs> = $Result.GetResult<Prisma.$AIModelUsagePayload, S>
+
+  type AIModelUsageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIModelUsageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIModelUsageCountAggregateInputType | true
+    }
+
+  export interface AIModelUsageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIModelUsage'], meta: { name: 'AIModelUsage' } }
+    /**
+     * Find zero or one AIModelUsage that matches the filter.
+     * @param {AIModelUsageFindUniqueArgs} args - Arguments to find a AIModelUsage
+     * @example
+     * // Get one AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIModelUsageFindUniqueArgs>(args: SelectSubset<T, AIModelUsageFindUniqueArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIModelUsage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIModelUsageFindUniqueOrThrowArgs} args - Arguments to find a AIModelUsage
+     * @example
+     * // Get one AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIModelUsageFindUniqueOrThrowArgs>(args: SelectSubset<T, AIModelUsageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIModelUsage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageFindFirstArgs} args - Arguments to find a AIModelUsage
+     * @example
+     * // Get one AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIModelUsageFindFirstArgs>(args?: SelectSubset<T, AIModelUsageFindFirstArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIModelUsage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageFindFirstOrThrowArgs} args - Arguments to find a AIModelUsage
+     * @example
+     * // Get one AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIModelUsageFindFirstOrThrowArgs>(args?: SelectSubset<T, AIModelUsageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIModelUsages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIModelUsages
+     * const aIModelUsages = await prisma.aIModelUsage.findMany()
+     * 
+     * // Get first 10 AIModelUsages
+     * const aIModelUsages = await prisma.aIModelUsage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIModelUsageWithIdOnly = await prisma.aIModelUsage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIModelUsageFindManyArgs>(args?: SelectSubset<T, AIModelUsageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIModelUsage.
+     * @param {AIModelUsageCreateArgs} args - Arguments to create a AIModelUsage.
+     * @example
+     * // Create one AIModelUsage
+     * const AIModelUsage = await prisma.aIModelUsage.create({
+     *   data: {
+     *     // ... data to create a AIModelUsage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIModelUsageCreateArgs>(args: SelectSubset<T, AIModelUsageCreateArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIModelUsages.
+     * @param {AIModelUsageCreateManyArgs} args - Arguments to create many AIModelUsages.
+     * @example
+     * // Create many AIModelUsages
+     * const aIModelUsage = await prisma.aIModelUsage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIModelUsageCreateManyArgs>(args?: SelectSubset<T, AIModelUsageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIModelUsages and returns the data saved in the database.
+     * @param {AIModelUsageCreateManyAndReturnArgs} args - Arguments to create many AIModelUsages.
+     * @example
+     * // Create many AIModelUsages
+     * const aIModelUsage = await prisma.aIModelUsage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIModelUsages and only return the `id`
+     * const aIModelUsageWithIdOnly = await prisma.aIModelUsage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIModelUsageCreateManyAndReturnArgs>(args?: SelectSubset<T, AIModelUsageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIModelUsage.
+     * @param {AIModelUsageDeleteArgs} args - Arguments to delete one AIModelUsage.
+     * @example
+     * // Delete one AIModelUsage
+     * const AIModelUsage = await prisma.aIModelUsage.delete({
+     *   where: {
+     *     // ... filter to delete one AIModelUsage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIModelUsageDeleteArgs>(args: SelectSubset<T, AIModelUsageDeleteArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIModelUsage.
+     * @param {AIModelUsageUpdateArgs} args - Arguments to update one AIModelUsage.
+     * @example
+     * // Update one AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIModelUsageUpdateArgs>(args: SelectSubset<T, AIModelUsageUpdateArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIModelUsages.
+     * @param {AIModelUsageDeleteManyArgs} args - Arguments to filter AIModelUsages to delete.
+     * @example
+     * // Delete a few AIModelUsages
+     * const { count } = await prisma.aIModelUsage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIModelUsageDeleteManyArgs>(args?: SelectSubset<T, AIModelUsageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIModelUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIModelUsages
+     * const aIModelUsage = await prisma.aIModelUsage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIModelUsageUpdateManyArgs>(args: SelectSubset<T, AIModelUsageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIModelUsages and returns the data updated in the database.
+     * @param {AIModelUsageUpdateManyAndReturnArgs} args - Arguments to update many AIModelUsages.
+     * @example
+     * // Update many AIModelUsages
+     * const aIModelUsage = await prisma.aIModelUsage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIModelUsages and only return the `id`
+     * const aIModelUsageWithIdOnly = await prisma.aIModelUsage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIModelUsageUpdateManyAndReturnArgs>(args: SelectSubset<T, AIModelUsageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIModelUsage.
+     * @param {AIModelUsageUpsertArgs} args - Arguments to update or create a AIModelUsage.
+     * @example
+     * // Update or create a AIModelUsage
+     * const aIModelUsage = await prisma.aIModelUsage.upsert({
+     *   create: {
+     *     // ... data to create a AIModelUsage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIModelUsage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIModelUsageUpsertArgs>(args: SelectSubset<T, AIModelUsageUpsertArgs<ExtArgs>>): Prisma__AIModelUsageClient<$Result.GetResult<Prisma.$AIModelUsagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIModelUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageCountArgs} args - Arguments to filter AIModelUsages to count.
+     * @example
+     * // Count the number of AIModelUsages
+     * const count = await prisma.aIModelUsage.count({
+     *   where: {
+     *     // ... the filter for the AIModelUsages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIModelUsageCountArgs>(
+      args?: Subset<T, AIModelUsageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIModelUsageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIModelUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIModelUsageAggregateArgs>(args: Subset<T, AIModelUsageAggregateArgs>): Prisma.PrismaPromise<GetAIModelUsageAggregateType<T>>
+
+    /**
+     * Group by AIModelUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIModelUsageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIModelUsageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIModelUsageGroupByArgs['orderBy'] }
+        : { orderBy?: AIModelUsageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIModelUsageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIModelUsageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIModelUsage model
+   */
+  readonly fields: AIModelUsageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIModelUsage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIModelUsageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIModelUsage model
+   */
+  interface AIModelUsageFieldRefs {
+    readonly id: FieldRef<"AIModelUsage", 'String'>
+    readonly company_id: FieldRef<"AIModelUsage", 'Int'>
+    readonly user_id: FieldRef<"AIModelUsage", 'Int'>
+    readonly feature: FieldRef<"AIModelUsage", 'String'>
+    readonly provider: FieldRef<"AIModelUsage", 'String'>
+    readonly model_name: FieldRef<"AIModelUsage", 'String'>
+    readonly prompt_tokens: FieldRef<"AIModelUsage", 'Int'>
+    readonly completion_tokens: FieldRef<"AIModelUsage", 'Int'>
+    readonly total_tokens: FieldRef<"AIModelUsage", 'Int'>
+    readonly latency_ms: FieldRef<"AIModelUsage", 'Int'>
+    readonly status: FieldRef<"AIModelUsage", 'String'>
+    readonly created_at: FieldRef<"AIModelUsage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIModelUsage findUnique
+   */
+  export type AIModelUsageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter, which AIModelUsage to fetch.
+     */
+    where: AIModelUsageWhereUniqueInput
+  }
+
+  /**
+   * AIModelUsage findUniqueOrThrow
+   */
+  export type AIModelUsageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter, which AIModelUsage to fetch.
+     */
+    where: AIModelUsageWhereUniqueInput
+  }
+
+  /**
+   * AIModelUsage findFirst
+   */
+  export type AIModelUsageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter, which AIModelUsage to fetch.
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIModelUsages to fetch.
+     */
+    orderBy?: AIModelUsageOrderByWithRelationInput | AIModelUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIModelUsages.
+     */
+    cursor?: AIModelUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIModelUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIModelUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIModelUsages.
+     */
+    distinct?: AIModelUsageScalarFieldEnum | AIModelUsageScalarFieldEnum[]
+  }
+
+  /**
+   * AIModelUsage findFirstOrThrow
+   */
+  export type AIModelUsageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter, which AIModelUsage to fetch.
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIModelUsages to fetch.
+     */
+    orderBy?: AIModelUsageOrderByWithRelationInput | AIModelUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIModelUsages.
+     */
+    cursor?: AIModelUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIModelUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIModelUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIModelUsages.
+     */
+    distinct?: AIModelUsageScalarFieldEnum | AIModelUsageScalarFieldEnum[]
+  }
+
+  /**
+   * AIModelUsage findMany
+   */
+  export type AIModelUsageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter, which AIModelUsages to fetch.
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIModelUsages to fetch.
+     */
+    orderBy?: AIModelUsageOrderByWithRelationInput | AIModelUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIModelUsages.
+     */
+    cursor?: AIModelUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIModelUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIModelUsages.
+     */
+    skip?: number
+    distinct?: AIModelUsageScalarFieldEnum | AIModelUsageScalarFieldEnum[]
+  }
+
+  /**
+   * AIModelUsage create
+   */
+  export type AIModelUsageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AIModelUsage.
+     */
+    data: XOR<AIModelUsageCreateInput, AIModelUsageUncheckedCreateInput>
+  }
+
+  /**
+   * AIModelUsage createMany
+   */
+  export type AIModelUsageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIModelUsages.
+     */
+    data: AIModelUsageCreateManyInput | AIModelUsageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIModelUsage createManyAndReturn
+   */
+  export type AIModelUsageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIModelUsages.
+     */
+    data: AIModelUsageCreateManyInput | AIModelUsageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIModelUsage update
+   */
+  export type AIModelUsageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AIModelUsage.
+     */
+    data: XOR<AIModelUsageUpdateInput, AIModelUsageUncheckedUpdateInput>
+    /**
+     * Choose, which AIModelUsage to update.
+     */
+    where: AIModelUsageWhereUniqueInput
+  }
+
+  /**
+   * AIModelUsage updateMany
+   */
+  export type AIModelUsageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIModelUsages.
+     */
+    data: XOR<AIModelUsageUpdateManyMutationInput, AIModelUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIModelUsages to update
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * Limit how many AIModelUsages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIModelUsage updateManyAndReturn
+   */
+  export type AIModelUsageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * The data used to update AIModelUsages.
+     */
+    data: XOR<AIModelUsageUpdateManyMutationInput, AIModelUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIModelUsages to update
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * Limit how many AIModelUsages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIModelUsage upsert
+   */
+  export type AIModelUsageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AIModelUsage to update in case it exists.
+     */
+    where: AIModelUsageWhereUniqueInput
+    /**
+     * In case the AIModelUsage found by the `where` argument doesn't exist, create a new AIModelUsage with this data.
+     */
+    create: XOR<AIModelUsageCreateInput, AIModelUsageUncheckedCreateInput>
+    /**
+     * In case the AIModelUsage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIModelUsageUpdateInput, AIModelUsageUncheckedUpdateInput>
+  }
+
+  /**
+   * AIModelUsage delete
+   */
+  export type AIModelUsageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
+    /**
+     * Filter which AIModelUsage to delete.
+     */
+    where: AIModelUsageWhereUniqueInput
+  }
+
+  /**
+   * AIModelUsage deleteMany
+   */
+  export type AIModelUsageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIModelUsages to delete
+     */
+    where?: AIModelUsageWhereInput
+    /**
+     * Limit how many AIModelUsages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIModelUsage without action
+   */
+  export type AIModelUsageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIModelUsage
+     */
+    select?: AIModelUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIModelUsage
+     */
+    omit?: AIModelUsageOmit<ExtArgs> | null
   }
 
 
@@ -88981,6 +100302,158 @@ export namespace Prisma {
   export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
 
 
+  export const AIConversationScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    company_id: 'company_id',
+    project_id: 'project_id',
+    title: 'title',
+    module: 'module',
+    language: 'language',
+    is_archived: 'is_archived',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AIConversationScalarFieldEnum = (typeof AIConversationScalarFieldEnum)[keyof typeof AIConversationScalarFieldEnum]
+
+
+  export const AIMessageScalarFieldEnum: {
+    id: 'id',
+    conversation_id: 'conversation_id',
+    sender: 'sender',
+    content: 'content',
+    rich_payload: 'rich_payload',
+    references: 'references',
+    actions: 'actions',
+    language: 'language',
+    created_at: 'created_at'
+  };
+
+  export type AIMessageScalarFieldEnum = (typeof AIMessageScalarFieldEnum)[keyof typeof AIMessageScalarFieldEnum]
+
+
+  export const AIFeedbackScalarFieldEnum: {
+    id: 'id',
+    message_id: 'message_id',
+    user_id: 'user_id',
+    rating: 'rating',
+    comment: 'comment',
+    created_at: 'created_at'
+  };
+
+  export type AIFeedbackScalarFieldEnum = (typeof AIFeedbackScalarFieldEnum)[keyof typeof AIFeedbackScalarFieldEnum]
+
+
+  export const AIDocumentScalarFieldEnum: {
+    id: 'id',
+    company_id: 'company_id',
+    project_id: 'project_id',
+    user_id: 'user_id',
+    file_name: 'file_name',
+    file_path: 'file_path',
+    file_type: 'file_type',
+    file_size: 'file_size',
+    document_type: 'document_type',
+    summary: 'summary',
+    metadata: 'metadata',
+    status: 'status',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AIDocumentScalarFieldEnum = (typeof AIDocumentScalarFieldEnum)[keyof typeof AIDocumentScalarFieldEnum]
+
+
+  export const AIDocumentChunkScalarFieldEnum: {
+    id: 'id',
+    document_id: 'document_id',
+    chunk_index: 'chunk_index',
+    content: 'content',
+    page_number: 'page_number',
+    metadata: 'metadata',
+    created_at: 'created_at'
+  };
+
+  export type AIDocumentChunkScalarFieldEnum = (typeof AIDocumentChunkScalarFieldEnum)[keyof typeof AIDocumentChunkScalarFieldEnum]
+
+
+  export const AIAlertScalarFieldEnum: {
+    id: 'id',
+    company_id: 'company_id',
+    project_id: 'project_id',
+    module: 'module',
+    severity: 'severity',
+    title: 'title',
+    description: 'description',
+    supporting_records: 'supporting_records',
+    recommended_action: 'recommended_action',
+    status: 'status',
+    assigned_to: 'assigned_to',
+    reviewer_notes: 'reviewer_notes',
+    detection_date: 'detection_date',
+    resolved_at: 'resolved_at',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AIAlertScalarFieldEnum = (typeof AIAlertScalarFieldEnum)[keyof typeof AIAlertScalarFieldEnum]
+
+
+  export const AIPredictionScalarFieldEnum: {
+    id: 'id',
+    company_id: 'company_id',
+    project_id: 'project_id',
+    prediction_type: 'prediction_type',
+    target_entity: 'target_entity',
+    forecast_data: 'forecast_data',
+    confidence_score: 'confidence_score',
+    assumptions: 'assumptions',
+    data_points_count: 'data_points_count',
+    valid_until: 'valid_until',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AIPredictionScalarFieldEnum = (typeof AIPredictionScalarFieldEnum)[keyof typeof AIPredictionScalarFieldEnum]
+
+
+  export const AIActionLogScalarFieldEnum: {
+    id: 'id',
+    company_id: 'company_id',
+    project_id: 'project_id',
+    user_id: 'user_id',
+    action_type: 'action_type',
+    action_payload: 'action_payload',
+    status: 'status',
+    execution_result: 'execution_result',
+    approved_by: 'approved_by',
+    confirmed_at: 'confirmed_at',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AIActionLogScalarFieldEnum = (typeof AIActionLogScalarFieldEnum)[keyof typeof AIActionLogScalarFieldEnum]
+
+
+  export const AIModelUsageScalarFieldEnum: {
+    id: 'id',
+    company_id: 'company_id',
+    user_id: 'user_id',
+    feature: 'feature',
+    provider: 'provider',
+    model_name: 'model_name',
+    prompt_tokens: 'prompt_tokens',
+    completion_tokens: 'completion_tokens',
+    total_tokens: 'total_tokens',
+    latency_ms: 'latency_ms',
+    status: 'status',
+    created_at: 'created_at'
+  };
+
+  export type AIModelUsageScalarFieldEnum = (typeof AIModelUsageScalarFieldEnum)[keyof typeof AIModelUsageScalarFieldEnum]
+
+
   export const CategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -89985,6 +101458,48 @@ export namespace Prisma {
    * Reference to a field of type 'PRStatus[]'
    */
   export type ListEnumPRStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PRStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIAlertSeverity'
+   */
+  export type EnumAIAlertSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIAlertSeverity'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIAlertSeverity[]'
+   */
+  export type ListEnumAIAlertSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIAlertSeverity[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIAlertStatus'
+   */
+  export type EnumAIAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIAlertStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIAlertStatus[]'
+   */
+  export type ListEnumAIAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIAlertStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIActionStatus'
+   */
+  export type EnumAIActionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIActionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AIActionStatus[]'
+   */
+  export type ListEnumAIActionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AIActionStatus[]'>
     
 
 
@@ -91314,6 +102829,773 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     unitId?: IntNullableWithAggregatesFilter<"Activity"> | number | null
+  }
+
+  export type AIConversationWhereInput = {
+    AND?: AIConversationWhereInput | AIConversationWhereInput[]
+    OR?: AIConversationWhereInput[]
+    NOT?: AIConversationWhereInput | AIConversationWhereInput[]
+    id?: StringFilter<"AIConversation"> | string
+    user_id?: IntFilter<"AIConversation"> | number
+    company_id?: IntFilter<"AIConversation"> | number
+    project_id?: IntNullableFilter<"AIConversation"> | number | null
+    title?: StringFilter<"AIConversation"> | string
+    module?: StringNullableFilter<"AIConversation"> | string | null
+    language?: StringNullableFilter<"AIConversation"> | string | null
+    is_archived?: BoolFilter<"AIConversation"> | boolean
+    created_at?: DateTimeFilter<"AIConversation"> | Date | string
+    updated_at?: DateTimeFilter<"AIConversation"> | Date | string
+    messages?: AIMessageListRelationFilter
+  }
+
+  export type AIConversationOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    title?: SortOrder
+    module?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    is_archived?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    messages?: AIMessageOrderByRelationAggregateInput
+  }
+
+  export type AIConversationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIConversationWhereInput | AIConversationWhereInput[]
+    OR?: AIConversationWhereInput[]
+    NOT?: AIConversationWhereInput | AIConversationWhereInput[]
+    user_id?: IntFilter<"AIConversation"> | number
+    company_id?: IntFilter<"AIConversation"> | number
+    project_id?: IntNullableFilter<"AIConversation"> | number | null
+    title?: StringFilter<"AIConversation"> | string
+    module?: StringNullableFilter<"AIConversation"> | string | null
+    language?: StringNullableFilter<"AIConversation"> | string | null
+    is_archived?: BoolFilter<"AIConversation"> | boolean
+    created_at?: DateTimeFilter<"AIConversation"> | Date | string
+    updated_at?: DateTimeFilter<"AIConversation"> | Date | string
+    messages?: AIMessageListRelationFilter
+  }, "id">
+
+  export type AIConversationOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    title?: SortOrder
+    module?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    is_archived?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: AIConversationCountOrderByAggregateInput
+    _avg?: AIConversationAvgOrderByAggregateInput
+    _max?: AIConversationMaxOrderByAggregateInput
+    _min?: AIConversationMinOrderByAggregateInput
+    _sum?: AIConversationSumOrderByAggregateInput
+  }
+
+  export type AIConversationScalarWhereWithAggregatesInput = {
+    AND?: AIConversationScalarWhereWithAggregatesInput | AIConversationScalarWhereWithAggregatesInput[]
+    OR?: AIConversationScalarWhereWithAggregatesInput[]
+    NOT?: AIConversationScalarWhereWithAggregatesInput | AIConversationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIConversation"> | string
+    user_id?: IntWithAggregatesFilter<"AIConversation"> | number
+    company_id?: IntWithAggregatesFilter<"AIConversation"> | number
+    project_id?: IntNullableWithAggregatesFilter<"AIConversation"> | number | null
+    title?: StringWithAggregatesFilter<"AIConversation"> | string
+    module?: StringNullableWithAggregatesFilter<"AIConversation"> | string | null
+    language?: StringNullableWithAggregatesFilter<"AIConversation"> | string | null
+    is_archived?: BoolWithAggregatesFilter<"AIConversation"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"AIConversation"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"AIConversation"> | Date | string
+  }
+
+  export type AIMessageWhereInput = {
+    AND?: AIMessageWhereInput | AIMessageWhereInput[]
+    OR?: AIMessageWhereInput[]
+    NOT?: AIMessageWhereInput | AIMessageWhereInput[]
+    id?: StringFilter<"AIMessage"> | string
+    conversation_id?: StringFilter<"AIMessage"> | string
+    sender?: StringFilter<"AIMessage"> | string
+    content?: StringFilter<"AIMessage"> | string
+    rich_payload?: StringNullableFilter<"AIMessage"> | string | null
+    references?: StringNullableFilter<"AIMessage"> | string | null
+    actions?: StringNullableFilter<"AIMessage"> | string | null
+    language?: StringNullableFilter<"AIMessage"> | string | null
+    created_at?: DateTimeFilter<"AIMessage"> | Date | string
+    conversation?: XOR<AIConversationScalarRelationFilter, AIConversationWhereInput>
+    feedbacks?: AIFeedbackListRelationFilter
+  }
+
+  export type AIMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    conversation_id?: SortOrder
+    sender?: SortOrder
+    content?: SortOrder
+    rich_payload?: SortOrderInput | SortOrder
+    references?: SortOrderInput | SortOrder
+    actions?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    conversation?: AIConversationOrderByWithRelationInput
+    feedbacks?: AIFeedbackOrderByRelationAggregateInput
+  }
+
+  export type AIMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIMessageWhereInput | AIMessageWhereInput[]
+    OR?: AIMessageWhereInput[]
+    NOT?: AIMessageWhereInput | AIMessageWhereInput[]
+    conversation_id?: StringFilter<"AIMessage"> | string
+    sender?: StringFilter<"AIMessage"> | string
+    content?: StringFilter<"AIMessage"> | string
+    rich_payload?: StringNullableFilter<"AIMessage"> | string | null
+    references?: StringNullableFilter<"AIMessage"> | string | null
+    actions?: StringNullableFilter<"AIMessage"> | string | null
+    language?: StringNullableFilter<"AIMessage"> | string | null
+    created_at?: DateTimeFilter<"AIMessage"> | Date | string
+    conversation?: XOR<AIConversationScalarRelationFilter, AIConversationWhereInput>
+    feedbacks?: AIFeedbackListRelationFilter
+  }, "id">
+
+  export type AIMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    conversation_id?: SortOrder
+    sender?: SortOrder
+    content?: SortOrder
+    rich_payload?: SortOrderInput | SortOrder
+    references?: SortOrderInput | SortOrder
+    actions?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: AIMessageCountOrderByAggregateInput
+    _max?: AIMessageMaxOrderByAggregateInput
+    _min?: AIMessageMinOrderByAggregateInput
+  }
+
+  export type AIMessageScalarWhereWithAggregatesInput = {
+    AND?: AIMessageScalarWhereWithAggregatesInput | AIMessageScalarWhereWithAggregatesInput[]
+    OR?: AIMessageScalarWhereWithAggregatesInput[]
+    NOT?: AIMessageScalarWhereWithAggregatesInput | AIMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIMessage"> | string
+    conversation_id?: StringWithAggregatesFilter<"AIMessage"> | string
+    sender?: StringWithAggregatesFilter<"AIMessage"> | string
+    content?: StringWithAggregatesFilter<"AIMessage"> | string
+    rich_payload?: StringNullableWithAggregatesFilter<"AIMessage"> | string | null
+    references?: StringNullableWithAggregatesFilter<"AIMessage"> | string | null
+    actions?: StringNullableWithAggregatesFilter<"AIMessage"> | string | null
+    language?: StringNullableWithAggregatesFilter<"AIMessage"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIMessage"> | Date | string
+  }
+
+  export type AIFeedbackWhereInput = {
+    AND?: AIFeedbackWhereInput | AIFeedbackWhereInput[]
+    OR?: AIFeedbackWhereInput[]
+    NOT?: AIFeedbackWhereInput | AIFeedbackWhereInput[]
+    id?: StringFilter<"AIFeedback"> | string
+    message_id?: StringFilter<"AIFeedback"> | string
+    user_id?: IntFilter<"AIFeedback"> | number
+    rating?: IntFilter<"AIFeedback"> | number
+    comment?: StringNullableFilter<"AIFeedback"> | string | null
+    created_at?: DateTimeFilter<"AIFeedback"> | Date | string
+    message?: XOR<AIMessageScalarRelationFilter, AIMessageWhereInput>
+  }
+
+  export type AIFeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    message_id?: SortOrder
+    user_id?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    message?: AIMessageOrderByWithRelationInput
+  }
+
+  export type AIFeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIFeedbackWhereInput | AIFeedbackWhereInput[]
+    OR?: AIFeedbackWhereInput[]
+    NOT?: AIFeedbackWhereInput | AIFeedbackWhereInput[]
+    message_id?: StringFilter<"AIFeedback"> | string
+    user_id?: IntFilter<"AIFeedback"> | number
+    rating?: IntFilter<"AIFeedback"> | number
+    comment?: StringNullableFilter<"AIFeedback"> | string | null
+    created_at?: DateTimeFilter<"AIFeedback"> | Date | string
+    message?: XOR<AIMessageScalarRelationFilter, AIMessageWhereInput>
+  }, "id">
+
+  export type AIFeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    message_id?: SortOrder
+    user_id?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: AIFeedbackCountOrderByAggregateInput
+    _avg?: AIFeedbackAvgOrderByAggregateInput
+    _max?: AIFeedbackMaxOrderByAggregateInput
+    _min?: AIFeedbackMinOrderByAggregateInput
+    _sum?: AIFeedbackSumOrderByAggregateInput
+  }
+
+  export type AIFeedbackScalarWhereWithAggregatesInput = {
+    AND?: AIFeedbackScalarWhereWithAggregatesInput | AIFeedbackScalarWhereWithAggregatesInput[]
+    OR?: AIFeedbackScalarWhereWithAggregatesInput[]
+    NOT?: AIFeedbackScalarWhereWithAggregatesInput | AIFeedbackScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIFeedback"> | string
+    message_id?: StringWithAggregatesFilter<"AIFeedback"> | string
+    user_id?: IntWithAggregatesFilter<"AIFeedback"> | number
+    rating?: IntWithAggregatesFilter<"AIFeedback"> | number
+    comment?: StringNullableWithAggregatesFilter<"AIFeedback"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIFeedback"> | Date | string
+  }
+
+  export type AIDocumentWhereInput = {
+    AND?: AIDocumentWhereInput | AIDocumentWhereInput[]
+    OR?: AIDocumentWhereInput[]
+    NOT?: AIDocumentWhereInput | AIDocumentWhereInput[]
+    id?: StringFilter<"AIDocument"> | string
+    company_id?: IntFilter<"AIDocument"> | number
+    project_id?: IntNullableFilter<"AIDocument"> | number | null
+    user_id?: IntFilter<"AIDocument"> | number
+    file_name?: StringFilter<"AIDocument"> | string
+    file_path?: StringNullableFilter<"AIDocument"> | string | null
+    file_type?: StringFilter<"AIDocument"> | string
+    file_size?: IntNullableFilter<"AIDocument"> | number | null
+    document_type?: StringFilter<"AIDocument"> | string
+    summary?: StringNullableFilter<"AIDocument"> | string | null
+    metadata?: StringNullableFilter<"AIDocument"> | string | null
+    status?: StringFilter<"AIDocument"> | string
+    created_at?: DateTimeFilter<"AIDocument"> | Date | string
+    updated_at?: DateTimeFilter<"AIDocument"> | Date | string
+    chunks?: AIDocumentChunkListRelationFilter
+  }
+
+  export type AIDocumentOrderByWithRelationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    file_name?: SortOrder
+    file_path?: SortOrderInput | SortOrder
+    file_type?: SortOrder
+    file_size?: SortOrderInput | SortOrder
+    document_type?: SortOrder
+    summary?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    chunks?: AIDocumentChunkOrderByRelationAggregateInput
+  }
+
+  export type AIDocumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIDocumentWhereInput | AIDocumentWhereInput[]
+    OR?: AIDocumentWhereInput[]
+    NOT?: AIDocumentWhereInput | AIDocumentWhereInput[]
+    company_id?: IntFilter<"AIDocument"> | number
+    project_id?: IntNullableFilter<"AIDocument"> | number | null
+    user_id?: IntFilter<"AIDocument"> | number
+    file_name?: StringFilter<"AIDocument"> | string
+    file_path?: StringNullableFilter<"AIDocument"> | string | null
+    file_type?: StringFilter<"AIDocument"> | string
+    file_size?: IntNullableFilter<"AIDocument"> | number | null
+    document_type?: StringFilter<"AIDocument"> | string
+    summary?: StringNullableFilter<"AIDocument"> | string | null
+    metadata?: StringNullableFilter<"AIDocument"> | string | null
+    status?: StringFilter<"AIDocument"> | string
+    created_at?: DateTimeFilter<"AIDocument"> | Date | string
+    updated_at?: DateTimeFilter<"AIDocument"> | Date | string
+    chunks?: AIDocumentChunkListRelationFilter
+  }, "id">
+
+  export type AIDocumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    file_name?: SortOrder
+    file_path?: SortOrderInput | SortOrder
+    file_type?: SortOrder
+    file_size?: SortOrderInput | SortOrder
+    document_type?: SortOrder
+    summary?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: AIDocumentCountOrderByAggregateInput
+    _avg?: AIDocumentAvgOrderByAggregateInput
+    _max?: AIDocumentMaxOrderByAggregateInput
+    _min?: AIDocumentMinOrderByAggregateInput
+    _sum?: AIDocumentSumOrderByAggregateInput
+  }
+
+  export type AIDocumentScalarWhereWithAggregatesInput = {
+    AND?: AIDocumentScalarWhereWithAggregatesInput | AIDocumentScalarWhereWithAggregatesInput[]
+    OR?: AIDocumentScalarWhereWithAggregatesInput[]
+    NOT?: AIDocumentScalarWhereWithAggregatesInput | AIDocumentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIDocument"> | string
+    company_id?: IntWithAggregatesFilter<"AIDocument"> | number
+    project_id?: IntNullableWithAggregatesFilter<"AIDocument"> | number | null
+    user_id?: IntWithAggregatesFilter<"AIDocument"> | number
+    file_name?: StringWithAggregatesFilter<"AIDocument"> | string
+    file_path?: StringNullableWithAggregatesFilter<"AIDocument"> | string | null
+    file_type?: StringWithAggregatesFilter<"AIDocument"> | string
+    file_size?: IntNullableWithAggregatesFilter<"AIDocument"> | number | null
+    document_type?: StringWithAggregatesFilter<"AIDocument"> | string
+    summary?: StringNullableWithAggregatesFilter<"AIDocument"> | string | null
+    metadata?: StringNullableWithAggregatesFilter<"AIDocument"> | string | null
+    status?: StringWithAggregatesFilter<"AIDocument"> | string
+    created_at?: DateTimeWithAggregatesFilter<"AIDocument"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"AIDocument"> | Date | string
+  }
+
+  export type AIDocumentChunkWhereInput = {
+    AND?: AIDocumentChunkWhereInput | AIDocumentChunkWhereInput[]
+    OR?: AIDocumentChunkWhereInput[]
+    NOT?: AIDocumentChunkWhereInput | AIDocumentChunkWhereInput[]
+    id?: StringFilter<"AIDocumentChunk"> | string
+    document_id?: StringFilter<"AIDocumentChunk"> | string
+    chunk_index?: IntFilter<"AIDocumentChunk"> | number
+    content?: StringFilter<"AIDocumentChunk"> | string
+    page_number?: IntNullableFilter<"AIDocumentChunk"> | number | null
+    metadata?: StringNullableFilter<"AIDocumentChunk"> | string | null
+    created_at?: DateTimeFilter<"AIDocumentChunk"> | Date | string
+    document?: XOR<AIDocumentScalarRelationFilter, AIDocumentWhereInput>
+  }
+
+  export type AIDocumentChunkOrderByWithRelationInput = {
+    id?: SortOrder
+    document_id?: SortOrder
+    chunk_index?: SortOrder
+    content?: SortOrder
+    page_number?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    document?: AIDocumentOrderByWithRelationInput
+  }
+
+  export type AIDocumentChunkWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIDocumentChunkWhereInput | AIDocumentChunkWhereInput[]
+    OR?: AIDocumentChunkWhereInput[]
+    NOT?: AIDocumentChunkWhereInput | AIDocumentChunkWhereInput[]
+    document_id?: StringFilter<"AIDocumentChunk"> | string
+    chunk_index?: IntFilter<"AIDocumentChunk"> | number
+    content?: StringFilter<"AIDocumentChunk"> | string
+    page_number?: IntNullableFilter<"AIDocumentChunk"> | number | null
+    metadata?: StringNullableFilter<"AIDocumentChunk"> | string | null
+    created_at?: DateTimeFilter<"AIDocumentChunk"> | Date | string
+    document?: XOR<AIDocumentScalarRelationFilter, AIDocumentWhereInput>
+  }, "id">
+
+  export type AIDocumentChunkOrderByWithAggregationInput = {
+    id?: SortOrder
+    document_id?: SortOrder
+    chunk_index?: SortOrder
+    content?: SortOrder
+    page_number?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: AIDocumentChunkCountOrderByAggregateInput
+    _avg?: AIDocumentChunkAvgOrderByAggregateInput
+    _max?: AIDocumentChunkMaxOrderByAggregateInput
+    _min?: AIDocumentChunkMinOrderByAggregateInput
+    _sum?: AIDocumentChunkSumOrderByAggregateInput
+  }
+
+  export type AIDocumentChunkScalarWhereWithAggregatesInput = {
+    AND?: AIDocumentChunkScalarWhereWithAggregatesInput | AIDocumentChunkScalarWhereWithAggregatesInput[]
+    OR?: AIDocumentChunkScalarWhereWithAggregatesInput[]
+    NOT?: AIDocumentChunkScalarWhereWithAggregatesInput | AIDocumentChunkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIDocumentChunk"> | string
+    document_id?: StringWithAggregatesFilter<"AIDocumentChunk"> | string
+    chunk_index?: IntWithAggregatesFilter<"AIDocumentChunk"> | number
+    content?: StringWithAggregatesFilter<"AIDocumentChunk"> | string
+    page_number?: IntNullableWithAggregatesFilter<"AIDocumentChunk"> | number | null
+    metadata?: StringNullableWithAggregatesFilter<"AIDocumentChunk"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIDocumentChunk"> | Date | string
+  }
+
+  export type AIAlertWhereInput = {
+    AND?: AIAlertWhereInput | AIAlertWhereInput[]
+    OR?: AIAlertWhereInput[]
+    NOT?: AIAlertWhereInput | AIAlertWhereInput[]
+    id?: StringFilter<"AIAlert"> | string
+    company_id?: IntFilter<"AIAlert"> | number
+    project_id?: IntNullableFilter<"AIAlert"> | number | null
+    module?: StringFilter<"AIAlert"> | string
+    severity?: EnumAIAlertSeverityFilter<"AIAlert"> | $Enums.AIAlertSeverity
+    title?: StringFilter<"AIAlert"> | string
+    description?: StringFilter<"AIAlert"> | string
+    supporting_records?: StringNullableFilter<"AIAlert"> | string | null
+    recommended_action?: StringNullableFilter<"AIAlert"> | string | null
+    status?: EnumAIAlertStatusFilter<"AIAlert"> | $Enums.AIAlertStatus
+    assigned_to?: IntNullableFilter<"AIAlert"> | number | null
+    reviewer_notes?: StringNullableFilter<"AIAlert"> | string | null
+    detection_date?: DateTimeFilter<"AIAlert"> | Date | string
+    resolved_at?: DateTimeNullableFilter<"AIAlert"> | Date | string | null
+    created_at?: DateTimeFilter<"AIAlert"> | Date | string
+    updated_at?: DateTimeFilter<"AIAlert"> | Date | string
+  }
+
+  export type AIAlertOrderByWithRelationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    module?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    supporting_records?: SortOrderInput | SortOrder
+    recommended_action?: SortOrderInput | SortOrder
+    status?: SortOrder
+    assigned_to?: SortOrderInput | SortOrder
+    reviewer_notes?: SortOrderInput | SortOrder
+    detection_date?: SortOrder
+    resolved_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIAlertWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIAlertWhereInput | AIAlertWhereInput[]
+    OR?: AIAlertWhereInput[]
+    NOT?: AIAlertWhereInput | AIAlertWhereInput[]
+    company_id?: IntFilter<"AIAlert"> | number
+    project_id?: IntNullableFilter<"AIAlert"> | number | null
+    module?: StringFilter<"AIAlert"> | string
+    severity?: EnumAIAlertSeverityFilter<"AIAlert"> | $Enums.AIAlertSeverity
+    title?: StringFilter<"AIAlert"> | string
+    description?: StringFilter<"AIAlert"> | string
+    supporting_records?: StringNullableFilter<"AIAlert"> | string | null
+    recommended_action?: StringNullableFilter<"AIAlert"> | string | null
+    status?: EnumAIAlertStatusFilter<"AIAlert"> | $Enums.AIAlertStatus
+    assigned_to?: IntNullableFilter<"AIAlert"> | number | null
+    reviewer_notes?: StringNullableFilter<"AIAlert"> | string | null
+    detection_date?: DateTimeFilter<"AIAlert"> | Date | string
+    resolved_at?: DateTimeNullableFilter<"AIAlert"> | Date | string | null
+    created_at?: DateTimeFilter<"AIAlert"> | Date | string
+    updated_at?: DateTimeFilter<"AIAlert"> | Date | string
+  }, "id">
+
+  export type AIAlertOrderByWithAggregationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    module?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    supporting_records?: SortOrderInput | SortOrder
+    recommended_action?: SortOrderInput | SortOrder
+    status?: SortOrder
+    assigned_to?: SortOrderInput | SortOrder
+    reviewer_notes?: SortOrderInput | SortOrder
+    detection_date?: SortOrder
+    resolved_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: AIAlertCountOrderByAggregateInput
+    _avg?: AIAlertAvgOrderByAggregateInput
+    _max?: AIAlertMaxOrderByAggregateInput
+    _min?: AIAlertMinOrderByAggregateInput
+    _sum?: AIAlertSumOrderByAggregateInput
+  }
+
+  export type AIAlertScalarWhereWithAggregatesInput = {
+    AND?: AIAlertScalarWhereWithAggregatesInput | AIAlertScalarWhereWithAggregatesInput[]
+    OR?: AIAlertScalarWhereWithAggregatesInput[]
+    NOT?: AIAlertScalarWhereWithAggregatesInput | AIAlertScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIAlert"> | string
+    company_id?: IntWithAggregatesFilter<"AIAlert"> | number
+    project_id?: IntNullableWithAggregatesFilter<"AIAlert"> | number | null
+    module?: StringWithAggregatesFilter<"AIAlert"> | string
+    severity?: EnumAIAlertSeverityWithAggregatesFilter<"AIAlert"> | $Enums.AIAlertSeverity
+    title?: StringWithAggregatesFilter<"AIAlert"> | string
+    description?: StringWithAggregatesFilter<"AIAlert"> | string
+    supporting_records?: StringNullableWithAggregatesFilter<"AIAlert"> | string | null
+    recommended_action?: StringNullableWithAggregatesFilter<"AIAlert"> | string | null
+    status?: EnumAIAlertStatusWithAggregatesFilter<"AIAlert"> | $Enums.AIAlertStatus
+    assigned_to?: IntNullableWithAggregatesFilter<"AIAlert"> | number | null
+    reviewer_notes?: StringNullableWithAggregatesFilter<"AIAlert"> | string | null
+    detection_date?: DateTimeWithAggregatesFilter<"AIAlert"> | Date | string
+    resolved_at?: DateTimeNullableWithAggregatesFilter<"AIAlert"> | Date | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIAlert"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"AIAlert"> | Date | string
+  }
+
+  export type AIPredictionWhereInput = {
+    AND?: AIPredictionWhereInput | AIPredictionWhereInput[]
+    OR?: AIPredictionWhereInput[]
+    NOT?: AIPredictionWhereInput | AIPredictionWhereInput[]
+    id?: StringFilter<"AIPrediction"> | string
+    company_id?: IntFilter<"AIPrediction"> | number
+    project_id?: IntNullableFilter<"AIPrediction"> | number | null
+    prediction_type?: StringFilter<"AIPrediction"> | string
+    target_entity?: StringFilter<"AIPrediction"> | string
+    forecast_data?: StringFilter<"AIPrediction"> | string
+    confidence_score?: FloatFilter<"AIPrediction"> | number
+    assumptions?: StringNullableFilter<"AIPrediction"> | string | null
+    data_points_count?: IntFilter<"AIPrediction"> | number
+    valid_until?: DateTimeNullableFilter<"AIPrediction"> | Date | string | null
+    created_at?: DateTimeFilter<"AIPrediction"> | Date | string
+    updated_at?: DateTimeFilter<"AIPrediction"> | Date | string
+  }
+
+  export type AIPredictionOrderByWithRelationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    prediction_type?: SortOrder
+    target_entity?: SortOrder
+    forecast_data?: SortOrder
+    confidence_score?: SortOrder
+    assumptions?: SortOrderInput | SortOrder
+    data_points_count?: SortOrder
+    valid_until?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIPredictionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIPredictionWhereInput | AIPredictionWhereInput[]
+    OR?: AIPredictionWhereInput[]
+    NOT?: AIPredictionWhereInput | AIPredictionWhereInput[]
+    company_id?: IntFilter<"AIPrediction"> | number
+    project_id?: IntNullableFilter<"AIPrediction"> | number | null
+    prediction_type?: StringFilter<"AIPrediction"> | string
+    target_entity?: StringFilter<"AIPrediction"> | string
+    forecast_data?: StringFilter<"AIPrediction"> | string
+    confidence_score?: FloatFilter<"AIPrediction"> | number
+    assumptions?: StringNullableFilter<"AIPrediction"> | string | null
+    data_points_count?: IntFilter<"AIPrediction"> | number
+    valid_until?: DateTimeNullableFilter<"AIPrediction"> | Date | string | null
+    created_at?: DateTimeFilter<"AIPrediction"> | Date | string
+    updated_at?: DateTimeFilter<"AIPrediction"> | Date | string
+  }, "id">
+
+  export type AIPredictionOrderByWithAggregationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    prediction_type?: SortOrder
+    target_entity?: SortOrder
+    forecast_data?: SortOrder
+    confidence_score?: SortOrder
+    assumptions?: SortOrderInput | SortOrder
+    data_points_count?: SortOrder
+    valid_until?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: AIPredictionCountOrderByAggregateInput
+    _avg?: AIPredictionAvgOrderByAggregateInput
+    _max?: AIPredictionMaxOrderByAggregateInput
+    _min?: AIPredictionMinOrderByAggregateInput
+    _sum?: AIPredictionSumOrderByAggregateInput
+  }
+
+  export type AIPredictionScalarWhereWithAggregatesInput = {
+    AND?: AIPredictionScalarWhereWithAggregatesInput | AIPredictionScalarWhereWithAggregatesInput[]
+    OR?: AIPredictionScalarWhereWithAggregatesInput[]
+    NOT?: AIPredictionScalarWhereWithAggregatesInput | AIPredictionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIPrediction"> | string
+    company_id?: IntWithAggregatesFilter<"AIPrediction"> | number
+    project_id?: IntNullableWithAggregatesFilter<"AIPrediction"> | number | null
+    prediction_type?: StringWithAggregatesFilter<"AIPrediction"> | string
+    target_entity?: StringWithAggregatesFilter<"AIPrediction"> | string
+    forecast_data?: StringWithAggregatesFilter<"AIPrediction"> | string
+    confidence_score?: FloatWithAggregatesFilter<"AIPrediction"> | number
+    assumptions?: StringNullableWithAggregatesFilter<"AIPrediction"> | string | null
+    data_points_count?: IntWithAggregatesFilter<"AIPrediction"> | number
+    valid_until?: DateTimeNullableWithAggregatesFilter<"AIPrediction"> | Date | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIPrediction"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"AIPrediction"> | Date | string
+  }
+
+  export type AIActionLogWhereInput = {
+    AND?: AIActionLogWhereInput | AIActionLogWhereInput[]
+    OR?: AIActionLogWhereInput[]
+    NOT?: AIActionLogWhereInput | AIActionLogWhereInput[]
+    id?: StringFilter<"AIActionLog"> | string
+    company_id?: IntFilter<"AIActionLog"> | number
+    project_id?: IntNullableFilter<"AIActionLog"> | number | null
+    user_id?: IntFilter<"AIActionLog"> | number
+    action_type?: StringFilter<"AIActionLog"> | string
+    action_payload?: StringFilter<"AIActionLog"> | string
+    status?: EnumAIActionStatusFilter<"AIActionLog"> | $Enums.AIActionStatus
+    execution_result?: StringNullableFilter<"AIActionLog"> | string | null
+    approved_by?: IntNullableFilter<"AIActionLog"> | number | null
+    confirmed_at?: DateTimeNullableFilter<"AIActionLog"> | Date | string | null
+    created_at?: DateTimeFilter<"AIActionLog"> | Date | string
+    updated_at?: DateTimeFilter<"AIActionLog"> | Date | string
+  }
+
+  export type AIActionLogOrderByWithRelationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    action_type?: SortOrder
+    action_payload?: SortOrder
+    status?: SortOrder
+    execution_result?: SortOrderInput | SortOrder
+    approved_by?: SortOrderInput | SortOrder
+    confirmed_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIActionLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIActionLogWhereInput | AIActionLogWhereInput[]
+    OR?: AIActionLogWhereInput[]
+    NOT?: AIActionLogWhereInput | AIActionLogWhereInput[]
+    company_id?: IntFilter<"AIActionLog"> | number
+    project_id?: IntNullableFilter<"AIActionLog"> | number | null
+    user_id?: IntFilter<"AIActionLog"> | number
+    action_type?: StringFilter<"AIActionLog"> | string
+    action_payload?: StringFilter<"AIActionLog"> | string
+    status?: EnumAIActionStatusFilter<"AIActionLog"> | $Enums.AIActionStatus
+    execution_result?: StringNullableFilter<"AIActionLog"> | string | null
+    approved_by?: IntNullableFilter<"AIActionLog"> | number | null
+    confirmed_at?: DateTimeNullableFilter<"AIActionLog"> | Date | string | null
+    created_at?: DateTimeFilter<"AIActionLog"> | Date | string
+    updated_at?: DateTimeFilter<"AIActionLog"> | Date | string
+  }, "id">
+
+  export type AIActionLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    action_type?: SortOrder
+    action_payload?: SortOrder
+    status?: SortOrder
+    execution_result?: SortOrderInput | SortOrder
+    approved_by?: SortOrderInput | SortOrder
+    confirmed_at?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: AIActionLogCountOrderByAggregateInput
+    _avg?: AIActionLogAvgOrderByAggregateInput
+    _max?: AIActionLogMaxOrderByAggregateInput
+    _min?: AIActionLogMinOrderByAggregateInput
+    _sum?: AIActionLogSumOrderByAggregateInput
+  }
+
+  export type AIActionLogScalarWhereWithAggregatesInput = {
+    AND?: AIActionLogScalarWhereWithAggregatesInput | AIActionLogScalarWhereWithAggregatesInput[]
+    OR?: AIActionLogScalarWhereWithAggregatesInput[]
+    NOT?: AIActionLogScalarWhereWithAggregatesInput | AIActionLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIActionLog"> | string
+    company_id?: IntWithAggregatesFilter<"AIActionLog"> | number
+    project_id?: IntNullableWithAggregatesFilter<"AIActionLog"> | number | null
+    user_id?: IntWithAggregatesFilter<"AIActionLog"> | number
+    action_type?: StringWithAggregatesFilter<"AIActionLog"> | string
+    action_payload?: StringWithAggregatesFilter<"AIActionLog"> | string
+    status?: EnumAIActionStatusWithAggregatesFilter<"AIActionLog"> | $Enums.AIActionStatus
+    execution_result?: StringNullableWithAggregatesFilter<"AIActionLog"> | string | null
+    approved_by?: IntNullableWithAggregatesFilter<"AIActionLog"> | number | null
+    confirmed_at?: DateTimeNullableWithAggregatesFilter<"AIActionLog"> | Date | string | null
+    created_at?: DateTimeWithAggregatesFilter<"AIActionLog"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"AIActionLog"> | Date | string
+  }
+
+  export type AIModelUsageWhereInput = {
+    AND?: AIModelUsageWhereInput | AIModelUsageWhereInput[]
+    OR?: AIModelUsageWhereInput[]
+    NOT?: AIModelUsageWhereInput | AIModelUsageWhereInput[]
+    id?: StringFilter<"AIModelUsage"> | string
+    company_id?: IntNullableFilter<"AIModelUsage"> | number | null
+    user_id?: IntNullableFilter<"AIModelUsage"> | number | null
+    feature?: StringFilter<"AIModelUsage"> | string
+    provider?: StringFilter<"AIModelUsage"> | string
+    model_name?: StringFilter<"AIModelUsage"> | string
+    prompt_tokens?: IntFilter<"AIModelUsage"> | number
+    completion_tokens?: IntFilter<"AIModelUsage"> | number
+    total_tokens?: IntFilter<"AIModelUsage"> | number
+    latency_ms?: IntFilter<"AIModelUsage"> | number
+    status?: StringFilter<"AIModelUsage"> | string
+    created_at?: DateTimeFilter<"AIModelUsage"> | Date | string
+  }
+
+  export type AIModelUsageOrderByWithRelationInput = {
+    id?: SortOrder
+    company_id?: SortOrderInput | SortOrder
+    user_id?: SortOrderInput | SortOrder
+    feature?: SortOrder
+    provider?: SortOrder
+    model_name?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIModelUsageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIModelUsageWhereInput | AIModelUsageWhereInput[]
+    OR?: AIModelUsageWhereInput[]
+    NOT?: AIModelUsageWhereInput | AIModelUsageWhereInput[]
+    company_id?: IntNullableFilter<"AIModelUsage"> | number | null
+    user_id?: IntNullableFilter<"AIModelUsage"> | number | null
+    feature?: StringFilter<"AIModelUsage"> | string
+    provider?: StringFilter<"AIModelUsage"> | string
+    model_name?: StringFilter<"AIModelUsage"> | string
+    prompt_tokens?: IntFilter<"AIModelUsage"> | number
+    completion_tokens?: IntFilter<"AIModelUsage"> | number
+    total_tokens?: IntFilter<"AIModelUsage"> | number
+    latency_ms?: IntFilter<"AIModelUsage"> | number
+    status?: StringFilter<"AIModelUsage"> | string
+    created_at?: DateTimeFilter<"AIModelUsage"> | Date | string
+  }, "id">
+
+  export type AIModelUsageOrderByWithAggregationInput = {
+    id?: SortOrder
+    company_id?: SortOrderInput | SortOrder
+    user_id?: SortOrderInput | SortOrder
+    feature?: SortOrder
+    provider?: SortOrder
+    model_name?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    _count?: AIModelUsageCountOrderByAggregateInput
+    _avg?: AIModelUsageAvgOrderByAggregateInput
+    _max?: AIModelUsageMaxOrderByAggregateInput
+    _min?: AIModelUsageMinOrderByAggregateInput
+    _sum?: AIModelUsageSumOrderByAggregateInput
+  }
+
+  export type AIModelUsageScalarWhereWithAggregatesInput = {
+    AND?: AIModelUsageScalarWhereWithAggregatesInput | AIModelUsageScalarWhereWithAggregatesInput[]
+    OR?: AIModelUsageScalarWhereWithAggregatesInput[]
+    NOT?: AIModelUsageScalarWhereWithAggregatesInput | AIModelUsageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIModelUsage"> | string
+    company_id?: IntNullableWithAggregatesFilter<"AIModelUsage"> | number | null
+    user_id?: IntNullableWithAggregatesFilter<"AIModelUsage"> | number | null
+    feature?: StringWithAggregatesFilter<"AIModelUsage"> | string
+    provider?: StringWithAggregatesFilter<"AIModelUsage"> | string
+    model_name?: StringWithAggregatesFilter<"AIModelUsage"> | string
+    prompt_tokens?: IntWithAggregatesFilter<"AIModelUsage"> | number
+    completion_tokens?: IntWithAggregatesFilter<"AIModelUsage"> | number
+    total_tokens?: IntWithAggregatesFilter<"AIModelUsage"> | number
+    latency_ms?: IntWithAggregatesFilter<"AIModelUsage"> | number
+    status?: StringWithAggregatesFilter<"AIModelUsage"> | string
+    created_at?: DateTimeWithAggregatesFilter<"AIModelUsage"> | Date | string
   }
 
   export type CategoryWhereInput = {
@@ -97039,6 +109321,890 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unitId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AIConversationCreateInput = {
+    id?: string
+    user_id: number
+    company_id: number
+    project_id?: number | null
+    title?: string
+    module?: string | null
+    language?: string | null
+    is_archived?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    messages?: AIMessageCreateNestedManyWithoutConversationInput
+  }
+
+  export type AIConversationUncheckedCreateInput = {
+    id?: string
+    user_id: number
+    company_id: number
+    project_id?: number | null
+    title?: string
+    module?: string | null
+    language?: string | null
+    is_archived?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    messages?: AIMessageUncheckedCreateNestedManyWithoutConversationInput
+  }
+
+  export type AIConversationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: AIMessageUpdateManyWithoutConversationNestedInput
+  }
+
+  export type AIConversationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: AIMessageUncheckedUpdateManyWithoutConversationNestedInput
+  }
+
+  export type AIConversationCreateManyInput = {
+    id?: string
+    user_id: number
+    company_id: number
+    project_id?: number | null
+    title?: string
+    module?: string | null
+    language?: string | null
+    is_archived?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIConversationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIConversationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageCreateInput = {
+    id?: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+    conversation: AIConversationCreateNestedOneWithoutMessagesInput
+    feedbacks?: AIFeedbackCreateNestedManyWithoutMessageInput
+  }
+
+  export type AIMessageUncheckedCreateInput = {
+    id?: string
+    conversation_id: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+    feedbacks?: AIFeedbackUncheckedCreateNestedManyWithoutMessageInput
+  }
+
+  export type AIMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversation?: AIConversationUpdateOneRequiredWithoutMessagesNestedInput
+    feedbacks?: AIFeedbackUpdateManyWithoutMessageNestedInput
+  }
+
+  export type AIMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversation_id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedbacks?: AIFeedbackUncheckedUpdateManyWithoutMessageNestedInput
+  }
+
+  export type AIMessageCreateManyInput = {
+    id?: string
+    conversation_id: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversation_id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackCreateInput = {
+    id?: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+    message: AIMessageCreateNestedOneWithoutFeedbacksInput
+  }
+
+  export type AIFeedbackUncheckedCreateInput = {
+    id?: string
+    message_id: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIFeedbackUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: AIMessageUpdateOneRequiredWithoutFeedbacksNestedInput
+  }
+
+  export type AIFeedbackUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackCreateManyInput = {
+    id?: string
+    message_id: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIFeedbackUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    file_name: string
+    file_path?: string | null
+    file_type: string
+    file_size?: number | null
+    document_type: string
+    summary?: string | null
+    metadata?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    chunks?: AIDocumentChunkCreateNestedManyWithoutDocumentInput
+  }
+
+  export type AIDocumentUncheckedCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    file_name: string
+    file_path?: string | null
+    file_type: string
+    file_size?: number | null
+    document_type: string
+    summary?: string | null
+    metadata?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    chunks?: AIDocumentChunkUncheckedCreateNestedManyWithoutDocumentInput
+  }
+
+  export type AIDocumentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chunks?: AIDocumentChunkUpdateManyWithoutDocumentNestedInput
+  }
+
+  export type AIDocumentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chunks?: AIDocumentChunkUncheckedUpdateManyWithoutDocumentNestedInput
+  }
+
+  export type AIDocumentCreateManyInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    file_name: string
+    file_path?: string | null
+    file_type: string
+    file_size?: number | null
+    document_type: string
+    summary?: string | null
+    metadata?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIDocumentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkCreateInput = {
+    id?: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+    document: AIDocumentCreateNestedOneWithoutChunksInput
+  }
+
+  export type AIDocumentChunkUncheckedCreateInput = {
+    id?: string
+    document_id: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIDocumentChunkUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    document?: AIDocumentUpdateOneRequiredWithoutChunksNestedInput
+  }
+
+  export type AIDocumentChunkUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    document_id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkCreateManyInput = {
+    id?: string
+    document_id: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIDocumentChunkUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    document_id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIAlertCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    module: string
+    severity?: $Enums.AIAlertSeverity
+    title: string
+    description: string
+    supporting_records?: string | null
+    recommended_action?: string | null
+    status?: $Enums.AIAlertStatus
+    assigned_to?: number | null
+    reviewer_notes?: string | null
+    detection_date?: Date | string
+    resolved_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIAlertUncheckedCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    module: string
+    severity?: $Enums.AIAlertSeverity
+    title: string
+    description: string
+    supporting_records?: string | null
+    recommended_action?: string | null
+    status?: $Enums.AIAlertStatus
+    assigned_to?: number | null
+    reviewer_notes?: string | null
+    detection_date?: Date | string
+    resolved_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIAlertUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    module?: StringFieldUpdateOperationsInput | string
+    severity?: EnumAIAlertSeverityFieldUpdateOperationsInput | $Enums.AIAlertSeverity
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    supporting_records?: NullableStringFieldUpdateOperationsInput | string | null
+    recommended_action?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAIAlertStatusFieldUpdateOperationsInput | $Enums.AIAlertStatus
+    assigned_to?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewer_notes?: NullableStringFieldUpdateOperationsInput | string | null
+    detection_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolved_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIAlertUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    module?: StringFieldUpdateOperationsInput | string
+    severity?: EnumAIAlertSeverityFieldUpdateOperationsInput | $Enums.AIAlertSeverity
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    supporting_records?: NullableStringFieldUpdateOperationsInput | string | null
+    recommended_action?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAIAlertStatusFieldUpdateOperationsInput | $Enums.AIAlertStatus
+    assigned_to?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewer_notes?: NullableStringFieldUpdateOperationsInput | string | null
+    detection_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolved_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIAlertCreateManyInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    module: string
+    severity?: $Enums.AIAlertSeverity
+    title: string
+    description: string
+    supporting_records?: string | null
+    recommended_action?: string | null
+    status?: $Enums.AIAlertStatus
+    assigned_to?: number | null
+    reviewer_notes?: string | null
+    detection_date?: Date | string
+    resolved_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIAlertUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    module?: StringFieldUpdateOperationsInput | string
+    severity?: EnumAIAlertSeverityFieldUpdateOperationsInput | $Enums.AIAlertSeverity
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    supporting_records?: NullableStringFieldUpdateOperationsInput | string | null
+    recommended_action?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAIAlertStatusFieldUpdateOperationsInput | $Enums.AIAlertStatus
+    assigned_to?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewer_notes?: NullableStringFieldUpdateOperationsInput | string | null
+    detection_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolved_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIAlertUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    module?: StringFieldUpdateOperationsInput | string
+    severity?: EnumAIAlertSeverityFieldUpdateOperationsInput | $Enums.AIAlertSeverity
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    supporting_records?: NullableStringFieldUpdateOperationsInput | string | null
+    recommended_action?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAIAlertStatusFieldUpdateOperationsInput | $Enums.AIAlertStatus
+    assigned_to?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewer_notes?: NullableStringFieldUpdateOperationsInput | string | null
+    detection_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolved_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPredictionCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    prediction_type: string
+    target_entity: string
+    forecast_data: string
+    confidence_score: number
+    assumptions?: string | null
+    data_points_count?: number
+    valid_until?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIPredictionUncheckedCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    prediction_type: string
+    target_entity: string
+    forecast_data: string
+    confidence_score: number
+    assumptions?: string | null
+    data_points_count?: number
+    valid_until?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIPredictionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    prediction_type?: StringFieldUpdateOperationsInput | string
+    target_entity?: StringFieldUpdateOperationsInput | string
+    forecast_data?: StringFieldUpdateOperationsInput | string
+    confidence_score?: FloatFieldUpdateOperationsInput | number
+    assumptions?: NullableStringFieldUpdateOperationsInput | string | null
+    data_points_count?: IntFieldUpdateOperationsInput | number
+    valid_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPredictionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    prediction_type?: StringFieldUpdateOperationsInput | string
+    target_entity?: StringFieldUpdateOperationsInput | string
+    forecast_data?: StringFieldUpdateOperationsInput | string
+    confidence_score?: FloatFieldUpdateOperationsInput | number
+    assumptions?: NullableStringFieldUpdateOperationsInput | string | null
+    data_points_count?: IntFieldUpdateOperationsInput | number
+    valid_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPredictionCreateManyInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    prediction_type: string
+    target_entity: string
+    forecast_data: string
+    confidence_score: number
+    assumptions?: string | null
+    data_points_count?: number
+    valid_until?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIPredictionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    prediction_type?: StringFieldUpdateOperationsInput | string
+    target_entity?: StringFieldUpdateOperationsInput | string
+    forecast_data?: StringFieldUpdateOperationsInput | string
+    confidence_score?: FloatFieldUpdateOperationsInput | number
+    assumptions?: NullableStringFieldUpdateOperationsInput | string | null
+    data_points_count?: IntFieldUpdateOperationsInput | number
+    valid_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPredictionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    prediction_type?: StringFieldUpdateOperationsInput | string
+    target_entity?: StringFieldUpdateOperationsInput | string
+    forecast_data?: StringFieldUpdateOperationsInput | string
+    confidence_score?: FloatFieldUpdateOperationsInput | number
+    assumptions?: NullableStringFieldUpdateOperationsInput | string | null
+    data_points_count?: IntFieldUpdateOperationsInput | number
+    valid_until?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIActionLogCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    action_type: string
+    action_payload: string
+    status?: $Enums.AIActionStatus
+    execution_result?: string | null
+    approved_by?: number | null
+    confirmed_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIActionLogUncheckedCreateInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    action_type: string
+    action_payload: string
+    status?: $Enums.AIActionStatus
+    execution_result?: string | null
+    approved_by?: number | null
+    confirmed_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIActionLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    action_type?: StringFieldUpdateOperationsInput | string
+    action_payload?: StringFieldUpdateOperationsInput | string
+    status?: EnumAIActionStatusFieldUpdateOperationsInput | $Enums.AIActionStatus
+    execution_result?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableIntFieldUpdateOperationsInput | number | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIActionLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    action_type?: StringFieldUpdateOperationsInput | string
+    action_payload?: StringFieldUpdateOperationsInput | string
+    status?: EnumAIActionStatusFieldUpdateOperationsInput | $Enums.AIActionStatus
+    execution_result?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableIntFieldUpdateOperationsInput | number | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIActionLogCreateManyInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    action_type: string
+    action_payload: string
+    status?: $Enums.AIActionStatus
+    execution_result?: string | null
+    approved_by?: number | null
+    confirmed_at?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIActionLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    action_type?: StringFieldUpdateOperationsInput | string
+    action_payload?: StringFieldUpdateOperationsInput | string
+    status?: EnumAIActionStatusFieldUpdateOperationsInput | $Enums.AIActionStatus
+    execution_result?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableIntFieldUpdateOperationsInput | number | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIActionLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    action_type?: StringFieldUpdateOperationsInput | string
+    action_payload?: StringFieldUpdateOperationsInput | string
+    status?: EnumAIActionStatusFieldUpdateOperationsInput | $Enums.AIActionStatus
+    execution_result?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableIntFieldUpdateOperationsInput | number | null
+    confirmed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIModelUsageCreateInput = {
+    id?: string
+    company_id?: number | null
+    user_id?: number | null
+    feature: string
+    provider: string
+    model_name: string
+    prompt_tokens?: number
+    completion_tokens?: number
+    total_tokens?: number
+    latency_ms?: number
+    status?: string
+    created_at?: Date | string
+  }
+
+  export type AIModelUsageUncheckedCreateInput = {
+    id?: string
+    company_id?: number | null
+    user_id?: number | null
+    feature: string
+    provider: string
+    model_name: string
+    prompt_tokens?: number
+    completion_tokens?: number
+    total_tokens?: number
+    latency_ms?: number
+    status?: string
+    created_at?: Date | string
+  }
+
+  export type AIModelUsageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    feature?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model_name?: StringFieldUpdateOperationsInput | string
+    prompt_tokens?: IntFieldUpdateOperationsInput | number
+    completion_tokens?: IntFieldUpdateOperationsInput | number
+    total_tokens?: IntFieldUpdateOperationsInput | number
+    latency_ms?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIModelUsageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    feature?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model_name?: StringFieldUpdateOperationsInput | string
+    prompt_tokens?: IntFieldUpdateOperationsInput | number
+    completion_tokens?: IntFieldUpdateOperationsInput | number
+    total_tokens?: IntFieldUpdateOperationsInput | number
+    latency_ms?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIModelUsageCreateManyInput = {
+    id?: string
+    company_id?: number | null
+    user_id?: number | null
+    feature: string
+    provider: string
+    model_name: string
+    prompt_tokens?: number
+    completion_tokens?: number
+    total_tokens?: number
+    latency_ms?: number
+    status?: string
+    created_at?: Date | string
+  }
+
+  export type AIModelUsageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    feature?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model_name?: StringFieldUpdateOperationsInput | string
+    prompt_tokens?: IntFieldUpdateOperationsInput | number
+    completion_tokens?: IntFieldUpdateOperationsInput | number
+    total_tokens?: IntFieldUpdateOperationsInput | number
+    latency_ms?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIModelUsageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    feature?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model_name?: StringFieldUpdateOperationsInput | string
+    prompt_tokens?: IntFieldUpdateOperationsInput | number
+    completion_tokens?: IntFieldUpdateOperationsInput | number
+    total_tokens?: IntFieldUpdateOperationsInput | number
+    latency_ms?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryCreateInput = {
@@ -103027,6 +116193,608 @@ export namespace Prisma {
     unitId?: SortOrder
   }
 
+  export type AIMessageListRelationFilter = {
+    every?: AIMessageWhereInput
+    some?: AIMessageWhereInput
+    none?: AIMessageWhereInput
+  }
+
+  export type AIMessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIConversationCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    title?: SortOrder
+    module?: SortOrder
+    language?: SortOrder
+    is_archived?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIConversationAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+  }
+
+  export type AIConversationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    title?: SortOrder
+    module?: SortOrder
+    language?: SortOrder
+    is_archived?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIConversationMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    title?: SortOrder
+    module?: SortOrder
+    language?: SortOrder
+    is_archived?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIConversationSumOrderByAggregateInput = {
+    user_id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+  }
+
+  export type AIConversationScalarRelationFilter = {
+    is?: AIConversationWhereInput
+    isNot?: AIConversationWhereInput
+  }
+
+  export type AIFeedbackListRelationFilter = {
+    every?: AIFeedbackWhereInput
+    some?: AIFeedbackWhereInput
+    none?: AIFeedbackWhereInput
+  }
+
+  export type AIFeedbackOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    conversation_id?: SortOrder
+    sender?: SortOrder
+    content?: SortOrder
+    rich_payload?: SortOrder
+    references?: SortOrder
+    actions?: SortOrder
+    language?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    conversation_id?: SortOrder
+    sender?: SortOrder
+    content?: SortOrder
+    rich_payload?: SortOrder
+    references?: SortOrder
+    actions?: SortOrder
+    language?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    conversation_id?: SortOrder
+    sender?: SortOrder
+    content?: SortOrder
+    rich_payload?: SortOrder
+    references?: SortOrder
+    actions?: SortOrder
+    language?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIMessageScalarRelationFilter = {
+    is?: AIMessageWhereInput
+    isNot?: AIMessageWhereInput
+  }
+
+  export type AIFeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    message_id?: SortOrder
+    user_id?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIFeedbackAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type AIFeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    message_id?: SortOrder
+    user_id?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIFeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    message_id?: SortOrder
+    user_id?: SortOrder
+    rating?: SortOrder
+    comment?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIFeedbackSumOrderByAggregateInput = {
+    user_id?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type AIDocumentChunkListRelationFilter = {
+    every?: AIDocumentChunkWhereInput
+    some?: AIDocumentChunkWhereInput
+    none?: AIDocumentChunkWhereInput
+  }
+
+  export type AIDocumentChunkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIDocumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    file_name?: SortOrder
+    file_path?: SortOrder
+    file_type?: SortOrder
+    file_size?: SortOrder
+    document_type?: SortOrder
+    summary?: SortOrder
+    metadata?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIDocumentAvgOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    file_size?: SortOrder
+  }
+
+  export type AIDocumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    file_name?: SortOrder
+    file_path?: SortOrder
+    file_type?: SortOrder
+    file_size?: SortOrder
+    document_type?: SortOrder
+    summary?: SortOrder
+    metadata?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIDocumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    file_name?: SortOrder
+    file_path?: SortOrder
+    file_type?: SortOrder
+    file_size?: SortOrder
+    document_type?: SortOrder
+    summary?: SortOrder
+    metadata?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIDocumentSumOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    file_size?: SortOrder
+  }
+
+  export type AIDocumentScalarRelationFilter = {
+    is?: AIDocumentWhereInput
+    isNot?: AIDocumentWhereInput
+  }
+
+  export type AIDocumentChunkCountOrderByAggregateInput = {
+    id?: SortOrder
+    document_id?: SortOrder
+    chunk_index?: SortOrder
+    content?: SortOrder
+    page_number?: SortOrder
+    metadata?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIDocumentChunkAvgOrderByAggregateInput = {
+    chunk_index?: SortOrder
+    page_number?: SortOrder
+  }
+
+  export type AIDocumentChunkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    document_id?: SortOrder
+    chunk_index?: SortOrder
+    content?: SortOrder
+    page_number?: SortOrder
+    metadata?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIDocumentChunkMinOrderByAggregateInput = {
+    id?: SortOrder
+    document_id?: SortOrder
+    chunk_index?: SortOrder
+    content?: SortOrder
+    page_number?: SortOrder
+    metadata?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIDocumentChunkSumOrderByAggregateInput = {
+    chunk_index?: SortOrder
+    page_number?: SortOrder
+  }
+
+  export type EnumAIAlertSeverityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertSeverity | EnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertSeverityFilter<$PrismaModel> | $Enums.AIAlertSeverity
+  }
+
+  export type EnumAIAlertStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertStatus | EnumAIAlertStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertStatusFilter<$PrismaModel> | $Enums.AIAlertStatus
+  }
+
+  export type AIAlertCountOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    module?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    supporting_records?: SortOrder
+    recommended_action?: SortOrder
+    status?: SortOrder
+    assigned_to?: SortOrder
+    reviewer_notes?: SortOrder
+    detection_date?: SortOrder
+    resolved_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIAlertAvgOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    assigned_to?: SortOrder
+  }
+
+  export type AIAlertMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    module?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    supporting_records?: SortOrder
+    recommended_action?: SortOrder
+    status?: SortOrder
+    assigned_to?: SortOrder
+    reviewer_notes?: SortOrder
+    detection_date?: SortOrder
+    resolved_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIAlertMinOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    module?: SortOrder
+    severity?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    supporting_records?: SortOrder
+    recommended_action?: SortOrder
+    status?: SortOrder
+    assigned_to?: SortOrder
+    reviewer_notes?: SortOrder
+    detection_date?: SortOrder
+    resolved_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIAlertSumOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    assigned_to?: SortOrder
+  }
+
+  export type EnumAIAlertSeverityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertSeverity | EnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertSeverityWithAggregatesFilter<$PrismaModel> | $Enums.AIAlertSeverity
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIAlertSeverityFilter<$PrismaModel>
+    _max?: NestedEnumAIAlertSeverityFilter<$PrismaModel>
+  }
+
+  export type EnumAIAlertStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertStatus | EnumAIAlertStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertStatusWithAggregatesFilter<$PrismaModel> | $Enums.AIAlertStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIAlertStatusFilter<$PrismaModel>
+    _max?: NestedEnumAIAlertStatusFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type AIPredictionCountOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    prediction_type?: SortOrder
+    target_entity?: SortOrder
+    forecast_data?: SortOrder
+    confidence_score?: SortOrder
+    assumptions?: SortOrder
+    data_points_count?: SortOrder
+    valid_until?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIPredictionAvgOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    confidence_score?: SortOrder
+    data_points_count?: SortOrder
+  }
+
+  export type AIPredictionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    prediction_type?: SortOrder
+    target_entity?: SortOrder
+    forecast_data?: SortOrder
+    confidence_score?: SortOrder
+    assumptions?: SortOrder
+    data_points_count?: SortOrder
+    valid_until?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIPredictionMinOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    prediction_type?: SortOrder
+    target_entity?: SortOrder
+    forecast_data?: SortOrder
+    confidence_score?: SortOrder
+    assumptions?: SortOrder
+    data_points_count?: SortOrder
+    valid_until?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIPredictionSumOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    confidence_score?: SortOrder
+    data_points_count?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumAIActionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIActionStatus | EnumAIActionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIActionStatusFilter<$PrismaModel> | $Enums.AIActionStatus
+  }
+
+  export type AIActionLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    action_type?: SortOrder
+    action_payload?: SortOrder
+    status?: SortOrder
+    execution_result?: SortOrder
+    approved_by?: SortOrder
+    confirmed_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIActionLogAvgOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    approved_by?: SortOrder
+  }
+
+  export type AIActionLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    action_type?: SortOrder
+    action_payload?: SortOrder
+    status?: SortOrder
+    execution_result?: SortOrder
+    approved_by?: SortOrder
+    confirmed_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIActionLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    action_type?: SortOrder
+    action_payload?: SortOrder
+    status?: SortOrder
+    execution_result?: SortOrder
+    approved_by?: SortOrder
+    confirmed_at?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type AIActionLogSumOrderByAggregateInput = {
+    company_id?: SortOrder
+    project_id?: SortOrder
+    user_id?: SortOrder
+    approved_by?: SortOrder
+  }
+
+  export type EnumAIActionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIActionStatus | EnumAIActionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIActionStatusWithAggregatesFilter<$PrismaModel> | $Enums.AIActionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIActionStatusFilter<$PrismaModel>
+    _max?: NestedEnumAIActionStatusFilter<$PrismaModel>
+  }
+
+  export type AIModelUsageCountOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    user_id?: SortOrder
+    feature?: SortOrder
+    provider?: SortOrder
+    model_name?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIModelUsageAvgOrderByAggregateInput = {
+    company_id?: SortOrder
+    user_id?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+  }
+
+  export type AIModelUsageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    user_id?: SortOrder
+    feature?: SortOrder
+    provider?: SortOrder
+    model_name?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIModelUsageMinOrderByAggregateInput = {
+    id?: SortOrder
+    company_id?: SortOrder
+    user_id?: SortOrder
+    feature?: SortOrder
+    provider?: SortOrder
+    model_name?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type AIModelUsageSumOrderByAggregateInput = {
+    company_id?: SortOrder
+    user_id?: SortOrder
+    prompt_tokens?: SortOrder
+    completion_tokens?: SortOrder
+    total_tokens?: SortOrder
+    latency_ms?: SortOrder
+  }
+
   export type Project_categoryListRelationFilter = {
     every?: project_categoryWhereInput
     some?: project_categoryWhereInput
@@ -103595,17 +117363,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type EnumDieselInwardStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.DieselInwardStatus | EnumDieselInwardStatusFieldRefInput<$PrismaModel>
     in?: $Enums.DieselInwardStatus[] | ListEnumDieselInwardStatusFieldRefInput<$PrismaModel>
@@ -103705,22 +117462,6 @@ export namespace Prisma {
     total_amount?: SortOrder
     received_by?: SortOrder
     company_id?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type EnumDieselInwardStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -107664,6 +121405,194 @@ export namespace Prisma {
     deleteMany?: LabourAttendanceActivityScalarWhereInput | LabourAttendanceActivityScalarWhereInput[]
   }
 
+  export type AIMessageCreateNestedManyWithoutConversationInput = {
+    create?: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput> | AIMessageCreateWithoutConversationInput[] | AIMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutConversationInput | AIMessageCreateOrConnectWithoutConversationInput[]
+    createMany?: AIMessageCreateManyConversationInputEnvelope
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+  }
+
+  export type AIMessageUncheckedCreateNestedManyWithoutConversationInput = {
+    create?: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput> | AIMessageCreateWithoutConversationInput[] | AIMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutConversationInput | AIMessageCreateOrConnectWithoutConversationInput[]
+    createMany?: AIMessageCreateManyConversationInputEnvelope
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+  }
+
+  export type AIMessageUpdateManyWithoutConversationNestedInput = {
+    create?: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput> | AIMessageCreateWithoutConversationInput[] | AIMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutConversationInput | AIMessageCreateOrConnectWithoutConversationInput[]
+    upsert?: AIMessageUpsertWithWhereUniqueWithoutConversationInput | AIMessageUpsertWithWhereUniqueWithoutConversationInput[]
+    createMany?: AIMessageCreateManyConversationInputEnvelope
+    set?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    disconnect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    delete?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    update?: AIMessageUpdateWithWhereUniqueWithoutConversationInput | AIMessageUpdateWithWhereUniqueWithoutConversationInput[]
+    updateMany?: AIMessageUpdateManyWithWhereWithoutConversationInput | AIMessageUpdateManyWithWhereWithoutConversationInput[]
+    deleteMany?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+  }
+
+  export type AIMessageUncheckedUpdateManyWithoutConversationNestedInput = {
+    create?: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput> | AIMessageCreateWithoutConversationInput[] | AIMessageUncheckedCreateWithoutConversationInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutConversationInput | AIMessageCreateOrConnectWithoutConversationInput[]
+    upsert?: AIMessageUpsertWithWhereUniqueWithoutConversationInput | AIMessageUpsertWithWhereUniqueWithoutConversationInput[]
+    createMany?: AIMessageCreateManyConversationInputEnvelope
+    set?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    disconnect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    delete?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    update?: AIMessageUpdateWithWhereUniqueWithoutConversationInput | AIMessageUpdateWithWhereUniqueWithoutConversationInput[]
+    updateMany?: AIMessageUpdateManyWithWhereWithoutConversationInput | AIMessageUpdateManyWithWhereWithoutConversationInput[]
+    deleteMany?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+  }
+
+  export type AIConversationCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<AIConversationCreateWithoutMessagesInput, AIConversationUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: AIConversationCreateOrConnectWithoutMessagesInput
+    connect?: AIConversationWhereUniqueInput
+  }
+
+  export type AIFeedbackCreateNestedManyWithoutMessageInput = {
+    create?: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput> | AIFeedbackCreateWithoutMessageInput[] | AIFeedbackUncheckedCreateWithoutMessageInput[]
+    connectOrCreate?: AIFeedbackCreateOrConnectWithoutMessageInput | AIFeedbackCreateOrConnectWithoutMessageInput[]
+    createMany?: AIFeedbackCreateManyMessageInputEnvelope
+    connect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+  }
+
+  export type AIFeedbackUncheckedCreateNestedManyWithoutMessageInput = {
+    create?: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput> | AIFeedbackCreateWithoutMessageInput[] | AIFeedbackUncheckedCreateWithoutMessageInput[]
+    connectOrCreate?: AIFeedbackCreateOrConnectWithoutMessageInput | AIFeedbackCreateOrConnectWithoutMessageInput[]
+    createMany?: AIFeedbackCreateManyMessageInputEnvelope
+    connect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+  }
+
+  export type AIConversationUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<AIConversationCreateWithoutMessagesInput, AIConversationUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: AIConversationCreateOrConnectWithoutMessagesInput
+    upsert?: AIConversationUpsertWithoutMessagesInput
+    connect?: AIConversationWhereUniqueInput
+    update?: XOR<XOR<AIConversationUpdateToOneWithWhereWithoutMessagesInput, AIConversationUpdateWithoutMessagesInput>, AIConversationUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type AIFeedbackUpdateManyWithoutMessageNestedInput = {
+    create?: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput> | AIFeedbackCreateWithoutMessageInput[] | AIFeedbackUncheckedCreateWithoutMessageInput[]
+    connectOrCreate?: AIFeedbackCreateOrConnectWithoutMessageInput | AIFeedbackCreateOrConnectWithoutMessageInput[]
+    upsert?: AIFeedbackUpsertWithWhereUniqueWithoutMessageInput | AIFeedbackUpsertWithWhereUniqueWithoutMessageInput[]
+    createMany?: AIFeedbackCreateManyMessageInputEnvelope
+    set?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    disconnect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    delete?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    connect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    update?: AIFeedbackUpdateWithWhereUniqueWithoutMessageInput | AIFeedbackUpdateWithWhereUniqueWithoutMessageInput[]
+    updateMany?: AIFeedbackUpdateManyWithWhereWithoutMessageInput | AIFeedbackUpdateManyWithWhereWithoutMessageInput[]
+    deleteMany?: AIFeedbackScalarWhereInput | AIFeedbackScalarWhereInput[]
+  }
+
+  export type AIFeedbackUncheckedUpdateManyWithoutMessageNestedInput = {
+    create?: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput> | AIFeedbackCreateWithoutMessageInput[] | AIFeedbackUncheckedCreateWithoutMessageInput[]
+    connectOrCreate?: AIFeedbackCreateOrConnectWithoutMessageInput | AIFeedbackCreateOrConnectWithoutMessageInput[]
+    upsert?: AIFeedbackUpsertWithWhereUniqueWithoutMessageInput | AIFeedbackUpsertWithWhereUniqueWithoutMessageInput[]
+    createMany?: AIFeedbackCreateManyMessageInputEnvelope
+    set?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    disconnect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    delete?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    connect?: AIFeedbackWhereUniqueInput | AIFeedbackWhereUniqueInput[]
+    update?: AIFeedbackUpdateWithWhereUniqueWithoutMessageInput | AIFeedbackUpdateWithWhereUniqueWithoutMessageInput[]
+    updateMany?: AIFeedbackUpdateManyWithWhereWithoutMessageInput | AIFeedbackUpdateManyWithWhereWithoutMessageInput[]
+    deleteMany?: AIFeedbackScalarWhereInput | AIFeedbackScalarWhereInput[]
+  }
+
+  export type AIMessageCreateNestedOneWithoutFeedbacksInput = {
+    create?: XOR<AIMessageCreateWithoutFeedbacksInput, AIMessageUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: AIMessageCreateOrConnectWithoutFeedbacksInput
+    connect?: AIMessageWhereUniqueInput
+  }
+
+  export type AIMessageUpdateOneRequiredWithoutFeedbacksNestedInput = {
+    create?: XOR<AIMessageCreateWithoutFeedbacksInput, AIMessageUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: AIMessageCreateOrConnectWithoutFeedbacksInput
+    upsert?: AIMessageUpsertWithoutFeedbacksInput
+    connect?: AIMessageWhereUniqueInput
+    update?: XOR<XOR<AIMessageUpdateToOneWithWhereWithoutFeedbacksInput, AIMessageUpdateWithoutFeedbacksInput>, AIMessageUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type AIDocumentChunkCreateNestedManyWithoutDocumentInput = {
+    create?: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput> | AIDocumentChunkCreateWithoutDocumentInput[] | AIDocumentChunkUncheckedCreateWithoutDocumentInput[]
+    connectOrCreate?: AIDocumentChunkCreateOrConnectWithoutDocumentInput | AIDocumentChunkCreateOrConnectWithoutDocumentInput[]
+    createMany?: AIDocumentChunkCreateManyDocumentInputEnvelope
+    connect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+  }
+
+  export type AIDocumentChunkUncheckedCreateNestedManyWithoutDocumentInput = {
+    create?: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput> | AIDocumentChunkCreateWithoutDocumentInput[] | AIDocumentChunkUncheckedCreateWithoutDocumentInput[]
+    connectOrCreate?: AIDocumentChunkCreateOrConnectWithoutDocumentInput | AIDocumentChunkCreateOrConnectWithoutDocumentInput[]
+    createMany?: AIDocumentChunkCreateManyDocumentInputEnvelope
+    connect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+  }
+
+  export type AIDocumentChunkUpdateManyWithoutDocumentNestedInput = {
+    create?: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput> | AIDocumentChunkCreateWithoutDocumentInput[] | AIDocumentChunkUncheckedCreateWithoutDocumentInput[]
+    connectOrCreate?: AIDocumentChunkCreateOrConnectWithoutDocumentInput | AIDocumentChunkCreateOrConnectWithoutDocumentInput[]
+    upsert?: AIDocumentChunkUpsertWithWhereUniqueWithoutDocumentInput | AIDocumentChunkUpsertWithWhereUniqueWithoutDocumentInput[]
+    createMany?: AIDocumentChunkCreateManyDocumentInputEnvelope
+    set?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    disconnect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    delete?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    connect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    update?: AIDocumentChunkUpdateWithWhereUniqueWithoutDocumentInput | AIDocumentChunkUpdateWithWhereUniqueWithoutDocumentInput[]
+    updateMany?: AIDocumentChunkUpdateManyWithWhereWithoutDocumentInput | AIDocumentChunkUpdateManyWithWhereWithoutDocumentInput[]
+    deleteMany?: AIDocumentChunkScalarWhereInput | AIDocumentChunkScalarWhereInput[]
+  }
+
+  export type AIDocumentChunkUncheckedUpdateManyWithoutDocumentNestedInput = {
+    create?: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput> | AIDocumentChunkCreateWithoutDocumentInput[] | AIDocumentChunkUncheckedCreateWithoutDocumentInput[]
+    connectOrCreate?: AIDocumentChunkCreateOrConnectWithoutDocumentInput | AIDocumentChunkCreateOrConnectWithoutDocumentInput[]
+    upsert?: AIDocumentChunkUpsertWithWhereUniqueWithoutDocumentInput | AIDocumentChunkUpsertWithWhereUniqueWithoutDocumentInput[]
+    createMany?: AIDocumentChunkCreateManyDocumentInputEnvelope
+    set?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    disconnect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    delete?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    connect?: AIDocumentChunkWhereUniqueInput | AIDocumentChunkWhereUniqueInput[]
+    update?: AIDocumentChunkUpdateWithWhereUniqueWithoutDocumentInput | AIDocumentChunkUpdateWithWhereUniqueWithoutDocumentInput[]
+    updateMany?: AIDocumentChunkUpdateManyWithWhereWithoutDocumentInput | AIDocumentChunkUpdateManyWithWhereWithoutDocumentInput[]
+    deleteMany?: AIDocumentChunkScalarWhereInput | AIDocumentChunkScalarWhereInput[]
+  }
+
+  export type AIDocumentCreateNestedOneWithoutChunksInput = {
+    create?: XOR<AIDocumentCreateWithoutChunksInput, AIDocumentUncheckedCreateWithoutChunksInput>
+    connectOrCreate?: AIDocumentCreateOrConnectWithoutChunksInput
+    connect?: AIDocumentWhereUniqueInput
+  }
+
+  export type AIDocumentUpdateOneRequiredWithoutChunksNestedInput = {
+    create?: XOR<AIDocumentCreateWithoutChunksInput, AIDocumentUncheckedCreateWithoutChunksInput>
+    connectOrCreate?: AIDocumentCreateOrConnectWithoutChunksInput
+    upsert?: AIDocumentUpsertWithoutChunksInput
+    connect?: AIDocumentWhereUniqueInput
+    update?: XOR<XOR<AIDocumentUpdateToOneWithWhereWithoutChunksInput, AIDocumentUpdateWithoutChunksInput>, AIDocumentUncheckedUpdateWithoutChunksInput>
+  }
+
+  export type EnumAIAlertSeverityFieldUpdateOperationsInput = {
+    set?: $Enums.AIAlertSeverity
+  }
+
+  export type EnumAIAlertStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AIAlertStatus
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumAIActionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AIActionStatus
+  }
+
   export type DPRChainageCreateNestedManyWithoutCategoryInput = {
     create?: XOR<DPRChainageCreateWithoutCategoryInput, DPRChainageUncheckedCreateWithoutCategoryInput> | DPRChainageCreateWithoutCategoryInput[] | DPRChainageUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: DPRChainageCreateOrConnectWithoutCategoryInput | DPRChainageCreateOrConnectWithoutCategoryInput[]
@@ -108950,14 +122879,6 @@ export namespace Prisma {
     connectOrCreate?: diesel_inward_fileCreateOrConnectWithoutDiesel_inwardInput | diesel_inward_fileCreateOrConnectWithoutDiesel_inwardInput[]
     createMany?: diesel_inward_fileCreateManyDiesel_inwardInputEnvelope
     connect?: diesel_inward_fileWhereUniqueInput | diesel_inward_fileWhereUniqueInput[]
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type EnumDieselInwardStatusFieldUpdateOperationsInput = {
@@ -114021,11 +127942,38 @@ export namespace Prisma {
     _max?: NestedEnumPRStatusFilter<$PrismaModel>
   }
 
-  export type NestedEnumDieselInwardStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.DieselInwardStatus | EnumDieselInwardStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.DieselInwardStatus[] | ListEnumDieselInwardStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.DieselInwardStatus[] | ListEnumDieselInwardStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumDieselInwardStatusFilter<$PrismaModel> | $Enums.DieselInwardStatus
+  export type NestedEnumAIAlertSeverityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertSeverity | EnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertSeverityFilter<$PrismaModel> | $Enums.AIAlertSeverity
+  }
+
+  export type NestedEnumAIAlertStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertStatus | EnumAIAlertStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertStatusFilter<$PrismaModel> | $Enums.AIAlertStatus
+  }
+
+  export type NestedEnumAIAlertSeverityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertSeverity | EnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertSeverity[] | ListEnumAIAlertSeverityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertSeverityWithAggregatesFilter<$PrismaModel> | $Enums.AIAlertSeverity
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIAlertSeverityFilter<$PrismaModel>
+    _max?: NestedEnumAIAlertSeverityFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAIAlertStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIAlertStatus | EnumAIAlertStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIAlertStatus[] | ListEnumAIAlertStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIAlertStatusWithAggregatesFilter<$PrismaModel> | $Enums.AIAlertStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIAlertStatusFilter<$PrismaModel>
+    _max?: NestedEnumAIAlertStatusFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -114042,6 +127990,30 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAIActionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIActionStatus | EnumAIActionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIActionStatusFilter<$PrismaModel> | $Enums.AIActionStatus
+  }
+
+  export type NestedEnumAIActionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AIActionStatus | EnumAIActionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AIActionStatus[] | ListEnumAIActionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAIActionStatusWithAggregatesFilter<$PrismaModel> | $Enums.AIActionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAIActionStatusFilter<$PrismaModel>
+    _max?: NestedEnumAIActionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDieselInwardStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.DieselInwardStatus | EnumDieselInwardStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.DieselInwardStatus[] | ListEnumDieselInwardStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DieselInwardStatus[] | ListEnumDieselInwardStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumDieselInwardStatusFilter<$PrismaModel> | $Enums.DieselInwardStatus
   }
 
   export type NestedEnumDieselInwardStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -119013,6 +132985,398 @@ export namespace Prisma {
     total_cost?: FloatNullableFilter<"LabourAttendanceActivity"> | number | null
     activity_id?: IntFilter<"LabourAttendanceActivity"> | number
     labour_attendance_id?: IntFilter<"LabourAttendanceActivity"> | number
+  }
+
+  export type AIMessageCreateWithoutConversationInput = {
+    id?: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+    feedbacks?: AIFeedbackCreateNestedManyWithoutMessageInput
+  }
+
+  export type AIMessageUncheckedCreateWithoutConversationInput = {
+    id?: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+    feedbacks?: AIFeedbackUncheckedCreateNestedManyWithoutMessageInput
+  }
+
+  export type AIMessageCreateOrConnectWithoutConversationInput = {
+    where: AIMessageWhereUniqueInput
+    create: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput>
+  }
+
+  export type AIMessageCreateManyConversationInputEnvelope = {
+    data: AIMessageCreateManyConversationInput | AIMessageCreateManyConversationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIMessageUpsertWithWhereUniqueWithoutConversationInput = {
+    where: AIMessageWhereUniqueInput
+    update: XOR<AIMessageUpdateWithoutConversationInput, AIMessageUncheckedUpdateWithoutConversationInput>
+    create: XOR<AIMessageCreateWithoutConversationInput, AIMessageUncheckedCreateWithoutConversationInput>
+  }
+
+  export type AIMessageUpdateWithWhereUniqueWithoutConversationInput = {
+    where: AIMessageWhereUniqueInput
+    data: XOR<AIMessageUpdateWithoutConversationInput, AIMessageUncheckedUpdateWithoutConversationInput>
+  }
+
+  export type AIMessageUpdateManyWithWhereWithoutConversationInput = {
+    where: AIMessageScalarWhereInput
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyWithoutConversationInput>
+  }
+
+  export type AIMessageScalarWhereInput = {
+    AND?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+    OR?: AIMessageScalarWhereInput[]
+    NOT?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+    id?: StringFilter<"AIMessage"> | string
+    conversation_id?: StringFilter<"AIMessage"> | string
+    sender?: StringFilter<"AIMessage"> | string
+    content?: StringFilter<"AIMessage"> | string
+    rich_payload?: StringNullableFilter<"AIMessage"> | string | null
+    references?: StringNullableFilter<"AIMessage"> | string | null
+    actions?: StringNullableFilter<"AIMessage"> | string | null
+    language?: StringNullableFilter<"AIMessage"> | string | null
+    created_at?: DateTimeFilter<"AIMessage"> | Date | string
+  }
+
+  export type AIConversationCreateWithoutMessagesInput = {
+    id?: string
+    user_id: number
+    company_id: number
+    project_id?: number | null
+    title?: string
+    module?: string | null
+    language?: string | null
+    is_archived?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIConversationUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    user_id: number
+    company_id: number
+    project_id?: number | null
+    title?: string
+    module?: string | null
+    language?: string | null
+    is_archived?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIConversationCreateOrConnectWithoutMessagesInput = {
+    where: AIConversationWhereUniqueInput
+    create: XOR<AIConversationCreateWithoutMessagesInput, AIConversationUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type AIFeedbackCreateWithoutMessageInput = {
+    id?: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIFeedbackUncheckedCreateWithoutMessageInput = {
+    id?: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIFeedbackCreateOrConnectWithoutMessageInput = {
+    where: AIFeedbackWhereUniqueInput
+    create: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput>
+  }
+
+  export type AIFeedbackCreateManyMessageInputEnvelope = {
+    data: AIFeedbackCreateManyMessageInput | AIFeedbackCreateManyMessageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIConversationUpsertWithoutMessagesInput = {
+    update: XOR<AIConversationUpdateWithoutMessagesInput, AIConversationUncheckedUpdateWithoutMessagesInput>
+    create: XOR<AIConversationCreateWithoutMessagesInput, AIConversationUncheckedCreateWithoutMessagesInput>
+    where?: AIConversationWhereInput
+  }
+
+  export type AIConversationUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: AIConversationWhereInput
+    data: XOR<AIConversationUpdateWithoutMessagesInput, AIConversationUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type AIConversationUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIConversationUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    module?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    is_archived?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackUpsertWithWhereUniqueWithoutMessageInput = {
+    where: AIFeedbackWhereUniqueInput
+    update: XOR<AIFeedbackUpdateWithoutMessageInput, AIFeedbackUncheckedUpdateWithoutMessageInput>
+    create: XOR<AIFeedbackCreateWithoutMessageInput, AIFeedbackUncheckedCreateWithoutMessageInput>
+  }
+
+  export type AIFeedbackUpdateWithWhereUniqueWithoutMessageInput = {
+    where: AIFeedbackWhereUniqueInput
+    data: XOR<AIFeedbackUpdateWithoutMessageInput, AIFeedbackUncheckedUpdateWithoutMessageInput>
+  }
+
+  export type AIFeedbackUpdateManyWithWhereWithoutMessageInput = {
+    where: AIFeedbackScalarWhereInput
+    data: XOR<AIFeedbackUpdateManyMutationInput, AIFeedbackUncheckedUpdateManyWithoutMessageInput>
+  }
+
+  export type AIFeedbackScalarWhereInput = {
+    AND?: AIFeedbackScalarWhereInput | AIFeedbackScalarWhereInput[]
+    OR?: AIFeedbackScalarWhereInput[]
+    NOT?: AIFeedbackScalarWhereInput | AIFeedbackScalarWhereInput[]
+    id?: StringFilter<"AIFeedback"> | string
+    message_id?: StringFilter<"AIFeedback"> | string
+    user_id?: IntFilter<"AIFeedback"> | number
+    rating?: IntFilter<"AIFeedback"> | number
+    comment?: StringNullableFilter<"AIFeedback"> | string | null
+    created_at?: DateTimeFilter<"AIFeedback"> | Date | string
+  }
+
+  export type AIMessageCreateWithoutFeedbacksInput = {
+    id?: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+    conversation: AIConversationCreateNestedOneWithoutMessagesInput
+  }
+
+  export type AIMessageUncheckedCreateWithoutFeedbacksInput = {
+    id?: string
+    conversation_id: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIMessageCreateOrConnectWithoutFeedbacksInput = {
+    where: AIMessageWhereUniqueInput
+    create: XOR<AIMessageCreateWithoutFeedbacksInput, AIMessageUncheckedCreateWithoutFeedbacksInput>
+  }
+
+  export type AIMessageUpsertWithoutFeedbacksInput = {
+    update: XOR<AIMessageUpdateWithoutFeedbacksInput, AIMessageUncheckedUpdateWithoutFeedbacksInput>
+    create: XOR<AIMessageCreateWithoutFeedbacksInput, AIMessageUncheckedCreateWithoutFeedbacksInput>
+    where?: AIMessageWhereInput
+  }
+
+  export type AIMessageUpdateToOneWithWhereWithoutFeedbacksInput = {
+    where?: AIMessageWhereInput
+    data: XOR<AIMessageUpdateWithoutFeedbacksInput, AIMessageUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type AIMessageUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversation?: AIConversationUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type AIMessageUncheckedUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversation_id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkCreateWithoutDocumentInput = {
+    id?: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIDocumentChunkUncheckedCreateWithoutDocumentInput = {
+    id?: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIDocumentChunkCreateOrConnectWithoutDocumentInput = {
+    where: AIDocumentChunkWhereUniqueInput
+    create: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput>
+  }
+
+  export type AIDocumentChunkCreateManyDocumentInputEnvelope = {
+    data: AIDocumentChunkCreateManyDocumentInput | AIDocumentChunkCreateManyDocumentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIDocumentChunkUpsertWithWhereUniqueWithoutDocumentInput = {
+    where: AIDocumentChunkWhereUniqueInput
+    update: XOR<AIDocumentChunkUpdateWithoutDocumentInput, AIDocumentChunkUncheckedUpdateWithoutDocumentInput>
+    create: XOR<AIDocumentChunkCreateWithoutDocumentInput, AIDocumentChunkUncheckedCreateWithoutDocumentInput>
+  }
+
+  export type AIDocumentChunkUpdateWithWhereUniqueWithoutDocumentInput = {
+    where: AIDocumentChunkWhereUniqueInput
+    data: XOR<AIDocumentChunkUpdateWithoutDocumentInput, AIDocumentChunkUncheckedUpdateWithoutDocumentInput>
+  }
+
+  export type AIDocumentChunkUpdateManyWithWhereWithoutDocumentInput = {
+    where: AIDocumentChunkScalarWhereInput
+    data: XOR<AIDocumentChunkUpdateManyMutationInput, AIDocumentChunkUncheckedUpdateManyWithoutDocumentInput>
+  }
+
+  export type AIDocumentChunkScalarWhereInput = {
+    AND?: AIDocumentChunkScalarWhereInput | AIDocumentChunkScalarWhereInput[]
+    OR?: AIDocumentChunkScalarWhereInput[]
+    NOT?: AIDocumentChunkScalarWhereInput | AIDocumentChunkScalarWhereInput[]
+    id?: StringFilter<"AIDocumentChunk"> | string
+    document_id?: StringFilter<"AIDocumentChunk"> | string
+    chunk_index?: IntFilter<"AIDocumentChunk"> | number
+    content?: StringFilter<"AIDocumentChunk"> | string
+    page_number?: IntNullableFilter<"AIDocumentChunk"> | number | null
+    metadata?: StringNullableFilter<"AIDocumentChunk"> | string | null
+    created_at?: DateTimeFilter<"AIDocumentChunk"> | Date | string
+  }
+
+  export type AIDocumentCreateWithoutChunksInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    file_name: string
+    file_path?: string | null
+    file_type: string
+    file_size?: number | null
+    document_type: string
+    summary?: string | null
+    metadata?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIDocumentUncheckedCreateWithoutChunksInput = {
+    id?: string
+    company_id: number
+    project_id?: number | null
+    user_id: number
+    file_name: string
+    file_path?: string | null
+    file_type: string
+    file_size?: number | null
+    document_type: string
+    summary?: string | null
+    metadata?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type AIDocumentCreateOrConnectWithoutChunksInput = {
+    where: AIDocumentWhereUniqueInput
+    create: XOR<AIDocumentCreateWithoutChunksInput, AIDocumentUncheckedCreateWithoutChunksInput>
+  }
+
+  export type AIDocumentUpsertWithoutChunksInput = {
+    update: XOR<AIDocumentUpdateWithoutChunksInput, AIDocumentUncheckedUpdateWithoutChunksInput>
+    create: XOR<AIDocumentCreateWithoutChunksInput, AIDocumentUncheckedCreateWithoutChunksInput>
+    where?: AIDocumentWhereInput
+  }
+
+  export type AIDocumentUpdateToOneWithWhereWithoutChunksInput = {
+    where?: AIDocumentWhereInput
+    data: XOR<AIDocumentUpdateWithoutChunksInput, AIDocumentUncheckedUpdateWithoutChunksInput>
+  }
+
+  export type AIDocumentUpdateWithoutChunksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentUncheckedUpdateWithoutChunksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    company_id?: IntFieldUpdateOperationsInput | number
+    project_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    file_type?: StringFieldUpdateOperationsInput | string
+    file_size?: NullableIntFieldUpdateOperationsInput | number | null
+    document_type?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DPRChainageCreateWithoutCategoryInput = {
@@ -136543,6 +150907,120 @@ export namespace Prisma {
     total_overtime_cost?: NullableFloatFieldUpdateOperationsInput | number | null
     total_cost?: NullableFloatFieldUpdateOperationsInput | number | null
     labour_attendance_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AIMessageCreateManyConversationInput = {
+    id?: string
+    sender: string
+    content: string
+    rich_payload?: string | null
+    references?: string | null
+    actions?: string | null
+    language?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIMessageUpdateWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedbacks?: AIFeedbackUpdateManyWithoutMessageNestedInput
+  }
+
+  export type AIMessageUncheckedUpdateWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    feedbacks?: AIFeedbackUncheckedUpdateManyWithoutMessageNestedInput
+  }
+
+  export type AIMessageUncheckedUpdateManyWithoutConversationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    rich_payload?: NullableStringFieldUpdateOperationsInput | string | null
+    references?: NullableStringFieldUpdateOperationsInput | string | null
+    actions?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackCreateManyMessageInput = {
+    id?: string
+    user_id: number
+    rating: number
+    comment?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIFeedbackUpdateWithoutMessageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackUncheckedUpdateWithoutMessageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIFeedbackUncheckedUpdateManyWithoutMessageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkCreateManyDocumentInput = {
+    id?: string
+    chunk_index: number
+    content: string
+    page_number?: number | null
+    metadata?: string | null
+    created_at?: Date | string
+  }
+
+  export type AIDocumentChunkUpdateWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkUncheckedUpdateWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIDocumentChunkUncheckedUpdateManyWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chunk_index?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    page_number?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DPRChainageCreateManyCategoryInput = {

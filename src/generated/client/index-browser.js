@@ -288,6 +288,131 @@ exports.Prisma.ActivityScalarFieldEnum = {
   unitId: 'unitId'
 };
 
+exports.Prisma.AIConversationScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  company_id: 'company_id',
+  project_id: 'project_id',
+  title: 'title',
+  module: 'module',
+  language: 'language',
+  is_archived: 'is_archived',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AIMessageScalarFieldEnum = {
+  id: 'id',
+  conversation_id: 'conversation_id',
+  sender: 'sender',
+  content: 'content',
+  rich_payload: 'rich_payload',
+  references: 'references',
+  actions: 'actions',
+  language: 'language',
+  created_at: 'created_at'
+};
+
+exports.Prisma.AIFeedbackScalarFieldEnum = {
+  id: 'id',
+  message_id: 'message_id',
+  user_id: 'user_id',
+  rating: 'rating',
+  comment: 'comment',
+  created_at: 'created_at'
+};
+
+exports.Prisma.AIDocumentScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  project_id: 'project_id',
+  user_id: 'user_id',
+  file_name: 'file_name',
+  file_path: 'file_path',
+  file_type: 'file_type',
+  file_size: 'file_size',
+  document_type: 'document_type',
+  summary: 'summary',
+  metadata: 'metadata',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AIDocumentChunkScalarFieldEnum = {
+  id: 'id',
+  document_id: 'document_id',
+  chunk_index: 'chunk_index',
+  content: 'content',
+  page_number: 'page_number',
+  metadata: 'metadata',
+  created_at: 'created_at'
+};
+
+exports.Prisma.AIAlertScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  project_id: 'project_id',
+  module: 'module',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  supporting_records: 'supporting_records',
+  recommended_action: 'recommended_action',
+  status: 'status',
+  assigned_to: 'assigned_to',
+  reviewer_notes: 'reviewer_notes',
+  detection_date: 'detection_date',
+  resolved_at: 'resolved_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AIPredictionScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  project_id: 'project_id',
+  prediction_type: 'prediction_type',
+  target_entity: 'target_entity',
+  forecast_data: 'forecast_data',
+  confidence_score: 'confidence_score',
+  assumptions: 'assumptions',
+  data_points_count: 'data_points_count',
+  valid_until: 'valid_until',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AIActionLogScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  project_id: 'project_id',
+  user_id: 'user_id',
+  action_type: 'action_type',
+  action_payload: 'action_payload',
+  status: 'status',
+  execution_result: 'execution_result',
+  approved_by: 'approved_by',
+  confirmed_at: 'confirmed_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AIModelUsageScalarFieldEnum = {
+  id: 'id',
+  company_id: 'company_id',
+  user_id: 'user_id',
+  feature: 'feature',
+  provider: 'provider',
+  model_name: 'model_name',
+  prompt_tokens: 'prompt_tokens',
+  completion_tokens: 'completion_tokens',
+  total_tokens: 'total_tokens',
+  latency_ms: 'latency_ms',
+  status: 'status',
+  created_at: 'created_at'
+};
+
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1008,6 +1133,29 @@ exports.PRStatus = exports.$Enums.PRStatus = {
   CLOSED: 'CLOSED'
 };
 
+exports.AIAlertSeverity = exports.$Enums.AIAlertSeverity = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+};
+
+exports.AIAlertStatus = exports.$Enums.AIAlertStatus = {
+  OPEN: 'OPEN',
+  IN_REVIEW: 'IN_REVIEW',
+  RESOLVED: 'RESOLVED',
+  DISMISSED: 'DISMISSED'
+};
+
+exports.AIActionStatus = exports.$Enums.AIActionStatus = {
+  DRAFTED: 'DRAFTED',
+  PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
+  CONFIRMED: 'CONFIRMED',
+  EXECUTED: 'EXECUTED',
+  REJECTED: 'REJECTED',
+  FAILED: 'FAILED'
+};
+
 exports.DieselInwardStatus = exports.$Enums.DieselInwardStatus = {
   PENDING: 'PENDING',
   RECEIVED: 'RECEIVED',
@@ -1086,6 +1234,15 @@ exports.Prisma.ModelName = {
   PR: 'PR',
   PRMaterialItem: 'PRMaterialItem',
   Activity: 'Activity',
+  AIConversation: 'AIConversation',
+  AIMessage: 'AIMessage',
+  AIFeedback: 'AIFeedback',
+  AIDocument: 'AIDocument',
+  AIDocumentChunk: 'AIDocumentChunk',
+  AIAlert: 'AIAlert',
+  AIPrediction: 'AIPrediction',
+  AIActionLog: 'AIActionLog',
+  AIModelUsage: 'AIModelUsage',
   Category: 'Category',
   project_category: 'project_category',
   Company: 'Company',

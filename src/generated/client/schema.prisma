@@ -327,6 +327,194 @@ model Activity {
   @@map("activities")
 }
 
+enum AIAlertSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum AIAlertStatus {
+  OPEN
+  IN_REVIEW
+  RESOLVED
+  DISMISSED
+}
+
+enum AIActionStatus {
+  DRAFTED
+  PENDING_CONFIRMATION
+  CONFIRMED
+  EXECUTED
+  REJECTED
+  FAILED
+}
+
+model AIConversation {
+  id          String      @id @default(uuid())
+  user_id     Int
+  company_id  Int
+  project_id  Int?
+  title       String      @default("New Conversation")
+  module      String?     @default("General")
+  language    String?     @default("en")
+  is_archived Boolean     @default(false)
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  messages    AIMessage[]
+
+  @@index([company_id])
+  @@index([user_id])
+  @@map("ai_conversations")
+}
+
+model AIMessage {
+  id              String         @id @default(uuid())
+  conversation_id String
+  conversation    AIConversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+  sender          String // 'user' | 'assistant' | 'system'
+  content         String
+  rich_payload    String? // JSON string: { cards, tables, charts, kpis }
+  references      String? // JSON string: [{ type, id, code, name, link }]
+  actions         String? // JSON string: [{ id, type, label, draft_data, status }]
+  language        String?        @default("en")
+  created_at      DateTime       @default(now())
+  feedbacks       AIFeedback[]
+
+  @@index([conversation_id])
+  @@map("ai_messages")
+}
+
+model AIFeedback {
+  id         String    @id @default(uuid())
+  message_id String
+  message    AIMessage @relation(fields: [message_id], references: [id], onDelete: Cascade)
+  user_id    Int
+  rating     Int // 1 = helpful, -1 = unhelpful
+  comment    String?
+  created_at DateTime  @default(now())
+
+  @@map("ai_feedback")
+}
+
+model AIDocument {
+  id            String            @id @default(uuid())
+  company_id    Int
+  project_id    Int?
+  user_id       Int
+  file_name     String
+  file_path     String?
+  file_type     String // 'pdf' | 'xlsx' | 'docx' | 'txt'
+  file_size     Int?
+  document_type String // 'BOQ' | 'TENDER' | 'INVOICE' | 'PO' | 'CONTRACT' | 'OTHER'
+  summary       String?
+  metadata      String? // JSON string: key clauses, rates extracted, totals
+  status        String            @default("PROCESSED") // 'UPLOADING' | 'PROCESSING' | 'PROCESSED' | 'FAILED'
+  created_at    DateTime          @default(now())
+  updated_at    DateTime          @updatedAt
+  chunks        AIDocumentChunk[]
+
+  @@index([company_id])
+  @@index([project_id])
+  @@map("ai_documents")
+}
+
+model AIDocumentChunk {
+  id          String     @id @default(uuid())
+  document_id String
+  document    AIDocument @relation(fields: [document_id], references: [id], onDelete: Cascade)
+  chunk_index Int
+  content     String
+  page_number Int?
+  metadata    String? // JSON string: clause title, section, header
+  created_at  DateTime   @default(now())
+
+  @@index([document_id])
+  @@map("ai_document_chunks")
+}
+
+model AIAlert {
+  id                 String          @id @default(uuid())
+  company_id         Int
+  project_id         Int?
+  module             String // 'DIESEL' | 'INVENTORY' | 'PROCUREMENT' | 'FINANCE' | 'WORKFORCE' | 'DPR'
+  severity           AIAlertSeverity @default(MEDIUM)
+  title              String
+  description        String
+  supporting_records String? // JSON string: [{ type, id, code, value, expected }]
+  recommended_action String?
+  status             AIAlertStatus   @default(OPEN)
+  assigned_to        Int? // User ID assigned to review
+  reviewer_notes     String?
+  detection_date     DateTime        @default(now())
+  resolved_at        DateTime?
+  created_at         DateTime        @default(now())
+  updated_at         DateTime        @updatedAt
+
+  @@index([company_id])
+  @@index([project_id])
+  @@index([module])
+  @@index([status])
+  @@map("ai_alerts")
+}
+
+model AIPrediction {
+  id                String    @id @default(uuid())
+  company_id        Int
+  project_id        Int?
+  prediction_type   String // 'PROJECT_DELAY' | 'STOCK_FORECAST' | 'DIESEL_TREND' | 'LABOUR_PRODUCTIVITY' | 'BUDGET_OVERRUN'
+  target_entity     String // e.g. 'Project: 1', 'Material: Cement'
+  forecast_data     String // JSON string: timeline, forecast curve, projected values
+  confidence_score  Float // 0.0 to 1.0
+  assumptions       String? // JSON string or text
+  data_points_count Int       @default(0)
+  valid_until       DateTime?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  @@index([company_id])
+  @@index([project_id])
+  @@index([prediction_type])
+  @@map("ai_predictions")
+}
+
+model AIActionLog {
+  id               String         @id @default(uuid())
+  company_id       Int
+  project_id       Int?
+  user_id          Int
+  action_type      String // 'DRAFT_PR' | 'REORDER_MATERIAL' | 'NOTIFY_APPROVER' | 'EXPORT_REPORT'
+  action_payload   String // JSON string: prepared parameters and records
+  status           AIActionStatus @default(DRAFTED)
+  execution_result String? // JSON string: status, resulting entity ID, error if any
+  approved_by      Int?
+  confirmed_at     DateTime?
+  created_at       DateTime       @default(now())
+  updated_at       DateTime       @updatedAt
+
+  @@index([company_id])
+  @@index([user_id])
+  @@map("ai_action_logs")
+}
+
+model AIModelUsage {
+  id                String   @id @default(uuid())
+  company_id        Int?
+  user_id           Int?
+  feature           String // 'CHATBOT' | 'RAG' | 'REPORTS' | 'PREDICTIONS' | 'ANOMALY' | 'WORKFLOW'
+  provider          String // 'GEMINI' | 'OPENAI' | 'FALLBACK_ENGINE'
+  model_name        String
+  prompt_tokens     Int      @default(0)
+  completion_tokens Int      @default(0)
+  total_tokens      Int      @default(0)
+  latency_ms        Int      @default(0)
+  status            String   @default("SUCCESS")
+  created_at        DateTime @default(now())
+
+  @@index([company_id])
+  @@map("ai_model_usage")
+}
+
 model Category {
   id                Int                @id @default(autoincrement())
   name              String
